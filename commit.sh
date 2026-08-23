@@ -5,7 +5,7 @@
 set -e
 
 DIR="$HOME/hillclimb-patches"
-MSG="fix: replace returnEarly with inline return-void instructions"
+MSG="fix(ci): remove npm cache option from release workflow (no lockfile in repo)"
 
 cd "$DIR"
 
