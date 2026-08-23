@@ -74,7 +74,9 @@ val hillClimbAdRemovalPatch = bytecodePatch(
             """.trimIndent()
         )
 
-        ShowBannersFingerprint.method.returnEarly()
-        ShowInterstitialFingerprint.method.returnEarly()
+        // return-void at instruction index 0 makes each method an immediate
+        // no-op (same effect as the patcher's returnEarly helper).
+        ShowBannersFingerprint.method.addInstructions(0, "return-void")
+        ShowInterstitialFingerprint.method.addInstructions(0, "return-void")
     }
 }
