@@ -1,3 +1,9 @@
+## [1.1.0](https://github.com/legendsciber/morphe-patches/compare/v1.0.1...v1.1.0) (2026-08-24)
+
+### ✨ New Features
+
+* **mctoolbox:** always-valid install location patch for Toolbox 5.4.58 ([7d386ac](https://github.com/legendsciber/morphe-patches/commit/7d386aca3fdfbb46b10880b0fe0f179245f43165))
+
 ## [1.0.1](https://github.com/legendsciber/morphe-patches/compare/v1.0.0...v1.0.1) (2026-08-24)
 
 ### 🐛 Bug Fixes
