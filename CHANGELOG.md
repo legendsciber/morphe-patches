@@ -1,3 +1,9 @@
+## [1.0.1](https://github.com/legendsciber/morphe-patches/compare/v1.0.0...v1.0.1) (2026-08-24)
+
+### 🐛 Bug Fixes
+
+* **ci:** remove dev backmerge plugin from releaserc ([4082c24](https://github.com/legendsciber/morphe-patches/commit/4082c240c2e3518b864fa6fe593fa9cbda033fa6))
+
 ## 1.0.0 (2026-08-23)
 
 ### 🐛 Bug Fixes
