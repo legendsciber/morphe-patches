@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "patches": [
     {
       "name": "Hill Climb Racing Ad Removal",
@@ -82,7 +82,7 @@
     },
     {
       "name": "Toolbox Always Valid Install Location",
-      "description": "The Minecraft installation check always succeeds: package lookups resolve to the app itself (never \"not installed\") and the supported-version gate accepts any version.",
+      "description": "The Minecraft installation check always succeeds: package lookups resolve to the app itself, and both the generic and the 32/64-bit supported-version gates accept any version (no more \"Unsupported 64-bit Minecraft\").",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [

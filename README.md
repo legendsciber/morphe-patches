@@ -9,7 +9,7 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.1.0](https://github.com/legendsciber/morphe-patches/releases/tag/v1.1.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;4 patches total
+> **[v1.2.0](https://github.com/legendsciber/morphe-patches/releases/tag/v1.2.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;4 patches total
 <details open>
 <summary>📦 Hill Climb Racing&nbsp;&nbsp;•&nbsp;&nbsp;3 patches</summary>
 <br>
@@ -38,7 +38,7 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
-| [Toolbox Always Valid Install Location](#toolbox-always-valid-install-location) | The Minecraft installation check always succeeds: package lookups resolve to the app itself (never "not installed") and the supported-version gate accepts any version. |  |
+| [Toolbox Always Valid Install Location](#toolbox-always-valid-install-location) | The Minecraft installation check always succeeds: package lookups resolve to the app itself, and both the generic and the 32/64-bit supported-version gates accept any version (no more "Unsupported 64-bit Minecraft"). |  |
 
 </details>
 

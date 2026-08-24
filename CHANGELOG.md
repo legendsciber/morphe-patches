@@ -1,3 +1,9 @@
+## [1.2.0](https://github.com/legendsciber/morphe-patches/compare/v1.1.0...v1.2.0) (2026-08-24)
+
+### ✨ New Features
+
+* **mctoolbox:** bypass 32/64-bit supported-version gates ([81eaf21](https://github.com/legendsciber/morphe-patches/commit/81eaf21b7208fb51e74c8cf92b3d38dc0ec10058))
+
 ## [1.1.0](https://github.com/legendsciber/morphe-patches/compare/v1.0.1...v1.1.0) (2026-08-24)
 
 ### ✨ New Features

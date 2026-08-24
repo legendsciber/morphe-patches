@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-08-24T14:41:07",
-  "description": "## [1.1.0](https://github.com/legendsciber/morphe-patches/compare/v1.0.1...v1.1.0) (2026-08-24)\n\n### ✨ New Features\n\n* **mctoolbox:** always-valid install location patch for Toolbox 5.4.58 ([7d386ac](https://github.com/legendsciber/morphe-patches/commit/7d386aca3fdfbb46b10880b0fe0f179245f43165))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.1.0/patches-1.1.0.mpp",
+  "created_at": "2026-08-24T14:51:31",
+  "description": "## [1.2.0](https://github.com/legendsciber/morphe-patches/compare/v1.1.0...v1.2.0) (2026-08-24)\n\n### ✨ New Features\n\n* **mctoolbox:** bypass 32/64-bit supported-version gates ([81eaf21](https://github.com/legendsciber/morphe-patches/commit/81eaf21b7208fb51e74c8cf92b3d38dc0ec10058))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.2.0/patches-1.2.0.mpp",
   "signature_download_url": "",
-  "version": "1.1.0"
+  "version": "1.2.0"
 }
