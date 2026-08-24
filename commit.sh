@@ -5,7 +5,7 @@
 set -e
 
 DIR="$HOME/hillclimb-patches"
-MSG="fix(ci): remove npm cache option from release workflow (no lockfile in repo)"
+MSG="fix(ci): remove dev backmerge plugin from releaserc"
 
 cd "$DIR"
 
@@ -22,6 +22,9 @@ if git diff --cached --quiet; then
 else
     git commit -m "$MSG"
 fi
+
+# Release bot'u uzaktan commit atmis olabilir, once guncelle
+git pull --rebase
 
 git push
 echo ""

@@ -71,14 +71,7 @@
             "path": "patches/build/libs/patches-!(*sources*|*javadoc*).mpp?(.asc)"
           }
         ],
-        "successComment": false
-      }
-    ],
-    [
-      "@cleyrop-org/semantic-release-backmerge",
-      {
-        "backmergeBranches": [{"from": "main", "to": "dev"}],
-        "clearWorkspace": true
+        "successCommentCondition": false
       }
     ]
   ]
