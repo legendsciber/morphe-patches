@@ -5,7 +5,7 @@
 set -e
 
 DIR="$HOME/hillclimb-patches"
-MSG="fix(ci): remove dev backmerge plugin from releaserc"
+MSG="feat(mctoolbox): always-valid install location patch for Toolbox 5.4.58"
 
 cd "$DIR"
 
