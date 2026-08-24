@@ -1,6 +1,7 @@
 package app.mctoolbox.patches.installlocation
 
 import app.morphe.patcher.Fingerprint
+import app.morphe.patcher.fieldAccess
 import app.morphe.patcher.methodCall
 import app.morphe.patcher.string
 
@@ -40,6 +41,34 @@ object McSupportedVersionFingerprint : Fingerprint(
     returnType = "V",
     parameters = listOf("Landroid/os/Bundle;"),
     filters = listOf(
+        methodCall(definingClass = "Li60;", name = "c")
+    )
+)
+
+/**
+ * MinecraftActivity.onCreate — the two ABI-aware version gates (smali :801
+ * and :875), each shaped exactly as:
+ *
+ *   invoke-static {}, La0;->a()Z              (toolbox process is 64-bit?)
+ *   iget-object ... ->V:Landroid/content/pm/PackageInfo;
+ *   iget-object ... ->versionName:Ljava/lang/String;
+ *   invoke-virtual ..., Li60;->c(...)Z        ← zero leads to
+ *                                               "not_supported_64bit" / "_32bit"
+ *
+ * The earlier version gates (:533, :655) do NOT have the La0.a() call
+ * immediately before them, so this 4-filter chain resolves to exactly these
+ * two sites. Note :655 has inverted semantics (c()==TRUE raises an error),
+ * which is why it must stay untouched.
+ */
+object McAbiVersionGateFingerprint : Fingerprint(
+    definingClass = "Lio/mrarm/mctoolbox/MinecraftActivity;",
+    name = "onCreate",
+    returnType = "V",
+    parameters = listOf("Landroid/os/Bundle;"),
+    filters = listOf(
+        methodCall(definingClass = "La0;", name = "a"),
+        fieldAccess(smali = "Lio/mrarm/mctoolbox/MinecraftActivity;->V:Landroid/content/pm/PackageInfo;"),
+        fieldAccess(smali = "Landroid/content/pm/PackageInfo;->versionName:Ljava/lang/String;"),
         methodCall(definingClass = "Li60;", name = "c")
     )
 )

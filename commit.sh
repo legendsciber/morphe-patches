@@ -5,7 +5,7 @@
 set -e
 
 DIR="$HOME/hillclimb-patches"
-MSG="feat(mctoolbox): always-valid install location patch for Toolbox 5.4.58"
+MSG="feat(mctoolbox): bypass 32/64-bit supported-version gates"
 
 cd "$DIR"
 

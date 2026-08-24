@@ -37,7 +37,7 @@ private const val TOOLBOX_PACKAGE = "io.mrarm.mctoolbox"
 @Suppress("unused")
 val minecraftLocationCheckPatch = bytecodePatch(
     name = "Toolbox Always Valid Install Location",
-    description = "The Minecraft installation check always succeeds: package lookups resolve to the app itself (never \"not installed\") and the supported-version gate accepts any version.",
+    description = "The Minecraft installation check always succeeds: package lookups resolve to the app itself, and both the generic and the 32/64-bit supported-version gates accept any version (no more \"Unsupported 64-bit Minecraft\").",
     default = true
 ) {
     compatibleWith(COMPATIBILITY_MCTOOLBOX)
@@ -76,5 +76,20 @@ val minecraftLocationCheckPatch = bytecodePatch(
                 const/4 v5, 0x1
             """.trimIndent()
         )
+
+        // 2c. MinecraftActivity ABI-aware gates (64-bit / 32-bit errors):
+        // force the Li60.c() result of BOTH gate sites to 1 so any MCPE
+        // version passes after the 64-bit relaunch as well. Insertions are
+        // done in descending match order because each insert shifts the
+        // instruction offsets of everything after it.
+        val abiGate = McAbiVersionGateFingerprint
+        abiGate.instructionMatches
+            .map { it.index }
+            .sortedDescending()
+            .forEach { idx ->
+                abiGate.method.addInstructions(idx + 2, """
+                    const/4 v5, 0x1
+                """.trimIndent())
+            }
     }
 }
