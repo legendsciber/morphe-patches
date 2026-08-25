@@ -9,7 +9,7 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.4.4](https://github.com/legendsciber/morphe-patches/releases/tag/v1.4.4)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;5 patches total
+> **[v1.5.0](https://github.com/legendsciber/morphe-patches/releases/tag/v1.5.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;5 patches total
 <details open>
 <summary>📦 Toolbox for Minecraft PE&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
 <br>
@@ -22,7 +22,7 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Bypass Google Play Install Check](#bypass-google-play-install-check) | Minecraft'in nereden yuklendigi kontrol edilmez: her zaman Google Play'den kurulmus gibi islem gorur. |  |
-| [Unlock All MCPE Versions](#unlock-all-mcpe-versions) | Desteklenen surum kontrolu her zaman gecer: liste disi Minecraft surumlerinde "not supported" ve 32/64-bit uyari ekrani cikmaz. |  |
+| [Instant Watch Ad Premium](#instant-watch-ad-premium) | "Watch ad" butonuna basmak yeterli: reklam izlemeden premium ozellikler aninda acilir ve acik kalir. |  |
 
 </details>
 

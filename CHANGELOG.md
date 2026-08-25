@@ -1,3 +1,9 @@
+## [1.5.0](https://github.com/legendsciber/morphe-patches/compare/v1.4.4...v1.5.0) (2026-08-25)
+
+### ✨ New Features
+
+* **mctoolbox:** instant watch-ad premium (no ads, always unlocked); remove version unlock patch ([93237c3](https://github.com/legendsciber/morphe-patches/commit/93237c3893bc26d10c1565af8b5a278b24974ab8))
+
 ## [1.4.4](https://github.com/legendsciber/morphe-patches/compare/v1.4.3...v1.4.4) (2026-08-25)
 
 ### 🐛 Bug Fixes
