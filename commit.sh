@@ -5,7 +5,7 @@
 set -e
 
 DIR="$HOME/hillclimb-patches"
-MSG="fix(mctoolbox): play-spoof writes test=0 pref at onCreate entry (covers all installer names)"
+MSG="fix(mctoolbox): escape dollar sign in raw string (Kotlin interpolation broke smali)"
 
 cd "$DIR"
 
