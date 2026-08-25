@@ -1,45 +1,42 @@
 package app.mctoolbox.patches.premium
 
 import app.morphe.patcher.Fingerprint
-import app.morphe.patcher.methodCall
-import app.morphe.patcher.string
 
 /**
- * bridge/b kurucusu — baslangicta premium durumunu okuyup UI'a baglar:
+ * Lvs0.a()Z — "reklam suresi doldu mu?" kontrolu.
+ * currentTimeMillis >= baslangic + sure*1000 karsilastirmasi yapar.
  *
- *   const-string v2, "internal/premium_unlocked"
- *   invoke-static {v2, v1}, Lio/mrarm/mctoolbox/bridge/b;->B(...)Z  (native)
- *   move-result v1
- *   invoke-virtual {v3, v1}, Lya0;->H(Z)V     <- databinding observable
+ * Govdesi tamamen degistirilir: HER ZAMAN true doner.
  */
-object PremiumStateInitFingerprint : Fingerprint(
-    definingClass = "Lio/mrarm/mctoolbox/bridge/b;",
-    name = "<init>",
-    returnType = "V",
-    parameters = listOf(),
-    filters = listOf(
-        string("internal/premium_unlocked"),
-        methodCall(definingClass = "Lio/mrarm/mctoolbox/bridge/b;", name = "B")
-    )
+object Vs0TimeElapsedFingerprint : Fingerprint(
+    definingClass = "Lvs0;",
+    name = "a",
+    returnType = "Z",
+    parameters = listOf()
 )
 
 /**
- * bridge/b.a(b) static metodu — premium durumu degistiginde UI'i gunceller:
+ * Lvs0.b()Z — ikinci tamamlandi kontrolu (erken kapatma diyalogu ve
+ * odul kosulu icin kullanilan diger boolean).
  *
- *   const-string v1, "internal/premium_unlocked"
- *   invoke-static {v1, v0}, Lio/mrarm/mctoolbox/bridge/b;->B(...)Z  (native)
- *   move-result v0
- *   invoke-virtual {p0-c, v0}, Lya0;->H(Z)V
- *
- * Buradaki sonuc register'i v0'dir (kurucudaki v1'den farkli!).
+ * Govdesi tamamen degistirilir: HER ZAMAN true doner.
  */
-object PremiumStateNotifyFingerprint : Fingerprint(
-    definingClass = "Lio/mrarm/mctoolbox/bridge/b;",
-    name = "a",
+object Vs0CanCloseFingerprint : Fingerprint(
+    definingClass = "Lvs0;",
+    name = "b",
+    returnType = "Z",
+    parameters = listOf()
+)
+
+/**
+ * SimpleInterstitialAdActivity.r() — reklam ekraninin geri sayim tick'i.
+ * Butona basilinca aktivite olusturulur ve bu metod 100ms sonra ilk kez
+ * calisir. Govde basina finish() enjekte edilir: aktivite hic icerik
+ * gostermadan aninda kapanir ve finish() icindeki odul yolu isler.
+ */
+object AdScreenTickFingerprint : Fingerprint(
+    definingClass = "Lio/mrarm/simpleads/SimpleInterstitialAdActivity;",
+    name = "r",
     returnType = "V",
-    parameters = listOf("Lio/mrarm/mctoolbox/bridge/b;"),
-    filters = listOf(
-        string("internal/premium_unlocked"),
-        methodCall(definingClass = "Lio/mrarm/mctoolbox/bridge/b;", name = "B")
-    )
+    parameters = listOf()
 )

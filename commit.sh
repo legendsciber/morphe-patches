@@ -5,7 +5,7 @@
 set -e
 
 DIR="$HOME/hillclimb-patches"
-MSG="feat(mctoolbox): instant watch-ad premium (no ads, always unlocked); remove version unlock patch"
+MSG="feat(mctoolbox): watch-ad grants +15min instantly without playing any ad"
 
 cd "$DIR"
 
