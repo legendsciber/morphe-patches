@@ -1,3 +1,9 @@
+## [1.6.0](https://github.com/legendsciber/morphe-patches/compare/v1.5.0...v1.6.0) (2026-08-25)
+
+### ✨ New Features
+
+* **mctoolbox:** watch-ad grants +15min instantly without playing any ad ([eb5f456](https://github.com/legendsciber/morphe-patches/commit/eb5f456d3bd44f8c55a218aa035ef73254dac920))
+
 ## [1.5.0](https://github.com/legendsciber/morphe-patches/compare/v1.4.4...v1.5.0) (2026-08-25)
 
 ### ✨ New Features
