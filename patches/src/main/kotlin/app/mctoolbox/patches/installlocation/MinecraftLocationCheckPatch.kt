@@ -84,7 +84,7 @@ val mctoolboxPlaySpoofPatch = bytecodePatch(
         McPackageLookupFingerprint.method.addInstructions(entryIdx, """
             invoke-static {p0}, Landroid/preference/PreferenceManager;->getDefaultSharedPreferences(Landroid/content/Context;)Landroid/content/SharedPreferences;
             move-result-object v11
-            invoke-interface {v11}, Landroid/content/SharedPreferences${'$'}Editor;->edit()Landroid/content/SharedPreferences${'$'}Editor;
+            invoke-interface {v11}, Landroid/content/SharedPreferences;->edit()Landroid/content/SharedPreferences${'$'}Editor;
             move-result-object v11
             const-string v12, "test"
             const-string v13, "0"

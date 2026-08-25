@@ -5,7 +5,7 @@
 set -e
 
 DIR="$HOME/hillclimb-patches"
-MSG="fix(mctoolbox): escape dollar sign in raw string (Kotlin interpolation broke smali)"
+MSG="fix(mctoolbox): NoSuchMethodError — edit() must be called on SharedPreferences, not on Editor"
 
 cd "$DIR"
 
