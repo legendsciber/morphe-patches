@@ -5,7 +5,7 @@
 set -e
 
 DIR="$HOME/hillclimb-patches"
-MSG="feat(mctoolbox): drop package redirect; final duo = version unlock + play spoof"
+MSG="fix(mctoolbox): VerifyError — inject only at c() result sites, skip inverted :655"
 
 cd "$DIR"
 

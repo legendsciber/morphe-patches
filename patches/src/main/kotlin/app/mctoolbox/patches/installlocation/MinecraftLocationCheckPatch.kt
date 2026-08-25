@@ -10,14 +10,16 @@ import app.mctoolbox.patches.shared.Constants.COMPATIBILITY_MCTOOLBOX
  * Gercek MCPE PackageInfo'su sorgulanmaya devam eder (paket adi DEGISTIRILMEZ),
  * yalnizca surum karsilastirmalarinin sonucu zorlanir:
  *
- *   - MinecraftActivity ilk kapı (:533)
- *   - RelaunchActivity ilk kapısı
- *   - ABI zincirli iki kapı (:801/:875) — Toolbox hangi bitlikte calisirsa
- *     calissin "not_supported_64bit / _32bit" uyarisi cikmaz
+ *   MinecraftActivity sitesleri (komut sirasi):
+ *     [0]=:533 genel kapı  -> ZORLANIR
+ *     [1]=:655 TERS semantik (true -> hata) -> ATLANIR
+ *     [2]=:801 ABI kapısı   -> ZORLANIR
+ *     [3]=:875 ABI kapısı   -> ZORLANIR
+ *   RelaunchActivity: tum c() siteleri zorlanir.
  *
- * Bilinçli istisna: :655 sitesinin semantigi TERSDIR (true -> hata); 32-bit
- * MCPE ile a()=false akisinda o bloga girilmedigi icin dokunulmasina gerek
- * yoktur.
+ * Enjeksiyon noktasi her sitede invoke(+0)/move-result(+1)/dal(+2) seklinde;
+ * v5 result register'i move-result ile yazilip dal tarafindan okundugu icin
+ * araya giren const/4 v5,0x1 verifier acisindan guvenlidir (int->int).
  */
 @Suppress("unused")
 val mctoolboxVersionUnlockPatch = bytecodePatch(
@@ -28,28 +30,26 @@ val mctoolboxVersionUnlockPatch = bytecodePatch(
     compatibleWith(COMPATIBILITY_MCTOOLBOX)
 
     execute {
-        // Ilk genel kapilar
-        McSupportedVersionFingerprint.method.addInstructions(
-            McSupportedVersionFingerprint.instructionMatches[0].index + 2,
-            """
+        // MinecraftActivity: yalnizca [0], [2], [3] — ters semantikli [1] atlanir
+        val ma = McSupportedVersionFingerprint
+        val maIdx = ma.instructionMatches.map { it.index }
+        listOfNotNull(
+            maIdx.getOrNull(0),
+            maIdx.getOrNull(2),
+            maIdx.getOrNull(3)
+        ).sortedDescending().forEach { idx ->
+            ma.method.addInstructions(idx + 2, """
                 const/4 v5, 0x1
-            """.trimIndent()
-        )
+            """.trimIndent())
+        }
 
-        RelaunchSupportedVersionFingerprint.method.addInstructions(
-            RelaunchSupportedVersionFingerprint.instructionMatches[0].index + 2,
-            """
-                const/4 v5, 0x1
-            """.trimIndent()
-        )
-
-        // ABI zincirli kapilar (:801/:875) — azalan sira, indeks kaymasin
-        val gateFp = McAbiVersionGateFingerprint
-        gateFp.instructionMatches
+        // RelaunchActivity: tum c() siteleri
+        val ra = RelaunchSupportedVersionFingerprint
+        ra.instructionMatches
             .map { it.index }
             .sortedDescending()
             .forEach { idx ->
-                gateFp.method.addInstructions(idx + 2, """
+                ra.method.addInstructions(idx + 2, """
                     const/4 v5, 0x1
                 """.trimIndent())
             }
