@@ -72,16 +72,25 @@ val mctoolboxPlaySpoofPatch = bytecodePatch(
     compatibleWith(COMPATIBILITY_MCTOOLBOX)
 
     execute {
-        // DİKKAT: matches[0] const-string satiridir! Enjeksiyon, startsWith
-        // invoke'unun (matches[1]) move-result'indan SONRA gelmelidir; aksi
-        // halde move-result invoke'tan kopar -> java.lang.VerifyError.
-        val m = McInstallerCheckFingerprint.instructionMatches
-        val invokeIdx = m[1].index
-        McInstallerCheckFingerprint.method.addInstructions(
-            invokeIdx + 2,
-            """
-                const/4 v5, 0x1
-            """.trimIndent()
-        )
+        // ESKI yaklasim (startsWith sonucunu zorlamak) yetersizdi: zincirdeki
+        // endsWith/contains/length kosullari gercek installer adiyla yine
+        // basarisiz oluyordu. YENI yaklasim: metodu en basinda test="0"
+        // pref'ini DOGRUDAN yaz — hangi yol alinirsa alinsan sonuc ayni.
+        //
+        // Register guvenligi: onCreate .locals 14; metodun ilk talimatinda
+        // v11/v12/v13 canli deger tasimaz, sonraki kod onlari okumadan once
+        // yeniden atar.
+        val entryIdx = McPackageLookupFingerprint.instructionMatches[0].index
+        McPackageLookupFingerprint.method.addInstructions(entryIdx, """
+            invoke-static {p0}, Landroid/preference/PreferenceManager;->getDefaultSharedPreferences(Landroid/content/Context;)Landroid/content/SharedPreferences;
+            move-result-object v11
+            invoke-interface {v11}, Landroid/content/SharedPreferences;->edit()Landroid/content/SharedPreferences$Editor;
+            move-result-object v11
+            const-string v12, "test"
+            const-string v13, "0"
+            invoke-interface {v11, v12, v13}, Landroid/content/SharedPreferences$Editor;->putString(Ljava/lang/String;Ljava/lang/String;)Landroid/content/SharedPreferences$Editor;
+            move-result-object v11
+            invoke-interface {v11}, Landroid/content/SharedPreferences$Editor;->apply()V
+        """.trimIndent())
     }
 }

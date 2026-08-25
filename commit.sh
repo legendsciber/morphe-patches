@@ -5,7 +5,7 @@
 set -e
 
 DIR="$HOME/hillclimb-patches"
-MSG="fix(mctoolbox): VerifyError — play-spoof inject after startsWith move-result, not between invoke/result"
+MSG="fix(mctoolbox): play-spoof writes test=0 pref at onCreate entry (covers all installer names)"
 
 cd "$DIR"
 
