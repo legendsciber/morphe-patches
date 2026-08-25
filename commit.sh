@@ -5,7 +5,7 @@
 set -e
 
 DIR="$HOME/hillclimb-patches"
-MSG="fix(mctoolbox): NoSuchMethodError — edit() must be called on SharedPreferences, not on Editor"
+MSG="feat(mctoolbox): instant watch-ad premium (no ads, always unlocked); remove version unlock patch"
 
 cd "$DIR"
 
