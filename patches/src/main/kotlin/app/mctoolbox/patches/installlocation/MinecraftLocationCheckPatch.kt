@@ -72,8 +72,13 @@ val mctoolboxPlaySpoofPatch = bytecodePatch(
     compatibleWith(COMPATIBILITY_MCTOOLBOX)
 
     execute {
+        // DİKKAT: matches[0] const-string satiridir! Enjeksiyon, startsWith
+        // invoke'unun (matches[1]) move-result'indan SONRA gelmelidir; aksi
+        // halde move-result invoke'tan kopar -> java.lang.VerifyError.
+        val m = McInstallerCheckFingerprint.instructionMatches
+        val invokeIdx = m[1].index
         McInstallerCheckFingerprint.method.addInstructions(
-            McInstallerCheckFingerprint.instructionMatches[0].index + 2,
+            invokeIdx + 2,
             """
                 const/4 v5, 0x1
             """.trimIndent()

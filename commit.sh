@@ -5,7 +5,7 @@
 set -e
 
 DIR="$HOME/hillclimb-patches"
-MSG="fix(mctoolbox): VerifyError — inject only at c() result sites, skip inverted :655"
+MSG="fix(mctoolbox): VerifyError — play-spoof inject after startsWith move-result, not between invoke/result"
 
 cd "$DIR"
 
