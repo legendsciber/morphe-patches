@@ -6,41 +6,13 @@ import app.morphe.patcher.methodCall
 import app.morphe.patcher.string
 
 /**
- * MinecraftActivity.onCreate — ilk talimat: const-string "com.mojang.minecraftpe".
- * getPackageInfo bu paketle basarisiz olursa :catch_2 -> "not_installed" hatasi.
- * Literal metodda yalnizca bir kez gecer.
- */
-object McPackageLookupFingerprint : Fingerprint(
-    definingClass = "Lio/mrarm/mctoolbox/MinecraftActivity;",
-    name = "onCreate",
-    returnType = "V",
-    parameters = listOf("Landroid/os/Bundle;"),
-    filters = listOf(
-        string("com.mojang.minecraftpe")
-    )
-)
-
-/**
- * RelaunchActivity.onCreate — ayni kalip (smali :233):
- * const-string v3 "com.mojang.minecraftpe" -> NameNotFoundException -> "not_installed".
- */
-object RelaunchPackageLookupFingerprint : Fingerprint(
-    definingClass = "Lio/mrarm/mctoolbox/RelaunchActivity;",
-    name = "onCreate",
-    returnType = "V",
-    parameters = listOf("Landroid/os/Bundle;"),
-    filters = listOf(
-        string("com.mojang.minecraftpe")
-    )
-)
-
-/**
  * MinecraftActivity.onCreate (:533) — genel surum kapisi.
  * Ilk Li60.c(versionName,true) sonucu 0 ise ikinci c() ve "not_supported" hatasi.
  *
- * Dikkat: bu filtre metoddaki TUM Li60.c cagrilariyla eslesir; kullanim
- * yalnizca instructionMatches[0] uzerindedir (diger siteler ayri
- * fingerprintlerle yonetilir).
+ * Bu filtre metodun TUM Li60.c cagrilariyla eslesir; kullanim YALNIZCA
+ * instructionMatches[0] (ilk site) uzerindedir. Diger siteler:
+ *   - :655 semantigi TERS (true -> hata uretir) — dokunulmaz
+ *   - :801/:875 McAbiVersionGateFingerprint ile yonetilir
  */
 object McSupportedVersionFingerprint : Fingerprint(
     definingClass = "Lio/mrarm/mctoolbox/MinecraftActivity;",
@@ -53,7 +25,7 @@ object McSupportedVersionFingerprint : Fingerprint(
 )
 
 /**
- * RelaunchActivity.onCreate — ayni genel surum kapisi.
+ * RelaunchActivity.onCreate — genel surum kapisi (ilk Li60.c cagrisi).
  */
 object RelaunchSupportedVersionFingerprint : Fingerprint(
     definingClass = "Lio/mrarm/mctoolbox/RelaunchActivity;",
@@ -66,31 +38,7 @@ object RelaunchSupportedVersionFingerprint : Fingerprint(
 )
 
 /**
- * La0.b(ApplicationInfo)Z — "MCPE 64-bit mi?" kontrolu.
- * MinecraftActivity.onCreate icinde IKI cagri noktasi (:634 ve :736):
- *   - true  => 32-bit Toolbox + 64-bit MCPE uyarisi VEYA 64-bit yeniden baslatma
- *   - false => mimari uyumlu kabul edilir, hicbir ABI hatasi/relaunch olmaz
- *
- * Her iki cagrinin sonucu 0'a zorlanir; boylece Toolbox calistigi bitlikte
- * devam eder. Dikkat: gercek mimari uyusmazliginda native crash mumkun —
- * bu yama varsayilan olarak KAPALI gelir.
- *
- * NOT: accessFlags BILINCLI olarak belirtilmedi — Fingerprint eslestmesi
- * EXACT folded-int oldugu icin public final onCreate icin sadece PUBLIC
- * listelemek eslesmeyi bozar.
- */
-object McAbiRelaunchFingerprint : Fingerprint(
-    definingClass = "Lio/mrarm/mctoolbox/MinecraftActivity;",
-    name = "onCreate",
-    returnType = "V",
-    parameters = listOf("Landroid/os/Bundle;"),
-    filters = listOf(
-        methodCall(definingClass = "La0;", name = "b")
-    )
-)
-
-/**
- * MinecraftActivity.onCreate — iki ABI-surm kapisi (smali :801 ve :875),
+ * MinecraftActivity.onCreate — iki ABI surum kapisi (smali :801 ve :875),
  * tam kalip:
  *
  *   invoke-static {}, La0;->a()Z              (Toolbox sureci 64-bit mi?)
@@ -99,9 +47,11 @@ object McAbiRelaunchFingerprint : Fingerprint(
  *   invoke-virtual ..., Li60;->c(...)Z        <- 0 donerse
  *                                               not_supported_64bit / _32bit
  *
- * Onceki surum kapilari (:533, :655) onlerinde La0.a() cagrisi OLMADIGI
- * icin bu 4-filtre zinciri TAM OLARAK bu iki siteye uyar. (:655'in semantigi
- * terstir — c()==TRUE hata uretir — o yuzden o siteye dokunulmamalidir.)
+ * Onceki surum kapilarinin (:533, :655) onlerinde La0.a() cagrisi OLMADIGI
+ * icin bu 4-filtre zinciri TAM OLARAK bu iki siteye uyar.
+ *
+ * Gercek MCPE PackageInfo'su sorgulandigi icin bu kapilar gercek surume gore
+ * degerlendirilir; sonucu 1'e zorlamak listede olmayan her surumu kabul eder.
  */
 object McAbiVersionGateFingerprint : Fingerprint(
     definingClass = "Lio/mrarm/mctoolbox/MinecraftActivity;",
@@ -123,7 +73,8 @@ object McAbiVersionGateFingerprint : Fingerprint(
  *   && length == 19   (yani "com.android.vending")
  * ise prefs'e test="0" yazilir (Play kurulumu isareti).
  *
- * startsWith sonucunu 1'e zorlayarak zincir her zaman Play-yolunu secer.
+ * startsWith sonucunu 1'e zorlayarak zincir her zaman Play-yolunu secer —
+ * MCPE nereden kurulursa kurulsun "Play'den yuklu" muamelesi gorur.
  */
 object McInstallerCheckFingerprint : Fingerprint(
     definingClass = "Lio/mrarm/mctoolbox/MinecraftActivity;",

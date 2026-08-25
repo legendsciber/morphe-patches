@@ -5,7 +5,7 @@
 set -e
 
 DIR="$HOME/hillclimb-patches"
-MSG="fix(mctoolbox): repair Fingerprints.kt (duplicate object, stray paren, missing lookup fp)"
+MSG="feat(mctoolbox): drop package redirect; final duo = version unlock + play spoof"
 
 cd "$DIR"
 
