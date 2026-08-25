@@ -5,7 +5,7 @@
 set -e
 
 DIR="$HOME/hillclimb-patches"
-MSG="feat(mctoolbox): split into granular patches (install/version/abi/play)"
+MSG="fix(mctoolbox): drop exact accessFlags from fingerprint; proper 64-bit gate bypass"
 
 cd "$DIR"
 

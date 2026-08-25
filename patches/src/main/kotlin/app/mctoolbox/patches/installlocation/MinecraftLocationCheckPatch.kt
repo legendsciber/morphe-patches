@@ -60,6 +60,9 @@ val mctoolboxVersionUnlockPatch = bytecodePatch(
     compatibleWith(COMPATIBILITY_MCTOOLBOX)
 
     execute {
+        // SADECE ilk surum kapilari zorlanir (:533 ve RA'daki karsiligi).
+        // Diger c() sitelerinden :655'in semantigi TERSDIR (true -> hata),
+        // :801/:875 ise AbiGatePatch'in isidir — buraya dokunulmaz.
         McSupportedVersionFingerprint.method.addInstructions(
             McSupportedVersionFingerprint.instructionMatches[0].index + 2,
             """
@@ -100,13 +103,28 @@ val mctoolboxAbiGatePatch = bytecodePatch(
     compatibleWith(COMPATIBILITY_MCTOOLBOX)
 
     execute {
-        val fp = McAbiRelaunchFingerprint
-        fp.instructionMatches
+        // Katman 1: La0.b() iki cagri noktasini da 0'a zorla — MCPE "mimari
+        // uyumsuz" sayilmaz; 64-bit relaunch ve _on_32bit uyarisi hic
+        // tetiklenmez. (Azalan sira: ekleme indeksleri kaymasin.)
+        val bFp = McAbiRelaunchFingerprint
+        bFp.instructionMatches
             .map { it.index }
             .sortedDescending()
             .forEach { idx ->
-                fp.method.addInstructions(idx + 2, """
+                bFp.method.addInstructions(idx + 2, """
                     const/4 v5, 0x0
+                """.trimIndent())
+            }
+
+        // Katman 2: a()-zincirli iki surum kapisini (:801/:875) 1'e zorla —
+        // Toolbox hangi bitlikte calisirsa calissin surum reddi olmaz.
+        val gateFp = McAbiVersionGateFingerprint
+        gateFp.instructionMatches
+            .map { it.index }
+            .sortedDescending()
+            .forEach { idx ->
+                gateFp.method.addInstructions(idx + 2, """
+                    const/4 v5, 0x1
                 """.trimIndent())
             }
     }

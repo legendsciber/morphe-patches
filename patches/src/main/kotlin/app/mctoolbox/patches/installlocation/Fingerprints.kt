@@ -4,21 +4,48 @@ import app.morphe.patcher.Fingerprint
 import app.morphe.patcher.fieldAccess
 import app.morphe.patcher.methodCall
 import app.morphe.patcher.string
-import com.android.tools.smali.dexlib2.AccessFlags
 
 /**
- * MinecraftActivity.onCreate — ilk talimat: const-string "com.mojang.minecraftpe".
- * getPackageInfo bu paketle basarisiz olursa :catch_2 -> "not_installed" hatasi.
- * Literal metodda yalnizca bir kez gecer.
+ * NOT: accessFlags BILINCLI olarak belirtilmedi — Fingerprint eslestmesi
+ * EXACT folded-int oldugu icin public final onCreate icin sadece PUBLIC
+ * listelemek eslesmeyi bozar.
  */
-object McPackageLookupFingerprint : Fingerprint(
+object McAbiRelaunchFingerprint : Fingerprint(
     definingClass = "Lio/mrarm/mctoolbox/MinecraftActivity;",
     name = "onCreate",
     returnType = "V",
     parameters = listOf("Landroid/os/Bundle;"),
     filters = listOf(
-        string("com.mojang.minecraftpe")
+        methodCall(definingClass = "La0;", name = "b")
     )
+)
+
+/**
+ * MinecraftActivity.onCreate — iki ABI-surm kapisi (smali :801 ve :875),
+ * tam kalip:
+ *
+ *   invoke-static {}, La0;->a()Z              (Toolbox sureci 64-bit mi?)
+ *   iget-object ... ->V:Landroid/content/pm/PackageInfo;
+ *   iget-object ... ->versionName:Ljava/lang/String;
+ *   invoke-virtual ..., Li60;->c(...)Z        <- 0 donerse
+ *                                               not_supported_64bit / _32bit
+ *
+ * Onceki surum kapilari (:533, :655) onlerinde La0.a() cagrisi OLMADIGI
+ * icin bu 4-filtre zinciri TAM OLARAK bu iki siteye uyar. (:655'in semantigi
+ * terstir — c()==TRUE hata uretir — o yuzden o siteye dokunulmamalidir.)
+ */
+object McAbiVersionGateFingerprint : Fingerprint(
+    definingClass = "Lio/mrarm/mctoolbox/MinecraftActivity;",
+    name = "onCreate",
+    returnType = "V",
+    parameters = listOf("Landroid/os/Bundle;"),
+    filters = listOf(
+        methodCall(definingClass = "La0;", name = "a"),
+        fieldAccess(smali = "Lio/mrarm/mctoolbox/MinecraftActivity;->V:Landroid/content/pm/PackageInfo;"),
+        fieldAccess(smali = "Landroid/content/pm/PackageInfo;->versionName:Ljava/lang/String;"),
+        methodCall(definingClass = "Li60;", name = "c")
+    )
+)
 )
 
 /**
@@ -71,13 +98,16 @@ object RelaunchSupportedVersionFingerprint : Fingerprint(
  * Her iki cagrinin sonucu 0'a zorlanir; boylece Toolbox calistigi bitlikte
  * devam eder. Dikkat: gercek mimari uyusmazliginda native crash mumkun —
  * bu yama varsayilan olarak KAPALI gelir.
+ *
+ * NOT: accessFlags BILINCLI olarak belirtilmedi — Fingerprint eslestmesi
+ * EXACT folded-int oldugu icin public final onCreate icin sadece PUBLIC
+ * listelemek eslesmeyi bozar.
  */
 object McAbiRelaunchFingerprint : Fingerprint(
     definingClass = "Lio/mrarm/mctoolbox/MinecraftActivity;",
     name = "onCreate",
     returnType = "V",
     parameters = listOf("Landroid/os/Bundle;"),
-    accessFlags = listOf(AccessFlags.PUBLIC),
     filters = listOf(
         methodCall(definingClass = "La0;", name = "b")
     )
