@@ -1,3 +1,9 @@
+## [1.4.0](https://github.com/legendsciber/morphe-patches/compare/v1.3.1...v1.4.0) (2026-08-25)
+
+### ✨ New Features
+
+* **mctoolbox:** drop package redirect; final duo = version unlock + play spoof ([fd63c6d](https://github.com/legendsciber/morphe-patches/commit/fd63c6d5177f5fbf146638c9e1865c452a2718be))
+
 ## [1.3.1](https://github.com/legendsciber/morphe-patches/compare/v1.3.0...v1.3.1) (2026-08-25)
 
 ### 🐛 Bug Fixes
