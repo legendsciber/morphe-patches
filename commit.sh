@@ -5,7 +5,7 @@
 set -e
 
 DIR="$HOME/hillclimb-patches"
-MSG="fix(mctoolbox): drop exact accessFlags from fingerprint; proper 64-bit gate bypass"
+MSG="fix(mctoolbox): repair Fingerprints.kt (duplicate object, stray paren, missing lookup fp)"
 
 cd "$DIR"
 
