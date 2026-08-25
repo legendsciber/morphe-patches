@@ -1,3 +1,9 @@
+## [1.4.4](https://github.com/legendsciber/morphe-patches/compare/v1.4.3...v1.4.4) (2026-08-25)
+
+### 🐛 Bug Fixes
+
+* **mctoolbox:** NoSuchMethodError — edit() must be called on SharedPreferences, not on Editor ([013d3b1](https://github.com/legendsciber/morphe-patches/commit/013d3b117e073fe86393bbec327a46cc9c2a5557))
+
 ## [1.4.3](https://github.com/legendsciber/morphe-patches/compare/v1.4.2...v1.4.3) (2026-08-25)
 
 ### 🐛 Bug Fixes
