@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-$HOME/hillclimb-patches}"
-MSG="fix(mctoolbox): also set internal/premium_unlocked and refresh ya0.Q flag"
+MSG="chore(mctoolbox): mark patches as TESTING, translate all Turkish to English"
 
 cd "$DIR"
 

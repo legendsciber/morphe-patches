@@ -5,52 +5,53 @@ import app.morphe.patcher.patch.bytecodePatch
 import app.mctoolbox.patches.shared.Constants.COMPATIBILITY_MCTOOLBOX
 
 /**
- * Watch Ad Instant Reward — "Watch ad" butonuna basmak yeterli.
+ * Watch Ad Instant Reward — pressing "Watch ad" grants +15 min premium instantly.
  *
- * Premium iki anahtarla calisir:
- *   1) "internal/premium/remaining_time" (float) → sureyi S() ile yazariz
- *   2) "internal/premium_unlocked" (boolean) → R() ile true yapilir
+ * STATUS: TESTING — needs further verification on real device.
  *
- * Sonra bridge.b.a(bridge) ile ya0.Q flag'i refresh edilir; boylece
- * ozellikler aninda acilir.
+ * Premium works with two keys:
+ *   1) "internal/premium/remaining_time" (float) — written via S()
+ *   2) "internal/premium_unlocked" (boolean) — set to true via R()
  *
- * Dort katmanli patch:
+ * Then bridge.b.a(bridge) refreshes the ya0.Q flag so features unlock immediately.
  *
- * 1. vs0.a()Z → HER ZAMAN true doner (reklam suresi dolmus gibi).
+ * Four-layer patch:
  *
- * 2. vs0.b()Z → HER ZAMAN true doner (kapatma izni verir).
+ * 1. vs0.a()Z → always returns true (ad duration considered complete).
  *
- * 3. r2$b.b()V → Reklam kaynagi basarisiz olursa:
- *    S() ile premium sure yazar + R() ile unlocked=true + a() ile refresh
- *    + tv$a.a() ile dialog kapatir.
+ * 2. vs0.b()Z → always returns true (early-close permission granted).
  *
- * 4. n21$a.b()V → Tum kaynaklar basarisiz olursa:
- *    S() ile premium sure yazar + R() ile unlocked=true + a() ile refresh.
- *    Orijinal kod toast + dialog kapatir.
+ * 3. r2$b.b()V → when an ad source fails:
+ *    writes premium time via S() + sets unlocked=true via R() + refreshes via a()
+ *    + dismisses dialog via tv$a.a().
+ *
+ * 4. n21$a.b()V → when all ad sources fail:
+ *    writes premium time via S() + sets unlocked=true via R() + refreshes via a().
+ *    Original code shows toast + dismisses dialog.
  */
 @Suppress("unused")
 val mctoolboxWatchAdInstantRewardPatch = bytecodePatch(
     name = "Watch Ad Instant Reward",
-    description = "\"Watch ad\" butonuna basmak yeterli: reklam yukleme denemeleri beklemeden 15 dakikalik premium aninda eklenir.",
-    default = true
+    description = "Pressing \"Watch ad\" grants +15 min premium instantly without loading ads. (TESTING)",
+    default = false
 ) {
     compatibleWith(COMPATIBILITY_MCTOOLBOX)
 
     execute {
-        // 1. vs0.a() → HER ZAMAN true
+        // 1. vs0.a() → always true
         Vs0TimeElapsedFingerprint.method.addInstructions(0, """
             const/4 v0, 0x1
             return v0
         """.trimIndent())
 
-        // 2. vs0.b() → HER ZAMAN true
+        // 2. vs0.b() → always true
         Vs0CanCloseFingerprint.method.addInstructions(0, """
             const/4 v0, 0x1
             return v0
         """.trimIndent())
 
-        // 3. r2$b.b() → Basarisizlik aninda premium yaz + unlock + refresh + kapat
-        // .locals 4: v0-v3 mevcut
+        // 3. r2$b.b() → on failure: write premium + unlock + refresh + dismiss
+        // .locals 4: v0-v3 available
         AdLoadFailFingerprint.method.addInstructions(0, """
             sget-object v0, Lio/mrarm/mctoolbox/bridge/b;->h:Lio/mrarm/mctoolbox/bridge/b;
             const-string v1, "internal/premium/remaining_time"
@@ -68,8 +69,8 @@ val mctoolboxWatchAdInstantRewardPatch = bytecodePatch(
             return-void
         """.trimIndent())
 
-        // 4. n21$a.b() → Tum kaynaklar basarisiz: premium yaz + unlock + refresh
-        // .locals 3: v0-v2 mevcut
+        // 4. n21$a.b() → all sources failed: write premium + unlock + refresh
+        // .locals 3: v0-v2 available
         AdAllSourcesFailedFingerprint.method.addInstructions(0, """
             sget-object v0, Lio/mrarm/mctoolbox/bridge/b;->h:Lio/mrarm/mctoolbox/bridge/b;
             const-string v1, "internal/premium/remaining_time"
