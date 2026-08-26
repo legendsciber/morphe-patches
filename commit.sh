@@ -35,3 +35,4 @@ git push
 echo ""
 echo "Push tamamlandi. Workflow durumu:"
 echo "https://github.com/legendsciber/morphe-patches/actions"
+
