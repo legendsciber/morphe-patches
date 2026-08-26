@@ -21,8 +21,8 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
-| [Bypass Google Play Install Check](#bypass-google-play-install-check) | Minecraft'in nereden yuklendigi kontrol edilmez: her zaman Google Play'den kurulmus gibi islem gorur. |  |
-| [Watch Ad Instant Reward](#watch-ad-instant-reward) | "Watch ad" butonuna basmak yeterli: reklam yukleme denemeleri beklemeden 15 dakikalik premium aninda eklenir. |  |
+| [Bypass Google Play Install Check](#bypass-google-play-install-check) | App always behaves as if installed from Google Play, bypassing the install source check. |  |
+| [Watch Ad Instant Reward](#watch-ad-instant-reward) | Pressing "Watch ad" grants +15 min premium instantly without loading ads. (TESTING) |  |
 
 </details>
 

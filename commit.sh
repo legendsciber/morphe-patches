@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-$HOME/hillclimb-patches}"
-MSG="chore(mctoolbox): mark patches as TESTING, translate all Turkish to English"
+MSG="docs: translate remaining Turkish descriptions in README to English"
 
 cd "$DIR"
 
