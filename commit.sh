@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-$HOME/hillclimb-patches}"
-MSG="fix(mctoolbox): use bridge.b.S() to directly write premium time instead of native I(900.0f)"
+MSG="fix(mctoolbox): also set internal/premium_unlocked and refresh ya0.Q flag"
 
 cd "$DIR"
 
