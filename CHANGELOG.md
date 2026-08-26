@@ -1,3 +1,10 @@
+## [1.7.1](https://github.com/legendsciber/morphe-patches/compare/v1.7.0...v1.7.1) (2026-08-26)
+
+### 🐛 Bug Fixes
+
+* **mctoolbox:** watch-ad instant reward now actually grants +15min premium ([eb02de4](https://github.com/legendsciber/morphe-patches/commit/eb02de4f8ec4967a8c59ece4289ea8d5982a1723))
+* **mctoolbox:** watch-ad instant reward now actually grants +15min premium ([500984a](https://github.com/legendsciber/morphe-patches/commit/500984aba5af19bd5117e9d0bea80cc3f5b695f8))
+
 ## [1.7.0](https://github.com/legendsciber/morphe-patches/compare/v1.6.0...v1.7.0) (2026-08-26)
 
 ### 🐛 Bug Fixes
