@@ -58,14 +58,14 @@ object AdAsyncWorkFingerprint : Fingerprint(
 
 /**
  * wg/h0.smali - Ad SDK pre-initialization (PerformanceUtil).
- * Method preAsyncInitWorkManager checks isADShow and initializes ad SDK.
+ * Method h(Context)V checks isADShow and initializes ad SDK.
  * Body is replaced: always returns immediately (skips ad SDK init).
  */
 object AdSdkInitFingerprint : Fingerprint(
     definingClass = "Lwg/h0;",
-    name = "preAsyncInitWorkManager",
+    name = "h",
     returnType = "V",
-    parameters = listOf()
+    parameters = listOf("Landroid/content/Context;")
 )
 
 /**

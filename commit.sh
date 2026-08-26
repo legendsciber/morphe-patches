@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-$HOME/hillclimb-patches}"
-MSG="feat(blockblast): add ad removal + subscription simulation patch"
+MSG="fix(blockblast): correct AdSdkInitFingerprint method name to h(Context)"
 
 cd "$DIR"
 
