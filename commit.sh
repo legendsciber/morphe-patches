@@ -4,8 +4,8 @@
 # Mesaj asagida MSG satirinda tutulur; her duzeltmede guncellenir.
 set -e
 
-DIR="$HOME/hillclimb-patches"
-MSG="fix(mctoolbox): watch-ad instant reward now actually grants +15min premium"
+DIR="${DIR:-$HOME/hillclimb-patches}"
+MSG="fix(mctoolbox): use bridge.b.S() to directly write premium time instead of native I(900.0f)"
 
 cd "$DIR"
 

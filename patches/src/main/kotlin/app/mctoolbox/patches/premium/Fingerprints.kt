@@ -40,3 +40,29 @@ object AdScreenTickFingerprint : Fingerprint(
     returnType = "V",
     parameters = listOf()
 )
+
+/**
+ * Ln21$a.b()V — tum reklam kaynaklari basarisiz oldugunda cagrilir.
+ * Toast gosterir, dialog'u kapatir ve n21.W flag'ini sifirlar.
+ *
+ * Basarisizlik aninda premium sure dogrudan bridge.b.S() ile yazilir.
+ */
+object AdAllSourcesFailedFingerprint : Fingerprint(
+    definingClass = "Ln21\$a;",
+    name = "b",
+    returnType = "V",
+    parameters = listOf()
+)
+
+/**
+ * Lm21.onClick(Landroid/view/View;)V — "Watch ad" butonuna tiklandiginda
+ * calisir. premium_ticket string'ini kullanarak r2.b() cagrisini yapar.
+ *
+ * Butona tiklaninca reklam yukleme tamamen atlanir, S() ile dogrudan
+ * premium sure yazilir ve dialog kapatilir.
+ */
+object M21OnClickFingerprint : Fingerprint(
+    returnType = "V",
+    parameters = listOf("Landroid/view/View;"),
+    strings = listOf("premium_ticket")
+)
