@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-$HOME/hillclimb-patches}"
-MSG="docs: translate remaining Turkish descriptions in README to English"
+MSG="feat(blockblast): add ad removal + subscription simulation patch"
 
 cd "$DIR"
 
