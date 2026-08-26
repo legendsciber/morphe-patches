@@ -1,3 +1,9 @@
+## [1.8.0](https://github.com/legendsciber/morphe-patches/compare/v1.7.4...v1.8.0) (2026-08-26)
+
+### ✨ New Features
+
+* **blockblast:** add ad removal + subscription simulation patch ([6e4c075](https://github.com/legendsciber/morphe-patches/commit/6e4c075afafae50d689d1ca79e78b379c716e21a))
+
 ## [1.7.4](https://github.com/legendsciber/morphe-patches/compare/v1.7.3...v1.7.4) (2026-08-26)
 
 ### 🐛 Bug Fixes
