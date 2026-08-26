@@ -5,7 +5,7 @@
 set -e
 
 DIR="$HOME/hillclimb-patches"
-MSG="feat(mctoolbox): watch-ad failure handler now instantly grants +15min premium"
+MSG="fix(mctoolbox): compile errors — escape dollar signs, simplify to prepend injection"
 
 cd "$DIR"
 
