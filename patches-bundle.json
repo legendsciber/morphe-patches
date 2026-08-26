@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-08-26T22:16:25",
-  "description": "## [1.8.0](https://github.com/legendsciber/morphe-patches/compare/v1.7.4...v1.8.0) (2026-08-26)\n\n### ✨ New Features\n\n* **blockblast:** add ad removal + subscription simulation patch ([6e4c075](https://github.com/legendsciber/morphe-patches/commit/6e4c075afafae50d689d1ca79e78b379c716e21a))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.8.0/patches-1.8.0.mpp",
+  "created_at": "2026-08-26T22:23:59",
+  "description": "## [1.8.1](https://github.com/legendsciber/morphe-patches/compare/v1.8.0...v1.8.1) (2026-08-26)\n\n### 🐛 Bug Fixes\n\n* **blockblast:** correct AdSdkInitFingerprint method name to h(Context) ([1ffd2bb](https://github.com/legendsciber/morphe-patches/commit/1ffd2bb629c22c640897bf02c6833edb5eb50236))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.8.1/patches-1.8.1.mpp",
   "signature_download_url": "",
-  "version": "1.8.0"
+  "version": "1.8.1"
 }
