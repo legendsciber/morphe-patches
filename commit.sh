@@ -5,7 +5,7 @@
 set -e
 
 DIR="$HOME/hillclimb-patches"
-MSG="feat(mctoolbox): watch-ad grants +15min instantly without playing any ad"
+MSG="feat(mctoolbox): watch-ad failure handler now instantly grants +15min premium"
 
 cd "$DIR"
 
