@@ -1,3 +1,9 @@
+## [1.13.0](https://github.com/legendsciber/morphe-patches/compare/v1.12.1...v1.13.0) (2026-08-27)
+
+### ✨ New Features
+
+* **smashhit:** improve premium patch with multi-point bypass and ad-free unlock ([38b0125](https://github.com/legendsciber/morphe-patches/commit/38b0125d5de84d95e64c5f0619e510e1230f1d0b))
+
 ## [1.12.1](https://github.com/legendsciber/morphe-patches/compare/v1.12.0...v1.12.1) (2026-08-27)
 
 ### 🐛 Bug Fixes
