@@ -1,3 +1,9 @@
+## [1.13.1](https://github.com/legendsciber/morphe-patches/compare/v1.13.0...v1.13.1) (2026-08-27)
+
+### 🐛 Bug Fixes
+
+* **smashhit:** remove incorrect filter from IsProductOwnedFingerprint ([6f9bbd8](https://github.com/legendsciber/morphe-patches/commit/6f9bbd8272b79ddac8f9a72c4840713cd3118106))
+
 ## [1.13.0](https://github.com/legendsciber/morphe-patches/compare/v1.12.1...v1.13.0) (2026-08-27)
 
 ### ✨ New Features
