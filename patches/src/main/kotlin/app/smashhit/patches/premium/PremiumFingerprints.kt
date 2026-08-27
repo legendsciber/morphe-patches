@@ -46,3 +46,19 @@ object OnSyncCompletedFingerprint : Fingerprint(
         string("GooglePlaySystem.OnSyncCompleted - enter")
     )
 )
+
+/**
+ * AndroidStore.smali - Purchase flow entry point.
+ * startPurchaseFlow(Activity, String)V launches Google Play billing.
+ * Contains string "AndroidStore.startPurchaseFlow - enter".
+ * Body is replaced: return immediately (prevent Play Store from opening).
+ */
+object StartPurchaseFlowFingerprint : Fingerprint(
+    definingClass = "Lcom/mediocre/smashhit/AndroidStore;",
+    name = "startPurchaseFlow",
+    returnType = "V",
+    parameters = listOf("Landroid/app/Activity;", "Ljava/lang/String;"),
+    filters = listOf(
+        string("AndroidStore.startPurchaseFlow - enter")
+    )
+)

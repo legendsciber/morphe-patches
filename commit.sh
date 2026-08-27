@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(smashhit): remove incorrect filter from IsProductOwnedFingerprint"
+MSG="feat(smashhit): patch startPurchaseFlow to prevent Play Store from opening"
 
 cd "$DIR"
 
