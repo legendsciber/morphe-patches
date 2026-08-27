@@ -1,3 +1,9 @@
+## [1.17.7](https://github.com/legendsciber/morphe-patches/compare/v1.17.6...v1.17.7) (2026-08-27)
+
+### 🐛 Bug Fixes
+
+* **mctoolbox:** patch ya0 only - skip F() to prevent data binding popup crash ([ffe4835](https://github.com/legendsciber/morphe-patches/commit/ffe4835e208e5c7e95e4e297dffd91e4d093d941))
+
 ## [1.17.6](https://github.com/legendsciber/morphe-patches/compare/v1.17.5...v1.17.6) (2026-08-27)
 
 ### 🐛 Bug Fixes
