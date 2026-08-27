@@ -1,7 +1,6 @@
 package app.blockblast.patches.ad
 
 import app.morphe.patcher.Fingerprint
-import app.morphe.patcher.string
 
 /**
  * be/b.smali - Banner ad show/hide control.
@@ -66,17 +65,4 @@ object AdSdkInitFingerprint : Fingerprint(
     name = "h",
     returnType = "V",
     parameters = listOf("Landroid/content/Context;")
-)
-
-/**
- * wf/j.smali - Subscription verification entry point.
- * Method e(String)V checks SPStore subscription state.
- * When SPStore.p() == 1, calls notifySubStateUpdate() directly.
- * Body is replaced: always calls notifySubStateUpdate() regardless of state.
- */
-object SubscriptionCheckFingerprint : Fingerprint(
-    definingClass = "Lwf/j;",
-    name = "e",
-    returnType = "V",
-    parameters = listOf("Ljava/lang/String;")
 )

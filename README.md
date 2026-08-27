@@ -9,9 +9,9 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.8.1](https://github.com/legendsciber/morphe-patches/releases/tag/v1.8.1)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;6 patches total
+> **[v1.9.0](https://github.com/legendsciber/morphe-patches/releases/tag/v1.9.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;7 patches total
 <details open>
-<summary>📦 Block Blast&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<summary>📦 Block Blast&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
 <br>
 
 **🎯 Supported versions:**
@@ -21,7 +21,8 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
-| [Ad Removal + Subscription](#ad-removal-subscription) | Removes all ads and simulates an active subscription. |  |
+| [Ad Removal](#ad-removal) | Removes all ads (banner, interstitial, rewarded). |  |
+| [Premium (Subscription Simulation)](#premium-subscription-simulation) | Simulates an active subscription to unlock premium features. |  |
 
 </details>
 
