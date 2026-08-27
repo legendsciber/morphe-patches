@@ -16,10 +16,10 @@ import app.mctoolbox.patches.shared.Constants.COMPATIBILITY_MCTOOLBOX
  *    This is the premium state setter called throughout the app.
  *    F() notification is skipped to avoid BadTokenException in onCreate.
  *
- * 2. jz0.a()V → return immediately (skip popup).
- *    This method shows a PopupWindow when premium is active.
- *    It crashes in onCreate because window token is null.
- *    By skipping it, premium is still active but no popup is shown.
+ * 2-5. All premium popup classes → return immediately.
+ *    When premium is active, the app tries to show popup windows
+ *    via showAtLocation in onCreate, but window token is null.
+ *    By skipping all popup displays, premium is active without crashes.
  */
 @Suppress("unused")
 val mctoolboxPremiumPatch = bytecodePatch(
@@ -37,8 +37,23 @@ val mctoolboxPremiumPatch = bytecodePatch(
             return-void
         """.trimIndent())
 
-        // 2. jz0.a()V → skip popup (prevents BadTokenException crash)
+        // 2. jz0.a()V → skip popup
         PremiumPopupFingerprint.method.addInstructions(0, """
+            return-void
+        """.trimIndent())
+
+        // 3. rz0.a()V → skip popup
+        PremiumPopup2Fingerprint.method.addInstructions(0, """
+            return-void
+        """.trimIndent())
+
+        // 4. mj.a()V → skip popup
+        PremiumPopup3Fingerprint.method.addInstructions(0, """
+            return-void
+        """.trimIndent())
+
+        // 5. bz0.run()V → skip popup
+        PremiumPopup4Fingerprint.method.addInstructions(0, """
             return-void
         """.trimIndent())
     }
