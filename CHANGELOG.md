@@ -1,3 +1,9 @@
+## [1.15.0](https://github.com/legendsciber/morphe-patches/compare/v1.14.0...v1.15.0) (2026-08-27)
+
+### ✨ New Features
+
+* **smashhit:** patch storegetstatus/storegeterror to fix purchase flow stuck ([ebd28c2](https://github.com/legendsciber/morphe-patches/commit/ebd28c2072f3d06a1503dbff37f47695397860fc))
+
 ## [1.14.0](https://github.com/legendsciber/morphe-patches/compare/v1.13.1...v1.14.0) (2026-08-27)
 
 ### ✨ New Features

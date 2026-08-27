@@ -9,7 +9,7 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.14.0](https://github.com/legendsciber/morphe-patches/releases/tag/v1.14.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;9 patches total
+> **[v1.15.0](https://github.com/legendsciber/morphe-patches/releases/tag/v1.15.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;9 patches total
 <details open>
 <summary>📦 Block Blast&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
 <br>
@@ -71,7 +71,7 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Smash Hit Ad-Free Unlock](#smash-hit-ad-free-unlock) | Removes all rewarded video ads (checkpoint and out-of-balls ads). |  |
-| [Smash Hit Premium (Ad-Free Unlock)](#smash-hit-premium-ad-free-unlock) | Simulates premium ownership to fully unlock ad-free experience and prevent Play Store purchase. |  |
+| [Smash Hit Premium (Ad-Free Unlock)](#smash-hit-premium-ad-free-unlock) | Simulates premium ownership to fully unlock ad-free experience and handle purchase flow. |  |
 
 </details>
 
