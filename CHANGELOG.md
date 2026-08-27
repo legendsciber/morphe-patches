@@ -1,3 +1,9 @@
+## [1.16.0](https://github.com/legendsciber/morphe-patches/compare/v1.15.1...v1.16.0) (2026-08-27)
+
+### ✨ New Features
+
+* **smashhit:** rewrite premium patch based on working Entree3k/okish approaches ([e611da3](https://github.com/legendsciber/morphe-patches/commit/e611da3c1d74bfaf9c2f8636fe1f8b43cf7c1a63))
+
 ## [1.15.1](https://github.com/legendsciber/morphe-patches/compare/v1.15.0...v1.15.1) (2026-08-27)
 
 ### 🐛 Bug Fixes

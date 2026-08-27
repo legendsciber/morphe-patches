@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.15.1",
+  "version": "1.16.0",
   "patches": [
     {
       "name": "Ad Removal",
@@ -185,8 +185,8 @@
       "options": []
     },
     {
-      "name": "Smash Hit Premium (Ad-Free Unlock)",
-      "description": "Simulates premium ownership to fully unlock ad-free experience and handle purchase flow.",
+      "name": "Smash Hit Premium Unlock",
+      "description": "Unlocks premium and all game modes without purchase.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
