@@ -15,9 +15,6 @@ import app.smashhit.patches.shared.Constants.COMPATIBILITY_SMASHHIT
  *
  * 1. AndroidStore.ownsPremiumProduct() → return true.
  *    The game thinks the user owns premium, so no ads are loaded.
- *
- * 2. CommandThreadsafeModel.hasRefreshedOwnedProducts() → return true.
- *    Skips the wait for purchase sync, premium is recognized immediately.
  */
 @Suppress("unused")
 val smashhitPremiumPatch = bytecodePatch(
@@ -30,12 +27,6 @@ val smashhitPremiumPatch = bytecodePatch(
     execute {
         // 1. AndroidStore.ownsPremiumProduct() → return true
         OwnsPremiumProductFingerprint.method.addInstructions(0, """
-            const/4 v0, 0x1
-            return v0
-        """.trimIndent())
-
-        // 2. CommandThreadsafeModel.hasRefreshedOwnedProducts() → return true
-        HasRefreshedOwnedProductsFingerprint.method.addInstructions(0, """
             const/4 v0, 0x1
             return v0
         """.trimIndent())

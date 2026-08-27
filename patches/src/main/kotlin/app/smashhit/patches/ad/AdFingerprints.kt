@@ -1,7 +1,6 @@
 package app.smashhit.patches.ad
 
 import app.morphe.patcher.Fingerprint
-import app.morphe.patcher.string
 
 /**
  * AdMob.smali - Registers an ad unit as active and triggers loading.
@@ -12,10 +11,7 @@ object ConfirmShouldShowAdsFingerprint : Fingerprint(
     definingClass = "Lcom/mediocre/smashhit/AdMob;",
     name = "confirmShouldShowAds",
     returnType = "V",
-    parameters = listOf("Lcom/mediocre/smashhit/AdUnitDefinitions\$AdUnit;"),
-    filters = listOf(
-        string("confirmShouldShowAds")
-    )
+    parameters = listOf("Lcom/mediocre/smashhit/AdUnitDefinitions\$AdUnit;")
 )
 
 /**
@@ -27,10 +23,7 @@ object ShowAdPoolFingerprint : Fingerprint(
     definingClass = "Lcom/mediocre/smashhit/AdRewardedPool;",
     name = "showAd",
     returnType = "Z",
-    parameters = listOf(),
-    filters = listOf(
-        string("firebase.test.lab")
-    )
+    parameters = listOf()
 )
 
 /**
@@ -42,10 +35,7 @@ object ShowAdFingerprint : Fingerprint(
     definingClass = "Lcom/mediocre/smashhit/AdMob;",
     name = "showAd",
     returnType = "V",
-    parameters = listOf("Lcom/mediocre/smashhit/AdUnitDefinitions\$AdUnit;"),
-    filters = listOf(
-        string("smashhit")
-    )
+    parameters = listOf("Lcom/mediocre/smashhit/AdUnitDefinitions\$AdUnit;")
 )
 
 /**
@@ -57,8 +47,5 @@ object ManageConsentAndLoadAdsFingerprint : Fingerprint(
     definingClass = "Lcom/mediocre/smashhit/AdMob;",
     name = "managePrivateConsentAndLoadAds",
     returnType = "V",
-    parameters = listOf(),
-    filters = listOf(
-        string("android_id")
-    )
+    parameters = listOf()
 )

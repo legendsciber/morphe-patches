@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="feat(smashhit): add Smash Hit 1.5.14 ad removal and premium patches"
+MSG="fix(smashhit): remove incorrect fingerprint filters and fix premium fingerprint"
 
 cd "$DIR"
 

@@ -17,18 +17,3 @@ object OwnsPremiumProductFingerprint : Fingerprint(
         string("com.mediocre.smashhit.premium")
     )
 )
-
-/**
- * CommandThreadsafeModel.smali - Checks if products have been synced.
- * hasRefreshedOwnedProducts()Z returns the hasRefreshedOwnedProducts flag.
- * Body is replaced: always returns true (skip purchase sync wait).
- */
-object HasRefreshedOwnedProductsFingerprint : Fingerprint(
-    definingClass = "Lcom/mediocre/smashhit/CommandThreadsafeModel;",
-    name = "hasRefreshedOwnedProducts",
-    returnType = "Z",
-    parameters = listOf(),
-    filters = listOf(
-        string("hasrefreshedownedproducts")
-    )
-)
