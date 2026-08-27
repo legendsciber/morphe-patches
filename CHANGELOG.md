@@ -1,3 +1,9 @@
+## [1.15.1](https://github.com/legendsciber/morphe-patches/compare/v1.15.0...v1.15.1) (2026-08-27)
+
+### 🐛 Bug Fixes
+
+* **smashhit:** fix storegetstatus/storegeterror fingerprints to match lambda methods ([1487042](https://github.com/legendsciber/morphe-patches/commit/1487042a8795cc5369eb6cc157e41b3359985383))
+
 ## [1.15.0](https://github.com/legendsciber/morphe-patches/compare/v1.14.0...v1.15.0) (2026-08-27)
 
 ### ✨ New Features
