@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="feat(hillclimb): drop 1.70.0 support, keep only 1.71.1"
+MSG="feat(smashhit): add Smash Hit 1.5.14 ad removal and premium patches"
 
 cd "$DIR"
 
