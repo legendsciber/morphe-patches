@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="feat(smashhit): rewrite premium patch based on working Entree3k/okish approaches"
+MSG="feat(mctoolbox): replace Watch Ad patch with direct Premium enable; remove Smash Hit ad removal"
 
 cd "$DIR"
 
