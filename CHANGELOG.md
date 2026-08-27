@@ -1,3 +1,9 @@
+## [1.11.0](https://github.com/legendsciber/morphe-patches/compare/v1.10.0...v1.11.0) (2026-08-27)
+
+### ✨ New Features
+
+* **hillclimb:** drop 1.70.0 support, keep only 1.71.1 ([23dab78](https://github.com/legendsciber/morphe-patches/commit/23dab789b39f1e3d775d96c8f698f8465a02ee11))
+
 ## [1.10.0](https://github.com/legendsciber/morphe-patches/compare/v1.9.0...v1.10.0) (2026-08-27)
 
 ### ✨ New Features
