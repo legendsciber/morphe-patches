@@ -7,15 +7,19 @@ import app.mctoolbox.patches.shared.Constants.COMPATIBILITY_MCTOOLBOX
 /**
  * MCToolbox Premium - Direct Enable
  *
- * Enables premium directly at startup by patching the premium state setter.
+ * Enables premium directly at startup.
  * No ads, no watching required - premium is always active.
  *
  * How it works:
  *
  * 1. ya0.H(Z)V → always set Q=true without notifying observers.
  *    This is the premium state setter called throughout the app.
- *    By always setting Q=true, premium features are always enabled.
  *    F() notification is skipped to avoid BadTokenException in onCreate.
+ *
+ * 2. jz0.a()V → return immediately (skip popup).
+ *    This method shows a PopupWindow when premium is active.
+ *    It crashes in onCreate because window token is null.
+ *    By skipping it, premium is still active but no popup is shown.
  */
 @Suppress("unused")
 val mctoolboxPremiumPatch = bytecodePatch(
@@ -27,13 +31,14 @@ val mctoolboxPremiumPatch = bytecodePatch(
 
     execute {
         // 1. ya0.H(Z)V → always set Q=true, skip F() notification
-        // .locals 1: v0 available
-        // Original: if (p1 != Q) { Q = p1; F(); }
-        // Patched: Q = true; return;
-        // F() skipped because it triggers PopupWindow show in onCreate before window is ready
         SetPremiumStateFingerprint.method.addInstructions(0, """
             const/4 v0, 0x1
             iput-boolean v0, p0, Lya0;->Q:Z
+            return-void
+        """.trimIndent())
+
+        // 2. jz0.a()V → skip popup (prevents BadTokenException crash)
+        PremiumPopupFingerprint.method.addInstructions(0, """
             return-void
         """.trimIndent())
     }

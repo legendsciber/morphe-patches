@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(mctoolbox): remove F() notification from premium patch to fix BadTokenException crash"
+MSG="fix(mctoolbox): patch jz0.a() to skip premium popup and fix BadTokenException"
 
 cd "$DIR"
 
