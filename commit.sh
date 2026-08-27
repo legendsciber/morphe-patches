@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="feat(hillclimb): add Hill Climb Racing 1.71.1 support and fix lambda classes"
+MSG="feat(hillclimb): drop 1.70.0 support, keep only 1.71.1"
 
 cd "$DIR"
 
