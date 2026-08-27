@@ -1,3 +1,9 @@
+## [1.17.2](https://github.com/legendsciber/morphe-patches/compare/v1.17.1...v1.17.2) (2026-08-27)
+
+### 🐛 Bug Fixes
+
+* **mctoolbox:** patch jz0.a() to skip premium popup and fix BadTokenException ([0108e04](https://github.com/legendsciber/morphe-patches/commit/0108e04cea4f02277c8364cade569068b3b30bdc))
+
 ## [1.17.1](https://github.com/legendsciber/morphe-patches/compare/v1.17.0...v1.17.1) (2026-08-27)
 
 ### 🐛 Bug Fixes
