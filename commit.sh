@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="feat(mctoolbox): replace Watch Ad patch with direct Premium enable; remove Smash Hit ad removal"
+MSG="fix(mctoolbox): remove F() notification from premium patch to fix BadTokenException crash"
 
 cd "$DIR"
 
