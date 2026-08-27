@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(smashhit): fix storegetstatus/storegeterror fingerprints to match lambda methods"
+MSG="feat(smashhit): rewrite premium patch based on working Entree3k/okish approaches"
 
 cd "$DIR"
 

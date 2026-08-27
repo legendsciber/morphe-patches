@@ -5,10 +5,9 @@ import app.morphe.patcher.patch.bytecodePatch
 import app.smashhit.patches.shared.Constants.COMPATIBILITY_SMASHHIT
 
 /**
- * Smash Hit Premium (Ad-Free Unlock)
+ * Smash Hit Premium Unlock
  *
- * Simulates premium ownership at multiple levels to fully unlock
- * ad-free experience and handle purchase flow gracefully.
+ * Based on proven approaches from Entree3k/okish-morphe-patches.
  *
  * How it works:
  *
@@ -16,24 +15,25 @@ import app.smashhit.patches.shared.Constants.COMPATIBILITY_SMASHHIT
  *    Gates ad loading in OnSyncCompleted().
  *
  * 2. CommandThreadsafeModel.isProductOwned() → return true.
+ *    Inject at index 1 (after monitor-enter) with proper monitor-exit.
  *    Core ownership check used by native C++ engine.
  *
  * 3. GooglePlaySystem.OnSyncCompleted() → return immediately.
  *    Skips ad loading entry point entirely.
  *
- * 4. AndroidStore.startPurchaseFlow() → return immediately.
+ * 4. hasrefreshedownedproducts → return "true".
+ *    Tells native engine products have been refreshed.
+ *
+ * 5. ispremiumproductrestored → return "true".
+ *    Tells native engine premium has been restored.
+ *
+ * 6. AndroidStore.startPurchaseFlow() → return immediately.
  *    Prevents Play Store from opening when user tries to buy premium.
- *
- * 5. storegetstatus → return "0" (PURCHASE_OK).
- *    Tells native engine purchase completed successfully.
- *
- * 6. storegeterror → return "0" (no error).
- *    Tells native engine no purchase error occurred.
  */
 @Suppress("unused")
 val smashhitPremiumPatch = bytecodePatch(
-    name = "Smash Hit Premium (Ad-Free Unlock)",
-    description = "Simulates premium ownership to fully unlock ad-free experience and handle purchase flow.",
+    name = "Smash Hit Premium Unlock",
+    description = "Unlocks premium and all game modes without purchase.",
     default = true
 ) {
     compatibleWith(COMPATIBILITY_SMASHHIT)
@@ -46,9 +46,12 @@ val smashhitPremiumPatch = bytecodePatch(
         """.trimIndent())
 
         // 2. CommandThreadsafeModel.isProductOwned() → return true
-        IsProductOwnedFingerprint.method.addInstructions(0, """
-            const/4 v0, 0x1
-            return v0
+        // IMPORTANT: inject at index 1 (after monitor-enter), not index 0
+        // Must call monitor-exit before return for synchronized method
+        IsProductOwnedFingerprint.method.addInstructions(1, """
+            const/4 p1, 0x1
+            monitor-exit p0
+            return p1
         """.trimIndent())
 
         // 3. GooglePlaySystem.OnSyncCompleted() → return immediately (skip ad loading)
@@ -56,21 +59,21 @@ val smashhitPremiumPatch = bytecodePatch(
             return-void
         """.trimIndent())
 
-        // 4. AndroidStore.startPurchaseFlow() → return immediately (prevent Play Store)
+        // 4. hasrefreshedownedproducts → return "true"
+        HasRefreshedOwnedProductsFingerprint.method.addInstructions(0, """
+            const-string p1, "true"
+            return-object p1
+        """.trimIndent())
+
+        // 5. ispremiumproductrestored → return "true"
+        IsPremiumProductRestoredFingerprint.method.addInstructions(0, """
+            const-string p1, "true"
+            return-object p1
+        """.trimIndent())
+
+        // 6. AndroidStore.startPurchaseFlow() → return immediately (prevent Play Store)
         StartPurchaseFlowFingerprint.method.addInstructions(0, """
             return-void
-        """.trimIndent())
-
-        // 5. storegetstatus → return "0" (PURCHASE_OK)
-        StoreGetStatusFingerprint.method.addInstructions(0, """
-            const-string v0, "0"
-            return-object v0
-        """.trimIndent())
-
-        // 6. storegeterror → return "0" (no error)
-        StoreGetErrorFingerprint.method.addInstructions(0, """
-            const-string v0, "0"
-            return-object v0
         """.trimIndent())
     }
 }

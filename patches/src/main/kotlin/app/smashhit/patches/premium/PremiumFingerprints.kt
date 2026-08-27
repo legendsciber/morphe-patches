@@ -2,6 +2,7 @@ package app.smashhit.patches.premium
 
 import app.morphe.patcher.Fingerprint
 import app.morphe.patcher.string
+import app.morphe.patcher.methodCall
 
 /**
  * AndroidStore.smali - Master premium ownership check.
@@ -21,14 +22,20 @@ object OwnsPremiumProductFingerprint : Fingerprint(
 /**
  * CommandThreadsafeModel.smali - Core product ownership check.
  * isProductOwned(String)Z checks mOwnedProducts HashSet.contains().
- * No string constants inside the method - parameter is passed in.
- * Body is replaced: always returns true.
+ * declared-synchronized method - must inject AFTER monitor-enter (index 1).
+ * Body is replaced: always returns true with proper monitor-exit.
  */
 object IsProductOwnedFingerprint : Fingerprint(
     definingClass = "Lcom/mediocre/smashhit/CommandThreadsafeModel;",
     name = "isProductOwned",
     returnType = "Z",
-    parameters = listOf("Ljava/lang/String;")
+    parameters = listOf("Ljava/lang/String;"),
+    filters = listOf(
+        methodCall(
+            definingClass = "Ljava/util/HashSet;",
+            name = "contains"
+        )
+    )
 )
 
 /**
@@ -64,27 +71,37 @@ object StartPurchaseFlowFingerprint : Fingerprint(
 )
 
 /**
- * CommandHandler.smali - Lambda that returns purchase status.
- * lambda$setupCommands$37 reads purchaseStatusCode AtomicInteger.
- * No string constants inside the lambda method.
- * Body is replaced: return "0" (PURCHASE_OK).
+ * CommandHandler.smali - Lambda that returns hasRefreshedOwnedProducts.
+ * lambda$setupCommands$1 reads AtomicBoolean.get() and calls boolToString().
+ * Body is replaced: return "true".
  */
-object StoreGetStatusFingerprint : Fingerprint(
+object HasRefreshedOwnedProductsFingerprint : Fingerprint(
     definingClass = "Lcom/mediocre/smashhit/CommandHandler;",
-    name = "lambda\$setupCommands\$37\$com-mediocre-smashhit-CommandHandler",
+    name = "lambda\$setupCommands\$1\$com-mediocre-smashhit-CommandHandler",
     returnType = "Ljava/lang/String;",
-    parameters = listOf("[Ljava/lang/String;")
+    parameters = listOf("[Ljava/lang/String;"),
+    filters = listOf(
+        methodCall(
+            definingClass = "Ljava/util/concurrent/atomic/AtomicBoolean;",
+            name = "get"
+        )
+    )
 )
 
 /**
- * CommandHandler.smali - Lambda that returns purchase error code.
- * lambda$setupCommands$38 reads purchaseErrorCode AtomicInteger.
- * No string constants inside the lambda method.
- * Body is replaced: return "0" (no error).
+ * CommandHandler.smali - Lambda that returns isPremiumProductRestored.
+ * lambda$setupCommands$41 reads AtomicBoolean.get() and calls boolToString().
+ * Body is replaced: return "true".
  */
-object StoreGetErrorFingerprint : Fingerprint(
+object IsPremiumProductRestoredFingerprint : Fingerprint(
     definingClass = "Lcom/mediocre/smashhit/CommandHandler;",
-    name = "lambda\$setupCommands\$38\$com-mediocre-smashhit-CommandHandler",
+    name = "lambda\$setupCommands\$41\$com-mediocre-smashhit-CommandHandler",
     returnType = "Ljava/lang/String;",
-    parameters = listOf("[Ljava/lang/String;")
+    parameters = listOf("[Ljava/lang/String;"),
+    filters = listOf(
+        methodCall(
+            definingClass = "Ljava/util/concurrent/atomic/AtomicBoolean;",
+            name = "get"
+        )
+    )
 )
