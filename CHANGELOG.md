@@ -1,3 +1,9 @@
+## [1.14.0](https://github.com/legendsciber/morphe-patches/compare/v1.13.1...v1.14.0) (2026-08-27)
+
+### ✨ New Features
+
+* **smashhit:** patch startPurchaseFlow to prevent Play Store from opening ([7aefb06](https://github.com/legendsciber/morphe-patches/commit/7aefb06ea9e017f488485783faee419ccc1a23cd))
+
 ## [1.13.1](https://github.com/legendsciber/morphe-patches/compare/v1.13.0...v1.13.1) (2026-08-27)
 
 ### 🐛 Bug Fixes

@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.13.1",
+  "version": "1.14.0",
   "patches": [
     {
       "name": "Ad Removal",
@@ -186,7 +186,7 @@
     },
     {
       "name": "Smash Hit Premium (Ad-Free Unlock)",
-      "description": "Simulates premium ownership to fully unlock ad-free experience.",
+      "description": "Simulates premium ownership to fully unlock ad-free experience and prevent Play Store purchase.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
