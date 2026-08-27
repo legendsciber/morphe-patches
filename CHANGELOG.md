@@ -1,3 +1,9 @@
+## [1.9.0](https://github.com/legendsciber/morphe-patches/compare/v1.8.1...v1.9.0) (2026-08-27)
+
+### ✨ New Features
+
+* **blockblast:** split ad removal and premium into separate patches ([8801ff0](https://github.com/legendsciber/morphe-patches/commit/8801ff0782c3f2cb0ba5a9d26b986cc9d0421725))
+
 ## [1.8.1](https://github.com/legendsciber/morphe-patches/compare/v1.8.0...v1.8.1) (2026-08-26)
 
 ### 🐛 Bug Fixes
