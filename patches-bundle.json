@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-08-27T18:10:32",
-  "description": "## [1.16.0](https://github.com/legendsciber/morphe-patches/compare/v1.15.1...v1.16.0) (2026-08-27)\n\n### ✨ New Features\n\n* **smashhit:** rewrite premium patch based on working Entree3k/okish approaches ([e611da3](https://github.com/legendsciber/morphe-patches/commit/e611da3c1d74bfaf9c2f8636fe1f8b43cf7c1a63))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.16.0/patches-1.16.0.mpp",
+  "created_at": "2026-08-27T18:26:22",
+  "description": "## [1.17.0](https://github.com/legendsciber/morphe-patches/compare/v1.16.0...v1.17.0) (2026-08-27)\n\n### ✨ New Features\n\n* **mctoolbox:** replace Watch Ad patch with direct Premium enable; remove Smash Hit ad removal ([4a66c24](https://github.com/legendsciber/morphe-patches/commit/4a66c2401b1503653713aafc8a0f970d96774e6b))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.17.0/patches-1.17.0.mpp",
   "signature_download_url": "",
-  "version": "1.16.0"
+  "version": "1.17.0"
 }

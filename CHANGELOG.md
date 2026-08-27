@@ -1,3 +1,9 @@
+## [1.17.0](https://github.com/legendsciber/morphe-patches/compare/v1.16.0...v1.17.0) (2026-08-27)
+
+### ✨ New Features
+
+* **mctoolbox:** replace Watch Ad patch with direct Premium enable; remove Smash Hit ad removal ([4a66c24](https://github.com/legendsciber/morphe-patches/commit/4a66c2401b1503653713aafc8a0f970d96774e6b))
+
 ## [1.16.0](https://github.com/legendsciber/morphe-patches/compare/v1.15.1...v1.16.0) (2026-08-27)
 
 ### ✨ New Features
