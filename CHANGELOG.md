@@ -1,3 +1,9 @@
+## [1.12.1](https://github.com/legendsciber/morphe-patches/compare/v1.12.0...v1.12.1) (2026-08-27)
+
+### 🐛 Bug Fixes
+
+* **smashhit:** remove incorrect fingerprint filters and fix premium fingerprint ([69a5844](https://github.com/legendsciber/morphe-patches/commit/69a584483dac556951e5b87103f4e03170fddd1d))
+
 ## [1.12.0](https://github.com/legendsciber/morphe-patches/compare/v1.11.0...v1.12.0) (2026-08-27)
 
 ### ✨ New Features

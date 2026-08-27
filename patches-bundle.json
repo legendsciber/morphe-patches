@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-08-27T15:33:15",
-  "description": "## [1.12.0](https://github.com/legendsciber/morphe-patches/compare/v1.11.0...v1.12.0) (2026-08-27)\n\n### ✨ New Features\n\n* **smashhit:** add Smash Hit 1.5.14 ad removal and premium patches ([4fe8f22](https://github.com/legendsciber/morphe-patches/commit/4fe8f2281fc36f927847059b0fa0682b74a347de))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.12.0/patches-1.12.0.mpp",
+  "created_at": "2026-08-27T15:42:29",
+  "description": "## [1.12.1](https://github.com/legendsciber/morphe-patches/compare/v1.12.0...v1.12.1) (2026-08-27)\n\n### 🐛 Bug Fixes\n\n* **smashhit:** remove incorrect fingerprint filters and fix premium fingerprint ([69a5844](https://github.com/legendsciber/morphe-patches/commit/69a584483dac556951e5b87103f4e03170fddd1d))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.12.1/patches-1.12.1.mpp",
   "signature_download_url": "",
-  "version": "1.12.0"
+  "version": "1.12.1"
 }
