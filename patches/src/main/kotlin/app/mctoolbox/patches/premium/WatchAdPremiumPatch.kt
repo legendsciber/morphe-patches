@@ -1,7 +1,6 @@
 package app.mctoolbox.patches.premium
 
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
-import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.morphe.patcher.patch.bytecodePatch
 import app.mctoolbox.patches.shared.Constants.COMPATIBILITY_MCTOOLBOX
 
@@ -14,14 +13,15 @@ import app.mctoolbox.patches.shared.Constants.COMPATIBILITY_MCTOOLBOX
  * How it works:
  *
  * 1. ya0.H(Z)V → always set Q=true without notifying observers.
- *    This is the premium state setter called throughout the app.
  *    F() notification is skipped to avoid BadTokenException in onCreate.
  *
- * 2-6. All premium popup/overlay classes → return immediately or skip.
- *    When premium is active, the app tries to show popup windows
- *    and overlays via showAtLocation/addView in onCreate, but window
- *    token is null. By skipping all displays, premium is active
- *    without crashes.
+ * 2-5. Premium popup classes → return immediately.
+ *    Prevents PopupWindow.showAtLocation crashes in onCreate.
+ *
+ * 6. t20.run()V → post self to Handler with 200ms delay.
+ *    The floating logo overlay uses WindowManager.addView which crashes
+ *    if called before window token is ready. By posting with a delay,
+ *    the window is ready when addView is called.
  */
 @Suppress("unused")
 val mctoolboxPremiumPatch = bytecodePatch(
@@ -59,11 +59,14 @@ val mctoolboxPremiumPatch = bytecodePatch(
             return-void
         """.trimIndent())
 
-        // 6. tz0.a()V → skip premium overlay trigger
-        // This method checks ya0.Q and runs the overlay Runnable
-        // that calls WindowManager.addView. By returning immediately,
-        // the overlay is never shown.
-        PremiumOverlayTriggerFingerprint.method.addInstructions(0, """
+        // 6. t20.run()V → post to Handler with 200ms delay to avoid BadTokenException
+        // Creates a new Handler, posts this Runnable with 200ms delay
+        // This ensures WindowManager.addView is called after window is ready
+        OverlayAddViewFingerprint.method.addInstructions(0, """
+            new-instance v0, Landroid/os/Handler;
+            invoke-direct {v0}, Landroid/os/Handler;-><init>()V
+            const-wide v1, 0xc8L
+            invoke-virtual {v0, p0, v1, v2}, Landroid/os/Handler;->postDelayed(Ljava/lang/Runnable;J)Z
             return-void
         """.trimIndent())
     }

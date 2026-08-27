@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(mctoolbox): patch tz0.a() to prevent WindowManager.addView overlay crash"
+MSG="fix(mctoolbox): use Handler.postDelayed for overlay to fix crash while keeping floating logo"
 
 cd "$DIR"
 

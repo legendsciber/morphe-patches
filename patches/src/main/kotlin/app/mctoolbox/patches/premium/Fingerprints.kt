@@ -5,7 +5,6 @@ import app.morphe.patcher.Fingerprint
 /**
  * ya0.smali - Premium state holder.
  * H(Z)V sets the Q:Z boolean field.
- * Body is replaced: always set Q=true without notifying observers.
  */
 object SetPremiumStateFingerprint : Fingerprint(
     definingClass = "Lya0;",
@@ -17,7 +16,6 @@ object SetPremiumStateFingerprint : Fingerprint(
 /**
  * jz0.smali - Premium popup display.
  * a()V checks ya0.Q and shows PopupWindow via showAtLocation.
- * Body is replaced: return immediately (skip popup).
  */
 object PremiumPopupFingerprint : Fingerprint(
     definingClass = "Ljz0;",
@@ -27,9 +25,8 @@ object PremiumPopupFingerprint : Fingerprint(
 )
 
 /**
- * rz0.smali - Premium popup display (second popup).
+ * rz0.smali - Premium popup display.
  * a()V checks ya0.Q and shows PopupWindow via showAtLocation.
- * Body is replaced: return immediately (skip popup).
  */
 object PremiumPopup2Fingerprint : Fingerprint(
     definingClass = "Lrz0;",
@@ -39,9 +36,8 @@ object PremiumPopup2Fingerprint : Fingerprint(
 )
 
 /**
- * mj.smali - Premium popup display (third popup).
+ * mj.smali - Premium popup display.
  * a()V checks ya0.Q and shows PopupWindow via showAtLocation.
- * Body is replaced: return immediately (skip popup).
  */
 object PremiumPopup3Fingerprint : Fingerprint(
     definingClass = "Lmj;",
@@ -51,9 +47,8 @@ object PremiumPopup3Fingerprint : Fingerprint(
 )
 
 /**
- * bz0.smali - Premium popup display (fourth popup).
+ * bz0.smali - Premium popup display.
  * run()V checks ya0.Q and shows PopupWindow via showAtLocation.
- * Body is replaced: return immediately (skip popup).
  */
 object PremiumPopup4Fingerprint : Fingerprint(
     definingClass = "Lbz0;",
@@ -63,15 +58,14 @@ object PremiumPopup4Fingerprint : Fingerprint(
 )
 
 /**
- * tz0.smali - Premium overlay trigger.
- * a()V checks ya0.Q and runs premium overlay Runnable.
- * By patching this to always take the non-premium path,
- * the overlay via WindowManager.addView is never triggered.
- * Body is replaced: run the non-premium Runnable directly.
+ * t20.smali - Overlay runner with WindowManager.addView.
+ * run()V adds overlay view to WindowManager.
+ * Crashes in onCreate because window token is null.
+ * Method start is patched to post to Handler with 1s delay.
  */
-object PremiumOverlayTriggerFingerprint : Fingerprint(
-    definingClass = "Ltz0;",
-    name = "a",
+object OverlayAddViewFingerprint : Fingerprint(
+    definingClass = "Lt20;",
+    name = "run",
     returnType = "V",
     parameters = listOf()
 )
