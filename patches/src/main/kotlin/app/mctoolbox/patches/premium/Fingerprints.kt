@@ -61,3 +61,17 @@ object PremiumPopup4Fingerprint : Fingerprint(
     returnType = "V",
     parameters = listOf()
 )
+
+/**
+ * tz0.smali - Premium overlay trigger.
+ * a()V checks ya0.Q and runs premium overlay Runnable.
+ * By patching this to always take the non-premium path,
+ * the overlay via WindowManager.addView is never triggered.
+ * Body is replaced: run the non-premium Runnable directly.
+ */
+object PremiumOverlayTriggerFingerprint : Fingerprint(
+    definingClass = "Ltz0;",
+    name = "a",
+    returnType = "V",
+    parameters = listOf()
+)

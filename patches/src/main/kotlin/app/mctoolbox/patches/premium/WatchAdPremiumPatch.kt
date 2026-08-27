@@ -1,6 +1,7 @@
 package app.mctoolbox.patches.premium
 
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.morphe.patcher.patch.bytecodePatch
 import app.mctoolbox.patches.shared.Constants.COMPATIBILITY_MCTOOLBOX
 
@@ -16,10 +17,11 @@ import app.mctoolbox.patches.shared.Constants.COMPATIBILITY_MCTOOLBOX
  *    This is the premium state setter called throughout the app.
  *    F() notification is skipped to avoid BadTokenException in onCreate.
  *
- * 2-5. All premium popup classes → return immediately.
+ * 2-6. All premium popup/overlay classes → return immediately or skip.
  *    When premium is active, the app tries to show popup windows
- *    via showAtLocation in onCreate, but window token is null.
- *    By skipping all popup displays, premium is active without crashes.
+ *    and overlays via showAtLocation/addView in onCreate, but window
+ *    token is null. By skipping all displays, premium is active
+ *    without crashes.
  */
 @Suppress("unused")
 val mctoolboxPremiumPatch = bytecodePatch(
@@ -54,6 +56,14 @@ val mctoolboxPremiumPatch = bytecodePatch(
 
         // 5. bz0.run()V → skip popup
         PremiumPopup4Fingerprint.method.addInstructions(0, """
+            return-void
+        """.trimIndent())
+
+        // 6. tz0.a()V → skip premium overlay trigger
+        // This method checks ya0.Q and runs the overlay Runnable
+        // that calls WindowManager.addView. By returning immediately,
+        // the overlay is never shown.
+        PremiumOverlayTriggerFingerprint.method.addInstructions(0, """
             return-void
         """.trimIndent())
     }

@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(mctoolbox): patch all 4 premium popup classes to prevent BadTokenException"
+MSG="fix(mctoolbox): patch tz0.a() to prevent WindowManager.addView overlay crash"
 
 cd "$DIR"
 
