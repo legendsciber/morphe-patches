@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(mctoolbox): use Handler.postDelayed for overlay to fix crash while keeping floating logo"
+MSG="fix(mctoolbox): minimal 2-point patch on ya0 only - no UI code touched"
 
 cd "$DIR"
 
