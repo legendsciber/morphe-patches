@@ -1,3 +1,9 @@
+## [1.17.4](https://github.com/legendsciber/morphe-patches/compare/v1.17.3...v1.17.4) (2026-08-27)
+
+### 🐛 Bug Fixes
+
+* **mctoolbox:** patch tz0.a() to prevent WindowManager.addView overlay crash ([3e567fa](https://github.com/legendsciber/morphe-patches/commit/3e567fa3f1d5caac979bf7f27a2cd8a086b0451b))
+
 ## [1.17.3](https://github.com/legendsciber/morphe-patches/compare/v1.17.2...v1.17.3) (2026-08-27)
 
 ### 🐛 Bug Fixes
