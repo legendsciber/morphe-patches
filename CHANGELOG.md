@@ -1,3 +1,9 @@
+## [1.17.6](https://github.com/legendsciber/morphe-patches/compare/v1.17.5...v1.17.6) (2026-08-27)
+
+### 🐛 Bug Fixes
+
+* **mctoolbox:** minimal 2-point patch on ya0 only - no UI code touched ([c1cb5e6](https://github.com/legendsciber/morphe-patches/commit/c1cb5e698248e7c00e0c5cfa58b0286e88afa29d))
+
 ## [1.17.5](https://github.com/legendsciber/morphe-patches/compare/v1.17.4...v1.17.5) (2026-08-27)
 
 ### 🐛 Bug Fixes

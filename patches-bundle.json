@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-08-27T20:00:05",
-  "description": "## [1.17.5](https://github.com/legendsciber/morphe-patches/compare/v1.17.4...v1.17.5) (2026-08-27)\n\n### 🐛 Bug Fixes\n\n* **mctoolbox:** use Handler.postDelayed for overlay to fix crash while keeping floating logo ([2df7107](https://github.com/legendsciber/morphe-patches/commit/2df710721cd1269e8c58d3bc7c416cb7bc444c18))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.17.5/patches-1.17.5.mpp",
+  "created_at": "2026-08-27T20:11:49",
+  "description": "## [1.17.6](https://github.com/legendsciber/morphe-patches/compare/v1.17.5...v1.17.6) (2026-08-27)\n\n### 🐛 Bug Fixes\n\n* **mctoolbox:** minimal 2-point patch on ya0 only - no UI code touched ([c1cb5e6](https://github.com/legendsciber/morphe-patches/commit/c1cb5e698248e7c00e0c5cfa58b0286e88afa29d))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.17.6/patches-1.17.6.mpp",
   "signature_download_url": "",
-  "version": "1.17.5"
+  "version": "1.17.6"
 }
