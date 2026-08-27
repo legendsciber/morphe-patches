@@ -1,3 +1,9 @@
+## [1.17.1](https://github.com/legendsciber/morphe-patches/compare/v1.17.0...v1.17.1) (2026-08-27)
+
+### 🐛 Bug Fixes
+
+* **mctoolbox:** remove F() notification from premium patch to fix BadTokenException crash ([1781510](https://github.com/legendsciber/morphe-patches/commit/1781510ef7424ad1da1d38cbf227f27e3300b71f))
+
 ## [1.17.0](https://github.com/legendsciber/morphe-patches/compare/v1.16.0...v1.17.0) (2026-08-27)
 
 ### ✨ New Features
