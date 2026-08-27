@@ -1,14 +1,16 @@
 package app.smashhit.patches.ad
 
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.morphe.patcher.patch.bytecodePatch
 import app.smashhit.patches.shared.Constants.COMPATIBILITY_SMASHHIT
 
 /**
- * Smash Hit Ad Removal
+ * Smash Hit Ad-Free Unlock
  *
- * Removes all rewarded video ads by disabling ad registration, display,
- * and SDK initialization.
+ * Completely removes all ads by disabling ad registration, display,
+ * and SDK initialization. Also patches the premium check to prevent
+ * ads from being loaded.
  *
  * How it works:
  *
@@ -23,10 +25,13 @@ import app.smashhit.patches.shared.Constants.COMPATIBILITY_SMASHHIT
  *
  * 4. AdMob.managePrivateConsentAndLoadAds() → return immediately.
  *    Prevents AdMob SDK initialization and consent flow.
+ *
+ * 5. GooglePlaySystem.OnSyncCompleted() → return immediately.
+ *    Prevents the ad loading entry point from executing.
  */
 @Suppress("unused")
 val smashhitAdRemovalPatch = bytecodePatch(
-    name = "Smash Hit Ad Removal",
+    name = "Smash Hit Ad-Free Unlock",
     description = "Removes all rewarded video ads (checkpoint and out-of-balls ads).",
     default = true
 ) {
