@@ -1,3 +1,9 @@
+## [1.12.0](https://github.com/legendsciber/morphe-patches/compare/v1.11.0...v1.12.0) (2026-08-27)
+
+### ✨ New Features
+
+* **smashhit:** add Smash Hit 1.5.14 ad removal and premium patches ([4fe8f22](https://github.com/legendsciber/morphe-patches/commit/4fe8f2281fc36f927847059b0fa0682b74a347de))
+
 ## [1.11.0](https://github.com/legendsciber/morphe-patches/compare/v1.10.0...v1.11.0) (2026-08-27)
 
 ### ✨ New Features
