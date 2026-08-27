@@ -1,3 +1,9 @@
+## [1.17.3](https://github.com/legendsciber/morphe-patches/compare/v1.17.2...v1.17.3) (2026-08-27)
+
+### 🐛 Bug Fixes
+
+* **mctoolbox:** patch all 4 premium popup classes to prevent BadTokenException ([f7762f1](https://github.com/legendsciber/morphe-patches/commit/f7762f121bc69f054e8c821c35fd7be942406b12))
+
 ## [1.17.2](https://github.com/legendsciber/morphe-patches/compare/v1.17.1...v1.17.2) (2026-08-27)
 
 ### 🐛 Bug Fixes
