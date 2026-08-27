@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="feat(smashhit): improve premium patch with multi-point bypass and ad-free unlock"
+MSG="fix(smashhit): remove incorrect filter from IsProductOwnedFingerprint"
 
 cd "$DIR"
 

@@ -20,23 +20,22 @@ object OwnsPremiumProductFingerprint : Fingerprint(
 
 /**
  * CommandThreadsafeModel.smali - Core product ownership check.
- * isProductOwned(String)Z checks mOwnedProducts HashSet.
+ * isProductOwned(String)Z checks mOwnedProducts HashSet.contains().
+ * No string constants inside the method - parameter is passed in.
  * Body is replaced: always returns true.
  */
 object IsProductOwnedFingerprint : Fingerprint(
     definingClass = "Lcom/mediocre/smashhit/CommandThreadsafeModel;",
     name = "isProductOwned",
     returnType = "Z",
-    parameters = listOf("Ljava/lang/String;"),
-    filters = listOf(
-        string("com.mediocre.smashhit.premium")
-    )
+    parameters = listOf("Ljava/lang/String;")
 )
 
 /**
- * GooglePlaySystem.smali - Ad gating check.
- * OnSyncCompleted()V calls ownsPremiumProduct() to decide whether to load ads.
- * We inject at the start to skip ad loading entirely.
+ * GooglePlaySystem.smali - Ad gating entry point.
+ * OnSyncCompleted()V calls ownsPremiumProduct() then loads ads if not premium.
+ * Contains string "GooglePlaySystem.OnSyncCompleted - enter".
+ * Body is replaced: return immediately (skip ad loading).
  */
 object OnSyncCompletedFingerprint : Fingerprint(
     definingClass = "Lcom/mediocre/smashhit/GooglePlaySystem;",
