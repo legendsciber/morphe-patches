@@ -51,7 +51,7 @@ object OnSyncCompletedFingerprint : Fingerprint(
  * AndroidStore.smali - Purchase flow entry point.
  * startPurchaseFlow(Activity, String)V launches Google Play billing.
  * Contains string "AndroidStore.startPurchaseFlow - enter".
- * Body is replaced: set status to OK (0), error to 0, then return.
+ * Body is replaced: return immediately (prevent Play Store from opening).
  */
 object StartPurchaseFlowFingerprint : Fingerprint(
     definingClass = "Lcom/mediocre/smashhit/AndroidStore;",
@@ -66,28 +66,25 @@ object StartPurchaseFlowFingerprint : Fingerprint(
 /**
  * CommandHandler.smali - Lambda that returns purchase status.
  * lambda$setupCommands$37 reads purchaseStatusCode AtomicInteger.
- * Contains "CommandHandler.command, storepurchase" nearby.
+ * No string constants inside the lambda method.
  * Body is replaced: return "0" (PURCHASE_OK).
  */
 object StoreGetStatusFingerprint : Fingerprint(
     definingClass = "Lcom/mediocre/smashhit/CommandHandler;",
+    name = "lambda\$setupCommands\$37\$com-mediocre-smashhit-CommandHandler",
     returnType = "Ljava/lang/String;",
-    parameters = listOf("[Ljava/lang/String;"),
-    filters = listOf(
-        string("CommandHandler.command, storegetstatus")
-    )
+    parameters = listOf("[Ljava/lang/String;")
 )
 
 /**
  * CommandHandler.smali - Lambda that returns purchase error code.
  * lambda$setupCommands$38 reads purchaseErrorCode AtomicInteger.
+ * No string constants inside the lambda method.
  * Body is replaced: return "0" (no error).
  */
 object StoreGetErrorFingerprint : Fingerprint(
     definingClass = "Lcom/mediocre/smashhit/CommandHandler;",
+    name = "lambda\$setupCommands\$38\$com-mediocre-smashhit-CommandHandler",
     returnType = "Ljava/lang/String;",
-    parameters = listOf("[Ljava/lang/String;"),
-    filters = listOf(
-        string("CommandHandler.command, storegeterror")
-    )
+    parameters = listOf("[Ljava/lang/String;")
 )

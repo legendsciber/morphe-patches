@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="feat(smashhit): patch storegetstatus/storegeterror to fix purchase flow stuck"
+MSG="fix(smashhit): fix storegetstatus/storegeterror fingerprints to match lambda methods"
 
 cd "$DIR"
 
