@@ -1,3 +1,9 @@
+## [1.10.0](https://github.com/legendsciber/morphe-patches/compare/v1.9.0...v1.10.0) (2026-08-27)
+
+### ✨ New Features
+
+* **hillclimb:** add Hill Climb Racing 1.71.1 support and fix lambda classes ([cef79b7](https://github.com/legendsciber/morphe-patches/commit/cef79b7458b57d26aad95b9e9373d48fb56bef45))
+
 ## [1.9.0](https://github.com/legendsciber/morphe-patches/compare/v1.8.1...v1.9.0) (2026-08-27)
 
 ### ✨ New Features
