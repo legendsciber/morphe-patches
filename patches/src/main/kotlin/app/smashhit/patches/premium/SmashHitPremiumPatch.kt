@@ -8,7 +8,7 @@ import app.smashhit.patches.shared.Constants.COMPATIBILITY_SMASHHIT
  * Smash Hit Premium (Ad-Free Unlock)
  *
  * Simulates premium ownership at multiple levels to fully unlock
- * ad-free experience and prevent Play Store purchase attempts.
+ * ad-free experience and handle purchase flow gracefully.
  *
  * How it works:
  *
@@ -23,11 +23,17 @@ import app.smashhit.patches.shared.Constants.COMPATIBILITY_SMASHHIT
  *
  * 4. AndroidStore.startPurchaseFlow() → return immediately.
  *    Prevents Play Store from opening when user tries to buy premium.
+ *
+ * 5. storegetstatus → return "0" (PURCHASE_OK).
+ *    Tells native engine purchase completed successfully.
+ *
+ * 6. storegeterror → return "0" (no error).
+ *    Tells native engine no purchase error occurred.
  */
 @Suppress("unused")
 val smashhitPremiumPatch = bytecodePatch(
     name = "Smash Hit Premium (Ad-Free Unlock)",
-    description = "Simulates premium ownership to fully unlock ad-free experience and prevent Play Store purchase.",
+    description = "Simulates premium ownership to fully unlock ad-free experience and handle purchase flow.",
     default = true
 ) {
     compatibleWith(COMPATIBILITY_SMASHHIT)
@@ -53,6 +59,18 @@ val smashhitPremiumPatch = bytecodePatch(
         // 4. AndroidStore.startPurchaseFlow() → return immediately (prevent Play Store)
         StartPurchaseFlowFingerprint.method.addInstructions(0, """
             return-void
+        """.trimIndent())
+
+        // 5. storegetstatus → return "0" (PURCHASE_OK)
+        StoreGetStatusFingerprint.method.addInstructions(0, """
+            const-string v0, "0"
+            return-object v0
+        """.trimIndent())
+
+        // 6. storegeterror → return "0" (no error)
+        StoreGetErrorFingerprint.method.addInstructions(0, """
+            const-string v0, "0"
+            return-object v0
         """.trimIndent())
     }
 }

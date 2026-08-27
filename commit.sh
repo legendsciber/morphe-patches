@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="feat(smashhit): patch startPurchaseFlow to prevent Play Store from opening"
+MSG="feat(smashhit): patch storegetstatus/storegeterror to fix purchase flow stuck"
 
 cd "$DIR"
 
