@@ -1,3 +1,9 @@
+## [1.17.5](https://github.com/legendsciber/morphe-patches/compare/v1.17.4...v1.17.5) (2026-08-27)
+
+### 🐛 Bug Fixes
+
+* **mctoolbox:** use Handler.postDelayed for overlay to fix crash while keeping floating logo ([2df7107](https://github.com/legendsciber/morphe-patches/commit/2df710721cd1269e8c58d3bc7c416cb7bc444c18))
+
 ## [1.17.4](https://github.com/legendsciber/morphe-patches/compare/v1.17.3...v1.17.4) (2026-08-27)
 
 ### 🐛 Bug Fixes
