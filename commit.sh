@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="feat(blockblast): split ad removal and premium into separate patches"
+MSG="feat(hillclimb): add Hill Climb Racing 1.71.1 support and fix lambda classes"
 
 cd "$DIR"
 

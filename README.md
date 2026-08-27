@@ -48,8 +48,8 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 
 **🎯 Supported versions:**
 
-| 1.70.0 |
-| :---: |
+| 1.70.0 | 1.71.1 |
+| :---: | :---: |
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
