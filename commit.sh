@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(mctoolbox): minimal 2-point patch on ya0 only - no UI code touched"
+MSG="fix(mctoolbox): patch ya0 only - skip F() to prevent data binding popup crash"
 
 cd "$DIR"
 
