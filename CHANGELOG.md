@@ -1,3 +1,9 @@
+## [1.17.11](https://github.com/legendsciber/morphe-patches/compare/v1.17.10...v1.17.11) (2026-08-28)
+
+### 🐛 Bug Fixes
+
+* **mctoolbox:** premium - bypass tz0.a() Q check to prevent overlay crash, keep UI working ([e0ec5b1](https://github.com/legendsciber/morphe-patches/commit/e0ec5b17cb854be0c8a9322dde68d106afd330a8))
+
 ## [1.17.10](https://github.com/legendsciber/morphe-patches/compare/v1.17.9...v1.17.10) (2026-08-28)
 
 ### 🐛 Bug Fixes
