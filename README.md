@@ -38,7 +38,7 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Bypass Google Play Install Check](#bypass-google-play-install-check) | App always behaves as if installed from Google Play, bypassing the install source check. |  |
-| [Premium(UNDER TESTING NOT WORKING)](#premium) | Enables premium directly without watching ads. |  |
+| [Premium](#premium) | Enables premium directly without watching ads. |  |
 
 </details>
 
