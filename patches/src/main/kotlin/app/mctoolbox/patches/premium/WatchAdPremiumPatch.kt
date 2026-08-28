@@ -7,21 +7,14 @@ import app.mctoolbox.patches.shared.Constants.COMPATIBILITY_MCTOOLBOX
 /**
  * MCToolbox Premium - Direct Enable
  *
- * ya0.H(Z)V → force Q=true, skip F().
+ * Crash chain: xz0.<init> → mz0.g → xs0.g → jz0.a → showAtLocation → crash
  *
- * This enables premium state globally without triggering data binding
- * notifications (F()). The app's internal code checks ya0.Q for premium
- * features, so setting Q=true grants premium access.
+ * Fix: Two patches:
+ * 1. ya0.H(Z)V → force Q=true, skip F() → premium features active
+ * 2. jz0.a()V → return-void → prevents popup showAtLocation crash
  *
- * F() is skipped to prevent BadTokenException crashes when the app
- * tries to show premium popups/overlays during onCreate before the
- * window token is ready.
- *
- * Note: Premium UI elements (floating logo, etc.) may not display
- * until the app naturally calls ya0.H() after window is ready.
- * This is acceptable — premium functionality is active.
- *
- * Register safety: .locals 1 (v0) + p0 = 2 regs. Uses v0, p0 only.
+ * Premium features work via Q=true. The premium popup/overlay is suppressed
+ * to prevent BadTokenException during onCreate when window token is null.
  */
 @Suppress("unused")
 val mctoolboxPremiumPatch = bytecodePatch(
@@ -32,12 +25,14 @@ val mctoolboxPremiumPatch = bytecodePatch(
     compatibleWith(COMPATIBILITY_MCTOOLBOX)
 
     execute {
-        // Force Q=true, skip F()
-        // insert at 0 → before first instruction → original code unreachable
+        // 1. ya0.H() → Q=true, skip F()
         SetPremiumStateFingerprint.method.addInstructions(0, """
             const/4 v0, 0x1
             iput-boolean v0, p0, Lya0;->Q:Z
             return-void
         """.trimIndent())
+
+        // 2. jz0.a() → return-void (prevent showAtLocation crash)
+        PremiumPopupFingerprint.method.addInstructions(0, "return-void")
     }
 }

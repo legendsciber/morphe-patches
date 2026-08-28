@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(mctoolbox): premium - force Q=true, skip F() to prevent BadTokenException crash"
+MSG="fix(mctoolbox): premium - patch jz0.a() to prevent showAtLocation crash during init"
 
 cd "$DIR"
 
