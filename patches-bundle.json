@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-08-28T03:03:47",
-  "description": "## [1.17.8](https://github.com/legendsciber/morphe-patches/compare/v1.17.7...v1.17.8) (2026-08-28)\n\n### 🐛 Bug Fixes\n\n* **mctoolbox:** premium - force Q=true, skip F() to prevent BadTokenException crash ([8939dc9](https://github.com/legendsciber/morphe-patches/commit/8939dc96945449110c930753d1f5234489b5bba4))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.17.8/patches-1.17.8.mpp",
+  "created_at": "2026-08-28T05:42:59",
+  "description": "## [1.17.9](https://github.com/legendsciber/morphe-patches/compare/v1.17.8...v1.17.9) (2026-08-28)\n\n### 🐛 Bug Fixes\n\n* **mctoolbox:** premium - patch jz0.a() to prevent showAtLocation crash during init ([8444d59](https://github.com/legendsciber/morphe-patches/commit/8444d59602d3df1f3cb949989e6e3342e6733af4))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.17.9/patches-1.17.9.mpp",
   "signature_download_url": "",
-  "version": "1.17.8"
+  "version": "1.17.9"
 }

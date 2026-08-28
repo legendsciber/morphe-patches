@@ -1,3 +1,9 @@
+## [1.17.9](https://github.com/legendsciber/morphe-patches/compare/v1.17.8...v1.17.9) (2026-08-28)
+
+### 🐛 Bug Fixes
+
+* **mctoolbox:** premium - patch jz0.a() to prevent showAtLocation crash during init ([8444d59](https://github.com/legendsciber/morphe-patches/commit/8444d59602d3df1f3cb949989e6e3342e6733af4))
+
 ## [1.17.8](https://github.com/legendsciber/morphe-patches/compare/v1.17.7...v1.17.8) (2026-08-28)
 
 ### 🐛 Bug Fixes
