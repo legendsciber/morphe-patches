@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(mctoolbox): premium - block xs0.g() to prevent all popup crash chains"
+MSG="fix(mctoolbox): premium - bypass tz0.a() Q check to prevent overlay crash, keep UI working"
 
 cd "$DIR"
 

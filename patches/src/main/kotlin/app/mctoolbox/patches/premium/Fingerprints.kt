@@ -3,20 +3,20 @@ package app.mctoolbox.patches.premium
 import app.morphe.patcher.Fingerprint
 
 /**
- * xs0.smali - Data binding callback.
- * g(ILandroidx/databinding/e;)V calls xs0$a.a() which triggers popups.
- * We make this a no-op to prevent all popup crash chains.
+ * tz0.smali - Decision point for premium overlay.
+ * Checks ya0.Q, if true → runs premium overlay Runnable (crashes).
+ * If false → runs normal Runnable.
+ * We bypass the Q check to always run the normal path.
  */
-object DataBindingCallbackFingerprint : Fingerprint(
-    definingClass = "Lxs0;",
-    name = "g",
+object PopupDecisionFingerprint : Fingerprint(
+    definingClass = "Ltz0;",
+    name = "a",
     returnType = "V",
-    parameters = listOf("I", "Landroidx/databinding/e;")
+    parameters = listOf()
 )
 
 /**
  * ya0.smali - Premium state holder.
- * H(Z)V setter sets Q and calls F().
  */
 object SetPremiumStateFingerprint : Fingerprint(
     definingClass = "Lya0;",
