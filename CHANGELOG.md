@@ -1,3 +1,9 @@
+## [1.17.12](https://github.com/legendsciber/morphe-patches/compare/v1.17.11...v1.17.12) (2026-08-28)
+
+### 🐛 Bug Fixes
+
+* **mctoolbox:** premium - make tz0.a() no-op to prevent overlay crash ([78690b0](https://github.com/legendsciber/morphe-patches/commit/78690b0d59e31f84d373081ecd2d21dd09d23f5a))
+
 ## [1.17.11](https://github.com/legendsciber/morphe-patches/compare/v1.17.10...v1.17.11) (2026-08-28)
 
 ### 🐛 Bug Fixes
