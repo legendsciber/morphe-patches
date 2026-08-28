@@ -1,6 +1,5 @@
 package app.mctoolbox.patches.premium
 
-import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.patch.bytecodePatch
 import app.mctoolbox.patches.shared.Constants.COMPATIBILITY_MCTOOLBOX
@@ -8,13 +7,11 @@ import app.mctoolbox.patches.shared.Constants.COMPATIBILITY_MCTOOLBOX
 /**
  * MCToolbox Premium - Direct Enable
  *
- * Crash chain: xz0.<init> → ... → tz0.a() checks Q → shows overlay → crash
- *
- * Fix:
  * 1. ya0.H(Z)V → force Q=true, skip F() → premium features active
- * 2. tz0.a()V → goto :cond_0 → bypasses Q check, always runs normal path
- *    This prevents the premium overlay from being shown during init,
- *    while keeping all other data binding callbacks (toolbox UI, mod menu) working.
+ * 2. tz0.a()V → return-void → blocks premium overlay decision point
+ *    tz0.a() checks Q and shows overlay (crashes). Making it a no-op
+ *    prevents the crash while keeping toolbox UI and mod menu working
+ *    (they use different xs0$a implementations).
  */
 @Suppress("unused")
 val mctoolboxPremiumPatch = bytecodePatch(
@@ -32,10 +29,7 @@ val mctoolboxPremiumPatch = bytecodePatch(
             return-void
         """.trimIndent())
 
-        // 2. tz0.a() → always take the non-popup path
-        // goto :cond_0 skips the Q check and the premium overlay Runnable
-        PopupDecisionFingerprint.method.addInstructionsWithLabels(0, """
-            goto :cond_0
-        """.trimIndent())
+        // 2. tz0.a() → return-void (no-op, prevents overlay crash)
+        PopupDecisionFingerprint.method.addInstructions(0, "return-void")
     }
 }
