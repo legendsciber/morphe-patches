@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(mctoolbox): premium - patch jz0.a() to prevent showAtLocation crash during init"
+MSG="fix(mctoolbox): premium - block xs0.g() to prevent all popup crash chains"
 
 cd "$DIR"
 

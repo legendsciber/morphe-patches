@@ -7,14 +7,14 @@ import app.mctoolbox.patches.shared.Constants.COMPATIBILITY_MCTOOLBOX
 /**
  * MCToolbox Premium - Direct Enable
  *
- * Crash chain: xz0.<init> → mz0.g → xs0.g → jz0.a → showAtLocation → crash
+ * Crash chain: xz0.<init> → ... → xs0.g() → popup.a() → showAtLocation → crash
  *
- * Fix: Two patches:
+ * Fix:
  * 1. ya0.H(Z)V → force Q=true, skip F() → premium features active
- * 2. jz0.a()V → return-void → prevents popup showAtLocation crash
+ * 2. xs0.g(I, e)V → return-void → blocks ALL popup notification chains
+ *    (jz0.a, rz0.a, mj.a, bz0.a etc. are never called)
  *
- * Premium features work via Q=true. The premium popup/overlay is suppressed
- * to prevent BadTokenException during onCreate when window token is null.
+ * Premium features work via Q=true. Popups suppressed.
  */
 @Suppress("unused")
 val mctoolboxPremiumPatch = bytecodePatch(
@@ -32,7 +32,7 @@ val mctoolboxPremiumPatch = bytecodePatch(
             return-void
         """.trimIndent())
 
-        // 2. jz0.a() → return-void (prevent showAtLocation crash)
-        PremiumPopupFingerprint.method.addInstructions(0, "return-void")
+        // 2. xs0.g() → return-void (blocks ALL popup chains)
+        DataBindingCallbackFingerprint.method.addInstructions(0, "return-void")
     }
 }

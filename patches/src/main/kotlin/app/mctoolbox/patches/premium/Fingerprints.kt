@@ -3,15 +3,15 @@ package app.mctoolbox.patches.premium
 import app.morphe.patcher.Fingerprint
 
 /**
- * jz0.smali - Data binding callback that shows premium popup.
- * Checks ya0.Q, if true → PopupWindow.showAtLocation → crashes during init.
- * We wrap showAtLocation in try-catch for BadTokenException.
+ * xs0.smali - Data binding callback.
+ * g(ILandroidx/databinding/e;)V calls xs0$a.a() which triggers popups.
+ * We make this a no-op to prevent all popup crash chains.
  */
-object PremiumPopupFingerprint : Fingerprint(
-    definingClass = "Ljz0;",
-    name = "a",
+object DataBindingCallbackFingerprint : Fingerprint(
+    definingClass = "Lxs0;",
+    name = "g",
     returnType = "V",
-    parameters = listOf()
+    parameters = listOf("I", "Landroidx/databinding/e;")
 )
 
 /**
