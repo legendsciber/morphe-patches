@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(mctoolbox): premium - make tz0.a() no-op to prevent overlay crash"
+MSG="fix(mctoolbox): premium (under testing) - clean up naming and docs"
 
 cd "$DIR"
 
