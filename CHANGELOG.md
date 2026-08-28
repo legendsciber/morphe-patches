@@ -1,3 +1,9 @@
+## [1.17.10](https://github.com/legendsciber/morphe-patches/compare/v1.17.9...v1.17.10) (2026-08-28)
+
+### 🐛 Bug Fixes
+
+* **mctoolbox:** premium - block xs0.g() to prevent all popup crash chains ([32347e3](https://github.com/legendsciber/morphe-patches/commit/32347e3f802951703fd3843ecc8d9623686ef89f))
+
 ## [1.17.9](https://github.com/legendsciber/morphe-patches/compare/v1.17.8...v1.17.9) (2026-08-28)
 
 ### 🐛 Bug Fixes
