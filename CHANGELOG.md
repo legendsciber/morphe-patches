@@ -1,3 +1,9 @@
+## [1.17.13](https://github.com/legendsciber/morphe-patches/compare/v1.17.12...v1.17.13) (2026-08-28)
+
+### 🐛 Bug Fixes
+
+* **mctoolbox:** premium (under testing) - clean up naming and docs ([2b02262](https://github.com/legendsciber/morphe-patches/commit/2b0226237de3bfc9b3d7ac255f740bfe0a6495f7))
+
 ## [1.17.12](https://github.com/legendsciber/morphe-patches/compare/v1.17.11...v1.17.12) (2026-08-28)
 
 ### 🐛 Bug Fixes
