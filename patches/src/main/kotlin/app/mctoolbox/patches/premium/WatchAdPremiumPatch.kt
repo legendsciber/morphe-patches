@@ -15,7 +15,7 @@ import app.mctoolbox.patches.shared.Constants.COMPATIBILITY_MCTOOLBOX
  */
 @Suppress("unused")
 val mctoolboxPremiumPatch = bytecodePatch(
-    name = "Premium(UNDER TESTING NOT WORKING)",
+    name = "Premium (Under Testing)",
     description = "Enables premium directly without watching ads.",
     default = true
 ) {
