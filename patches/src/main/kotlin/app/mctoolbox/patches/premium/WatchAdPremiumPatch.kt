@@ -7,24 +7,21 @@ import app.mctoolbox.patches.shared.Constants.COMPATIBILITY_MCTOOLBOX
 /**
  * MCToolbox Premium - Direct Enable
  *
- * Enables premium by patching ONLY the ya0 premium state class.
- * F() (data binding notification) is NEVER called, preventing
- * premature popup/overlay displays that cause BadTokenException.
+ * ya0.H(Z)V → force Q=true, skip F().
  *
- * How it works:
+ * This enables premium state globally without triggering data binding
+ * notifications (F()). The app's internal code checks ya0.Q for premium
+ * features, so setting Q=true grants premium access.
  *
- * 1. ya0.<init>(Z)V → always set Q=true, no F() call.
- *    Constructor initializes premium state. By setting Q=true here,
- *    premium is active from the very first moment.
+ * F() is skipped to prevent BadTokenException crashes when the app
+ * tries to show premium popups/overlays during onCreate before the
+ * window token is ready.
  *
- * 2. ya0.H(Z)V → always set Q=true, no F() call.
- *    Setter is called throughout the app. By always setting Q=true
- *    and never calling F(), no data binding callbacks are triggered,
- *    so no popups/overlays are shown prematurely.
+ * Note: Premium UI elements (floating logo, etc.) may not display
+ * until the app naturally calls ya0.H() after window is ready.
+ * This is acceptable — premium functionality is active.
  *
- * The app's own code that reads ya0.Q will see true (premium active).
- * The app's own code that calls ya0.H() goes through our patched
- * version which never calls F().
+ * Register safety: .locals 1 (v0) + p0 = 2 regs. Uses v0, p0 only.
  */
 @Suppress("unused")
 val mctoolboxPremiumPatch = bytecodePatch(
@@ -35,16 +32,8 @@ val mctoolboxPremiumPatch = bytecodePatch(
     compatibleWith(COMPATIBILITY_MCTOOLBOX)
 
     execute {
-        // 1. ya0.<init>(Z)V → set Q=true, skip F()
-        // Original: iput-boolean p1, p0, Lya0;->Q:Z; return-void
-        // Patched: const/4 p1, 0x1; iput-boolean p1, p0, Lya0;->Q:Z; return-void
-        PremiumInitFingerprint.method.addInstructions(1, """
-            const/4 p1, 0x1
-        """.trimIndent())
-
-        // 2. ya0.H(Z)V → set Q=true, skip F()
-        // Original: if (p1 != Q) { Q = p1; F(); }
-        // Patched: Q = true; return;
+        // Force Q=true, skip F()
+        // insert at 0 → before first instruction → original code unreachable
         SetPremiumStateFingerprint.method.addInstructions(0, """
             const/4 v0, 0x1
             iput-boolean v0, p0, Lya0;->Q:Z

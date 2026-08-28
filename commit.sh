@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(mctoolbox): patch ya0 only - skip F() to prevent data binding popup crash"
+MSG="fix(mctoolbox): premium - force Q=true, skip F() to prevent BadTokenException crash"
 
 cd "$DIR"
 
