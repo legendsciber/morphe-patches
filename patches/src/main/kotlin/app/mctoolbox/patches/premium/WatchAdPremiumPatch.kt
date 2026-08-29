@@ -7,9 +7,10 @@ import app.mctoolbox.patches.shared.Constants.COMPATIBILITY_MCTOOLBOX
 /**
  * MCToolbox Premium (Under Testing)
  *
- * 1. ya0.H() → always set Q=true on ALL instances → premium active everywhere
- * 2. tz0.a() → force xa0.c.Q = false at method entry → overlay always routes to normal Runnable
- * 3. Block popup crash paths (jz0, rz0, mj) → no BadTokenException
+ * 1. ya0.H() → Q=true everywhere → premium active
+ * 2. mz0.g() → skip xs0.g() trigger → prevents init-time overlay crash
+ * 3. tz0.a() → force xa0.c.Q=false → overlay routes to normal Runnable
+ * 4. jz0/rz0/mj → return-void → block popup crashes
  */
 @Suppress("unused")
 val mctoolboxPremiumPatch = bytecodePatch(
@@ -27,8 +28,10 @@ val mctoolboxPremiumPatch = bytecodePatch(
             return-void
         """.trimIndent())
 
-        // 2. Force overlay routing: set xa0.c.Q = false at tz0.a() entry
-        //    This only affects the routing check — other ya0 instances keep Q=true
+        // 2. Prevent init-time overlay trigger from mz0.g()
+        Mz0TriggerFingerprint.method.addInstructions(11, "return-void")
+
+        // 3. Force overlay routing: xa0.c.Q = false at tz0.a() entry
         PopupDecisionFingerprint.method.addInstructions(0, """
             iget-object v0, p0, Ltz0;->b:Ljava/lang/Object;
             check-cast v0, Lxa0;
@@ -37,7 +40,7 @@ val mctoolboxPremiumPatch = bytecodePatch(
             iput-boolean v1, v0, Lya0;->Q:Z
         """.trimIndent())
 
-        // 3. Block popup crash paths
+        // 4. Block popup crash paths
         PopupJz0Fingerprint.method.addInstructions(0, "return-void")
         PopupRz0Fingerprint.method.addInstructions(0, "return-void")
         PopupMjFingerprint.method.addInstructions(0, "return-void")
