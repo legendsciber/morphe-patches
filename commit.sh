@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(mctoolbox): premium (under testing) - fix compile errors"
+MSG="fix(mctoolbox): premium (under testing) - simplify xs0 fingerprint"
 
 cd "$DIR"
 
