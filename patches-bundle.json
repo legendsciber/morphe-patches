@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-08-29T18:39:23",
-  "description": "## [1.17.31](https://github.com/legendsciber/morphe-patches/compare/v1.17.30...v1.17.31) (2026-08-29)\n\n### 🐛 Bug Fixes\n\n* **mctoolbox:** premium (under testing) - Q=true WITH F() firing + overlay routing fix ([dd049ef](https://github.com/legendsciber/morphe-patches/commit/dd049eff6cb91c39a74e139997f45e6897840e2b))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.17.31/patches-1.17.31.mpp",
+  "created_at": "2026-08-29T19:16:15",
+  "description": "## [1.17.32](https://github.com/legendsciber/morphe-patches/compare/v1.17.31...v1.17.32) (2026-08-29)\n\n### 🐛 Bug Fixes\n\n* **mctoolbox:** premium (IAP bypass) - tc0.d always true + overlay routing + crash blocks ([b7f4357](https://github.com/legendsciber/morphe-patches/commit/b7f4357f7937d4aeabb6f5303bffc582956c18fd))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.17.32/patches-1.17.32.mpp",
   "signature_download_url": "",
-  "version": "1.17.31"
+  "version": "1.17.32"
 }
