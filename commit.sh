@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(mctoolbox): premium (under testing) - Q=true everywhere + force xa0.c.Q=false in tz0"
+MSG="fix(mctoolbox): premium (under testing) - add mz0.g skip back + all previous fixes"
 
 cd "$DIR"
 
