@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(mctoolbox): premium (IAP bypass) - n21.k subscribe button only, no crash blocks"
+MSG="fix(mctoolbox): premium (IAP bypass) - fix VerifyError, use move-object pattern"
 
 cd "$DIR"
 

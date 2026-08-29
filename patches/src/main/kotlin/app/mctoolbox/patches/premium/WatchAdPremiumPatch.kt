@@ -14,8 +14,9 @@ val mctoolboxPremiumPatch = bytecodePatch(
 
     execute {
         SubscribeBypassFingerprint.method.addInstructions(0, """
-            check-cast p0, Lve0;
-            iget-object v0, p0, Lve0;->b:Ltc0;
+            move-object v0, p0
+            check-cast v0, Lve0;
+            iget-object v0, v0, Lve0;->b:Ltc0;
             const/4 v1, 0x1
             invoke-virtual {v0, v1}, Ltc0;->d(Z)V
             return-void
