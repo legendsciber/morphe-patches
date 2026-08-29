@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-08-29T18:17:51",
-  "description": "## [1.17.29](https://github.com/legendsciber/morphe-patches/compare/v1.17.28...v1.17.29) (2026-08-29)\n\n### 🐛 Bug Fixes\n\n* **mctoolbox:** premium (under testing) - Q=true everywhere + force xa0.c.Q=false in tz0 ([2eb6070](https://github.com/legendsciber/morphe-patches/commit/2eb60706fa72418a9fcc8da2faece9de794c3862))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.17.29/patches-1.17.29.mpp",
+  "created_at": "2026-08-29T18:25:34",
+  "description": "## [1.17.30](https://github.com/legendsciber/morphe-patches/compare/v1.17.29...v1.17.30) (2026-08-29)\n\n### 🐛 Bug Fixes\n\n* **mctoolbox:** premium (under testing) - add mz0.g skip back + all previous fixes ([5cebf26](https://github.com/legendsciber/morphe-patches/commit/5cebf26372dd81389779b630afbe6160a74741e2))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.17.30/patches-1.17.30.mpp",
   "signature_download_url": "",
-  "version": "1.17.29"
+  "version": "1.17.30"
 }

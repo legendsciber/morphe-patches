@@ -1,3 +1,9 @@
+## [1.17.30](https://github.com/legendsciber/morphe-patches/compare/v1.17.29...v1.17.30) (2026-08-29)
+
+### 🐛 Bug Fixes
+
+* **mctoolbox:** premium (under testing) - add mz0.g skip back + all previous fixes ([5cebf26](https://github.com/legendsciber/morphe-patches/commit/5cebf26372dd81389779b630afbe6160a74741e2))
+
 ## [1.17.29](https://github.com/legendsciber/morphe-patches/compare/v1.17.28...v1.17.29) (2026-08-29)
 
 ### 🐛 Bug Fixes
