@@ -9,6 +9,13 @@ object SetPremiumStateFingerprint : Fingerprint(
     parameters = listOf("Z")
 )
 
+object PopupDecisionFingerprint : Fingerprint(
+    definingClass = "Ltz0;",
+    name = "a",
+    returnType = "V",
+    parameters = listOf("I")
+)
+
 object PopupJz0Fingerprint : Fingerprint(
     definingClass = "Ljz0;",
     name = "a",
@@ -25,13 +32,6 @@ object PopupRz0Fingerprint : Fingerprint(
 
 object PopupMjFingerprint : Fingerprint(
     definingClass = "Lmj;",
-    name = "a",
-    returnType = "V",
-    parameters = listOf()
-)
-
-object PopupDecisionFingerprint : Fingerprint(
-    definingClass = "Ltz0;",
     name = "a",
     returnType = "V",
     parameters = listOf()

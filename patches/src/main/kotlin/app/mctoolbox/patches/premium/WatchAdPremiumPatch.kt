@@ -8,10 +8,9 @@ import app.mctoolbox.patches.shared.Constants.COMPATIBILITY_MCTOOLBOX
  * MCToolbox Premium (Under Testing)
  *
  * 1. ya0.H() → always set Q=true, skip F() → premium active
- * 2. Block ALL crash paths:
- *    - tz0.a() (decision Runnable router)
- *    - jz0.a(), rz0.a(), mj.a() (popup classes)
- *    All crash with BadTokenException during init.
+ * 2. Block popup crash paths (jz0, rz0, mj) → return-void
+ * 3. Force tz0.a() to always route to normal Runnable (overlay)
+ *    by inserting const/4 v1, 0x0 before the if-eqz check on Q
  */
 @Suppress("unused")
 val mctoolboxPremiumPatch = bytecodePatch(
@@ -29,8 +28,10 @@ val mctoolboxPremiumPatch = bytecodePatch(
             return-void
         """.trimIndent())
 
-        // Block ALL crash paths
-        PopupDecisionFingerprint.method.addInstructions(0, "return-void")
+        // Force overlay routing: override Q check in tz0.a() → always take normal Runnable path
+        PopupDecisionFingerprint.method.addInstructions(11, "const/4 v1, 0x0")
+
+        // Block popup crash paths
         PopupJz0Fingerprint.method.addInstructions(0, "return-void")
         PopupRz0Fingerprint.method.addInstructions(0, "return-void")
         PopupMjFingerprint.method.addInstructions(0, "return-void")
