@@ -1,3 +1,9 @@
+## [1.17.22](https://github.com/legendsciber/morphe-patches/compare/v1.17.21...v1.17.22) (2026-08-29)
+
+### 🐛 Bug Fixes
+
+* **mctoolbox:** premium (under testing) - simplify xs0 fingerprint ([3fdbc12](https://github.com/legendsciber/morphe-patches/commit/3fdbc127e025b5436685080fcdad407567b65fc8))
+
 ## [1.17.21](https://github.com/legendsciber/morphe-patches/compare/v1.17.20...v1.17.21) (2026-08-29)
 
 ### 🐛 Bug Fixes
