@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(mctoolbox): premium (under testing) - add mz0.g skip back + all previous fixes"
+MSG="fix(mctoolbox): premium (under testing) - Q=true WITH F() firing + overlay routing fix"
 
 cd "$DIR"
 
