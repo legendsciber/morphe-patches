@@ -1,3 +1,9 @@
+## [1.17.33](https://github.com/legendsciber/morphe-patches/compare/v1.17.32...v1.17.33) (2026-08-29)
+
+### 🐛 Bug Fixes
+
+* **mctoolbox:** premium (IAP bypass) - tc0.d always true, single clean patch ([e4d936f](https://github.com/legendsciber/morphe-patches/commit/e4d936fbdb6a76dad97ce66e2fe6e5701da5c15f))
+
 ## [1.17.32](https://github.com/legendsciber/morphe-patches/compare/v1.17.31...v1.17.32) (2026-08-29)
 
 ### 🐛 Bug Fixes
