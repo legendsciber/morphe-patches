@@ -6,8 +6,8 @@ import app.mctoolbox.patches.shared.Constants.COMPATIBILITY_MCTOOLBOX
 
 @Suppress("unused")
 val mctoolboxPremiumPatch = bytecodePatch(
-    name = "Premium (Under Testing)",
-    description = "Enables premium directly without watching ads.",
+    name = "Premium",
+    description = "Enables premium features by bypassing in-app purchase verification.",
     default = true
 ) {
     compatibleWith(COMPATIBILITY_MCTOOLBOX)
