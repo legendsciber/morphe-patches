@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(mctoolbox): premium (under testing) - Q=true WITH F() firing + overlay routing fix"
+MSG="fix(mctoolbox): premium (IAP bypass) - tc0.d always true + overlay routing + crash blocks"
 
 cd "$DIR"
 
