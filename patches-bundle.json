@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-08-29T12:18:53",
-  "description": "## [1.17.15](https://github.com/legendsciber/morphe-patches/compare/v1.17.14...v1.17.15) (2026-08-29)\n\n### 🐛 Bug Fixes\n\n* **mctoolbox:** premium (under testing) - remove invalid bz0 fingerprint ([dc8efbd](https://github.com/legendsciber/morphe-patches/commit/dc8efbdc2d11a1fbaada78f5ea15211414753650))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.17.15/patches-1.17.15.mpp",
+  "created_at": "2026-08-29T12:26:36",
+  "description": "## [1.17.16](https://github.com/legendsciber/morphe-patches/compare/v1.17.15...v1.17.16) (2026-08-29)\n\n### 🐛 Bug Fixes\n\n* **mctoolbox:** premium (under testing) - add tz0.a() back to block t20.run crash ([8509cb3](https://github.com/legendsciber/morphe-patches/commit/8509cb355ff6d8b629591ef00660022fc4f8e5a2))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.17.16/patches-1.17.16.mpp",
   "signature_download_url": "",
-  "version": "1.17.15"
+  "version": "1.17.16"
 }
