@@ -7,10 +7,10 @@ import app.mctoolbox.patches.shared.Constants.COMPATIBILITY_MCTOOLBOX
 /**
  * MCToolbox Premium (Under Testing)
  *
- * 1. ya0.H() → always set Q=true, skip F() → premium active, no data binding trigger during init
- * 2. mz0.g() → skip xs0.g() trigger → prevents BadTokenException during init
- *
- * Result: App opens, premium active, overlay shows through app's own mechanism.
+ * 1. ya0.H() → always set Q=true, skip F() → premium active
+ * 2. Block ALL popup crash paths (jz0, rz0, mj) → return-void
+ *    These crash with BadTokenException during init because window not ready.
+ *    With Q=true, premium features work through other code paths.
  */
 @Suppress("unused")
 val mctoolboxPremiumPatch = bytecodePatch(
@@ -21,14 +21,16 @@ val mctoolboxPremiumPatch = bytecodePatch(
     compatibleWith(COMPATIBILITY_MCTOOLBOX)
 
     execute {
-        // Enable premium: Q=true, skip F() (no data binding trigger during init)
+        // Enable premium: Q=true, skip F()
         SetPremiumStateFingerprint.method.addInstructions(0, """
             const/4 v0, 0x1
             iput-boolean v0, p0, Lya0;->Q:Z
             return-void
         """.trimIndent())
 
-        // Prevent crash: skip xs0.g() trigger in mz0.g() during init
-        Mz0TriggerFingerprint.method.addInstructions(11, "return-void")
+        // Block ALL popup crash paths
+        PopupJz0Fingerprint.method.addInstructions(0, "return-void")
+        PopupRz0Fingerprint.method.addInstructions(0, "return-void")
+        PopupMjFingerprint.method.addInstructions(0, "return-void")
     }
 }
