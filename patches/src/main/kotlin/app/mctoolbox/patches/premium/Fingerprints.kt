@@ -9,12 +9,16 @@ object SetPremiumStateFingerprint : Fingerprint(
     parameters = listOf("Z")
 )
 
-/**
- * xs0.g(ILandroidx/databinding/e;)V - Data binding callback.
- * We wrap it in try-catch to catch BadTokenException during init.
- */
-object Xs0TriggerFingerprint : Fingerprint(
-    definingClass = "Lxs0;",
+object Mz0TriggerFingerprint : Fingerprint(
+    definingClass = "Lmz0;",
     name = "g",
-    returnType = "V"
+    returnType = "V",
+    parameters = listOf("Lya0;")
+)
+
+object OnResumeFingerprint : Fingerprint(
+    definingClass = "Lio/mrarm/mctoolbox/MinecraftActivity;",
+    name = "onResume",
+    returnType = "V",
+    parameters = listOf()
 )
