@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(mctoolbox): premium (under testing) - defer overlay to onResume when window is ready"
+MSG="fix(mctoolbox): premium (under testing) - use Handler.post + hz0 for deferred bridge refresh"
 
 cd "$DIR"
 
