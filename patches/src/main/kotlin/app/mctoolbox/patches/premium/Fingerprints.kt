@@ -43,13 +43,3 @@ object PopupMjFingerprint : Fingerprint(
     returnType = "V",
     parameters = listOf()
 )
-
-/**
- * bz0.a() - PopupWindow.showAtLocation crash path 4
- */
-object PopupBz0Fingerprint : Fingerprint(
-    definingClass = "Lbz0;",
-    name = "a",
-    returnType = "V",
-    parameters = listOf()
-)

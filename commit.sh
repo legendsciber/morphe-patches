@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(mctoolbox): premium (under testing) - block all 4 popup crash paths"
+MSG="fix(mctoolbox): premium (under testing) - remove invalid bz0 fingerprint"
 
 cd "$DIR"
 

@@ -32,6 +32,5 @@ val mctoolboxPremiumPatch = bytecodePatch(
         PopupJz0Fingerprint.method.addInstructions(0, "return-void")
         PopupRz0Fingerprint.method.addInstructions(0, "return-void")
         PopupMjFingerprint.method.addInstructions(0, "return-void")
-        PopupBz0Fingerprint.method.addInstructions(0, "return-void")
     }
 }
