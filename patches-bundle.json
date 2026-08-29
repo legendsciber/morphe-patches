@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-08-29T21:27:38",
-  "description": "## [1.17.36](https://github.com/legendsciber/morphe-patches/compare/v1.17.35...v1.17.36) (2026-08-29)\n\n### 🐛 Bug Fixes\n\n* **mctoolbox:** premium (IAP bypass) - fix VerifyError, use move-object pattern ([190871d](https://github.com/legendsciber/morphe-patches/commit/190871da729011a684d84630625b68aa5e8d6f46))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.17.36/patches-1.17.36.mpp",
+  "created_at": "2026-08-29T21:29:55",
+  "description": "## [1.17.37](https://github.com/legendsciber/morphe-patches/compare/v1.17.36...v1.17.37) (2026-08-29)\n\n### 🐛 Bug Fixes\n\n* **mctoolbox:** premium (IAP bypass) - use move-object/from16 for large register ([1f06c31](https://github.com/legendsciber/morphe-patches/commit/1f06c31fdfa08b9148dc14df858aed6298e64023))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.17.37/patches-1.17.37.mpp",
   "signature_download_url": "",
-  "version": "1.17.36"
+  "version": "1.17.37"
 }
