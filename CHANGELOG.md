@@ -1,3 +1,9 @@
+## [1.17.15](https://github.com/legendsciber/morphe-patches/compare/v1.17.14...v1.17.15) (2026-08-29)
+
+### 🐛 Bug Fixes
+
+* **mctoolbox:** premium (under testing) - remove invalid bz0 fingerprint ([dc8efbd](https://github.com/legendsciber/morphe-patches/commit/dc8efbdc2d11a1fbaada78f5ea15211414753650))
+
 ## [1.17.14](https://github.com/legendsciber/morphe-patches/compare/v1.17.13...v1.17.14) (2026-08-29)
 
 ### 🐛 Bug Fixes
