@@ -1,3 +1,9 @@
+## [1.17.25](https://github.com/legendsciber/morphe-patches/compare/v1.17.24...v1.17.25) (2026-08-29)
+
+### 🐛 Bug Fixes
+
+* **mctoolbox:** premium (under testing) - Q=true + block all popup crash paths ([b45c622](https://github.com/legendsciber/morphe-patches/commit/b45c6223b18a2fbbe7ce3a1874a775f7435bbf30))
+
 ## [1.17.24](https://github.com/legendsciber/morphe-patches/compare/v1.17.23...v1.17.24) (2026-08-29)
 
 ### 🐛 Bug Fixes
