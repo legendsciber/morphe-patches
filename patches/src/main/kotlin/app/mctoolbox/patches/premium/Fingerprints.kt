@@ -2,13 +2,6 @@ package app.mctoolbox.patches.premium
 
 import app.morphe.patcher.Fingerprint
 
-object SetPremiumStateFingerprint : Fingerprint(
-    definingClass = "Lya0;",
-    name = "H",
-    returnType = "V",
-    parameters = listOf("Z")
-)
-
 object Mz0TriggerFingerprint : Fingerprint(
     definingClass = "Lmz0;",
     name = "g",
@@ -42,4 +35,11 @@ object PopupMjFingerprint : Fingerprint(
     name = "a",
     returnType = "V",
     parameters = listOf()
+)
+
+object PremiumStateFingerprint : Fingerprint(
+    definingClass = "Ltc0;",
+    name = "d",
+    returnType = "V",
+    parameters = listOf("Z")
 )
