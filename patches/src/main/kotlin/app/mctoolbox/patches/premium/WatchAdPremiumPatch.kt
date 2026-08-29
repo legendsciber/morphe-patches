@@ -41,13 +41,13 @@ val mctoolboxPremiumPatch = bytecodePatch(
         OnResumeFingerprint.method.addInstructions(5, """
             invoke-static {p0}, Landroid/preference/PreferenceManager;->getDefaultSharedPreferences(Landroid/content/Context;)Landroid/content/SharedPreferences;
             move-result-object v0
-            invoke-interface {v0}, Landroid/content/SharedPreferences;->edit()Landroid/content/SharedPreferences$Editor;
+            invoke-interface {v0}, Landroid/content/SharedPreferences;->edit()Landroid/content/SharedPreferences${'$'}Editor;
             move-result-object v0
             const-string v1, "internal/premium_unlocked"
             const/4 p0, 0x1
-            invoke-interface {v0, v1, p0}, Landroid/content/SharedPreferences$Editor;->putBoolean(Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;
+            invoke-interface {v0, v1, p0}, Landroid/content/SharedPreferences${'$'}Editor;->putBoolean(Ljava/lang/String;Z)Landroid/content/SharedPreferences${'$'}Editor;
             move-result-object v0
-            invoke-interface {v0}, Landroid/content/SharedPreferences$Editor;->apply()V
+            invoke-interface {v0}, Landroid/content/SharedPreferences${'$'}Editor;->apply()V
             new-instance v0, Landroid/os/Handler;
             invoke-direct {v0}, Landroid/os/Handler;-><init>()V
             invoke-static {}, Lio/mrarm/mctoolbox/bridge/b;->o()Lio/mrarm/mctoolbox/bridge/b;
