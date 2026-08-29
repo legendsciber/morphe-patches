@@ -1,3 +1,9 @@
+## [1.17.31](https://github.com/legendsciber/morphe-patches/compare/v1.17.30...v1.17.31) (2026-08-29)
+
+### 🐛 Bug Fixes
+
+* **mctoolbox:** premium (under testing) - Q=true WITH F() firing + overlay routing fix ([dd049ef](https://github.com/legendsciber/morphe-patches/commit/dd049eff6cb91c39a74e139997f45e6897840e2b))
+
 ## [1.17.30](https://github.com/legendsciber/morphe-patches/compare/v1.17.29...v1.17.30) (2026-08-29)
 
 ### 🐛 Bug Fixes
