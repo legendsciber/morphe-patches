@@ -1,3 +1,9 @@
+## [1.18.0](https://github.com/legendsciber/morphe-patches/compare/v1.17.40...v1.18.0) (2026-08-29)
+
+### ✨ New Features
+
+* **mctoolbox:** premium patch - rename files and finalize naming ([99cd49a](https://github.com/legendsciber/morphe-patches/commit/99cd49a7e65391478a2ea8dd6ad7438fe4effa8c))
+
 ## [1.17.40](https://github.com/legendsciber/morphe-patches/compare/v1.17.39...v1.17.40) (2026-08-29)
 
 ### 🐛 Bug Fixes
