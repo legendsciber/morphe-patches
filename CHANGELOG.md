@@ -1,3 +1,9 @@
+## [1.17.27](https://github.com/legendsciber/morphe-patches/compare/v1.17.26...v1.17.27) (2026-08-29)
+
+### 🐛 Bug Fixes
+
+* **mctoolbox:** premium (under testing) - Q=true + force overlay routing + block popups ([5e7f8e9](https://github.com/legendsciber/morphe-patches/commit/5e7f8e960d07dce211f198974c6abc15ec698b24))
+
 ## [1.17.26](https://github.com/legendsciber/morphe-patches/compare/v1.17.25...v1.17.26) (2026-08-29)
 
 ### 🐛 Bug Fixes
