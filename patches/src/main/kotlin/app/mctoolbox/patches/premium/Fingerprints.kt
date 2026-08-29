@@ -31,13 +31,14 @@ object PopupMjFingerprint : Fingerprint(
 )
 
 /**
- * t20.smali - Runnable that calls WindowManager.addView (overlay).
- * Crash: xz0.<init> → xs0.g → tz0.a → t20.run → addView → BadTokenException
- * Fix: Post self to Handler with 500ms delay, window ready by then.
+ * tz0.a() - ALL overlay/popup Runnables go through here.
+ * Checks Q and runs different Runnables (t20, s20, etc.).
+ * ALL of them crash during init (BadTokenException).
+ * Making this a no-op prevents ALL crashes.
  */
-object OverlayShowFingerprint : Fingerprint(
-    definingClass = "Lt20;",
-    name = "run",
+object PopupDecisionFingerprint : Fingerprint(
+    definingClass = "Ltz0;",
+    name = "a",
     returnType = "V",
     parameters = listOf()
 )
