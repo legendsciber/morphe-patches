@@ -29,3 +29,10 @@ object PopupMjFingerprint : Fingerprint(
     returnType = "V",
     parameters = listOf()
 )
+
+object PopupDecisionFingerprint : Fingerprint(
+    definingClass = "Ltz0;",
+    name = "a",
+    returnType = "V",
+    parameters = listOf()
+)
