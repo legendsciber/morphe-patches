@@ -33,8 +33,8 @@ val mctoolboxPremiumPatch = bytecodePatch(
         // xs0 is NOT synthetic, so addInstructionsWithLabels should work
         Xs0TriggerFingerprint.method.addInstructionsWithLabels(0, """
             :try_start
-            iget-object p0, p0, Lxs0;->a:Lxs0$a;
-            invoke-interface {p0}, Lxs0$a;->a()V
+            iget-object p0, p0, Lxs0;->a:Lxs0${'$'}a;
+            invoke-interface {p0}, Lxs0${'$'}a;->a()V
             :try_end
             .catch Ljava/lang/Exception; {:try_start .. :try_end} :catch
             return-void
