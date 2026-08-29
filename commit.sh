@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(mctoolbox): premium (IAP bypass) - set premium + dismiss dialog + show Toast"
+MSG="fix(mctoolbox): premium (IAP bypass) - fix register range, copy p0-p2 to v10-v12"
 
 cd "$DIR"
 
