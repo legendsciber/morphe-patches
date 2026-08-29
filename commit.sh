@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(mctoolbox): premium (IAP bypass) - set premium_unlocked + ya0.H(true) for UI update"
+MSG="feat(mctoolbox): premium patch - rename files and finalize naming"
 
 cd "$DIR"
 
