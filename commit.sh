@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(mctoolbox): premium (under testing) - clean up naming and docs"
+MSG="fix(mctoolbox): premium (under testing) - block all 4 popup crash paths"
 
 cd "$DIR"
 
