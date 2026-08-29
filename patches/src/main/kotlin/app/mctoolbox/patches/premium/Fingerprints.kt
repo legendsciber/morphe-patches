@@ -10,13 +10,11 @@ object SetPremiumStateFingerprint : Fingerprint(
 )
 
 /**
- * xs0.g() - Data binding callback that triggers popup/overlay chain.
- * Non-synthetic class, so addInstructionsWithLabels should work.
- * We wrap the invoke-interface in try-catch to catch any exception during init.
+ * xs0.g(ILandroidx/databinding/e;)V - Data binding callback.
+ * We wrap it in try-catch to catch BadTokenException during init.
  */
 object Xs0TriggerFingerprint : Fingerprint(
     definingClass = "Lxs0;",
     name = "g",
-    returnType = "V",
-    parameters = listOf("ILandroidx/databinding/e;")
+    returnType = "V"
 )
