@@ -13,8 +13,6 @@ val mctoolboxPremiumPatch = bytecodePatch(
     compatibleWith(COMPATIBILITY_MCTOOLBOX)
 
     execute {
-        // 1. Subscribe button bypass: n21.k() → directly activate premium
-        //    Instead of launching Google Play billing, just call tc0.d(true)
         SubscribeBypassFingerprint.method.addInstructions(0, """
             check-cast p0, Lve0;
             iget-object v0, p0, Lve0;->b:Ltc0;
@@ -22,8 +20,5 @@ val mctoolboxPremiumPatch = bytecodePatch(
             invoke-virtual {v0, v1}, Ltc0;->d(Z)V
             return-void
         """.trimIndent())
-
-        // 2. Backup: tc0.d() always forces premium=true
-        PremiumStateFingerprint.method.addInstructions(0, "const/4 p1, 0x1")
     }
 }
