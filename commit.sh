@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(mctoolbox): premium (under testing) - simplify xs0 fingerprint"
+MSG="fix(mctoolbox): premium (under testing) - set Q on mz0.d + bridge.b.c + write native SharedPrefs"
 
 cd "$DIR"
 
