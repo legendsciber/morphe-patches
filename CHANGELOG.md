@@ -1,3 +1,9 @@
+## [1.17.38](https://github.com/legendsciber/morphe-patches/compare/v1.17.37...v1.17.38) (2026-08-29)
+
+### 🐛 Bug Fixes
+
+* **mctoolbox:** premium (IAP bypass) - set premium + dismiss dialog + show Toast ([6239ef0](https://github.com/legendsciber/morphe-patches/commit/6239ef0159072fa34c5e081e88621c89fa38de7d))
+
 ## [1.17.37](https://github.com/legendsciber/morphe-patches/compare/v1.17.36...v1.17.37) (2026-08-29)
 
 ### 🐛 Bug Fixes
