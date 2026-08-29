@@ -13,8 +13,8 @@ object SetPremiumStateFingerprint : Fingerprint(
 )
 
 /**
- * jz0.a() - PopupWindow.showAtLocation crash path 1
- * Called from: xz0.<init> → mz0.g → xs0.g → jz0.a
+ * jz0.a() - PopupWindow.showAtLocation crash path
+ * Chain: xz0.<init> → mz0.g → xs0.g → jz0.a → showAtLocation
  */
 object PopupJz0Fingerprint : Fingerprint(
     definingClass = "Ljz0;",
@@ -24,8 +24,8 @@ object PopupJz0Fingerprint : Fingerprint(
 )
 
 /**
- * rz0.a() - PopupWindow.showAtLocation crash path 2
- * Called from: xz0.<init> → uz0.<init> → uz0.a → xs0.g → rz0.a
+ * rz0.a() - PopupWindow.showAtLocation crash path
+ * Chain: xz0.<init> → uz0.<init> → uz0.a → xs0.g → rz0.a → showAtLocation
  */
 object PopupRz0Fingerprint : Fingerprint(
     definingClass = "Lrz0;",
@@ -35,10 +35,22 @@ object PopupRz0Fingerprint : Fingerprint(
 )
 
 /**
- * mj.a() - PopupWindow.showAtLocation crash path 3
+ * mj.a() - PopupWindow.showAtLocation crash path
  */
 object PopupMjFingerprint : Fingerprint(
     definingClass = "Lmj;",
+    name = "a",
+    returnType = "V",
+    parameters = listOf()
+)
+
+/**
+ * tz0.a() - Runnable decision point
+ * Chain: xz0.<init> → xs0.g → tz0.a → t20.run → WindowManager.addView
+ * Checks ya0.Q, runs premium overlay Runnable or normal Runnable.
+ */
+object PopupDecisionFingerprint : Fingerprint(
+    definingClass = "Ltz0;",
     name = "a",
     returnType = "V",
     parameters = listOf()

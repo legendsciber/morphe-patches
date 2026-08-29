@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(mctoolbox): premium (under testing) - remove invalid bz0 fingerprint"
+MSG="fix(mctoolbox): premium (under testing) - add tz0.a() back to block t20.run crash"
 
 cd "$DIR"
 

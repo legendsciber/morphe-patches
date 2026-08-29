@@ -8,9 +8,11 @@ import app.mctoolbox.patches.shared.Constants.COMPATIBILITY_MCTOOLBOX
  * MCToolbox Premium (Under Testing)
  *
  * 1. ya0.H(Z)V → force Q=true, skip F() → premium features active
- * 2. jz0.a() / rz0.a() / mj.a() / bz0.a() → return-void
- *    Blocks ALL PopupWindow.showAtLocation crash paths during onCreate.
- *    Toolbox UI and mod menu are NOT affected (they use different callbacks).
+ * 2. Block ALL crash paths during onCreate:
+ *    - jz0.a() → PopupWindow.showAtLocation
+ *    - rz0.a() → PopupWindow.showAtLocation
+ *    - mj.a() → PopupWindow.showAtLocation
+ *    - tz0.a() → t20.run() → WindowManager.addView
  */
 @Suppress("unused")
 val mctoolboxPremiumPatch = bytecodePatch(
@@ -28,9 +30,10 @@ val mctoolboxPremiumPatch = bytecodePatch(
             return-void
         """.trimIndent())
 
-        // Block ALL popup crash paths
+        // Block ALL popup/overlay crash paths
         PopupJz0Fingerprint.method.addInstructions(0, "return-void")
         PopupRz0Fingerprint.method.addInstructions(0, "return-void")
         PopupMjFingerprint.method.addInstructions(0, "return-void")
+        PopupDecisionFingerprint.method.addInstructions(0, "return-void")
     }
 }
