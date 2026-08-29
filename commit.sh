@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(mctoolbox): premium (under testing) - Q=true + block all crash paths including tz0"
+MSG="fix(mctoolbox): premium (under testing) - Q=true + force overlay routing + block popups"
 
 cd "$DIR"
 
