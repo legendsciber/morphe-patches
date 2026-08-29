@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(mctoolbox): premium (under testing) - block tz0.a() to stop ALL overlay crashes"
+MSG="fix(mctoolbox): premium (under testing) - defer overlay to onResume when window is ready"
 
 cd "$DIR"
 

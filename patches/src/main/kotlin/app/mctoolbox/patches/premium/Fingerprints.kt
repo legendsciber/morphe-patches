@@ -9,36 +9,26 @@ object SetPremiumStateFingerprint : Fingerprint(
     parameters = listOf("Z")
 )
 
-object PopupJz0Fingerprint : Fingerprint(
-    definingClass = "Ljz0;",
-    name = "a",
+/**
+ * mz0.g(ya0) - Registers data binding callback and immediately triggers xs0.g().
+ * We patch this to SKIP the xs0.g() trigger, deferring it to onResume().
+ */
+object Mz0TriggerFingerprint : Fingerprint(
+    definingClass = "Lmz0;",
+    name = "g",
     returnType = "V",
-    parameters = listOf()
-)
-
-object PopupRz0Fingerprint : Fingerprint(
-    definingClass = "Lrz0;",
-    name = "a",
-    returnType = "V",
-    parameters = listOf()
-)
-
-object PopupMjFingerprint : Fingerprint(
-    definingClass = "Lmj;",
-    name = "a",
-    returnType = "V",
-    parameters = listOf()
+    parameters = listOf("Lya0;")
 )
 
 /**
- * tz0.a() - ALL overlay/popup Runnables go through here.
- * Checks Q and runs different Runnables (t20, s20, etc.).
- * ALL of them crash during init (BadTokenException).
- * Making this a no-op prevents ALL crashes.
+ * MinecraftActivity.onResume() - Called after window is ready.
+ * We insert code here to:
+ * 1. Set ya0.Q = true (enable premium)
+ * 2. Trigger xs0.g(0, null) → tz0.a() → popup/overlay shows (window ready)
  */
-object PopupDecisionFingerprint : Fingerprint(
-    definingClass = "Ltz0;",
-    name = "a",
+object OnResumeFingerprint : Fingerprint(
+    definingClass = "Lio/mrarm/mctoolbox/MinecraftActivity;",
+    name = "onResume",
     returnType = "V",
     parameters = listOf()
 )
