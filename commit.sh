@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(mctoolbox): premium (under testing) - Q=true + mz0.g skip, no onResume"
+MSG="fix(mctoolbox): premium (under testing) - Q=true + block all popup crash paths"
 
 cd "$DIR"
 
