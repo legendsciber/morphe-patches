@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-08-29T14:37:18",
-  "description": "## [1.17.22](https://github.com/legendsciber/morphe-patches/compare/v1.17.21...v1.17.22) (2026-08-29)\n\n### 🐛 Bug Fixes\n\n* **mctoolbox:** premium (under testing) - simplify xs0 fingerprint ([3fdbc12](https://github.com/legendsciber/morphe-patches/commit/3fdbc127e025b5436685080fcdad407567b65fc8))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.17.22/patches-1.17.22.mpp",
+  "created_at": "2026-08-29T14:50:23",
+  "description": "## [1.17.23](https://github.com/legendsciber/morphe-patches/compare/v1.17.22...v1.17.23) (2026-08-29)\n\n### 🐛 Bug Fixes\n\n* **mctoolbox:** premium (under testing) - set Q on mz0.d + bridge.b.c + write native SharedPrefs ([dc52342](https://github.com/legendsciber/morphe-patches/commit/dc523422db308a62a88b3a8da5ed09bd06922380))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.17.23/patches-1.17.23.mpp",
   "signature_download_url": "",
-  "version": "1.17.22"
+  "version": "1.17.23"
 }
