@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(mctoolbox): premium (IAP bypass) - tc0.d always true, single clean patch"
+MSG="fix(mctoolbox): premium (IAP bypass) - n21.k subscribe button directly activates premium"
 
 cd "$DIR"
 

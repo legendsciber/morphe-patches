@@ -8,3 +8,10 @@ object PremiumStateFingerprint : Fingerprint(
     returnType = "V",
     parameters = listOf("Z")
 )
+
+object SubscribeBypassFingerprint : Fingerprint(
+    definingClass = "Ln21;",
+    name = "k",
+    returnType = "V",
+    parameters = listOf("Luv;", "Landroid/content/Context;", "Landroid/view/View;")
+)
