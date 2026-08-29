@@ -1,3 +1,9 @@
+## [1.17.37](https://github.com/legendsciber/morphe-patches/compare/v1.17.36...v1.17.37) (2026-08-29)
+
+### 🐛 Bug Fixes
+
+* **mctoolbox:** premium (IAP bypass) - use move-object/from16 for large register ([1f06c31](https://github.com/legendsciber/morphe-patches/commit/1f06c31fdfa08b9148dc14df858aed6298e64023))
+
 ## [1.17.36](https://github.com/legendsciber/morphe-patches/compare/v1.17.35...v1.17.36) (2026-08-29)
 
 ### 🐛 Bug Fixes
