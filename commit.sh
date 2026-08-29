@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(mctoolbox): premium (IAP bypass) - use move-object/from16 for large register"
+MSG="fix(mctoolbox): premium (IAP bypass) - set premium + dismiss dialog + show Toast"
 
 cd "$DIR"
 
