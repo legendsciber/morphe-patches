@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-08-29T13:17:43",
-  "description": "## [1.17.19](https://github.com/legendsciber/morphe-patches/compare/v1.17.18...v1.17.19) (2026-08-29)\n\n### 🐛 Bug Fixes\n\n* **mctoolbox:** premium (under testing) - defer overlay to onResume when window is ready ([ed13354](https://github.com/legendsciber/morphe-patches/commit/ed13354205d00f490b721d074efa7ebc582649dc))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.17.19/patches-1.17.19.mpp",
+  "created_at": "2026-08-29T13:48:42",
+  "description": "## [1.17.20](https://github.com/legendsciber/morphe-patches/compare/v1.17.19...v1.17.20) (2026-08-29)\n\n### 🐛 Bug Fixes\n\n* **mctoolbox:** premium (under testing) - escape dollar signs in smali strings ([34c48ed](https://github.com/legendsciber/morphe-patches/commit/34c48ed757a69e121a8b8a54615763ecf30c9406))\n* **mctoolbox:** premium (under testing) - use Handler.post + hz0 for deferred bridge refresh ([284a566](https://github.com/legendsciber/morphe-patches/commit/284a5665589c8445a7bab323c7b6921ac63ca1e6))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.17.20/patches-1.17.20.mpp",
   "signature_download_url": "",
-  "version": "1.17.19"
+  "version": "1.17.20"
 }
