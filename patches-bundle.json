@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-08-29T17:59:24",
-  "description": "## [1.17.27](https://github.com/legendsciber/morphe-patches/compare/v1.17.26...v1.17.27) (2026-08-29)\n\n### 🐛 Bug Fixes\n\n* **mctoolbox:** premium (under testing) - Q=true + force overlay routing + block popups ([5e7f8e9](https://github.com/legendsciber/morphe-patches/commit/5e7f8e960d07dce211f198974c6abc15ec698b24))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.17.27/patches-1.17.27.mpp",
+  "created_at": "2026-08-29T18:04:16",
+  "description": "## [1.17.28](https://github.com/legendsciber/morphe-patches/compare/v1.17.27...v1.17.28) (2026-08-29)\n\n### 🐛 Bug Fixes\n\n* **mctoolbox:** premium (under testing) - fix tz0 fingerprint (no params) ([9455749](https://github.com/legendsciber/morphe-patches/commit/945574917f2e844b2699e3e5290909c9f240f312))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.17.28/patches-1.17.28.mpp",
   "signature_download_url": "",
-  "version": "1.17.27"
+  "version": "1.17.28"
 }
