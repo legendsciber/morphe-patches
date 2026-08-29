@@ -1,3 +1,10 @@
+## [1.17.24](https://github.com/legendsciber/morphe-patches/compare/v1.17.23...v1.17.24) (2026-08-29)
+
+### 🐛 Bug Fixes
+
+* **mctoolbox:** premium (under testing) - minimal: just set Q=true via ya0.H, skip F() ([13ff616](https://github.com/legendsciber/morphe-patches/commit/13ff6167b5dcadc2117547307d8dbdca04ad0982))
+* **mctoolbox:** premium (under testing) - Q=true + mz0.g skip, no onResume ([7343bc4](https://github.com/legendsciber/morphe-patches/commit/7343bc43608196fbcd17edcde303c7bf6ce06ab6))
+
 ## [1.17.23](https://github.com/legendsciber/morphe-patches/compare/v1.17.22...v1.17.23) (2026-08-29)
 
 ### 🐛 Bug Fixes
