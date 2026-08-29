@@ -1,3 +1,9 @@
+## [1.17.39](https://github.com/legendsciber/morphe-patches/compare/v1.17.38...v1.17.39) (2026-08-29)
+
+### 🐛 Bug Fixes
+
+* **mctoolbox:** premium (IAP bypass) - fix register range, copy p0-p2 to v10-v12 ([7fe15b0](https://github.com/legendsciber/morphe-patches/commit/7fe15b0a7ce09daf1ae14eea33b1c06dc5bbaf63))
+
 ## [1.17.38](https://github.com/legendsciber/morphe-patches/compare/v1.17.37...v1.17.38) (2026-08-29)
 
 ### 🐛 Bug Fixes
