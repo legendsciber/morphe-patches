@@ -1,3 +1,9 @@
+## [1.17.34](https://github.com/legendsciber/morphe-patches/compare/v1.17.33...v1.17.34) (2026-08-29)
+
+### 🐛 Bug Fixes
+
+* **mctoolbox:** premium (IAP bypass) - n21.k subscribe button directly activates premium ([9a1dcf0](https://github.com/legendsciber/morphe-patches/commit/9a1dcf00142bd7603604b9cd643d7dfe075ab375))
+
 ## [1.17.33](https://github.com/legendsciber/morphe-patches/compare/v1.17.32...v1.17.33) (2026-08-29)
 
 ### 🐛 Bug Fixes
