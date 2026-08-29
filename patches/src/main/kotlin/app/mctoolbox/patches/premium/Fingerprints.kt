@@ -13,7 +13,7 @@ object PopupDecisionFingerprint : Fingerprint(
     definingClass = "Ltz0;",
     name = "a",
     returnType = "V",
-    parameters = listOf("I")
+    parameters = listOf()
 )
 
 object PopupJz0Fingerprint : Fingerprint(

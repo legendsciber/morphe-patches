@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(mctoolbox): premium (under testing) - Q=true + force overlay routing + block popups"
+MSG="fix(mctoolbox): premium (under testing) - fix tz0 fingerprint (no params)"
 
 cd "$DIR"
 
