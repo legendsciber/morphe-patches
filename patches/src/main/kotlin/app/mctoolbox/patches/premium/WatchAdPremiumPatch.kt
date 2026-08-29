@@ -8,9 +8,10 @@ import app.mctoolbox.patches.shared.Constants.COMPATIBILITY_MCTOOLBOX
  * MCToolbox Premium (Under Testing)
  *
  * 1. ya0.H() → always set Q=true, skip F() → premium active
- * 2. Block ALL popup crash paths (jz0, rz0, mj) → return-void
- *    These crash with BadTokenException during init because window not ready.
- *    With Q=true, premium features work through other code paths.
+ * 2. Block ALL crash paths:
+ *    - tz0.a() (decision Runnable router)
+ *    - jz0.a(), rz0.a(), mj.a() (popup classes)
+ *    All crash with BadTokenException during init.
  */
 @Suppress("unused")
 val mctoolboxPremiumPatch = bytecodePatch(
@@ -28,7 +29,8 @@ val mctoolboxPremiumPatch = bytecodePatch(
             return-void
         """.trimIndent())
 
-        // Block ALL popup crash paths
+        // Block ALL crash paths
+        PopupDecisionFingerprint.method.addInstructions(0, "return-void")
         PopupJz0Fingerprint.method.addInstructions(0, "return-void")
         PopupRz0Fingerprint.method.addInstructions(0, "return-void")
         PopupMjFingerprint.method.addInstructions(0, "return-void")
