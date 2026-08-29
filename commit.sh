@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(mctoolbox): premium (under testing) - escape dollar signs in smali strings"
+MSG="fix(mctoolbox): premium (under testing) - try-catch xs0.g() + set Q=true directly"
 
 cd "$DIR"
 
