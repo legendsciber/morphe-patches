@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(mctoolbox): premium (under testing) - fix tz0 fingerprint (no params)"
+MSG="fix(mctoolbox): premium (under testing) - Q=true everywhere + force xa0.c.Q=false in tz0"
 
 cd "$DIR"
 
