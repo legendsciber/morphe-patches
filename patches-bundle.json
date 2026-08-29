@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-08-29T14:50:23",
-  "description": "## [1.17.23](https://github.com/legendsciber/morphe-patches/compare/v1.17.22...v1.17.23) (2026-08-29)\n\n### 🐛 Bug Fixes\n\n* **mctoolbox:** premium (under testing) - set Q on mz0.d + bridge.b.c + write native SharedPrefs ([dc52342](https://github.com/legendsciber/morphe-patches/commit/dc523422db308a62a88b3a8da5ed09bd06922380))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.17.23/patches-1.17.23.mpp",
+  "created_at": "2026-08-29T15:29:38",
+  "description": "## [1.17.24](https://github.com/legendsciber/morphe-patches/compare/v1.17.23...v1.17.24) (2026-08-29)\n\n### 🐛 Bug Fixes\n\n* **mctoolbox:** premium (under testing) - minimal: just set Q=true via ya0.H, skip F() ([13ff616](https://github.com/legendsciber/morphe-patches/commit/13ff6167b5dcadc2117547307d8dbdca04ad0982))\n* **mctoolbox:** premium (under testing) - Q=true + mz0.g skip, no onResume ([7343bc4](https://github.com/legendsciber/morphe-patches/commit/7343bc43608196fbcd17edcde303c7bf6ce06ab6))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.17.24/patches-1.17.24.mpp",
   "signature_download_url": "",
-  "version": "1.17.23"
+  "version": "1.17.24"
 }
