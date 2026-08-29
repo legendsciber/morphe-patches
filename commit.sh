@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(mctoolbox): premium (under testing) - delay t20 overlay with Handler.postDelayed"
+MSG="fix(mctoolbox): premium (under testing) - block tz0.a() to stop ALL overlay crashes"
 
 cd "$DIR"
 
