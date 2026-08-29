@@ -1,3 +1,9 @@
+## [1.17.26](https://github.com/legendsciber/morphe-patches/compare/v1.17.25...v1.17.26) (2026-08-29)
+
+### 🐛 Bug Fixes
+
+* **mctoolbox:** premium (under testing) - Q=true + block all crash paths including tz0 ([41ed792](https://github.com/legendsciber/morphe-patches/commit/41ed792fdc493000803b9b808ee468c77765a5d0))
+
 ## [1.17.25](https://github.com/legendsciber/morphe-patches/compare/v1.17.24...v1.17.25) (2026-08-29)
 
 ### 🐛 Bug Fixes
