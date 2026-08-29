@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(mctoolbox): premium (IAP bypass) - fix VerifyError, use move-object pattern"
+MSG="fix(mctoolbox): premium (IAP bypass) - use move-object/from16 for large register"
 
 cd "$DIR"
 
