@@ -1,3 +1,9 @@
+## [1.17.36](https://github.com/legendsciber/morphe-patches/compare/v1.17.35...v1.17.36) (2026-08-29)
+
+### 🐛 Bug Fixes
+
+* **mctoolbox:** premium (IAP bypass) - fix VerifyError, use move-object pattern ([190871d](https://github.com/legendsciber/morphe-patches/commit/190871da729011a684d84630625b68aa5e8d6f46))
+
 ## [1.17.35](https://github.com/legendsciber/morphe-patches/compare/v1.17.34...v1.17.35) (2026-08-29)
 
 ### 🐛 Bug Fixes
