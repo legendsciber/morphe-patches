@@ -1,3 +1,9 @@
+## [1.17.29](https://github.com/legendsciber/morphe-patches/compare/v1.17.28...v1.17.29) (2026-08-29)
+
+### 🐛 Bug Fixes
+
+* **mctoolbox:** premium (under testing) - Q=true everywhere + force xa0.c.Q=false in tz0 ([2eb6070](https://github.com/legendsciber/morphe-patches/commit/2eb60706fa72418a9fcc8da2faece9de794c3862))
+
 ## [1.17.28](https://github.com/legendsciber/morphe-patches/compare/v1.17.27...v1.17.28) (2026-08-29)
 
 ### 🐛 Bug Fixes
