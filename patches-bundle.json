@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-08-29T12:41:35",
-  "description": "## [1.17.17](https://github.com/legendsciber/morphe-patches/compare/v1.17.16...v1.17.17) (2026-08-29)\n\n### 🐛 Bug Fixes\n\n* **mctoolbox:** premium (under testing) - delay t20 overlay with Handler.postDelayed ([f5e6d45](https://github.com/legendsciber/morphe-patches/commit/f5e6d4547069392af45e2a3d633b02554ea686b4))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.17.17/patches-1.17.17.mpp",
+  "created_at": "2026-08-29T12:53:51",
+  "description": "## [1.17.18](https://github.com/legendsciber/morphe-patches/compare/v1.17.17...v1.17.18) (2026-08-29)\n\n### 🐛 Bug Fixes\n\n* **mctoolbox:** premium (under testing) - block tz0.a() to stop ALL overlay crashes ([1cabefc](https://github.com/legendsciber/morphe-patches/commit/1cabefc3e84eb222cb219ce888789138afdeafa9))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.17.18/patches-1.17.18.mpp",
   "signature_download_url": "",
-  "version": "1.17.17"
+  "version": "1.17.18"
 }
