@@ -5,13 +5,12 @@ import app.morphe.patcher.patch.bytecodePatch
 import app.mctoolbox.patches.shared.Constants.COMPATIBILITY_MCTOOLBOX
 
 /**
- * MCToolbox Premium - Direct Enable
+ * MCToolbox Premium (Under Testing)
  *
  * 1. ya0.H(Z)V → force Q=true, skip F() → premium features active
- * 2. tz0.a()V → return-void → blocks premium overlay decision point
- *    tz0.a() checks Q and shows overlay (crashes). Making it a no-op
- *    prevents the crash while keeping toolbox UI and mod menu working
- *    (they use different xs0$a implementations).
+ * 2. jz0.a() / rz0.a() / mj.a() / bz0.a() → return-void
+ *    Blocks ALL PopupWindow.showAtLocation crash paths during onCreate.
+ *    Toolbox UI and mod menu are NOT affected (they use different callbacks).
  */
 @Suppress("unused")
 val mctoolboxPremiumPatch = bytecodePatch(
@@ -22,14 +21,17 @@ val mctoolboxPremiumPatch = bytecodePatch(
     compatibleWith(COMPATIBILITY_MCTOOLBOX)
 
     execute {
-        // 1. ya0.H() → Q=true, skip F()
+        // Premium state: Q=true, skip F()
         SetPremiumStateFingerprint.method.addInstructions(0, """
             const/4 v0, 0x1
             iput-boolean v0, p0, Lya0;->Q:Z
             return-void
         """.trimIndent())
 
-        // 2. tz0.a() → return-void (no-op, prevents overlay crash)
-        PopupDecisionFingerprint.method.addInstructions(0, "return-void")
+        // Block ALL popup crash paths
+        PopupJz0Fingerprint.method.addInstructions(0, "return-void")
+        PopupRz0Fingerprint.method.addInstructions(0, "return-void")
+        PopupMjFingerprint.method.addInstructions(0, "return-void")
+        PopupBz0Fingerprint.method.addInstructions(0, "return-void")
     }
 }
