@@ -15,10 +15,3 @@ object Mz0TriggerFingerprint : Fingerprint(
     returnType = "V",
     parameters = listOf("Lya0;")
 )
-
-object OnResumeFingerprint : Fingerprint(
-    definingClass = "Lio/mrarm/mctoolbox/MinecraftActivity;",
-    name = "onResume",
-    returnType = "V",
-    parameters = listOf()
-)

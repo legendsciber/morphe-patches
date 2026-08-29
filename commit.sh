@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(mctoolbox): premium (under testing) - minimal: just set Q=true via ya0.H, skip F()"
+MSG="fix(mctoolbox): premium (under testing) - Q=true + mz0.g skip, no onResume"
 
 cd "$DIR"
 
