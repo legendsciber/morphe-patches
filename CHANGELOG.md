@@ -1,3 +1,9 @@
+## [1.17.40](https://github.com/legendsciber/morphe-patches/compare/v1.17.39...v1.17.40) (2026-08-29)
+
+### 🐛 Bug Fixes
+
+* **mctoolbox:** premium (IAP bypass) - set premium_unlocked + ya0.H(true) for UI update ([d0e1e4d](https://github.com/legendsciber/morphe-patches/commit/d0e1e4d15e37b0090420b2c8c8c935b541ded32f))
+
 ## [1.17.39](https://github.com/legendsciber/morphe-patches/compare/v1.17.38...v1.17.39) (2026-08-29)
 
 ### 🐛 Bug Fixes
