@@ -1,3 +1,10 @@
+## [1.17.21](https://github.com/legendsciber/morphe-patches/compare/v1.17.20...v1.17.21) (2026-08-29)
+
+### 🐛 Bug Fixes
+
+* **mctoolbox:** premium (under testing) - fix compile errors ([6f0814e](https://github.com/legendsciber/morphe-patches/commit/6f0814ec2e323684791fcd108748784b031b0267))
+* **mctoolbox:** premium (under testing) - try-catch xs0.g() + set Q=true directly ([3328b04](https://github.com/legendsciber/morphe-patches/commit/3328b04ea8c6fc6d00ba426bf0686f2eebd972f0))
+
 ## [1.17.20](https://github.com/legendsciber/morphe-patches/compare/v1.17.19...v1.17.20) (2026-08-29)
 
 ### 🐛 Bug Fixes
