@@ -1,3 +1,9 @@
+## [1.17.28](https://github.com/legendsciber/morphe-patches/compare/v1.17.27...v1.17.28) (2026-08-29)
+
+### 🐛 Bug Fixes
+
+* **mctoolbox:** premium (under testing) - fix tz0 fingerprint (no params) ([9455749](https://github.com/legendsciber/morphe-patches/commit/945574917f2e844b2699e3e5290909c9f240f312))
+
 ## [1.17.27](https://github.com/legendsciber/morphe-patches/compare/v1.17.26...v1.17.27) (2026-08-29)
 
 ### 🐛 Bug Fixes
