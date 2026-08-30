@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(extremecardriving): fix build - split into rawResourcePatch + bytecodePatch"
+MSG="fix(extremecardriving): fix build - use classLoader to load .so from resources"
 
 cd "$DIR"
 
