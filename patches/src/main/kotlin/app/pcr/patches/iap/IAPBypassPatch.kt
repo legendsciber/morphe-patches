@@ -14,11 +14,63 @@ val pcrIAPBypassPatch = bytecodePatch(
 
     execute {
         PurchaseProductFingerprint.method.addInstructions(0, """
+            const-string v0, "{\"success\":true,\"purchases\":[{\"orderId\":\"MOCK\",\"packageName\":\"com.StudioFurukawa.PixelCarRacer\",\"productId\":\"%s\",\"purchaseTime\":1234567890,\"purchaseToken\":\"mock_token\",\"purchaseState\":1,\"acknowledged\":false}]}"
+            const/4 v1, 0x1
+            new-array v1, v1, [Ljava/lang/Object;
+            const/4 v2, 0x0
+            aput-object p1, v1, v2
+            invoke-static {v0, v1}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+            move-result-object v0
+            const/4 v1, 0x1
+            new-array v2, v1, [Ljava/lang/String;
+            const-string v3, "id"
+            const/4 v5, 0x0
+            aput-object v3, v2, v5
+            new-array v3, v5, [Ljava/lang/String;
+            new-array v1, v1, [D
+            const-wide v4, 0x40c7750000000000L
+            const/4 v6, 0x0
+            aput-wide v4, v1, v6
+            invoke-static {v2, v3, v1}, Lcom/yoyogames/runner/RunnerJNILib;->jCreateDsMap([Ljava/lang/String;[Ljava/lang/String;[D)I
+            move-result v1
+            const-string v2, "response_json"
+            invoke-static {v1, v2, v0}, Lcom/yoyogames/runner/RunnerJNILib;->DsMapAddString(ILjava/lang/String;Ljava/lang/String;)V
+            const-string v0, "sku_type"
+            const-string v2, "inapp"
+            invoke-static {v1, v0, v2}, Lcom/yoyogames/runner/RunnerJNILib;->DsMapAddString(ILjava/lang/String;Ljava/lang/String;)V
+            const/16 v0, 0x42
+            invoke-static {v1, v0}, Lcom/yoyogames/runner/RunnerJNILib;->CreateAsynEventWithDSMap(II)V
             const-wide/16 v0, 0x0
             return-wide v0
         """.trimIndent())
 
         PurchaseSubscriptionFingerprint.method.addInstructions(0, """
+            const-string v0, "{\"success\":true,\"purchases\":[{\"orderId\":\"MOCK\",\"packageName\":\"com.StudioFurukawa.PixelCarRacer\",\"productId\":\"%s\",\"purchaseTime\":1234567890,\"purchaseToken\":\"mock_token\",\"purchaseState\":1,\"acknowledged\":false}]}"
+            const/4 v1, 0x1
+            new-array v1, v1, [Ljava/lang/Object;
+            const/4 v2, 0x0
+            aput-object p1, v1, v2
+            invoke-static {v0, v1}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+            move-result-object v0
+            const/4 v1, 0x1
+            new-array v2, v1, [Ljava/lang/String;
+            const-string v3, "id"
+            const/4 v5, 0x0
+            aput-object v3, v2, v5
+            new-array v3, v5, [Ljava/lang/String;
+            new-array v1, v1, [D
+            const-wide v4, 0x40c7750000000000L
+            const/4 v6, 0x0
+            aput-wide v4, v1, v6
+            invoke-static {v2, v3, v1}, Lcom/yoyogames/runner/RunnerJNILib;->jCreateDsMap([Ljava/lang/String;[Ljava/lang/String;[D)I
+            move-result v1
+            const-string v2, "response_json"
+            invoke-static {v1, v2, v0}, Lcom/yoyogames/runner/RunnerJNILib;->DsMapAddString(ILjava/lang/String;Ljava/lang/String;)V
+            const-string v0, "sku_type"
+            const-string v2, "subs"
+            invoke-static {v1, v0, v2}, Lcom/yoyogames/runner/RunnerJNILib;->DsMapAddString(ILjava/lang/String;Ljava/lang/String;)V
+            const/16 v0, 0x42
+            invoke-static {v1, v0}, Lcom/yoyogames/runner/RunnerJNILib;->CreateAsynEventWithDSMap(II)V
             const-wide/16 v0, 0x0
             return-wide v0
         """.trimIndent())
@@ -57,6 +109,27 @@ val pcrIAPBypassPatch = bytecodePatch(
         PurchaseGetSignatureFingerprint.method.addInstructions(0, """
             const-string v0, "MOCK_SIGNATURE"
             return-object v0
+        """.trimIndent())
+
+        QueryPurchasesAsyncFingerprint.method.addInstructions(0, """
+            const/4 v0, 0x1
+            new-array v1, v0, [Ljava/lang/String;
+            const-string v2, "id"
+            const/4 v3, 0x0
+            aput-object v2, v1, v3
+            new-array v2, v0, [D
+            const-wide v4, 0x40c7750000000000L
+            aput-wide v4, v2, v3
+            invoke-static {v1, v3, v2}, Lcom/yoyogames/runner/RunnerJNILib;->jCreateDsMap([Ljava/lang/String;[Ljava/lang/String;[D)I
+            move-result v1
+            const-string v2, "response_json"
+            const-string v3, "{\"success\":true,\"purchases\":[]}"
+            invoke-static {v1, v2, v3}, Lcom/yoyogames/runner/RunnerJNILib;->DsMapAddString(ILjava/lang/String;Ljava/lang/String;)V
+            const-string v2, "sku_type"
+            invoke-static {v1, v2, p1}, Lcom/yoyogames/runner/RunnerJNILib;->DsMapAddString(ILjava/lang/String;Ljava/lang/String;)V
+            const/16 v2, 0x42
+            invoke-static {v1, v2}, Lcom/yoyogames/runner/RunnerJNILib;->CreateAsynEventWithDSMap(II)V
+            return-void
         """.trimIndent())
     }
 }

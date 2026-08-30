@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(pcr): simplify IAP bypass - remove event 66, use only return patches to avoid crash"
+MSG="fix(pcr): fix event 66 crash by using separate v6 index register for aput-wide"
 
 cd "$DIR"
 
