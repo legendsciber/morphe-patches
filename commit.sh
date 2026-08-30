@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="feat(pcr): add queryPurchasesAsync bypass to trigger async event"
+MSG="fix(pcr): restore missing fingerprints"
 
 cd "$DIR"
 
