@@ -14,11 +14,17 @@ val pcrIAPBypassPatch = bytecodePatch(
 
     execute {
         PurchaseProductFingerprint.method.addInstructions(0, """
+            iget-object v0, p0, Lcom/StudioFurukawa/PixelCarRacer/GooglePlayBilling;->m_runnerBilling:Lcom/StudioFurukawa/PixelCarRacer/GooglePlayBillingService;
+            const-string v1, "inapp"
+            invoke-virtual {v0, v1}, Lcom/StudioFurukawa/PixelCarRacer/GooglePlayBillingService;->queryPurchasesAsync(Ljava/lang/String;)V
             const-wide/16 v0, 0x0
             return-wide v0
         """.trimIndent())
 
         PurchaseSubscriptionFingerprint.method.addInstructions(0, """
+            iget-object v0, p0, Lcom/StudioFurukawa/PixelCarRacer/GooglePlayBilling;->m_runnerBilling:Lcom/StudioFurukawa/PixelCarRacer/GooglePlayBillingService;
+            const-string v1, "subs"
+            invoke-virtual {v0, v1}, Lcom/StudioFurukawa/PixelCarRacer/GooglePlayBillingService;->queryPurchasesAsync(Ljava/lang/String;)V
             const-wide/16 v0, 0x0
             return-wide v0
         """.trimIndent())
