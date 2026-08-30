@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(extremecardriving): fix build - use classLoader to load .so from resources"
+MSG="chore: remove pixel car racer patches"
 
 cd "$DIR"
 
