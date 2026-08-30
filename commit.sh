@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="feat(pcr): fire event 66 with SKU in purchases array from PurchaseProduct"
+MSG="fix(pcr): use String.format instead of StringBuilder to avoid crash in PurchaseProduct/PurchaseSubscription"
 
 cd "$DIR"
 
