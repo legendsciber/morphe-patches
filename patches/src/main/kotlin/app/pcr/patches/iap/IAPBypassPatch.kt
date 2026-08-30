@@ -73,7 +73,7 @@ val pcrIAPBypassPatch = bytecodePatch(
             invoke-static {v1, v3, v2}, Lcom/yoyogames/runner/RunnerJNILib;->jCreateDsMap([Ljava/lang/String;[Ljava/lang/String;[D)I
             move-result v1
             const-string v2, "response_json"
-            const-string v3, "{\\"success\\":true,\\"purchases\\":[]}"
+            const-string v3, "{\"success\":true,\"purchases\":[]}"
             invoke-static {v1, v2, v3}, Lcom/yoyogames/runner/RunnerJNILib;->DsMapAddString(ILjava/lang/String;Ljava/lang/String;)V
             const-string v2, "sku_type"
             invoke-static {v1, v2, p1}, Lcom/yoyogames/runner/RunnerJNILib;->DsMapAddString(ILjava/lang/String;Ljava/lang/String;)V
