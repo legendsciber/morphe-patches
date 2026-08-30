@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="feat(extremecardriving): add unlimited currencies patch"
+MSG="fix(extremecardriving): fix build - embed .so as base64, use single bytecodePatch"
 
 cd "$DIR"
 
