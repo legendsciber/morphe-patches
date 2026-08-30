@@ -1,3 +1,9 @@
+## [1.19.0](https://github.com/legendsciber/morphe-patches/compare/v1.18.0...v1.19.0) (2026-08-30)
+
+### ✨ New Features
+
+* **pcr:** add Pixel Car Racer IAP bypass patch ([a2607ab](https://github.com/legendsciber/morphe-patches/commit/a2607ab441d38e65b67b832d6f7329796546b70f))
+
 ## [1.18.0](https://github.com/legendsciber/morphe-patches/compare/v1.17.40...v1.18.0) (2026-08-29)
 
 ### ✨ New Features
