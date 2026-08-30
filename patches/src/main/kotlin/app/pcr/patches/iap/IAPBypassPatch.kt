@@ -13,6 +13,11 @@ val pcrIAPBypassPatch = bytecodePatch(
     compatibleWith(COMPATIBILITY_PCR)
 
     execute {
+        PurchaseProductFingerprint.method.addInstructions(0, """
+            const-wide/16 v0, 0x0
+            return-wide v0
+        """.trimIndent())
+
         PurchaseStateFingerprint.method.addInstructions(0, """
             const-wide v0, 0x40c9648000000000L
             return-wide v0
@@ -20,6 +25,16 @@ val pcrIAPBypassPatch = bytecodePatch(
 
         VerifySignatureFingerprint.method.addInstructions(0, """
             const-wide/high16 v0, 0x3ff0000000000000L
+            return-wide v0
+        """.trimIndent())
+
+        IsStoreConnectedFingerprint.method.addInstructions(0, """
+            const-wide/high16 v0, 0x3ff0000000000000L
+            return-wide v0
+        """.trimIndent())
+
+        GetStatusFingerprint.method.addInstructions(0, """
+            const-wide/16 v0, 0x0
             return-wide v0
         """.trimIndent())
     }

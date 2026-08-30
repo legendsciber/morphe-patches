@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="feat(pcr): add Pixel Car Racer IAP bypass patch"
+MSG="feat(pcr): add full IAP bypass - purchase, state, signature, store connected"
 
 cd "$DIR"
 
