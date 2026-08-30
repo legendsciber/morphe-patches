@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(pcr): use String.format instead of StringBuilder to avoid crash in PurchaseProduct/PurchaseSubscription"
+MSG="fix(pcr): simplify IAP bypass - remove event 66, use only return patches to avoid crash"
 
 cd "$DIR"
 
