@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(extremecardriving): fix build - embed .so as base64, use single bytecodePatch"
+MSG="fix(extremecardriving): fix build - split into rawResourcePatch + bytecodePatch"
 
 cd "$DIR"
 
