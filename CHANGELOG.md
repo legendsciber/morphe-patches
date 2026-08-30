@@ -1,3 +1,9 @@
+## [1.24.2](https://github.com/legendsciber/morphe-patches/compare/v1.24.1...v1.24.2) (2026-08-30)
+
+### 🐛 Bug Fixes
+
+* **pcr:** simplify IAP bypass - remove event 66, use only return patches to avoid crash ([3a2325e](https://github.com/legendsciber/morphe-patches/commit/3a2325e2d7723182948413c00c11c08567d31d63))
+
 ## [1.24.1](https://github.com/legendsciber/morphe-patches/compare/v1.24.0...v1.24.1) (2026-08-30)
 
 ### 🐛 Bug Fixes
