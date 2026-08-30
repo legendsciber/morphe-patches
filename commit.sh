@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(pcr): fix event 66 crash by using separate v6 index register for aput-wide"
+MSG="feat(extremecardriving): add unlimited currencies patch"
 
 cd "$DIR"
 
