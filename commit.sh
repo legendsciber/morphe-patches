@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(pcr): fix smali escape syntax in queryPurchasesAsync bypass"
+MSG="feat(pcr): trigger async event 66 from PurchaseProduct via queryPurchasesAsync"
 
 cd "$DIR"
 
