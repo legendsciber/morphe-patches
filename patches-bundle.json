@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-08-30T03:06:15",
-  "description": "## [1.21.0](https://github.com/legendsciber/morphe-patches/compare/v1.20.0...v1.21.0) (2026-08-30)\n\n### ✨ New Features\n\n* **pcr:** add full IAP bypass with fake purchase JSON and signature ([d6a5398](https://github.com/legendsciber/morphe-patches/commit/d6a5398b3becebe0cf70548fcf34a46d77324d98))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.21.0/patches-1.21.0.mpp",
+  "created_at": "2026-08-30T03:23:49",
+  "description": "## [1.22.0](https://github.com/legendsciber/morphe-patches/compare/v1.21.0...v1.22.0) (2026-08-30)\n\n### 🐛 Bug Fixes\n\n* **pcr:** restore missing fingerprints ([41413b6](https://github.com/legendsciber/morphe-patches/commit/41413b65b699bfaf11fc9c7bd5377fa5798e88ff))\n\n### ✨ New Features\n\n* **pcr:** add queryPurchasesAsync bypass to trigger async event ([3c079c0](https://github.com/legendsciber/morphe-patches/commit/3c079c0655fa0214fa4e6709a1c08d4ef5bd5256))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.22.0/patches-1.22.0.mpp",
   "signature_download_url": "",
-  "version": "1.21.0"
+  "version": "1.22.0"
 }

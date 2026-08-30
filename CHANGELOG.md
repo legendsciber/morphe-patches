@@ -1,3 +1,13 @@
+## [1.22.0](https://github.com/legendsciber/morphe-patches/compare/v1.21.0...v1.22.0) (2026-08-30)
+
+### 🐛 Bug Fixes
+
+* **pcr:** restore missing fingerprints ([41413b6](https://github.com/legendsciber/morphe-patches/commit/41413b65b699bfaf11fc9c7bd5377fa5798e88ff))
+
+### ✨ New Features
+
+* **pcr:** add queryPurchasesAsync bypass to trigger async event ([3c079c0](https://github.com/legendsciber/morphe-patches/commit/3c079c0655fa0214fa4e6709a1c08d4ef5bd5256))
+
 ## [1.21.0](https://github.com/legendsciber/morphe-patches/compare/v1.20.0...v1.21.0) (2026-08-30)
 
 ### ✨ New Features
