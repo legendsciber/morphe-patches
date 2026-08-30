@@ -1,3 +1,9 @@
+## [1.24.3](https://github.com/legendsciber/morphe-patches/compare/v1.24.2...v1.24.3) (2026-08-30)
+
+### 🐛 Bug Fixes
+
+* **pcr:** fix event 66 crash by using separate v6 index register for aput-wide ([a25629b](https://github.com/legendsciber/morphe-patches/commit/a25629b83d8cd51547096afb18d2979b125f17a8))
+
 ## [1.24.2](https://github.com/legendsciber/morphe-patches/compare/v1.24.1...v1.24.2) (2026-08-30)
 
 ### 🐛 Bug Fixes
