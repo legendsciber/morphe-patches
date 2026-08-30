@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(pcr): restore missing fingerprints"
+MSG="fix(pcr): fix smali escape syntax in queryPurchasesAsync bypass"
 
 cd "$DIR"
 
