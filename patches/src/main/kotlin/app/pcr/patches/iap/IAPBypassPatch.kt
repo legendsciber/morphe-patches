@@ -14,17 +14,83 @@ val pcrIAPBypassPatch = bytecodePatch(
 
     execute {
         PurchaseProductFingerprint.method.addInstructions(0, """
-            iget-object v0, p0, Lcom/StudioFurukawa/PixelCarRacer/GooglePlayBilling;->m_runnerBilling:Lcom/StudioFurukawa/PixelCarRacer/GooglePlayBillingService;
-            const-string v1, "inapp"
-            invoke-virtual {v0, v1}, Lcom/StudioFurukawa/PixelCarRacer/GooglePlayBillingService;->queryPurchasesAsync(Ljava/lang/String;)V
+            new-instance v0, Ljava/lang/StringBuilder;
+            invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+            const-string v1, "{\"orderId\":\"MOCK\",\"packageName\":\"com.StudioFurukawa.PixelCarRacer\",\"productId\":\""
+            invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+            invoke-virtual {v0, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+            const-string v1, "\",\"purchaseTime\":1234567890,\"purchaseToken\":\"mock_token\",\"purchaseState\":1,\"acknowledged\":false}"
+            invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+            invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+            move-result-object v0
+            new-instance v1, Ljava/lang/StringBuilder;
+            invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+            const-string v2, "{\"success\":true,\"purchases\":["
+            invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+            invoke-virtual {v1, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+            const-string v0, "]}"
+            invoke-virtual {v1, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+            invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+            move-result-object p0
+            const/4 v0, 0x1
+            new-array v1, v0, [Ljava/lang/String;
+            const-string v2, "id"
+            const/4 v3, 0x0
+            aput-object v2, v1, v3
+            new-array v2, v3, [Ljava/lang/String;
+            new-array v0, v0, [D
+            const-wide v4, 0x40c7750000000000L
+            aput-wide v4, v0, v3
+            invoke-static {v1, v2, v0}, Lcom/yoyogames/runner/RunnerJNILib;->jCreateDsMap([Ljava/lang/String;[Ljava/lang/String;[D)I
+            move-result v1
+            const-string v0, "response_json"
+            invoke-static {v1, v0, p0}, Lcom/yoyogames/runner/RunnerJNILib;->DsMapAddString(ILjava/lang/String;Ljava/lang/String;)V
+            const-string v0, "sku_type"
+            const-string v2, "inapp"
+            invoke-static {v1, v0, v2}, Lcom/yoyogames/runner/RunnerJNILib;->DsMapAddString(ILjava/lang/String;Ljava/lang/String;)V
+            const/16 v0, 0x42
+            invoke-static {v1, v0}, Lcom/yoyogames/runner/RunnerJNILib;->CreateAsynEventWithDSMap(II)V
             const-wide/16 v0, 0x0
             return-wide v0
         """.trimIndent())
 
         PurchaseSubscriptionFingerprint.method.addInstructions(0, """
-            iget-object v0, p0, Lcom/StudioFurukawa/PixelCarRacer/GooglePlayBilling;->m_runnerBilling:Lcom/StudioFurukawa/PixelCarRacer/GooglePlayBillingService;
-            const-string v1, "subs"
-            invoke-virtual {v0, v1}, Lcom/StudioFurukawa/PixelCarRacer/GooglePlayBillingService;->queryPurchasesAsync(Ljava/lang/String;)V
+            new-instance v0, Ljava/lang/StringBuilder;
+            invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+            const-string v1, "{\"orderId\":\"MOCK\",\"packageName\":\"com.StudioFurukawa.PixelCarRacer\",\"productId\":\""
+            invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+            invoke-virtual {v0, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+            const-string v1, "\",\"purchaseTime\":1234567890,\"purchaseToken\":\"mock_token\",\"purchaseState\":1,\"acknowledged\":false}"
+            invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+            invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+            move-result-object v0
+            new-instance v1, Ljava/lang/StringBuilder;
+            invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+            const-string v2, "{\"success\":true,\"purchases\":["
+            invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+            invoke-virtual {v1, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+            const-string v0, "]}"
+            invoke-virtual {v1, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+            invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+            move-result-object p0
+            const/4 v0, 0x1
+            new-array v1, v0, [Ljava/lang/String;
+            const-string v2, "id"
+            const/4 v3, 0x0
+            aput-object v2, v1, v3
+            new-array v2, v3, [Ljava/lang/String;
+            new-array v0, v0, [D
+            const-wide v4, 0x40c7750000000000L
+            aput-wide v4, v0, v3
+            invoke-static {v1, v2, v0}, Lcom/yoyogames/runner/RunnerJNILib;->jCreateDsMap([Ljava/lang/String;[Ljava/lang/String;[D)I
+            move-result v1
+            const-string v0, "response_json"
+            invoke-static {v1, v0, p0}, Lcom/yoyogames/runner/RunnerJNILib;->DsMapAddString(ILjava/lang/String;Ljava/lang/String;)V
+            const-string v0, "sku_type"
+            const-string v2, "subs"
+            invoke-static {v1, v0, v2}, Lcom/yoyogames/runner/RunnerJNILib;->DsMapAddString(ILjava/lang/String;Ljava/lang/String;)V
+            const/16 v0, 0x42
+            invoke-static {v1, v0}, Lcom/yoyogames/runner/RunnerJNILib;->CreateAsynEventWithDSMap(II)V
             const-wide/16 v0, 0x0
             return-wide v0
         """.trimIndent())

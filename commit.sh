@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="feat(pcr): trigger async event 66 from PurchaseProduct via queryPurchasesAsync"
+MSG="feat(pcr): fire event 66 with SKU in purchases array from PurchaseProduct"
 
 cd "$DIR"
 
