@@ -1,3 +1,9 @@
+## [1.22.1](https://github.com/legendsciber/morphe-patches/compare/v1.22.0...v1.22.1) (2026-08-30)
+
+### 🐛 Bug Fixes
+
+* **pcr:** fix smali escape syntax in queryPurchasesAsync bypass ([ad10a8d](https://github.com/legendsciber/morphe-patches/commit/ad10a8d3399d3bd0949ca38c975679c11b0a7e48))
+
 ## [1.22.0](https://github.com/legendsciber/morphe-patches/compare/v1.21.0...v1.22.0) (2026-08-30)
 
 ### 🐛 Bug Fixes
