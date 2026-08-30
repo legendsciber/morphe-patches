@@ -1,3 +1,9 @@
+## [1.21.0](https://github.com/legendsciber/morphe-patches/compare/v1.20.0...v1.21.0) (2026-08-30)
+
+### ✨ New Features
+
+* **pcr:** add full IAP bypass with fake purchase JSON and signature ([d6a5398](https://github.com/legendsciber/morphe-patches/commit/d6a5398b3becebe0cf70548fcf34a46d77324d98))
+
 ## [1.20.0](https://github.com/legendsciber/morphe-patches/compare/v1.19.0...v1.20.0) (2026-08-30)
 
 ### ✨ New Features
