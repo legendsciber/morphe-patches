@@ -1,3 +1,9 @@
+## [1.24.1](https://github.com/legendsciber/morphe-patches/compare/v1.24.0...v1.24.1) (2026-08-30)
+
+### 🐛 Bug Fixes
+
+* **pcr:** use String.format instead of StringBuilder to avoid crash in PurchaseProduct/PurchaseSubscription ([93c3915](https://github.com/legendsciber/morphe-patches/commit/93c391575dafa9c6615978a074dc8f143304e977))
+
 ## [1.24.0](https://github.com/legendsciber/morphe-patches/compare/v1.23.0...v1.24.0) (2026-08-30)
 
 ### ✨ New Features
