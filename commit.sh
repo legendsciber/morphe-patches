@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="feat(mctoolbox): premium patch - rename files and finalize naming"
+MSG="feat(pcr): add Pixel Car Racer IAP bypass patch"
 
 cd "$DIR"
 
