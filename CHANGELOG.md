@@ -1,3 +1,16 @@
+## [1.25.0](https://github.com/legendsciber/morphe-patches/compare/v1.24.3...v1.25.0) (2026-08-30)
+
+### 🐛 Bug Fixes
+
+* **extremecardriving:** fix build - embed .so as base64, use single bytecodePatch ([c858179](https://github.com/legendsciber/morphe-patches/commit/c8581796eb8b515d606155700a647232ea28ca61))
+* **extremecardriving:** fix build - split into rawResourcePatch + bytecodePatch ([f6662fc](https://github.com/legendsciber/morphe-patches/commit/f6662fcb279984613dbaa889086192874b92158a))
+* **extremecardriving:** fix build - split into rawResourcePatch + bytecodePatch ([47a272c](https://github.com/legendsciber/morphe-patches/commit/47a272cb0cadd9c30675345da354b7382f1588cd))
+* **extremecardriving:** fix build - use classLoader to load .so from resources ([f1747e0](https://github.com/legendsciber/morphe-patches/commit/f1747e097e2751b0d766b883484fa4d45daaa0c8))
+
+### ✨ New Features
+
+* **extremecardriving:** add unlimited currencies patch ([41b163a](https://github.com/legendsciber/morphe-patches/commit/41b163a5c5b7717827fd0b7a678d8338c045906a))
+
 ## [1.24.3](https://github.com/legendsciber/morphe-patches/compare/v1.24.2...v1.24.3) (2026-08-30)
 
 ### 🐛 Bug Fixes
