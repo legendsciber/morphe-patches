@@ -1,3 +1,9 @@
+## [1.23.0](https://github.com/legendsciber/morphe-patches/compare/v1.22.1...v1.23.0) (2026-08-30)
+
+### ✨ New Features
+
+* **pcr:** trigger async event 66 from PurchaseProduct via queryPurchasesAsync ([009321a](https://github.com/legendsciber/morphe-patches/commit/009321a4be19eb3d41d1a429f50cc80e7a0ba5c4))
+
 ## [1.22.1](https://github.com/legendsciber/morphe-patches/compare/v1.22.0...v1.22.1) (2026-08-30)
 
 ### 🐛 Bug Fixes
