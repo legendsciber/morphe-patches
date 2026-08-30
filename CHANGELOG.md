@@ -1,3 +1,9 @@
+## [1.20.0](https://github.com/legendsciber/morphe-patches/compare/v1.19.0...v1.20.0) (2026-08-30)
+
+### ✨ New Features
+
+* **pcr:** add full IAP bypass - purchase, state, signature, store connected ([07f31b1](https://github.com/legendsciber/morphe-patches/commit/07f31b107979c0edc51c10d341c2f4599a36fc69))
+
 ## [1.19.0](https://github.com/legendsciber/morphe-patches/compare/v1.18.0...v1.19.0) (2026-08-30)
 
 ### ✨ New Features
