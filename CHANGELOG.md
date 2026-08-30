@@ -1,3 +1,9 @@
+## [1.24.0](https://github.com/legendsciber/morphe-patches/compare/v1.23.0...v1.24.0) (2026-08-30)
+
+### ✨ New Features
+
+* **pcr:** fire event 66 with SKU in purchases array from PurchaseProduct ([2bfa349](https://github.com/legendsciber/morphe-patches/commit/2bfa3494ef39d0ae15fcccfe6c79f00a27beab36))
+
 ## [1.23.0](https://github.com/legendsciber/morphe-patches/compare/v1.22.1...v1.23.0) (2026-08-30)
 
 ### ✨ New Features
