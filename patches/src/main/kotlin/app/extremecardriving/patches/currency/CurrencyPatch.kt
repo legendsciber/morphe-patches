@@ -4,7 +4,6 @@ import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.patcher.patch.rawResourcePatch
 import app.extremecardriving.patches.shared.Constants.COMPATIBILITY_ECD
-import java.io.File
 
 @Suppress("unused")
 val ecdAddNativeLib = rawResourcePatch(
@@ -16,7 +15,12 @@ val ecdAddNativeLib = rawResourcePatch(
 
     execute {
         val soFile = get("lib/arm64-v8a/libcurrencyhack.so", true)
-        soFile.writeBytes(SoBytes.LIB_CURRENCYHACK)
+        val cl = Thread.currentThread().contextClassLoader
+        val input = cl?.getResourceAsStream("libcurrencyhack.so")
+        if (input != null) {
+            soFile.writeBytes(input.readBytes())
+            input.close()
+        }
     }
 }
 
