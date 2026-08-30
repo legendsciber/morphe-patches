@@ -16,20 +16,6 @@ object VerifySignatureFingerprint : Fingerprint(
     parameters = listOf("Ljava/lang/String;", "Ljava/lang/String;")
 )
 
-object PurchaseProductFingerprint : Fingerprint(
-    definingClass = "Lcom/StudioFurukawa/PixelCarRacer/GooglePlayBilling;",
-    name = "GPBilling_PurchaseProduct",
-    returnType = "D",
-    parameters = listOf("Ljava/lang/String;")
-)
-
-object PurchaseSubscriptionFingerprint : Fingerprint(
-    definingClass = "Lcom/StudioFurukawa/PixelCarRacer/GooglePlayBilling;",
-    name = "GPBilling_PurchaseSubscription",
-    returnType = "D",
-    parameters = listOf("Ljava/lang/String;")
-)
-
 object IsStoreConnectedFingerprint : Fingerprint(
     definingClass = "Lcom/StudioFurukawa/PixelCarRacer/GooglePlayBilling;",
     name = "GPBilling_IsStoreConnected",
@@ -55,5 +41,12 @@ object PurchaseGetSignatureFingerprint : Fingerprint(
     definingClass = "Lcom/StudioFurukawa/PixelCarRacer/GooglePlayBilling;",
     name = "GPBilling_Purchase_GetSignature",
     returnType = "Ljava/lang/String;",
+    parameters = listOf("Ljava/lang/String;")
+)
+
+object QueryPurchasesAsyncFingerprint : Fingerprint(
+    definingClass = "Lcom/StudioFurukawa/PixelCarRacer/GooglePlayBillingService;",
+    name = "queryPurchasesAsync",
+    returnType = "V",
     parameters = listOf("Ljava/lang/String;")
 )

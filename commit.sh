@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="feat(pcr): add full IAP bypass with fake purchase JSON and signature"
+MSG="feat(pcr): add queryPurchasesAsync bypass to trigger async event"
 
 cd "$DIR"
 
