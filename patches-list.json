@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.25.3",
+  "version": "1.25.4",
   "patches": [
     {
       "name": "Ad Removal",
@@ -44,6 +44,32 @@
           "targets": [
             {
               "version": "5.4.58",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Extreme Car Driving Add Native Lib",
+      "description": "Adds libcurrencyhack.so to the APK lib directory.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.aim.racing",
+          "name": "Extreme Car Driving Simulator",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": "#1A237E",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "7.13.1",
               "versionCodes": null,
               "isExperimental": false,
               "minSdk": null,
