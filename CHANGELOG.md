@@ -1,3 +1,9 @@
+## [1.25.1](https://github.com/legendsciber/morphe-patches/compare/v1.25.0...v1.25.1) (2026-08-31)
+
+### 🐛 Bug Fixes
+
+* **extremecardriving:** embed .so as base64 in smali, no rawResourcePatch ([939d529](https://github.com/legendsciber/morphe-patches/commit/939d529ca3946032a5dac816c5a57aa444144477))
+
 ## [1.25.0](https://github.com/legendsciber/morphe-patches/compare/v1.24.3...v1.25.0) (2026-08-30)
 
 ### 🐛 Bug Fixes
