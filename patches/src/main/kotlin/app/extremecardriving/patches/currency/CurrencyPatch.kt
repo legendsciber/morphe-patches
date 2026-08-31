@@ -134,10 +134,6 @@ val ecdCurrencyPatch = bytecodePatch(
             invoke-virtual {v5}, Ljava/io/FileOutputStream;->close()V
             invoke-virtual {v4}, Ljava/io/File;->getAbsolutePath()Ljava/lang/String;
             move-result-object v3
-            const/4 v5, 0x1
-            invoke-static {v3, v5}, Ljava/io/File;->setExecutable(Ljava/lang/String;Z)Z
-            invoke-virtual {v4}, Ljava/io/File;->getAbsolutePath()Ljava/lang/String;
-            move-result-object v3
             invoke-static {v3}, Ljava/lang/Runtime;->load(Ljava/lang/String;)V
             :currency_hack_loaded
         """.trimIndent())
