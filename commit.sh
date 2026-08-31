@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="chore: remove pixel car racer patches"
+MSG="fix(extremecardriving): embed .so as base64 in smali, no rawResourcePatch"
 
 cd "$DIR"
 
