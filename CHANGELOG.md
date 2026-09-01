@@ -1,3 +1,9 @@
+## [1.25.10](https://github.com/legendsciber/morphe-patches/compare/v1.25.9...v1.25.10) (2026-09-01)
+
+### 🐛 Bug Fixes
+
+* **extremecardriving:** fix VerifyError via helper dex with minimal registers ([191bddc](https://github.com/legendsciber/morphe-patches/commit/191bddcabd20a2e436c86bc8639baa77f6430ebc))
+
 ## [1.25.9](https://github.com/legendsciber/morphe-patches/compare/v1.25.8...v1.25.9) (2026-09-01)
 
 ### 🐛 Bug Fixes

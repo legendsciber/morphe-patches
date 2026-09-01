@@ -9,7 +9,7 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.25.9](https://github.com/legendsciber/morphe-patches/releases/tag/v1.25.9)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;10 patches total
+> **[v1.25.10](https://github.com/legendsciber/morphe-patches/releases/tag/v1.25.10)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;10 patches total
 <details open>
 <summary>📦 Block Blast&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
 <br>
@@ -53,7 +53,7 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
-| [Extreme Car Driving Add Native Lib](#extreme-car-driving-add-native-lib) | Adds libcurrencyhack.so to assets and loads via Runtime.load. |  |
+| [Extreme Car Driving Add Native Lib](#extreme-car-driving-add-native-lib) | Adds libcurrencyhack.so to assets and helper dex. |  |
 | [Extreme Car Driving Unlimited Currencies](#extreme-car-driving-unlimited-currencies) | Sets all in-game currencies (diamonds, coins, upgrade points) to 999,999,999 via IL2CPP API. |  |
 
 </details>
