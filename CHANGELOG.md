@@ -1,3 +1,9 @@
+## [1.25.9](https://github.com/legendsciber/morphe-patches/compare/v1.25.8...v1.25.9) (2026-09-01)
+
+### 🐛 Bug Fixes
+
+* **extremecardriving:** fix IllegalAccessError and VerifyError via manual copy after super ([1ab56b4](https://github.com/legendsciber/morphe-patches/commit/1ab56b436463c0f285643ffd486e449f0befb1be))
+
 ## [1.25.8](https://github.com/legendsciber/morphe-patches/compare/v1.25.7...v1.25.8) (2026-09-01)
 
 ### 🐛 Bug Fixes
