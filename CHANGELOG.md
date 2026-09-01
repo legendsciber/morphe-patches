@@ -1,3 +1,9 @@
+## [1.25.5](https://github.com/legendsciber/morphe-patches/compare/v1.25.4...v1.25.5) (2026-09-01)
+
+### 🐛 Bug Fixes
+
+* **extremecardriving:** rewrite patches from scratch with reusable Unity template ([f07b61a](https://github.com/legendsciber/morphe-patches/commit/f07b61a305e645c7a76ec0bf0beeb1e41747c95b))
+
 ## [1.25.4](https://github.com/legendsciber/morphe-patches/compare/v1.25.3...v1.25.4) (2026-08-31)
 
 ### 🐛 Bug Fixes
