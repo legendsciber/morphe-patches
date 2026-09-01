@@ -39,7 +39,9 @@ val ecdCurrencyPatch = bytecodePatch(
     compatibleWith(COMPATIBILITY_ECD)
 
     execute {
-        OnCreateFingerprint.method.addInstructions(0, """
+        // super.onCreate sonrası enjekte et - register pollution ve early init önlenir
+        val idx = OnCreateFingerprint.method.instructions.size - 1
+        OnCreateFingerprint.method.addInstructions(idx, """
             const-string v0, "libcurrencyhack.so"
             invoke-virtual {p0}, Landroid/content/Context;->getAssets()Landroid/content/res/AssetManager;
             move-result-object v1
