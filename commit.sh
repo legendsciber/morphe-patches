@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(extremecardriving): fix currency hack to handle PlayerInfo_DAO singleton via generic scan"
+MSG="fix(extremecardriving): expand global singleton search and add PlayerPrefs fallback"
 
 cd "$DIR"
 
