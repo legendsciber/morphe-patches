@@ -1,3 +1,9 @@
+## [1.25.6](https://github.com/legendsciber/morphe-patches/compare/v1.25.5...v1.25.6) (2026-09-01)
+
+### 🐛 Bug Fixes
+
+* **extremecardriving:** fix INSTALL_FAILED_INVALID_APK via assets + Runtime.load ([cabb0cb](https://github.com/legendsciber/morphe-patches/commit/cabb0cba63db7ffb6976baddd939b2781cafc8e9))
+
 ## [1.25.5](https://github.com/legendsciber/morphe-patches/compare/v1.25.4...v1.25.5) (2026-09-01)
 
 ### 🐛 Bug Fixes
