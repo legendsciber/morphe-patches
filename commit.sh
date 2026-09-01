@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(extremecardriving): fix hardcode to find ManagerPlayerData without image name check"
+MSG="fix(extremecardriving): fix DAO null via manager->info->dao 2-step chain"
 
 cd "$DIR"
 
