@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-01T15:55:22",
-  "description": "## [1.25.7](https://github.com/legendsciber/morphe-patches/compare/v1.25.6...v1.25.7) (2026-09-01)\n\n### 🐛 Bug Fixes\n\n* **extremecardriving:** fix VerifyError via ExifInterfaceUtils copy with minimal registers ([5374f75](https://github.com/legendsciber/morphe-patches/commit/5374f7560ecf458da6d743689012293dc6de8973))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.25.7/patches-1.25.7.mpp",
+  "created_at": "2026-09-01T16:07:57",
+  "description": "## [1.25.8](https://github.com/legendsciber/morphe-patches/compare/v1.25.7...v1.25.8) (2026-09-01)\n\n### 🐛 Bug Fixes\n\n* **extremecardriving:** fix VerifyError this-is-File by injecting after super.onCreate ([7f272af](https://github.com/legendsciber/morphe-patches/commit/7f272aff04a3fb2d06bfd2ace6665848006b5327))\n* **extremecardriving:** fix VerifyError this-is-File by injecting after super.onCreate ([2b83d9c](https://github.com/legendsciber/morphe-patches/commit/2b83d9c8dae88f3f825912116b65e6634538e03b))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.25.8/patches-1.25.8.mpp",
   "signature_download_url": "",
-  "version": "1.25.7"
+  "version": "1.25.8"
 }
