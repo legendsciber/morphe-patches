@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-08-31T00:56:59",
-  "description": "## [1.25.4](https://github.com/legendsciber/morphe-patches/compare/v1.25.3...v1.25.4) (2026-08-31)\n\n### 🐛 Bug Fixes\n\n* **extremecardriving:** embed .so as base64 in smali, no rawResourcePatch ([81c4d8b](https://github.com/legendsciber/morphe-patches/commit/81c4d8b05018092363c8f200bd0052621c883cee))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.25.4/patches-1.25.4.mpp",
+  "created_at": "2026-09-01T14:34:35",
+  "description": "## [1.25.5](https://github.com/legendsciber/morphe-patches/compare/v1.25.4...v1.25.5) (2026-09-01)\n\n### 🐛 Bug Fixes\n\n* **extremecardriving:** rewrite patches from scratch with reusable Unity template ([f07b61a](https://github.com/legendsciber/morphe-patches/commit/f07b61a305e645c7a76ec0bf0beeb1e41747c95b))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.25.5/patches-1.25.5.mpp",
   "signature_download_url": "",
-  "version": "1.25.4"
+  "version": "1.25.5"
 }
