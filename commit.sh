@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="feat(extremecardriving): switch to direct hardcode via ManagerPlayerData DAO offsets"
+MSG="fix(extremecardriving): fix hardcode to find ManagerPlayerData without image name check"
 
 cd "$DIR"
 
