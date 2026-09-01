@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(extremecardriving): rewrite patches from scratch with reusable Unity template"
+MSG="fix(extremecardriving): fix INSTALL_FAILED_INVALID_APK via assets + Runtime.load"
 
 cd "$DIR"
 
