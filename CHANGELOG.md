@@ -1,3 +1,9 @@
+## [1.26.0](https://github.com/legendsciber/morphe-patches/compare/v1.25.14...v1.26.0) (2026-09-01)
+
+### ✨ New Features
+
+* **extremecardriving:** switch to direct hardcode via ManagerPlayerData DAO offsets ([a227d65](https://github.com/legendsciber/morphe-patches/commit/a227d6550997aecbaa9b7b1402f792d69cbee155))
+
 ## [1.25.14](https://github.com/legendsciber/morphe-patches/compare/v1.25.13...v1.25.14) (2026-09-01)
 
 ### 🐛 Bug Fixes
