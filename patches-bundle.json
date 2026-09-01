@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-01T17:21:56",
-  "description": "## [1.25.11](https://github.com/legendsciber/morphe-patches/compare/v1.25.10...v1.25.11) (2026-09-01)\n\n### 🐛 Bug Fixes\n\n* **extremecardriving:** fix native SIGSEGV via correct assembly array handling ([6d325fc](https://github.com/legendsciber/morphe-patches/commit/6d325fc6ccf333a6227395331218aa9156b30a8c))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.25.11/patches-1.25.11.mpp",
+  "created_at": "2026-09-01T18:40:28",
+  "description": "## [1.25.12](https://github.com/legendsciber/morphe-patches/compare/v1.25.11...v1.25.12) (2026-09-01)\n\n### 🐛 Bug Fixes\n\n* **extremecardriving:** fix currency hack to handle PlayerInfo_DAO singleton via generic scan ([e059ccf](https://github.com/legendsciber/morphe-patches/commit/e059ccfc393aa1896ec223d10bb1a68840c4d896))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.25.12/patches-1.25.12.mpp",
   "signature_download_url": "",
-  "version": "1.25.11"
+  "version": "1.25.12"
 }

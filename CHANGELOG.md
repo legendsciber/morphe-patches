@@ -1,3 +1,9 @@
+## [1.25.12](https://github.com/legendsciber/morphe-patches/compare/v1.25.11...v1.25.12) (2026-09-01)
+
+### 🐛 Bug Fixes
+
+* **extremecardriving:** fix currency hack to handle PlayerInfo_DAO singleton via generic scan ([e059ccf](https://github.com/legendsciber/morphe-patches/commit/e059ccfc393aa1896ec223d10bb1a68840c4d896))
+
 ## [1.25.11](https://github.com/legendsciber/morphe-patches/compare/v1.25.10...v1.25.11) (2026-09-01)
 
 ### 🐛 Bug Fixes
