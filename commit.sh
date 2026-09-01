@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(extremecardriving): fix DAO null via manager->info->dao 2-step chain"
+MSG="feat(shadowfight): add CheatsPanel debug menu restore (8 RET stubs)"
 
 cd "$DIR"
 
