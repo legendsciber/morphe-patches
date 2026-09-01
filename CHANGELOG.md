@@ -1,3 +1,9 @@
+## [1.25.14](https://github.com/legendsciber/morphe-patches/compare/v1.25.13...v1.25.14) (2026-09-01)
+
+### 🐛 Bug Fixes
+
+* **extremecardriving:** expand global singleton search and add PlayerPrefs fallback ([eff0fa8](https://github.com/legendsciber/morphe-patches/commit/eff0fa8d5144132762714fd296a38579149e265d))
+
 ## [1.25.13](https://github.com/legendsciber/morphe-patches/compare/v1.25.12...v1.25.13) (2026-09-01)
 
 ### 🐛 Bug Fixes
