@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(extremecardriving): fix VerifyError via helper dex with minimal registers"
+MSG="fix(extremecardriving): fix native SIGSEGV via correct assembly array handling"
 
 cd "$DIR"
 
