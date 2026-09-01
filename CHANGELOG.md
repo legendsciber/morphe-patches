@@ -1,3 +1,10 @@
+## [1.25.8](https://github.com/legendsciber/morphe-patches/compare/v1.25.7...v1.25.8) (2026-09-01)
+
+### 🐛 Bug Fixes
+
+* **extremecardriving:** fix VerifyError this-is-File by injecting after super.onCreate ([7f272af](https://github.com/legendsciber/morphe-patches/commit/7f272aff04a3fb2d06bfd2ace6665848006b5327))
+* **extremecardriving:** fix VerifyError this-is-File by injecting after super.onCreate ([2b83d9c](https://github.com/legendsciber/morphe-patches/commit/2b83d9c8dae88f3f825912116b65e6634538e03b))
+
 ## [1.25.7](https://github.com/legendsciber/morphe-patches/compare/v1.25.6...v1.25.7) (2026-09-01)
 
 ### 🐛 Bug Fixes
