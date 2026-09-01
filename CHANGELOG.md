@@ -1,3 +1,9 @@
+## [1.26.2](https://github.com/legendsciber/morphe-patches/compare/v1.26.1...v1.26.2) (2026-09-01)
+
+### 🐛 Bug Fixes
+
+* **extremecardriving:** fix DAO null via manager->info->dao 2-step chain ([3315f76](https://github.com/legendsciber/morphe-patches/commit/3315f767f6617dbdd8c0d8c496970ee972535ec2))
+
 ## [1.26.1](https://github.com/legendsciber/morphe-patches/compare/v1.26.0...v1.26.1) (2026-09-01)
 
 ### 🐛 Bug Fixes
