@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(extremecardriving): fix native SIGSEGV via correct assembly array handling"
+MSG="fix(extremecardriving): fix currency hack to handle PlayerInfo_DAO singleton via generic scan"
 
 cd "$DIR"
 
