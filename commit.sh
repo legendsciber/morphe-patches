@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(extremecardriving): expand global singleton search and add PlayerPrefs fallback"
+MSG="feat(extremecardriving): switch to direct hardcode via ManagerPlayerData DAO offsets"
 
 cd "$DIR"
 
