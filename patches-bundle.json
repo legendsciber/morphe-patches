@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-01T16:59:02",
-  "description": "## [1.25.10](https://github.com/legendsciber/morphe-patches/compare/v1.25.9...v1.25.10) (2026-09-01)\n\n### 🐛 Bug Fixes\n\n* **extremecardriving:** fix VerifyError via helper dex with minimal registers ([191bddc](https://github.com/legendsciber/morphe-patches/commit/191bddcabd20a2e436c86bc8639baa77f6430ebc))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.25.10/patches-1.25.10.mpp",
+  "created_at": "2026-09-01T17:21:56",
+  "description": "## [1.25.11](https://github.com/legendsciber/morphe-patches/compare/v1.25.10...v1.25.11) (2026-09-01)\n\n### 🐛 Bug Fixes\n\n* **extremecardriving:** fix native SIGSEGV via correct assembly array handling ([6d325fc](https://github.com/legendsciber/morphe-patches/commit/6d325fc6ccf333a6227395331218aa9156b30a8c))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.25.11/patches-1.25.11.mpp",
   "signature_download_url": "",
-  "version": "1.25.10"
+  "version": "1.25.11"
 }
