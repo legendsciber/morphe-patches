@@ -5,6 +5,13 @@ import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.patcher.patch.rawResourcePatch
 import app.extremecardriving.patches.shared.Constants.COMPATIBILITY_ECD
 
+// Şablon: Her yeni Unity oyununda bu dosyayı kopyala, sadece fingerprint ve SoBytes değiştir.
+// Mantık: rawResourcePatch -> .so'yu APK lib'e ekle, bytecodePatch -> onCreate'te loadLibrary.
+// Neden 2 patch? rawResourcePatch APK dosya sistemi için, bytecodePatch smali enjeksiyon için.
+// Morphe'de tek patch'te ikisi bir arada olamaz - ayrı patch'ler gerekir, ikisi de default=true.
+// Sonraki oyun: sadece COMPATIBILITY, Fingerprint, SoBytes ve loadLibrary ismi değişir.
+
+// 1. Native lib'i APK'ye ekle (APKM lib/arm64-v8a/ için)
 @Suppress("unused")
 val ecdAddNativeLib = rawResourcePatch(
     name = "Extreme Car Driving Add Native Lib",
@@ -20,6 +27,8 @@ val ecdAddNativeLib = rawResourcePatch(
     }
 }
 
+// 2. Smali enjeksiyon: ExtremeActivity.onCreate başına System.loadLibrary
+// Sonraki oyun: Fingerprint'i o oyunun MainActivity/UnityPlayerActivity ile değiştir.
 @Suppress("unused")
 val ecdCurrencyPatch = bytecodePatch(
     name = "Extreme Car Driving Unlimited Currencies",
