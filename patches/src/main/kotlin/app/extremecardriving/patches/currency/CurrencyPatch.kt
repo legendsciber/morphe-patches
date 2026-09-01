@@ -22,7 +22,7 @@ val ecdAddNativeLib = rawResourcePatch(
 
     execute {
         val soFile = get("assets/libcurrencyhack.so", true)
-        val soBytes = SoBytes.part0() + SoBytes.part1() + SoBytes.part2() + SoBytes.part3() + SoBytes.part4() + SoBytes.part5() + SoBytes.part6() + SoBytes.part7() + SoBytes.part8() + SoBytes.part9() + SoBytes.part10() + SoBytes.part11()
+        val soBytes = SoBytes.part0() + SoBytes.part1() + SoBytes.part2() + SoBytes.part3() + SoBytes.part4() + SoBytes.part5() + SoBytes.part6() + SoBytes.part7() + SoBytes.part8() + SoBytes.part9() + SoBytes.part10() + SoBytes.part11() + SoBytes.part12() + SoBytes.part13()
         soFile.writeBytes(soBytes)
         val dexFile = get("classes8.dex", true)
         val dexBytes = HelperDexBytes.part0() + HelperDexBytes.part1()
