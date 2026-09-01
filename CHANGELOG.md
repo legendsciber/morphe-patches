@@ -1,3 +1,9 @@
+## [1.25.7](https://github.com/legendsciber/morphe-patches/compare/v1.25.6...v1.25.7) (2026-09-01)
+
+### 🐛 Bug Fixes
+
+* **extremecardriving:** fix VerifyError via ExifInterfaceUtils copy with minimal registers ([5374f75](https://github.com/legendsciber/morphe-patches/commit/5374f7560ecf458da6d743689012293dc6de8973))
+
 ## [1.25.6](https://github.com/legendsciber/morphe-patches/compare/v1.25.5...v1.25.6) (2026-09-01)
 
 ### 🐛 Bug Fixes
