@@ -1,3 +1,9 @@
+## [1.25.11](https://github.com/legendsciber/morphe-patches/compare/v1.25.10...v1.25.11) (2026-09-01)
+
+### 🐛 Bug Fixes
+
+* **extremecardriving:** fix native SIGSEGV via correct assembly array handling ([6d325fc](https://github.com/legendsciber/morphe-patches/commit/6d325fc6ccf333a6227395331218aa9156b30a8c))
+
 ## [1.25.10](https://github.com/legendsciber/morphe-patches/compare/v1.25.9...v1.25.10) (2026-09-01)
 
 ### 🐛 Bug Fixes
