@@ -1,3 +1,9 @@
+## [1.26.1](https://github.com/legendsciber/morphe-patches/compare/v1.26.0...v1.26.1) (2026-09-01)
+
+### 🐛 Bug Fixes
+
+* **extremecardriving:** fix hardcode to find ManagerPlayerData without image name check ([ec0f9e0](https://github.com/legendsciber/morphe-patches/commit/ec0f9e0f6514e510c6b3bb05703b1aaeffad3d36))
+
 ## [1.26.0](https://github.com/legendsciber/morphe-patches/compare/v1.25.14...v1.26.0) (2026-09-01)
 
 ### ✨ New Features
