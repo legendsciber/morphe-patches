@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(extremecardriving): fix VerifyError this-is-File by injecting after super.onCreate"
+MSG="fix(extremecardriving): fix IllegalAccessError and VerifyError via manual copy after super"
 
 cd "$DIR"
 

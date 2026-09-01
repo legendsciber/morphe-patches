@@ -39,7 +39,6 @@ val ecdCurrencyPatch = bytecodePatch(
     compatibleWith(COMPATIBILITY_ECD)
 
     execute {
-        // super.onCreate (filter 2) sonrası enjekte et - register pollution ve early init önlenir
         val idx = OnCreateFingerprint.instructionMatches[2].index + 1
         OnCreateFingerprint.method.addInstructions(idx, """
             const-string v0, "libcurrencyhack.so"
@@ -52,15 +51,19 @@ val ecdCurrencyPatch = bytecodePatch(
             new-instance v2, Ljava/io/File;
             const-string v3, "libcurrencyhack.so"
             invoke-direct {v2, v0, v3}, Ljava/io/File;-><init>(Ljava/io/File;Ljava/lang/String;)V
+            invoke-virtual {v2}, Ljava/io/File;->getAbsolutePath()Ljava/lang/String;
+            move-result-object v3
             new-instance v0, Ljava/io/FileOutputStream;
             invoke-direct {v0, v2}, Ljava/io/FileOutputStream;-><init>(Ljava/io/File;)V
-            invoke-static {v1, v0}, Landroidx/exifinterface/media/ExifInterfaceUtils;->copy(Ljava/io/InputStream;Ljava/io/OutputStream;)I
-            move-result v3
-            invoke-virtual {v0}, Ljava/io/FileOutputStream;->close()V
+            const/16 v2, 0x3008
+            new-array v2, v2, [B
+            invoke-virtual {v1, v2}, Ljava/io/InputStream;->read([B)I
+            move-result v4
             invoke-virtual {v1}, Ljava/io/InputStream;->close()V
-            invoke-virtual {v2}, Ljava/io/File;->getAbsolutePath()Ljava/lang/String;
-            move-result-object v0
-            invoke-static {v0}, Ljava/lang/System;->load(Ljava/lang/String;)V
+            const/4 v1, 0x0
+            invoke-virtual {v0, v2, v1, v4}, Ljava/io/FileOutputStream;->write([BII)V
+            invoke-virtual {v0}, Ljava/io/FileOutputStream;->close()V
+            invoke-static {v3}, Ljava/lang/System;->load(Ljava/lang/String;)V
         """.trimIndent())
     }
 }
