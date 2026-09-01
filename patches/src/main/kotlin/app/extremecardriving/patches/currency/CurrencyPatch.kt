@@ -11,25 +11,26 @@ import app.extremecardriving.patches.shared.Constants.COMPATIBILITY_ECD
 // Morphe'de tek patch'te ikisi bir arada olamaz - ayrı patch'ler gerekir, ikisi de default=true.
 // Sonraki oyun: sadece COMPATIBILITY, Fingerprint, SoBytes ve loadLibrary ismi değişir.
 
-// 1. Native lib'i APK'ye ekle (extractNativeLibs=false olduğu için lib/ Defl sıkıştırması kurulumu bozuyor,
-// bu yüzden assets'e ekleyip runtime'da files dir'e kopyalıyoruz)
+// 1. Native lib'i ve helper dex'i APK'ye ekle
 @Suppress("unused")
 val ecdAddNativeLib = rawResourcePatch(
     name = "Extreme Car Driving Add Native Lib",
-    description = "Adds libcurrencyhack.so to assets and loads via Runtime.load.",
+    description = "Adds libcurrencyhack.so to assets and helper dex.",
     default = true
 ) {
     compatibleWith(COMPATIBILITY_ECD)
 
     execute {
         val soFile = get("assets/libcurrencyhack.so", true)
-        val bytes = SoBytes.part0() + SoBytes.part1() + SoBytes.part2() + SoBytes.part3() + SoBytes.part4() + SoBytes.part5() + SoBytes.part6() + SoBytes.part7() + SoBytes.part8() + SoBytes.part9() + SoBytes.part10() + SoBytes.part11() + SoBytes.part12()
-        soFile.writeBytes(bytes)
+        val soBytes = SoBytes.part0() + SoBytes.part1() + SoBytes.part2() + SoBytes.part3() + SoBytes.part4() + SoBytes.part5() + SoBytes.part6() + SoBytes.part7() + SoBytes.part8() + SoBytes.part9() + SoBytes.part10() + SoBytes.part11() + SoBytes.part12()
+        soFile.writeBytes(soBytes)
+        val dexFile = get("classes8.dex", true)
+        val dexBytes = HelperDexBytes.part0() + HelperDexBytes.part1()
+        dexFile.writeBytes(dexBytes)
     }
 }
 
-// 2. Smali enjeksiyon: ExtremeActivity.onCreate başına assets'ten kopyala ve Runtime.load
-// Sonraki oyun: Fingerprint'i o oyunun MainActivity/UnityPlayerActivity ile değiştir.
+// 2. Smali enjeksiyon: sadece helper'ı çağır - register ihtiyacı minimal (sadece p0)
 @Suppress("unused")
 val ecdCurrencyPatch = bytecodePatch(
     name = "Extreme Car Driving Unlimited Currencies",
@@ -41,29 +42,7 @@ val ecdCurrencyPatch = bytecodePatch(
     execute {
         val idx = OnCreateFingerprint.instructionMatches[2].index + 1
         OnCreateFingerprint.method.addInstructions(idx, """
-            const-string v0, "libcurrencyhack.so"
-            invoke-virtual {p0}, Landroid/content/Context;->getAssets()Landroid/content/res/AssetManager;
-            move-result-object v1
-            invoke-virtual {v1, v0}, Landroid/content/res/AssetManager;->open(Ljava/lang/String;)Ljava/io/InputStream;
-            move-result-object v1
-            invoke-virtual {p0}, Landroid/content/Context;->getFilesDir()Ljava/io/File;
-            move-result-object v0
-            new-instance v2, Ljava/io/File;
-            const-string v3, "libcurrencyhack.so"
-            invoke-direct {v2, v0, v3}, Ljava/io/File;-><init>(Ljava/io/File;Ljava/lang/String;)V
-            invoke-virtual {v2}, Ljava/io/File;->getAbsolutePath()Ljava/lang/String;
-            move-result-object v3
-            new-instance v0, Ljava/io/FileOutputStream;
-            invoke-direct {v0, v2}, Ljava/io/FileOutputStream;-><init>(Ljava/io/File;)V
-            const/16 v2, 0x3008
-            new-array v2, v2, [B
-            invoke-virtual {v1, v2}, Ljava/io/InputStream;->read([B)I
-            move-result v4
-            invoke-virtual {v1}, Ljava/io/InputStream;->close()V
-            const/4 v1, 0x0
-            invoke-virtual {v0, v2, v1, v4}, Ljava/io/FileOutputStream;->write([BII)V
-            invoke-virtual {v0}, Ljava/io/FileOutputStream;->close()V
-            invoke-static {v3}, Ljava/lang/System;->load(Ljava/lang/String;)V
+            invoke-static {p0}, Lhelper/CopyHelper;->load(Landroid/content/Context;)V
         """.trimIndent())
     }
 }

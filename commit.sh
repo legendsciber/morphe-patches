@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(extremecardriving): fix IllegalAccessError and VerifyError via manual copy after super"
+MSG="fix(extremecardriving): fix VerifyError via helper dex with minimal registers"
 
 cd "$DIR"
 
