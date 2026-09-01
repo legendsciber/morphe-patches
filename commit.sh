@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(extremecardriving): fix VerifyError via ExifInterfaceUtils copy with minimal registers"
+MSG="fix(extremecardriving): fix VerifyError this-is-File by injecting after super.onCreate"
 
 cd "$DIR"
 
