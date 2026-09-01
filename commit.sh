@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(extremecardriving): fix INSTALL_FAILED_INVALID_APK via assets + Runtime.load"
+MSG="fix(extremecardriving): fix VerifyError via ExifInterfaceUtils copy with minimal registers"
 
 cd "$DIR"
 

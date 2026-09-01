@@ -40,26 +40,22 @@ val ecdCurrencyPatch = bytecodePatch(
 
     execute {
         OnCreateFingerprint.method.addInstructions(0, """
+            const-string v0, "libcurrencyhack.so"
             invoke-virtual {p0}, Landroid/content/Context;->getAssets()Landroid/content/res/AssetManager;
-            move-result-object v0
-            const-string v1, "libcurrencyhack.so"
-            invoke-virtual {v0, v1}, Landroid/content/res/AssetManager;->open(Ljava/lang/String;)Ljava/io/InputStream;
-            move-result-object v0
-            invoke-virtual {p0}, Landroid/content/Context;->getFilesDir()Ljava/io/File;
             move-result-object v1
+            invoke-virtual {v1, v0}, Landroid/content/res/AssetManager;->open(Ljava/lang/String;)Ljava/io/InputStream;
+            move-result-object v1
+            invoke-virtual {p0}, Landroid/content/Context;->getFilesDir()Ljava/io/File;
+            move-result-object v0
             new-instance v2, Ljava/io/File;
             const-string v3, "libcurrencyhack.so"
-            invoke-direct {v2, v1, v3}, Ljava/io/File;-><init>(Ljava/io/File;Ljava/lang/String;)V
-            new-instance v1, Ljava/io/FileOutputStream;
-            invoke-direct {v1, v2}, Ljava/io/FileOutputStream;-><init>(Ljava/io/File;)V
-            const/16 v3, 0x4000
-            new-array v3, v3, [B
-            invoke-virtual {v0, v3}, Ljava/io/InputStream;->read([B)I
-            move-result v4
-            const/4 v5, 0x0
-            invoke-virtual {v1, v3, v5, v4}, Ljava/io/FileOutputStream;->write([BII)V
-            invoke-virtual {v1}, Ljava/io/FileOutputStream;->close()V
-            invoke-virtual {v0}, Ljava/io/InputStream;->close()V
+            invoke-direct {v2, v0, v3}, Ljava/io/File;-><init>(Ljava/io/File;Ljava/lang/String;)V
+            new-instance v0, Ljava/io/FileOutputStream;
+            invoke-direct {v0, v2}, Ljava/io/FileOutputStream;-><init>(Ljava/io/File;)V
+            invoke-static {v1, v0}, Landroidx/exifinterface/media/ExifInterfaceUtils;->copy(Ljava/io/InputStream;Ljava/io/OutputStream;)I
+            move-result v3
+            invoke-virtual {v0}, Ljava/io/FileOutputStream;->close()V
+            invoke-virtual {v1}, Ljava/io/InputStream;->close()V
             invoke-virtual {v2}, Ljava/io/File;->getAbsolutePath()Ljava/lang/String;
             move-result-object v0
             invoke-static {v0}, Ljava/lang/System;->load(Ljava/lang/String;)V
