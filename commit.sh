@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="feat(shadowfight): add runtime dump for hardcode (pre-release)"
+MSG="fix(shadowfight): fix dump fingerprint no filters"
 
 cd "$DIR"
 
