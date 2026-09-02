@@ -1,3 +1,9 @@
+## [1.28.0](https://github.com/legendsciber/morphe-patches/compare/v1.27.0...v1.28.0) (2026-09-02)
+
+### ✨ New Features
+
+* **shadowfight:** add experimental 2.46.0 patches to main ([eb70c13](https://github.com/legendsciber/morphe-patches/commit/eb70c135d7654098530728fe7399f80f9bd13293))
+
 ## [1.27.0](https://github.com/legendsciber/morphe-patches/compare/v1.26.2...v1.27.0) (2026-09-02)
 
 ### 🐛 Bug Fixes
