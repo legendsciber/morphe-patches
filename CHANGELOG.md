@@ -1,3 +1,9 @@
+## [1.28.1](https://github.com/legendsciber/morphe-patches/compare/v1.28.0...v1.28.1) (2026-09-02)
+
+### 🐛 Bug Fixes
+
+* **shadowfight:** fix dump fingerprint no filters ([14d51ff](https://github.com/legendsciber/morphe-patches/commit/14d51ff01dd17f18347ef5a85e2f4fdbfb03e3f8))
+
 ## [1.28.0](https://github.com/legendsciber/morphe-patches/compare/v1.27.0...v1.28.0) (2026-09-02)
 
 ### ✨ New Features
