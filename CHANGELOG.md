@@ -1,3 +1,9 @@
+## [1.29.1](https://github.com/legendsciber/morphe-patches/compare/v1.29.0...v1.29.1) (2026-09-02)
+
+### 🐛 Bug Fixes
+
+* **shadowfight:** add plain ObscuredInt dump for Gems Coins ([bb92493](https://github.com/legendsciber/morphe-patches/commit/bb9249342a020d673e93a10dcddcd345ec31e2d8))
+
 ## [1.29.0](https://github.com/legendsciber/morphe-patches/compare/v1.28.5...v1.29.0) (2026-09-02)
 
 ### ✨ New Features
