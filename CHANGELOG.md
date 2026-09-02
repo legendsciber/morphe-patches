@@ -1,3 +1,9 @@
+## [1.29.0](https://github.com/legendsciber/morphe-patches/compare/v1.28.5...v1.29.0) (2026-09-02)
+
+### ✨ New Features
+
+* **shadowfight:** add hardcode 999999999 for ObscuredInt wallets ([ba28d50](https://github.com/legendsciber/morphe-patches/commit/ba28d50ad73ab024ce8ba55f11946f3284e6a3b7))
+
 ## [1.28.5](https://github.com/legendsciber/morphe-patches/compare/v1.28.4...v1.28.5) (2026-09-02)
 
 ### 🐛 Bug Fixes
