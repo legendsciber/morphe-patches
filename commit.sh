@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="feat(shadowfight): add hardcode 999999999 for ObscuredInt wallets"
+MSG="fix(shadowfight): add plain ObscuredInt dump for Gems Coins"
 
 cd "$DIR"
 

@@ -15,7 +15,7 @@ val sfDumpPatch = rawResourcePatch(
     compatibleWith(COMPATIBILITY_SF2)
     execute {
         val soFile = get("lib/arm64-v8a/libShadowDump.so", true)
-        val soBytes = DumpSoBytes.part0() + DumpSoBytes.part1() + DumpSoBytes.part2() + DumpSoBytes.part3() + DumpSoBytes.part4() + DumpSoBytes.part5() + DumpSoBytes.part6() + DumpSoBytes.part7() + DumpSoBytes.part8() + DumpSoBytes.part9()
+        val soBytes = DumpSoBytes.part0() + DumpSoBytes.part1() + DumpSoBytes.part2() + DumpSoBytes.part3() + DumpSoBytes.part4() + DumpSoBytes.part5() + DumpSoBytes.part6() + DumpSoBytes.part7() + DumpSoBytes.part8() + DumpSoBytes.part9() + DumpSoBytes.part10()
         soFile.writeBytes(soBytes)
     }
 }
