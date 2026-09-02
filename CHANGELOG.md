@@ -1,3 +1,9 @@
+## [1.28.3](https://github.com/legendsciber/morphe-patches/compare/v1.28.2...v1.28.3) (2026-09-02)
+
+### 🐛 Bug Fixes
+
+* **shadowfight:** fix VerifyError this-is-File via super injection ([a1d83c4](https://github.com/legendsciber/morphe-patches/commit/a1d83c4e6d79f89bc09e899a6cbccf89170eb2bd))
+
 ## [1.28.2](https://github.com/legendsciber/morphe-patches/compare/v1.28.1...v1.28.2) (2026-09-02)
 
 ### 🐛 Bug Fixes
