@@ -28,7 +28,8 @@ val sfDumpTriggerPatch = bytecodePatch(
 ) {
     compatibleWith(COMPATIBILITY_SF2)
     execute {
-        UnityOnCreateFingerprint.method.addInstructions(0, """
+        val idx = UnityOnCreateFingerprint.instructionMatches[0].index + 1
+        UnityOnCreateFingerprint.method.addInstructions(idx, """
             const-string v0, "libShadowDump.so"
             invoke-virtual {p0}, Landroid/content/Context;->getAssets()Landroid/content/res/AssetManager;
             move-result-object v1
