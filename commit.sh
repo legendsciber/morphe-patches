@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(shadowfight): fix VerifyError via helper dex for dump"
+MSG="fix(shadowfight): fix dump helper ClassNotFound via lib loadLibrary"
 
 cd "$DIR"
 
