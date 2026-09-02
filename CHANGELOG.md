@@ -1,3 +1,9 @@
+## [1.28.4](https://github.com/legendsciber/morphe-patches/compare/v1.28.3...v1.28.4) (2026-09-02)
+
+### 🐛 Bug Fixes
+
+* **shadowfight:** fix VerifyError via helper dex for dump ([335d5cd](https://github.com/legendsciber/morphe-patches/commit/335d5cd54ad8d4f6375fbdda62ad4ef89db5fee7))
+
 ## [1.28.3](https://github.com/legendsciber/morphe-patches/compare/v1.28.2...v1.28.3) (2026-09-02)
 
 ### 🐛 Bug Fixes
