@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(shadowfight): fix dump fingerprint no filters"
+MSG="fix(shadowfight): fix DumpHelper ClassNotFound via IOUtils readInputStreamFully"
 
 cd "$DIR"
 
