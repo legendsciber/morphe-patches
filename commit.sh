@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="feat(shadowfight): add CheatsPanel debug menu restore (8 RET stubs)"
+MSG="feat(shadowfight): add runtime dump for hardcode (pre-release)"
 
 cd "$DIR"
 
