@@ -31,8 +31,7 @@ val sfDumpTriggerPatch = bytecodePatch(
 ) {
     compatibleWith(COMPATIBILITY_SF2)
     execute {
-        val idx = UnityOnCreateFingerprint.instructionMatches[0].index + 1
-        UnityOnCreateFingerprint.method.addInstructions(idx, """
+        UnityOnCreateFingerprint.method.addInstructions(0, """
             invoke-static {p0}, Lhelper/DumpHelper;->load(Landroid/content/Context;)V
         """.trimIndent())
     }
