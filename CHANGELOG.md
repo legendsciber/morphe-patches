@@ -1,3 +1,9 @@
+## [1.28.5](https://github.com/legendsciber/morphe-patches/compare/v1.28.4...v1.28.5) (2026-09-02)
+
+### 🐛 Bug Fixes
+
+* **shadowfight:** fix dump helper ClassNotFound via lib loadLibrary ([31fdd38](https://github.com/legendsciber/morphe-patches/commit/31fdd38c89c7744229cbba3a67dcd985d5e57c1b))
+
 ## [1.28.4](https://github.com/legendsciber/morphe-patches/compare/v1.28.3...v1.28.4) (2026-09-02)
 
 ### 🐛 Bug Fixes
