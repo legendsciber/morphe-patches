@@ -1,3 +1,9 @@
+## [1.27.0-dev.2](https://github.com/legendsciber/morphe-patches/compare/v1.27.0-dev.1...v1.27.0-dev.2) (2026-09-02)
+
+### 🐛 Bug Fixes
+
+* **shadowfight:** mark 2.46.0 as experimental for pre-release ([4217364](https://github.com/legendsciber/morphe-patches/commit/4217364f3735d00b5a59c93d4a428d45cb1f6b61))
+
 ## [1.27.0-dev.1](https://github.com/legendsciber/morphe-patches/compare/v1.26.2...v1.27.0-dev.1) (2026-09-02)
 
 ### 🐛 Bug Fixes
