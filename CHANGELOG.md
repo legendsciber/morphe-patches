@@ -21,6 +21,25 @@
 
 ### 🐛 Bug Fixes
 
+* regenerate readme without shadowfight for pre-release ([827057c](https://github.com/legendsciber/morphe-patches/commit/827057c98a114112543f6758b82916f7da8f3a2a))
+* **shadowfight:** add plain ObscuredInt dump for Gems Coins ([bb92493](https://github.com/legendsciber/morphe-patches/commit/bb9249342a020d673e93a10dcddcd345ec31e2d8))
+* **shadowfight:** fix dump fingerprint no filters ([14d51ff](https://github.com/legendsciber/morphe-patches/commit/14d51ff01dd17f18347ef5a85e2f4fdbfb03e3f8))
+* **shadowfight:** fix dump helper ClassNotFound via lib loadLibrary ([31fdd38](https://github.com/legendsciber/morphe-patches/commit/31fdd38c89c7744229cbba3a67dcd985d5e57c1b))
+* **shadowfight:** fix DumpHelper ClassNotFound via IOUtils readInputStreamFully ([cbaa974](https://github.com/legendsciber/morphe-patches/commit/cbaa974053728e2e93d291db6ab7e4522f547900))
+* **shadowfight:** fix VerifyError this-is-File via super injection ([a1d83c4](https://github.com/legendsciber/morphe-patches/commit/a1d83c4e6d79f89bc09e899a6cbccf89170eb2bd))
+* **shadowfight:** fix VerifyError via helper dex for dump ([335d5cd](https://github.com/legendsciber/morphe-patches/commit/335d5cd54ad8d4f6375fbdda62ad4ef89db5fee7))
+* **shadowfight:** remove shadowfight patches for pre-release ([1568a36](https://github.com/legendsciber/morphe-patches/commit/1568a36e8f74fff56d10fc662d3438cbeb8a7f8d))
+
+### ✨ New Features
+
+* **shadowfight:** add CheatsPanel debug menu restore (8 RET stubs) ([cf64178](https://github.com/legendsciber/morphe-patches/commit/cf6417845b5f7a8d240349c02bc0292ff1baa81b))
+* **shadowfight:** add hardcode 999999999 for ObscuredInt wallets ([ba28d50](https://github.com/legendsciber/morphe-patches/commit/ba28d50ad73ab024ce8ba55f11946f3284e6a3b7))
+* **shadowfight:** add runtime dump for hardcode (pre-release) ([2615983](https://github.com/legendsciber/morphe-patches/commit/261598343f26414e4b96980c1b7c7c2deca12099))
+
+## [1.27.0-dev.1](https://github.com/legendsciber/morphe-patches/compare/v1.26.2...v1.27.0-dev.1) (2026-09-02)
+
+### 🐛 Bug Fixes
+
 * **shadowfight:** add plain ObscuredInt dump for Gems Coins ([bb92493](https://github.com/legendsciber/morphe-patches/commit/bb9249342a020d673e93a10dcddcd345ec31e2d8))
 * **shadowfight:** fix dump fingerprint no filters ([14d51ff](https://github.com/legendsciber/morphe-patches/commit/14d51ff01dd17f18347ef5a85e2f4fdbfb03e3f8))
 * **shadowfight:** fix dump helper ClassNotFound via lib loadLibrary ([31fdd38](https://github.com/legendsciber/morphe-patches/commit/31fdd38c89c7744229cbba3a67dcd985d5e57c1b))
