@@ -1,3 +1,9 @@
+## [1.28.0](https://github.com/legendsciber/morphe-patches/compare/v1.27.0...v1.28.0) (2026-09-02)
+
+### ✨ New Features
+
+* **shadowfight:** add runtime dump for hardcode (pre-release) ([2615983](https://github.com/legendsciber/morphe-patches/commit/261598343f26414e4b96980c1b7c7c2deca12099))
+
 ## [1.27.0](https://github.com/legendsciber/morphe-patches/compare/v1.26.2...v1.27.0) (2026-09-01)
 
 ### ✨ New Features
