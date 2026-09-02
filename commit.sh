@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(shadowfight): fix dump helper ClassNotFound via lib loadLibrary"
+MSG="feat(shadowfight): add hardcode 999999999 for ObscuredInt wallets"
 
 cd "$DIR"
 
