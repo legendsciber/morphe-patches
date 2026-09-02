@@ -20,5 +20,8 @@ object UnityOnCreateFingerprint : Fingerprint(
     name = "onCreate",
     returnType = "V",
     accessFlags = listOf(AccessFlags.PROTECTED),
-    parameters = listOf("Landroid/os/Bundle;")
+    parameters = listOf("Landroid/os/Bundle;"),
+    filters = listOf(
+        methodCall(definingClass = "Landroid/app/Activity;", name = "onCreate")
+    )
 )

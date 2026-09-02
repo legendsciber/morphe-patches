@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(shadowfight): fix DumpHelper ClassNotFound via IOUtils readInputStreamFully"
+MSG="fix(shadowfight): fix VerifyError this-is-File via super injection"
 
 cd "$DIR"
 
