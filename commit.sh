@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(shadowfight): fix VerifyError this-is-File via super injection"
+MSG="fix(shadowfight): fix VerifyError via helper dex for dump"
 
 cd "$DIR"
 
