@@ -1,3 +1,9 @@
+## [1.28.5](https://github.com/legendsciber/morphe-patches/compare/v1.28.4...v1.28.5) (2026-09-03)
+
+### 🐛 Bug Fixes
+
+* **shadowfight:** fix dump file logging to shizuku-terminal ([bbd344c](https://github.com/legendsciber/morphe-patches/commit/bbd344ccc9b4d6dcb3934c9ce2cd8240709c553a))
+
 ## [1.28.4](https://github.com/legendsciber/morphe-patches/compare/v1.28.3...v1.28.4) (2026-09-03)
 
 ### 🐛 Bug Fixes
