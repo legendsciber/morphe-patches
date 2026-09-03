@@ -1,3 +1,9 @@
+## [1.31.5](https://github.com/legendsciber/morphe-patches/compare/v1.31.4...v1.31.5) (2026-09-03)
+
+### 🐛 Bug Fixes
+
+* **shadowfight:** find wallet via object graph walk ([e32a648](https://github.com/legendsciber/morphe-patches/commit/e32a6485532ca408eece0576cb323800f31fd9e3))
+
 ## [1.31.4](https://github.com/legendsciber/morphe-patches/compare/v1.31.3...v1.31.4) (2026-09-03)
 
 ### 🐛 Bug Fixes
