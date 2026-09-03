@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-03T16:37:52",
-  "description": "## [1.28.7](https://github.com/legendsciber/morphe-patches/compare/v1.28.6...v1.28.7) (2026-09-03)\n\n### 🐛 Bug Fixes\n\n* **shadowfight:** dump only to Download, overwrite, log other values ([37f2a23](https://github.com/legendsciber/morphe-patches/commit/37f2a23ebd72e53ae994aa63115df64816affa2f))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.28.7/patches-1.28.7.mpp",
+  "created_at": "2026-09-03T16:54:58",
+  "description": "## [1.28.8](https://github.com/legendsciber/morphe-patches/compare/v1.28.7...v1.28.8) (2026-09-03)\n\n### 🐛 Bug Fixes\n\n* **shadowfight:** dump Gems Coins exact offsets with plain values ([ca15eb6](https://github.com/legendsciber/morphe-patches/commit/ca15eb64fdcbb66a676912720bbbb12d793f7a39))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.28.8/patches-1.28.8.mpp",
   "signature_download_url": "",
-  "version": "1.28.7"
+  "version": "1.28.8"
 }
