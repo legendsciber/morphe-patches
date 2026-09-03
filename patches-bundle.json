@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-03T02:29:27",
-  "description": "## [1.28.4](https://github.com/legendsciber/morphe-patches/compare/v1.28.3...v1.28.4) (2026-09-03)\n\n### 🐛 Bug Fixes\n\n* **shadowfight:** fix dump file logging to shizuku-terminal ([b191999](https://github.com/legendsciber/morphe-patches/commit/b191999567ea7f5ccce29eeb154bf906023ed375))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.28.4/patches-1.28.4.mpp",
+  "created_at": "2026-09-03T16:11:13",
+  "description": "## [1.28.5](https://github.com/legendsciber/morphe-patches/compare/v1.28.4...v1.28.5) (2026-09-03)\n\n### 🐛 Bug Fixes\n\n* **shadowfight:** fix dump file logging to shizuku-terminal ([bbd344c](https://github.com/legendsciber/morphe-patches/commit/bbd344ccc9b4d6dcb3934c9ce2cd8240709c553a))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.28.5/patches-1.28.5.mpp",
   "signature_download_url": "",
-  "version": "1.28.4"
+  "version": "1.28.5"
 }
