@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(shadowfight): make instance scan fault-tolerant"
+MSG="fix(shadowfight): speed up instance scan with progress logs"
 
 cd "$DIR"
 
