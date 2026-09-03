@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(shadowfight): dump only to Download, overwrite, log other values"
+MSG="fix(shadowfight): dump Gems Coins exact offsets with plain values"
 
 cd "$DIR"
 
