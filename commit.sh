@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(shadowfight): keep only 2 dump patches experimental, fix file logging"
+MSG="fix(shadowfight): fix dump file logging to shizuku-terminal"
 
 cd "$DIR"
 
