@@ -1,3 +1,9 @@
+## [1.29.1](https://github.com/legendsciber/morphe-patches/compare/v1.29.0...v1.29.1) (2026-09-03)
+
+### 🐛 Bug Fixes
+
+* **shadowfight:** simplify patch names and descriptions ([b6bba65](https://github.com/legendsciber/morphe-patches/commit/b6bba654def8ca5c8a5104f549ce3524c7c389d6))
+
 ## [1.29.0](https://github.com/legendsciber/morphe-patches/compare/v1.28.8...v1.29.0) (2026-09-03)
 
 ### ✨ New Features
