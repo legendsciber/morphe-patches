@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(shadowfight): separate dump and crash logs"
+MSG="feat(shadowfight): separate crash log into its own library"
 
 cd "$DIR"
 
