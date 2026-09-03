@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(shadowfight): find wallet via object graph walk"
+MSG="fix(shadowfight): direct holder chains without scanning"
 
 cd "$DIR"
 
