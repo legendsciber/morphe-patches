@@ -1,3 +1,9 @@
+## [1.28.7](https://github.com/legendsciber/morphe-patches/compare/v1.28.6...v1.28.7) (2026-09-03)
+
+### 🐛 Bug Fixes
+
+* **shadowfight:** dump only to Download, overwrite, log other values ([37f2a23](https://github.com/legendsciber/morphe-patches/commit/37f2a23ebd72e53ae994aa63115df64816affa2f))
+
 ## [1.28.6](https://github.com/legendsciber/morphe-patches/compare/v1.28.5...v1.28.6) (2026-09-03)
 
 ### 🐛 Bug Fixes
