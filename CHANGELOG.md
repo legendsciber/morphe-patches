@@ -1,3 +1,9 @@
+## [1.28.2-dev.1](https://github.com/legendsciber/morphe-patches/compare/v1.28.1...v1.28.2-dev.1) (2026-09-03)
+
+### 🐛 Bug Fixes
+
+* **shadowfight:** add file logging to shadowdump (no rish needed) ([042c4e9](https://github.com/legendsciber/morphe-patches/commit/042c4e9754b8bc7d894419f0b4aa1d4b7fbe9181))
+
 ## [1.28.1](https://github.com/legendsciber/morphe-patches/compare/v1.28.0...v1.28.1) (2026-09-03)
 
 ### 🐛 Bug Fixes
