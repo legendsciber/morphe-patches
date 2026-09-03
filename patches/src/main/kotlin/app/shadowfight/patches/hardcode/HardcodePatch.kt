@@ -8,8 +8,8 @@ import app.shadowfight.patches.dump.UnityOnCreateFingerprint
 
 @Suppress("unused")
 val sfHardcodePatch = rawResourcePatch(
-    name = "Shadow Fight 2 Hardcode 999999999",
-    description = "Sets 5 ObscuredInt values (BFBONKPKBNL 0x10/0x20, ECENNHNBAME 0x24/0x34/0x48) to 999999999 via direct memory. See OFFSETS.md (local only).",
+    name = "Shadow Fight 2 Unlimited Values",
+    description = "Sets in-game values to unlimited.",
     default = true
 ) {
     compatibleWith(COMPATIBILITY_SF2)
@@ -22,8 +22,8 @@ val sfHardcodePatch = rawResourcePatch(
 
 @Suppress("unused")
 val sfHardcodeTriggerPatch = bytecodePatch(
-    name = "Shadow Fight 2 Hardcode Trigger",
-    description = "Triggers ShadowHardcode via UnityPlayerActivity.onCreate",
+    name = "Shadow Fight 2 Values Trigger",
+    description = "Enables unlimited values.",
     default = true
 ) {
     compatibleWith(COMPATIBILITY_SF2)

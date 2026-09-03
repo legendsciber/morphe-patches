@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="feat(shadowfight): hardcode 5 ObscuredInt values 999999999"
+MSG="fix(shadowfight): simplify patch names and descriptions"
 
 cd "$DIR"
 
