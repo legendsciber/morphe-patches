@@ -1,3 +1,9 @@
+## [1.28.3](https://github.com/legendsciber/morphe-patches/compare/v1.28.2...v1.28.3) (2026-09-03)
+
+### 🐛 Bug Fixes
+
+* **shadowfight:** keep only 2 dump patches experimental, fix file logging ([88c41df](https://github.com/legendsciber/morphe-patches/commit/88c41dfa0ad604dd65f7c54212c28853022335a3))
+
 ## [1.28.2](https://github.com/legendsciber/morphe-patches/compare/v1.28.1...v1.28.2) (2026-09-03)
 
 ### 🐛 Bug Fixes
