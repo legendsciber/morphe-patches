@@ -1,3 +1,9 @@
+## [1.31.0](https://github.com/legendsciber/morphe-patches/compare/v1.30.0...v1.31.0) (2026-09-03)
+
+### ✨ New Features
+
+* **shadowfight:** log hardcode output to file ([0111503](https://github.com/legendsciber/morphe-patches/commit/011150373891e93df83a5fb3ab0e4d98b0b6cba8))
+
 ## [1.30.0](https://github.com/legendsciber/morphe-patches/compare/v1.29.2...v1.30.0) (2026-09-03)
 
 ### ✨ New Features
