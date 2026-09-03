@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(shadowfight): add plain ObscuredInt dump for Gems Coins"
+MSG="fix(shadowfight): add file logging to shadowdump (no rish needed)"
 
 cd "$DIR"
 
