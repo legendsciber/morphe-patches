@@ -1,3 +1,9 @@
+## [1.31.3](https://github.com/legendsciber/morphe-patches/compare/v1.31.2...v1.31.3) (2026-09-03)
+
+### 🐛 Bug Fixes
+
+* **shadowfight:** speed up instance scan with progress logs ([5b6cbd5](https://github.com/legendsciber/morphe-patches/commit/5b6cbd55df747fbc1410ccd4567b0e9be481dd64))
+
 ## [1.31.2](https://github.com/legendsciber/morphe-patches/compare/v1.31.1...v1.31.2) (2026-09-03)
 
 ### 🐛 Bug Fixes
