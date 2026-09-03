@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.28.3",
+  "version": "1.28.4",
   "patches": [
     {
       "name": "Ad Removal",
@@ -264,7 +264,7 @@
     },
     {
       "name": "Shadow Fight 2 Runtime Dump",
-      "description": "Dumps all Unity classes/fields with ObscuredInt to logcat for hardcode. Use logcat -s ShadowDump.",
+      "description": "Dumps all Unity classes/fields with ObscuredInt to logcat and files. Use logcat -s ShadowDump or cat shizuku-terminal/shadowdump-log.txt",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
