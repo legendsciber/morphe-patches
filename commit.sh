@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(shadowfight): fast instance lookup and game-only scan"
+MSG="fix(shadowfight): find wallet via object graph walk"
 
 cd "$DIR"
 
