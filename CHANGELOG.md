@@ -1,3 +1,9 @@
+## [1.31.2](https://github.com/legendsciber/morphe-patches/compare/v1.31.1...v1.31.2) (2026-09-03)
+
+### 🐛 Bug Fixes
+
+* **shadowfight:** make instance scan fault-tolerant ([b199065](https://github.com/legendsciber/morphe-patches/commit/b19906544b61ebe6b20ec93fc33acc3467228ffd))
+
 ## [1.31.1](https://github.com/legendsciber/morphe-patches/compare/v1.31.0...v1.31.1) (2026-09-03)
 
 ### 🐛 Bug Fixes
