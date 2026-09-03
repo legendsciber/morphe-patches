@@ -1,3 +1,9 @@
+## [1.31.1](https://github.com/legendsciber/morphe-patches/compare/v1.31.0...v1.31.1) (2026-09-03)
+
+### 🐛 Bug Fixes
+
+* **shadowfight:** prevent scan faults and crash log flood ([09a71f9](https://github.com/legendsciber/morphe-patches/commit/09a71f943a82c0397c7159681c199c6fc36d12d1))
+
 ## [1.31.0](https://github.com/legendsciber/morphe-patches/compare/v1.30.0...v1.31.0) (2026-09-03)
 
 ### ✨ New Features
