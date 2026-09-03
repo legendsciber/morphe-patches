@@ -1,3 +1,9 @@
+## [1.31.6](https://github.com/legendsciber/morphe-patches/compare/v1.31.5...v1.31.6) (2026-09-03)
+
+### 🐛 Bug Fixes
+
+* **shadowfight:** direct holder chains without scanning ([c08820b](https://github.com/legendsciber/morphe-patches/commit/c08820b21938e43fa8f6d591c9a745731fb954f0))
+
 ## [1.31.5](https://github.com/legendsciber/morphe-patches/compare/v1.31.4...v1.31.5) (2026-09-03)
 
 ### 🐛 Bug Fixes
