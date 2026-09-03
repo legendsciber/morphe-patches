@@ -1,3 +1,9 @@
+## [1.28.8](https://github.com/legendsciber/morphe-patches/compare/v1.28.7...v1.28.8) (2026-09-03)
+
+### 🐛 Bug Fixes
+
+* **shadowfight:** dump Gems Coins exact offsets with plain values ([ca15eb6](https://github.com/legendsciber/morphe-patches/commit/ca15eb64fdcbb66a676912720bbbb12d793f7a39))
+
 ## [1.28.7](https://github.com/legendsciber/morphe-patches/compare/v1.28.6...v1.28.7) (2026-09-03)
 
 ### 🐛 Bug Fixes
