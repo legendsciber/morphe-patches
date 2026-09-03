@@ -1,3 +1,9 @@
+## [1.29.2](https://github.com/legendsciber/morphe-patches/compare/v1.29.1...v1.29.2) (2026-09-03)
+
+### 🐛 Bug Fixes
+
+* **shadowfight:** separate dump and crash logs ([eb2ff46](https://github.com/legendsciber/morphe-patches/commit/eb2ff46b2b224c9272800484e7f08fd2caf019f2))
+
 ## [1.29.1](https://github.com/legendsciber/morphe-patches/compare/v1.29.0...v1.29.1) (2026-09-03)
 
 ### 🐛 Bug Fixes
