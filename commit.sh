@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(shadowfight): dump Gems Coins exact offsets with plain values"
+MSG="feat(shadowfight): hardcode 5 ObscuredInt values 999999999"
 
 cd "$DIR"
 
