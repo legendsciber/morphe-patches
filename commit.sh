@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="feat(shadowfight): log hardcode output to file"
+MSG="fix(shadowfight): prevent scan faults and crash log flood"
 
 cd "$DIR"
 
