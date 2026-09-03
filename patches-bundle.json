@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-03T18:29:09",
-  "description": "## [1.29.2](https://github.com/legendsciber/morphe-patches/compare/v1.29.1...v1.29.2) (2026-09-03)\n\n### 🐛 Bug Fixes\n\n* **shadowfight:** separate dump and crash logs ([eb2ff46](https://github.com/legendsciber/morphe-patches/commit/eb2ff46b2b224c9272800484e7f08fd2caf019f2))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.29.2/patches-1.29.2.mpp",
+  "created_at": "2026-09-03T18:40:24",
+  "description": "## [1.30.0](https://github.com/legendsciber/morphe-patches/compare/v1.29.2...v1.30.0) (2026-09-03)\n\n### ✨ New Features\n\n* **shadowfight:** separate crash log into its own library ([959439d](https://github.com/legendsciber/morphe-patches/commit/959439ddeb0679e0a2ac4dd8a0cbcd2cf37820b9))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.30.0/patches-1.30.0.mpp",
   "signature_download_url": "",
-  "version": "1.29.2"
+  "version": "1.30.0"
 }
