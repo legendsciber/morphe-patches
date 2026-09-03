@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.28.8",
+  "version": "1.29.0",
   "patches": [
     {
       "name": "Ad Removal",
@@ -239,6 +239,58 @@
     {
       "name": "Shadow Fight 2 Dump Trigger",
       "description": "Triggers ShadowDump via UnityPlayerActivity.onCreate",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.nekki.shadowfight",
+          "name": "Shadow Fight 2",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": "#1A1A1A",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2.46.0",
+              "versionCodes": null,
+              "isExperimental": true,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Shadow Fight 2 Hardcode 999999999",
+      "description": "Sets 5 ObscuredInt values (BFBONKPKBNL 0x10/0x20, ECENNHNBAME 0x24/0x34/0x48) to 999999999 via direct memory. See OFFSETS.md (local only).",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.nekki.shadowfight",
+          "name": "Shadow Fight 2",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": "#1A1A1A",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2.46.0",
+              "versionCodes": null,
+              "isExperimental": true,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Shadow Fight 2 Hardcode Trigger",
+      "description": "Triggers ShadowHardcode via UnityPlayerActivity.onCreate",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [

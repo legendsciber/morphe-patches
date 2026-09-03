@@ -9,7 +9,7 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.28.8](https://github.com/legendsciber/morphe-patches/releases/tag/v1.28.8)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;12 patches total
+> **[v1.29.0](https://github.com/legendsciber/morphe-patches/releases/tag/v1.29.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;14 patches total
 <details open>
 <summary>📦 Block Blast&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
 <br>
@@ -76,7 +76,7 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 </details>
 
 <details open>
-<summary>📦 Shadow Fight 2&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
+<summary>📦 Shadow Fight 2&nbsp;&nbsp;•&nbsp;&nbsp;4 patches</summary>
 <br>
 
 **🎯 Supported versions:**
@@ -87,6 +87,8 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Shadow Fight 2 Dump Trigger](#shadow-fight-2-dump-trigger) | Triggers ShadowDump via UnityPlayerActivity.onCreate |  |
+| [Shadow Fight 2 Hardcode 999999999](#shadow-fight-2-hardcode-999999999) | Sets 5 ObscuredInt values (BFBONKPKBNL 0x10/0x20, ECENNHNBAME 0x24/0x34/0x48) to 999999999 via direct memory. See OFFSETS.md (local only). |  |
+| [Shadow Fight 2 Hardcode Trigger](#shadow-fight-2-hardcode-trigger) | Triggers ShadowHardcode via UnityPlayerActivity.onCreate |  |
 | [Shadow Fight 2 Runtime Dump](#shadow-fight-2-runtime-dump) | Dumps all Unity classes/fields with ObscuredInt to logcat and files. Use logcat -s ShadowDump or cat shizuku-terminal/shadowdump-log.txt |  |
 
 </details>
