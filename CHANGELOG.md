@@ -1,3 +1,9 @@
+## [1.30.0](https://github.com/legendsciber/morphe-patches/compare/v1.29.2...v1.30.0) (2026-09-03)
+
+### ✨ New Features
+
+* **shadowfight:** separate crash log into its own library ([959439d](https://github.com/legendsciber/morphe-patches/commit/959439ddeb0679e0a2ac4dd8a0cbcd2cf37820b9))
+
 ## [1.29.2](https://github.com/legendsciber/morphe-patches/compare/v1.29.1...v1.29.2) (2026-09-03)
 
 ### 🐛 Bug Fixes
