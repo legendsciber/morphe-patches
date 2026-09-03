@@ -1,3 +1,9 @@
+## [1.28.6](https://github.com/legendsciber/morphe-patches/compare/v1.28.5...v1.28.6) (2026-09-03)
+
+### 🐛 Bug Fixes
+
+* **shadowfight:** fix dump via lib loadLibrary ([5f7b8df](https://github.com/legendsciber/morphe-patches/commit/5f7b8df39a56b5696048b4bd51b39e27df16c650))
+
 ## [1.28.5](https://github.com/legendsciber/morphe-patches/compare/v1.28.4...v1.28.5) (2026-09-03)
 
 ### 🐛 Bug Fixes
