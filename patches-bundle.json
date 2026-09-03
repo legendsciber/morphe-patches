@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-03T19:43:50",
-  "description": "## [1.31.3](https://github.com/legendsciber/morphe-patches/compare/v1.31.2...v1.31.3) (2026-09-03)\n\n### 🐛 Bug Fixes\n\n* **shadowfight:** speed up instance scan with progress logs ([5b6cbd5](https://github.com/legendsciber/morphe-patches/commit/5b6cbd55df747fbc1410ccd4567b0e9be481dd64))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.31.3/patches-1.31.3.mpp",
+  "created_at": "2026-09-03T20:23:35",
+  "description": "## [1.31.4](https://github.com/legendsciber/morphe-patches/compare/v1.31.3...v1.31.4) (2026-09-03)\n\n### 🐛 Bug Fixes\n\n* **shadowfight:** fast instance lookup and game-only scan ([0ae1981](https://github.com/legendsciber/morphe-patches/commit/0ae19817c7abafcc84f33491ce6452c1e33f4f0b))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.31.4/patches-1.31.4.mpp",
   "signature_download_url": "",
-  "version": "1.31.3"
+  "version": "1.31.4"
 }

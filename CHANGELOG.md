@@ -1,3 +1,9 @@
+## [1.31.4](https://github.com/legendsciber/morphe-patches/compare/v1.31.3...v1.31.4) (2026-09-03)
+
+### 🐛 Bug Fixes
+
+* **shadowfight:** fast instance lookup and game-only scan ([0ae1981](https://github.com/legendsciber/morphe-patches/commit/0ae19817c7abafcc84f33491ce6452c1e33f4f0b))
+
 ## [1.31.3](https://github.com/legendsciber/morphe-patches/compare/v1.31.2...v1.31.3) (2026-09-03)
 
 ### 🐛 Bug Fixes
