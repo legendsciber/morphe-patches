@@ -4,7 +4,6 @@ import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.patcher.patch.rawResourcePatch
 import app.shadowfight.patches.shared.Constants.COMPATIBILITY_SF2
-import app.shadowfight.patches.cheats.UnityOnCreateFingerprint
 
 @Suppress("unused")
 val sfDumpPatch = rawResourcePatch(
