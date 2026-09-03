@@ -1,3 +1,9 @@
+## [1.29.0](https://github.com/legendsciber/morphe-patches/compare/v1.28.8...v1.29.0) (2026-09-03)
+
+### ✨ New Features
+
+* **shadowfight:** hardcode 5 ObscuredInt values 999999999 ([ffa1f46](https://github.com/legendsciber/morphe-patches/commit/ffa1f46100717b0d80fae768bb5bc06e61100306))
+
 ## [1.28.8](https://github.com/legendsciber/morphe-patches/compare/v1.28.7...v1.28.8) (2026-09-03)
 
 ### 🐛 Bug Fixes
