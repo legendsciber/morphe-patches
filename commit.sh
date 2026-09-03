@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="feat(shadowfight): separate crash log into its own library"
+MSG="feat(shadowfight): log hardcode output to file"
 
 cd "$DIR"
 
