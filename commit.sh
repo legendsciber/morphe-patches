@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(shadowfight): fix dump via lib loadLibrary"
+MSG="fix(shadowfight): dump only to Download, overwrite, log other values"
 
 cd "$DIR"
 
