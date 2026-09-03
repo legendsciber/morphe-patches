@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.29.0",
+  "version": "1.29.1",
   "patches": [
     {
       "name": "Ad Removal",
@@ -263,60 +263,60 @@
       "options": []
     },
     {
-      "name": "Shadow Fight 2 Hardcode 999999999",
-      "description": "Sets 5 ObscuredInt values (BFBONKPKBNL 0x10/0x20, ECENNHNBAME 0x24/0x34/0x48) to 999999999 via direct memory. See OFFSETS.md (local only).",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "com.nekki.shadowfight",
-          "name": "Shadow Fight 2",
-          "description": null,
-          "apkFileType": "APKM",
-          "appIconColor": "#1A1A1A",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "2.46.0",
-              "versionCodes": null,
-              "isExperimental": true,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Shadow Fight 2 Hardcode Trigger",
-      "description": "Triggers ShadowHardcode via UnityPlayerActivity.onCreate",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "com.nekki.shadowfight",
-          "name": "Shadow Fight 2",
-          "description": null,
-          "apkFileType": "APKM",
-          "appIconColor": "#1A1A1A",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "2.46.0",
-              "versionCodes": null,
-              "isExperimental": true,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
       "name": "Shadow Fight 2 Runtime Dump",
       "description": "Dumps all Unity classes/fields with ObscuredInt to logcat and files. Use logcat -s ShadowDump or cat shizuku-terminal/shadowdump-log.txt",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.nekki.shadowfight",
+          "name": "Shadow Fight 2",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": "#1A1A1A",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2.46.0",
+              "versionCodes": null,
+              "isExperimental": true,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Shadow Fight 2 Unlimited Values",
+      "description": "Sets in-game values to unlimited.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.nekki.shadowfight",
+          "name": "Shadow Fight 2",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": "#1A1A1A",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2.46.0",
+              "versionCodes": null,
+              "isExperimental": true,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Shadow Fight 2 Values Trigger",
+      "description": "Enables unlimited values.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
