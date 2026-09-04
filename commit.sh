@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(shadowfight): remove SIGSEGV handler from hardcode, defer scan to bg thread"
+MSG="fix(shadowfight): instance method calls, list _size field, 20s delay"
 
 cd "$DIR"
 
