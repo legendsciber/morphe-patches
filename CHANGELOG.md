@@ -1,3 +1,10 @@
+## [1.31.10](https://github.com/legendsciber/morphe-patches/compare/v1.31.9...v1.31.10) (2026-09-04)
+
+### 🐛 Bug Fixes
+
+* **shadowfight:** direct FindObjectsOfType for BFBONKPKBNL, remove broken FIFBDNADAAL chain ([fa79a25](https://github.com/legendsciber/morphe-patches/commit/fa79a25606b3d4039b02e4618ccca310788ec478))
+* **shadowfight:** direct FindObjectsOfType for BFBONKPKBNL, remove broken FIFBDNADAAL chain ([568dbe7](https://github.com/legendsciber/morphe-patches/commit/568dbe70c0a35601b1a93a1787c14b942924e0aa))
+
 ## [1.31.9](https://github.com/legendsciber/morphe-patches/compare/v1.31.8...v1.31.9) (2026-09-04)
 
 ### 🐛 Bug Fixes
