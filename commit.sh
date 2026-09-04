@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(shadowfight): instance method calls, list _size field, 20s delay"
+MSG="fix(shadowfight): direct FindObjectsOfType for BFBONKPKBNL, remove broken FIFBDNADAAL chain"
 
 cd "$DIR"
 
