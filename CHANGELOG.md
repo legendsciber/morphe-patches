@@ -1,3 +1,9 @@
+## [1.31.9](https://github.com/legendsciber/morphe-patches/compare/v1.31.8...v1.31.9) (2026-09-04)
+
+### 🐛 Bug Fixes
+
+* **shadowfight:** instance method calls, list _size field, 20s delay ([c3b70e6](https://github.com/legendsciber/morphe-patches/commit/c3b70e68c661c7c47e5b7fc301b4c5bab8c31e95))
+
 ## [1.31.8](https://github.com/legendsciber/morphe-patches/compare/v1.31.7...v1.31.8) (2026-09-04)
 
 ### 🐛 Bug Fixes

@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-04T17:17:49",
-  "description": "## [1.31.8](https://github.com/legendsciber/morphe-patches/compare/v1.31.7...v1.31.8) (2026-09-04)\n\n### 🐛 Bug Fixes\n\n* **shadowfight:** remove SIGSEGV handler from hardcode, defer scan to bg thread ([f76e61c](https://github.com/legendsciber/morphe-patches/commit/f76e61cab43cfffb1072f842a5d2a941bea86b38))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.31.8/patches-1.31.8.mpp",
+  "created_at": "2026-09-04T17:27:51",
+  "description": "## [1.31.9](https://github.com/legendsciber/morphe-patches/compare/v1.31.8...v1.31.9) (2026-09-04)\n\n### 🐛 Bug Fixes\n\n* **shadowfight:** instance method calls, list _size field, 20s delay ([c3b70e6](https://github.com/legendsciber/morphe-patches/commit/c3b70e68c661c7c47e5b7fc301b4c5bab8c31e95))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.31.9/patches-1.31.9.mpp",
   "signature_download_url": "",
-  "version": "1.31.8"
+  "version": "1.31.9"
 }
