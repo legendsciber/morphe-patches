@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-04T16:52:08",
-  "description": "## [1.31.7](https://github.com/legendsciber/morphe-patches/compare/v1.31.6...v1.31.7) (2026-09-04)\n\n### 🐛 Bug Fixes\n\n* **shadowfight:** SCAN MODE - log all offsets before healing ([cf29b40](https://github.com/legendsciber/morphe-patches/commit/cf29b40cb4ffd56a4c088760f36f48740f132faf))\n* **shadowfight:** SCAN MODE with proper byte signing ([a4acd52](https://github.com/legendsciber/morphe-patches/commit/a4acd52428c002223c6c79aa037238a3fd9a4587))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.31.7/patches-1.31.7.mpp",
+  "created_at": "2026-09-04T17:17:49",
+  "description": "## [1.31.8](https://github.com/legendsciber/morphe-patches/compare/v1.31.7...v1.31.8) (2026-09-04)\n\n### 🐛 Bug Fixes\n\n* **shadowfight:** remove SIGSEGV handler from hardcode, defer scan to bg thread ([f76e61c](https://github.com/legendsciber/morphe-patches/commit/f76e61cab43cfffb1072f842a5d2a941bea86b38))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.31.8/patches-1.31.8.mpp",
   "signature_download_url": "",
-  "version": "1.31.7"
+  "version": "1.31.8"
 }

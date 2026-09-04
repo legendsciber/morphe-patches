@@ -1,3 +1,9 @@
+## [1.31.8](https://github.com/legendsciber/morphe-patches/compare/v1.31.7...v1.31.8) (2026-09-04)
+
+### 🐛 Bug Fixes
+
+* **shadowfight:** remove SIGSEGV handler from hardcode, defer scan to bg thread ([f76e61c](https://github.com/legendsciber/morphe-patches/commit/f76e61cab43cfffb1072f842a5d2a941bea86b38))
+
 ## [1.31.7](https://github.com/legendsciber/morphe-patches/compare/v1.31.6...v1.31.7) (2026-09-04)
 
 ### 🐛 Bug Fixes
