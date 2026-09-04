@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(shadowfight): SCAN MODE with proper byte signing"
+MSG="fix(shadowfight): remove SIGSEGV handler from hardcode, defer scan to bg thread"
 
 cd "$DIR"
 
