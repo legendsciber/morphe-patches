@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-04T17:49:36",
-  "description": "## [1.31.10](https://github.com/legendsciber/morphe-patches/compare/v1.31.9...v1.31.10) (2026-09-04)\n\n### 🐛 Bug Fixes\n\n* **shadowfight:** direct FindObjectsOfType for BFBONKPKBNL, remove broken FIFBDNADAAL chain ([fa79a25](https://github.com/legendsciber/morphe-patches/commit/fa79a25606b3d4039b02e4618ccca310788ec478))\n* **shadowfight:** direct FindObjectsOfType for BFBONKPKBNL, remove broken FIFBDNADAAL chain ([568dbe7](https://github.com/legendsciber/morphe-patches/commit/568dbe70c0a35601b1a93a1787c14b942924e0aa))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.31.10/patches-1.31.10.mpp",
+  "created_at": "2026-09-04T18:12:56",
+  "description": "## [1.31.11](https://github.com/legendsciber/morphe-patches/compare/v1.31.10...v1.31.11) (2026-09-04)\n\n### 🐛 Bug Fixes\n\n* **shadowfight:** direct FindObjectsOfType for BFBONKPKBNL, remove broken FIFBDNADAAL chain ([9117db0](https://github.com/legendsciber/morphe-patches/commit/9117db0492fbf3f85dc5b300ebdbcb46d99add83))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.31.11/patches-1.31.11.mpp",
   "signature_download_url": "",
-  "version": "1.31.10"
+  "version": "1.31.11"
 }
