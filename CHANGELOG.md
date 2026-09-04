@@ -1,3 +1,9 @@
+## [1.31.13](https://github.com/legendsciber/morphe-patches/compare/v1.31.12...v1.31.13) (2026-09-04)
+
+### 🐛 Bug Fixes
+
+* **shadowfight:** v2 scan - NLP chain trace, remove crash-prone FindObjectsOfType ([863c85f](https://github.com/legendsciber/morphe-patches/commit/863c85faa169c7028fb6f0ac44fea05af10549c7))
+
 ## [1.31.12](https://github.com/legendsciber/morphe-patches/compare/v1.31.11...v1.31.12) (2026-09-04)
 
 ### 🐛 Bug Fixes
