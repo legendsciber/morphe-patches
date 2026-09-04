@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(shadowfight): direct holder chains without scanning"
+MSG="fix(shadowfight): SCAN MODE - log all offsets before healing"
 
 cd "$DIR"
 
