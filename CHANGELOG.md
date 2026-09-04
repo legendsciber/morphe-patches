@@ -1,3 +1,10 @@
+## [1.31.7](https://github.com/legendsciber/morphe-patches/compare/v1.31.6...v1.31.7) (2026-09-04)
+
+### 🐛 Bug Fixes
+
+* **shadowfight:** SCAN MODE - log all offsets before healing ([cf29b40](https://github.com/legendsciber/morphe-patches/commit/cf29b40cb4ffd56a4c088760f36f48740f132faf))
+* **shadowfight:** SCAN MODE with proper byte signing ([a4acd52](https://github.com/legendsciber/morphe-patches/commit/a4acd52428c002223c6c79aa037238a3fd9a4587))
+
 ## [1.31.6](https://github.com/legendsciber/morphe-patches/compare/v1.31.5...v1.31.6) (2026-09-03)
 
 ### 🐛 Bug Fixes
