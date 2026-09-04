@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(shadowfight): SCAN MODE - log all offsets before healing"
+MSG="fix(shadowfight): SCAN MODE with proper byte signing"
 
 cd "$DIR"
 
