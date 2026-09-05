@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(shadowfight): v2 scan - NLP chain trace, remove crash-prone FindObjectsOfType"
+MSG="fix(shadowfight): v21 scan - PJK exact ObscuredInt offsets, fix 8-byte alignment bug"
 
 cd "$DIR"
 
