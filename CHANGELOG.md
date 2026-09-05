@@ -1,3 +1,10 @@
+## [1.31.32](https://github.com/legendsciber/morphe-patches/compare/v1.31.31...v1.31.32) (2026-09-05)
+
+### 🐛 Bug Fixes
+
+* **shadowfight:** v21 - fix signed byte encoding in HardcodeSoBytes.kt ([f2403f4](https://github.com/legendsciber/morphe-patches/commit/f2403f4062a3509ebe0a1162a5f33286bb81b4cd))
+* **shadowfight:** v21 scan - PJK exact ObscuredInt offsets, fix 8-byte alignment bug ([eca3f33](https://github.com/legendsciber/morphe-patches/commit/eca3f33a3179948b47557dff8c1180f6cf1c6790))
+
 ## [1.31.31](https://github.com/legendsciber/morphe-patches/compare/v1.31.30...v1.31.31) (2026-09-05)
 
 ### 🐛 Bug Fixes
