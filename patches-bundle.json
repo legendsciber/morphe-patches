@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-05T22:30:51",
-  "description": "## [1.32.1](https://github.com/legendsciber/morphe-patches/compare/v1.32.0...v1.32.1) (2026-09-05)\n\n### 🐛 Bug Fixes\n\n* v24 move hook to JNI_OnLoad so it runs on System.loadLibrary() ([ab2a4a9](https://github.com/legendsciber/morphe-patches/commit/ab2a4a9c4c8e5e69d95c2777aafba29523c67bd4))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.32.1/patches-1.32.1.mpp",
+  "created_at": "2026-09-05T22:46:20",
+  "description": "## [1.32.2](https://github.com/legendsciber/morphe-patches/compare/v1.32.1...v1.32.2) (2026-09-05)\n\n### 🐛 Bug Fixes\n\n* v24 poll for libil2cpp.so in background thread since it is not loaded yet at JNI_OnLoad time ([1d79e6b](https://github.com/legendsciber/morphe-patches/commit/1d79e6b9ecd22a45121e70a4bd950e4a5fef2a27))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.32.2/patches-1.32.2.mpp",
   "signature_download_url": "",
-  "version": "1.32.1"
+  "version": "1.32.2"
 }
