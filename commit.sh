@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(shadowfight): v21 scan - PJK exact ObscuredInt offsets, fix 8-byte alignment bug"
+MSG="chore: add logs.sh (workflow monitor) and so2kt.sh (.so to Kotlin converter) scripts"
 
 cd "$DIR"
 
