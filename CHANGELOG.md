@@ -1,3 +1,9 @@
+## [1.32.1](https://github.com/legendsciber/morphe-patches/compare/v1.32.0...v1.32.1) (2026-09-05)
+
+### 🐛 Bug Fixes
+
+* v24 move hook to JNI_OnLoad so it runs on System.loadLibrary() ([ab2a4a9](https://github.com/legendsciber/morphe-patches/commit/ab2a4a9c4c8e5e69d95c2777aafba29523c67bd4))
+
 ## [1.32.0](https://github.com/legendsciber/morphe-patches/compare/v1.31.34...v1.32.0) (2026-09-05)
 
 ### ✨ New Features

@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-05T22:13:48",
-  "description": "## [1.32.0](https://github.com/legendsciber/morphe-patches/compare/v1.31.34...v1.32.0) (2026-09-05)\n\n### ✨ New Features\n\n* v24 hash bypass - hook KLPJOKOFLJD.LFENGGKOJDO to always return true ([3641375](https://github.com/legendsciber/morphe-patches/commit/3641375b0f618741833f12717d0640477b8bc67a)), closes [#1](https://github.com/legendsciber/morphe-patches/issues/1)",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.32.0/patches-1.32.0.mpp",
+  "created_at": "2026-09-05T22:30:51",
+  "description": "## [1.32.1](https://github.com/legendsciber/morphe-patches/compare/v1.32.0...v1.32.1) (2026-09-05)\n\n### 🐛 Bug Fixes\n\n* v24 move hook to JNI_OnLoad so it runs on System.loadLibrary() ([ab2a4a9](https://github.com/legendsciber/morphe-patches/commit/ab2a4a9c4c8e5e69d95c2777aafba29523c67bd4))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.32.1/patches-1.32.1.mpp",
   "signature_download_url": "",
-  "version": "1.32.0"
+  "version": "1.32.1"
 }
