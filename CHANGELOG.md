@@ -1,3 +1,9 @@
+## [1.32.0](https://github.com/legendsciber/morphe-patches/compare/v1.31.34...v1.32.0) (2026-09-05)
+
+### ✨ New Features
+
+* v24 hash bypass - hook KLPJOKOFLJD.LFENGGKOJDO to always return true ([3641375](https://github.com/legendsciber/morphe-patches/commit/3641375b0f618741833f12717d0640477b8bc67a)), closes [#1](https://github.com/legendsciber/morphe-patches/issues/1)
+
 ## [1.31.34](https://github.com/legendsciber/morphe-patches/compare/v1.31.33...v1.31.34) (2026-09-05)
 
 ### 🐛 Bug Fixes
