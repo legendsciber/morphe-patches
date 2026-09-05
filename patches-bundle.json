@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-05T15:06:02",
-  "description": "## [1.31.27](https://github.com/legendsciber/morphe-patches/compare/v1.31.26...v1.31.27) (2026-09-05)\n\n### 🐛 Bug Fixes\n\n* **shadowfight:** v2 scan - NLP chain trace, remove crash-prone FindObjectsOfType ([1a7cb28](https://github.com/legendsciber/morphe-patches/commit/1a7cb2831c008677934cf35a63abbd60150632ad))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.31.27/patches-1.31.27.mpp",
+  "created_at": "2026-09-05T15:17:58",
+  "description": "## [1.31.28](https://github.com/legendsciber/morphe-patches/compare/v1.31.27...v1.31.28) (2026-09-05)\n\n### 🐛 Bug Fixes\n\n* **shadowfight:** v2 scan - NLP chain trace, remove crash-prone FindObjectsOfType ([219081e](https://github.com/legendsciber/morphe-patches/commit/219081e95e677845d8a6da3a4b66971bf317cab0))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.31.28/patches-1.31.28.mpp",
   "signature_download_url": "",
-  "version": "1.31.27"
+  "version": "1.31.28"
 }
