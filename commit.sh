@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="chore: add logs.sh (workflow monitor) and so2kt.sh (.so to Kotlin converter) scripts"
+MSG="fix(shadowfight): v21 - fix signed byte encoding in HardcodeSoBytes.kt"
 
 cd "$DIR"
 
