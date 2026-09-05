@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <dlfcn.h>
 #include <sys/mman.h>
 
 #define LOG_TAG "ShadowHack"
@@ -16,12 +15,8 @@
  *
  * Target: KLPJOKOFLJD.LFENGGKOJDO(string, string) -> bool
  * RVA: 0x34B7AD0
- * Purpose: This method verifies .hash files against .xml/.bin files.
- *          We hook it to always return true, so any modified XML is accepted.
  *
- * ARM64 hook:
- *   mov w0, #1   (0x52800020)
- *   ret           (0xD65F03C0)
+ * Hook runs in JNI_OnLoad so it executes when System.loadLibrary() is called.
  */
 
 #define LFENGGKOJDO_RVA 0x34B7AD0
@@ -49,21 +44,20 @@ static int hook_method(uintptr_t addr) {
     long page = sysconf(_SC_PAGESIZE);
     void *page_start = (void *)(addr & ~(page - 1));
 
-    if (mprotect(page_start, page, PROT_READ | PROT_WRITE | PROT_EXEC) != 0) {
+    if (mprotect(page_start, page * 2, PROT_READ | PROT_WRITE | PROT_EXEC) != 0) {
         LOGE("mprotect failed for %p", page_start);
         return 0;
     }
 
     uint32_t instructions[2] = {
-        0x52800020,  /* mov w0, #1 */
-        0xD65F03C0   /* ret */
+        0x52800020,
+        0xD65F03C0
     };
 
     memcpy((void *)addr, instructions, 8);
 
-    /* ARM64 icache flush via DC CVAU + IC IVAU + DSB + ISB */
-    uintptr_t line = addr & ~15UL;
-    for (uintptr_t i = line; i < addr + 8; i += 16) {
+    uintptr_t line_addr = addr & ~15UL;
+    for (uintptr_t i = line_addr; i < addr + 8; i += 16) {
         __asm__ volatile("dc cvau, %0" :: "r"(i));
         __asm__ volatile("ic ivau, %0" :: "r"(i));
     }
@@ -81,34 +75,32 @@ static void write_log(const char *msg) {
     }
 }
 
-__attribute__((visibility("default")))
-JNIEXPORT void JNICALL
-Java_app_shadowfight_patches_hardcode_ExploitService_nativeInit(JNIEnv *env, jobject thiz) {
+JNIEXPORT jint JNI_OnLoad(JavaVM *vm, void *reserved) {
     LOGI("=== ShadowFight Hash Bypass v24 ===");
-    write_log("=== v24: Hash Bypass (KLPJOKOFLJD.LFENGGKOJDO hook) ===");
+    write_log("=== v24: JNI_OnLoad triggered ===");
 
     uintptr_t il2cpp_base = find_libil2cpp_base();
     if (!il2cpp_base) {
         LOGE("Could not find libil2cpp.so base address!");
         write_log("ERROR: libil2cpp.so not found");
-        return;
+        return JNI_VERSION_1_6;
     }
     LOGI("libil2cpp.so base: 0x%lx", (long)il2cpp_base);
+    write_log("libil2cpp.so found");
 
     uintptr_t target = il2cpp_base + LFENGGKOJDO_RVA;
-    LOGI("Target method addr: 0x%lx (base + 0x%x)", (long)target, LFENGGKOJDO_RVA);
+    LOGI("Target: 0x%lx (base + 0x%x)", (long)target, LFENGGKOJDO_RVA);
 
     if (hook_method(target)) {
-        LOGI("Hook installed successfully!");
-        write_log("SUCCESS: Hash verification bypassed");
+        LOGI("Hook OK!");
+        write_log("SUCCESS: LFENGGKOJDO hooked -> always return true");
 
         uint32_t *code = (uint32_t *)target;
         LOGI("Verify: [0]=0x%08x [1]=0x%08x", code[0], code[1]);
     } else {
-        LOGE("Hook installation FAILED!");
-        write_log("ERROR: Hook installation failed");
+        LOGE("Hook FAILED!");
+        write_log("ERROR: Hook failed");
     }
 
-    LOGI("=== Done. Edit users.xml and restart game. ===");
-    write_log("=== Users can now edit users.xml freely ===");
+    return JNI_VERSION_1_6;
 }
