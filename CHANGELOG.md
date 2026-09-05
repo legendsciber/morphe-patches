@@ -1,3 +1,9 @@
+## [1.31.34](https://github.com/legendsciber/morphe-patches/compare/v1.31.33...v1.31.34) (2026-09-05)
+
+### 🐛 Bug Fixes
+
+* **shadowfight:** v22b - raise safe pointer lower bound to 0x1000000, fix crash ([ee01a7f](https://github.com/legendsciber/morphe-patches/commit/ee01a7ffed1532443909a2142b22324ace448f3a))
+
 ## [1.31.33](https://github.com/legendsciber/morphe-patches/compare/v1.31.32...v1.31.33) (2026-09-05)
 
 ### 🐛 Bug Fixes
