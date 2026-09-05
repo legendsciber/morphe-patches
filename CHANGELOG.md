@@ -1,3 +1,9 @@
+## [1.32.2](https://github.com/legendsciber/morphe-patches/compare/v1.32.1...v1.32.2) (2026-09-05)
+
+### 🐛 Bug Fixes
+
+* v24 poll for libil2cpp.so in background thread since it is not loaded yet at JNI_OnLoad time ([1d79e6b](https://github.com/legendsciber/morphe-patches/commit/1d79e6b9ecd22a45121e70a4bd950e4a5fef2a27))
+
 ## [1.32.1](https://github.com/legendsciber/morphe-patches/compare/v1.32.0...v1.32.1) (2026-09-05)
 
 ### 🐛 Bug Fixes
