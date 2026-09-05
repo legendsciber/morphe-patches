@@ -77,7 +77,7 @@ kt_lines.append('object HardcodeSoBytes {')
 kt_lines.append('    fun getAll(): List<ByteArray> = listOf(part1(), part2(), part3(), part4(), part5())')
 kt_lines.append('')
 for i, p in enumerate(parts, 1):
-    vals = ','.join(str(b) for b in p)
+    vals = ','.join(str(b - 256 if b > 127 else b) for b in p)
     kt_lines.append(f'    fun part{i}(): ByteArray = byteArrayOf({vals})')
 kt_lines.append('}')
 kt_lines.append('')
