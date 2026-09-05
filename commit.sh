@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(shadowfight): v21 - fix signed byte encoding in HardcodeSoBytes.kt"
+MSG="fix(shadowfight): v22 - XML/keyword scan for coins/bonus/gems/ruby in NLP data"
 
 cd "$DIR"
 
