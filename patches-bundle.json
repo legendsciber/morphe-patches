@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-05T20:55:18",
-  "description": "## [1.31.34](https://github.com/legendsciber/morphe-patches/compare/v1.31.33...v1.31.34) (2026-09-05)\n\n### 🐛 Bug Fixes\n\n* **shadowfight:** v22b - raise safe pointer lower bound to 0x1000000, fix crash ([ee01a7f](https://github.com/legendsciber/morphe-patches/commit/ee01a7ffed1532443909a2142b22324ace448f3a))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.31.34/patches-1.31.34.mpp",
+  "created_at": "2026-09-05T22:13:48",
+  "description": "## [1.32.0](https://github.com/legendsciber/morphe-patches/compare/v1.31.34...v1.32.0) (2026-09-05)\n\n### ✨ New Features\n\n* v24 hash bypass - hook KLPJOKOFLJD.LFENGGKOJDO to always return true ([3641375](https://github.com/legendsciber/morphe-patches/commit/3641375b0f618741833f12717d0640477b8bc67a)), closes [#1](https://github.com/legendsciber/morphe-patches/issues/1)",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.32.0/patches-1.32.0.mpp",
   "signature_download_url": "",
-  "version": "1.31.34"
+  "version": "1.32.0"
 }
