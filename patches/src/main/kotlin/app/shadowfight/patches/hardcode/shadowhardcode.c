@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/mman.h>
+#include <pthread.h>
 
 #define LOG_TAG "ShadowHack"
 #define LOGI(...) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, __VA_ARGS__)
@@ -12,14 +13,19 @@
 
 /*
  * Shadow Fight 2 - Hash Bypass v24
- *
- * Target: KLPJOKOFLJD.LFENGGKOJDO(string, string) -> bool
- * RVA: 0x34B7AD0
- *
- * Hook runs in JNI_OnLoad so it executes when System.loadLibrary() is called.
+ * Target: KLPJOKOFLJD.LFENGGKOJDO(string, string) -> bool @ RVA 0x34B7AD0
+ * Polls for libil2cpp.so, then hooks.
  */
 
 #define LFENGGKOJDO_RVA 0x34B7AD0
+
+static void write_log(const char *msg) {
+    FILE *fp = fopen("/sdcard/Download/shadowhardcode-log.txt", "a");
+    if (fp) {
+        fprintf(fp, "%s\n", msg);
+        fclose(fp);
+    }
+}
 
 static uintptr_t find_libil2cpp_base() {
     FILE *fp = fopen("/proc/self/maps", "r");
@@ -67,40 +73,43 @@ static int hook_method(uintptr_t addr) {
     return 1;
 }
 
-static void write_log(const char *msg) {
-    FILE *fp = fopen("/sdcard/Download/shadowhardcode-log.txt", "a");
-    if (fp) {
-        fprintf(fp, "%s\n", msg);
-        fclose(fp);
+static void *hook_thread(void *arg) {
+    write_log("v24: poll thread started, waiting for libil2cpp.so...");
+
+    for (int i = 0; i < 200; i++) {
+        uintptr_t il2cpp_base = find_libil2cpp_base();
+        if (il2cpp_base) {
+            LOGI("libil2cpp.so found at: 0x%lx (attempt %d)", (long)il2cpp_base, i);
+            write_log("libil2cpp.so found");
+
+            uintptr_t target = il2cpp_base + LFENGGKOJDO_RVA;
+            LOGI("Target: 0x%lx (base + 0x%x)", (long)target, LFENGGKOJDO_RVA);
+
+            if (hook_method(target)) {
+                LOGI("Hook OK!");
+                write_log("SUCCESS: LFENGGKOJDO hooked -> always return true");
+
+                uint32_t *code = (uint32_t *)target;
+                LOGI("Verify: [0]=0x%08x [1]=0x%08x", code[0], code[1]);
+            } else {
+                LOGE("Hook FAILED!");
+                write_log("ERROR: Hook failed");
+            }
+            return NULL;
+        }
+        usleep(100000); /* 100ms between checks */
     }
+
+    write_log("ERROR: libil2cpp.so not found after 20s");
+    return NULL;
 }
 
 JNIEXPORT jint JNI_OnLoad(JavaVM *vm, void *reserved) {
-    LOGI("=== ShadowFight Hash Bypass v24 ===");
     write_log("=== v24: JNI_OnLoad triggered ===");
 
-    uintptr_t il2cpp_base = find_libil2cpp_base();
-    if (!il2cpp_base) {
-        LOGE("Could not find libil2cpp.so base address!");
-        write_log("ERROR: libil2cpp.so not found");
-        return JNI_VERSION_1_6;
-    }
-    LOGI("libil2cpp.so base: 0x%lx", (long)il2cpp_base);
-    write_log("libil2cpp.so found");
-
-    uintptr_t target = il2cpp_base + LFENGGKOJDO_RVA;
-    LOGI("Target: 0x%lx (base + 0x%x)", (long)target, LFENGGKOJDO_RVA);
-
-    if (hook_method(target)) {
-        LOGI("Hook OK!");
-        write_log("SUCCESS: LFENGGKOJDO hooked -> always return true");
-
-        uint32_t *code = (uint32_t *)target;
-        LOGI("Verify: [0]=0x%08x [1]=0x%08x", code[0], code[1]);
-    } else {
-        LOGE("Hook FAILED!");
-        write_log("ERROR: Hook failed");
-    }
+    pthread_t tid;
+    pthread_create(&tid, NULL, hook_thread, NULL);
+    pthread_detach(tid);
 
     return JNI_VERSION_1_6;
 }
