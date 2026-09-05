@@ -1,3 +1,9 @@
+## [1.31.33](https://github.com/legendsciber/morphe-patches/compare/v1.31.32...v1.31.33) (2026-09-05)
+
+### 🐛 Bug Fixes
+
+* **shadowfight:** v22 - XML/keyword scan for coins/bonus/gems/ruby in NLP data ([e941fb2](https://github.com/legendsciber/morphe-patches/commit/e941fb2ddc2bce1ab1d69e9c7b5f5286729e22ab))
+
 ## [1.31.32](https://github.com/legendsciber/morphe-patches/compare/v1.31.31...v1.31.32) (2026-09-05)
 
 ### 🐛 Bug Fixes
