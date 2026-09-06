@@ -1,3 +1,9 @@
+## [1.38.0](https://github.com/legendsciber/morphe-patches/compare/v1.37.0...v1.38.0) (2026-09-06)
+
+### ✨ New Features
+
+* v36 - hook VerifyPurchase + ConfirmPurchase to bypass server check ([7c4edaa](https://github.com/legendsciber/morphe-patches/commit/7c4edaafc9e960768574775dba7f0795118998d6))
+
 ## [1.37.0](https://github.com/legendsciber/morphe-patches/compare/v1.36.0...v1.37.0) (2026-09-06)
 
 ### ✨ New Features
