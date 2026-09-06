@@ -1,3 +1,9 @@
+## [1.34.4](https://github.com/legendsciber/morphe-patches/compare/v1.34.3...v1.34.4) (2026-09-06)
+
+### 🐛 Bug Fixes
+
+* v30 - lazy IL2CPP init + runtime_invoke instead of direct call ([f490e60](https://github.com/legendsciber/morphe-patches/commit/f490e60a18ec096e12dde8bb666ffde6829b3ec4))
+
 ## [1.34.3](https://github.com/legendsciber/morphe-patches/compare/v1.34.2...v1.34.3) (2026-09-06)
 
 ### 🐛 Bug Fixes
