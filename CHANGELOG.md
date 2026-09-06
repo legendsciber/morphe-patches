@@ -1,3 +1,9 @@
+## [1.39.0](https://github.com/legendsciber/morphe-patches/compare/v1.38.0...v1.39.0) (2026-09-06)
+
+### ✨ New Features
+
+* v37 - minimal hook, no managed method calls ([5824e4d](https://github.com/legendsciber/morphe-patches/commit/5824e4d8729cc12af63572bcbdf3795ddb0279c4))
+
 ## [1.38.0](https://github.com/legendsciber/morphe-patches/compare/v1.37.0...v1.38.0) (2026-09-06)
 
 ### ✨ New Features
