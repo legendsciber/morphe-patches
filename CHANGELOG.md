@@ -1,3 +1,9 @@
+## [1.34.8](https://github.com/legendsciber/morphe-patches/compare/v1.34.7...v1.34.8) (2026-09-06)
+
+### 🐛 Bug Fixes
+
+* v31 - crash handler + log overwrite + diagnostic logging ([45b9fdf](https://github.com/legendsciber/morphe-patches/commit/45b9fdfa42488c1717a5e90dfb76ad27769292cf))
+
 ## [1.34.7](https://github.com/legendsciber/morphe-patches/compare/v1.34.6...v1.34.7) (2026-09-06)
 
 ### 🐛 Bug Fixes
