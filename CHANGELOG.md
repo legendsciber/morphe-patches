@@ -1,3 +1,12 @@
+## [1.34.1](https://github.com/legendsciber/morphe-patches/compare/v1.34.0...v1.34.1) (2026-09-06)
+
+### 🐛 Bug Fixes
+
+* add commas between byte array lines in SoBytes parts ([ad55b51](https://github.com/legendsciber/morphe-patches/commit/ad55b5161e3a2274734182aaff2fbb203715c79d))
+* split IAPBypassSoBytes into parts to avoid JVM method size limit ([b71d4eb](https://github.com/legendsciber/morphe-patches/commit/b71d4eb48d67a89bed60e3e9f906794ad4b649be))
+* update SF2 IAP bypass description in README ([f1b0c6c](https://github.com/legendsciber/morphe-patches/commit/f1b0c6ca5c6ea689e8c014adf810b988390099b0))
+* v28 IAP bypass - hook GooglePlayStore.Purchase + OnPurchaseSucceeded ([5a7507d](https://github.com/legendsciber/morphe-patches/commit/5a7507dcaaa7b02dabbe93bfae6df42a7182a669))
+
 ## [1.34.0](https://github.com/legendsciber/morphe-patches/compare/v1.33.1...v1.34.0) (2026-09-06)
 
 ### ✨ New Features
