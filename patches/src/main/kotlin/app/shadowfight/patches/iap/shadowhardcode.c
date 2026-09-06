@@ -14,20 +14,21 @@
 #include <android/log.h>
 
 /*
- * Shadow Fight 2 - IAP Bypass v25
+ * Shadow Fight 2 - IAP Bypass v27
  *
- * Hook 1: IAGKBFCKFKB (RVA 0x340CE28)
- *   KGNNFOHIBBD == 3 (RealMoney) -> changes to 1 (Gold)
- *   Google Play never launches, purchase completes as Gold
+ * Strategy: Hook PaymentUI.MakePurchase to intercept real-money purchases
+ * before they reach Unity IAP / Google Play. When a real-money item is
+ * detected, we directly invoke IAGKBFCKFKB with KGNNFOHIBBD=1 (Gold)
+ * via IL2CPP runtime_invoke, bypassing Google Play entirely.
  *
- * Hook 2: HDDFDBIKKFH (RVA 0x305A128)
- *   Always sets currency amount to 999999
- *
- * Result: Click "Buy for $X" -> uses Gold instead -> Gold is always 999999 -> success
+ * Also hooks:
+ * - IAGKBFCKFKB: changes RealMoney->Gold (safety net)
+ * - HDDFDBIKKFH: sets currency amount to 999999
  */
 
 #define IAGKBFCKFKB_RVA 0x340CE28
 #define HDDFDBIKKFH_RVA 0x305A128
+#define MAKEPURCHASE_RVA 0x334BB34
 #define ENTRY_SIZE 16
 
 static void write_log(const char* msg) {
@@ -71,134 +72,246 @@ static void flush_icache(void* addr, size_t len) {
     __asm__ volatile("isb");
 }
 
-/*
- * IAPK stub (24 bytes):
- *   cmp w1, #3           ; RealMoney?
- *   b.ne +4              ; skip if not
- *   mov w1, #1           ; change to Gold
- *   ldr x16, [pc, #8]   ; load trampoline
- *   br x16
- *   .quad trampoline
- */
-static uint8_t IAPK_STUB[28] __attribute__((aligned(16)));
+/* ==== IL2CPP API types ==== */
+typedef void* Il2CppDomain;
+typedef void* Il2CppAssembly;
+typedef void* Il2CppImage;
+typedef void* Il2CppClass;
+typedef void* Il2CppMethod;
+typedef void* Il2CppObject;
+typedef void* Il2CppString;
+typedef void* Il2CppField;
+typedef void* Il2CppThread;
 
-/* HDDF stub (24 bytes):
- *   movz w1, #0x423F     ; w1 = 999999 low
- *   movk w1, #0x000F, lsl #16 ; w1 = 999999
- *   ldr x16, [pc, #8]   ; load trampoline
- *   br x16
- *   .quad trampoline
- */
-static uint8_t HDDF_STUB[24] __attribute__((aligned(16)));
+typedef struct {
+    const char* name;
+    const char* type;
+    uint32_t token;
+} Il2CppMethodInterfaceOffsetInfo;
 
+/* ==== IL2CPP API function pointers ==== */
+static Il2CppDomain (*fp_il2cpp_domain_get)(void);
+static const Il2CppAssembly** (*fp_il2cpp_domain_get_assemblies)(const Il2CppDomain*, size_t*);
+static Il2CppImage* (*fp_il2cpp_assembly_get_image)(const Il2CppAssembly*);
+static Il2CppClass* (*fp_il2cpp_class_from_name)(const Il2CppImage*, const char*, const char*);
+static Il2CppMethod* (*fp_il2cpp_class_get_method_from_name)(Il2CppClass*, const char*, int);
+static Il2CppObject* (*fp_il2cpp_runtime_invoke)(const Il2CppMethod*, void*, void**, void**);
+static Il2CppString* (*fp_il2cpp_string_new)(const char*);
+static Il2CppThread* (*fp_il2cpp_thread_attach)(Il2CppDomain*);
+static Il2CppObject* (*fp_il2cpp_object_new)(const Il2CppClass*);
+static void (*fp_il2cpp_field_set_value)(Il2CppObject*, Il2CppField*, void*);
+
+static int il2cpp_api_loaded = 0;
+
+static int load_il2cpp_api(void) {
+    void* handle = dlopen("libil2cpp.so", RTLD_NOW | RTLD_NOLOAD);
+    if (!handle) {
+        LOGE("dlopen libil2cpp.so failed: %s", dlerror());
+        return 0;
+    }
+
+    #define LOAD_API(name) fp_##name = (typeof(fp_##name))dlsym(handle, #name); \
+        if (!fp_##name) { LOGE("Missing: " #name); return 0; }
+
+    LOAD_API(il2cpp_domain_get)
+    LOAD_API(il2cpp_domain_get_assemblies)
+    LOAD_API(il2cpp_assembly_get_image)
+    LOAD_API(il2cpp_class_from_name)
+    LOAD_API(il2cpp_class_get_method_from_name)
+    LOAD_API(il2cpp_runtime_invoke)
+    LOAD_API(il2cpp_string_new)
+    LOAD_API(il2cpp_thread_attach)
+    LOAD_API(il2cpp_object_new)
+
+    #undef LOAD_API
+
+    il2cpp_api_loaded = 1;
+    write_log("IL2CPP API loaded successfully");
+    return 1;
+}
+
+/* ==== Cached IL2CPP references ==== */
+static Il2CppClass* class_MGNPHCAAEIO = 0;
+static Il2CppMethod* method_IAGKBFCKFKB_5 = 0; /* 5 parameters version */
+static Il2CppMethod* method_IAGKBFCKFKB_4 = 0; /* 4 parameters version */
+
+static int find_il2cpp_methods(void) {
+    Il2CppDomain* domain = fp_il2cpp_domain_get();
+    if (!domain) { write_log("ERROR: il2cpp_domain_get failed"); return 0; }
+
+    fp_il2cpp_thread_attach(domain);
+
+    size_t count = 0;
+    const Il2CppAssembly** assemblies = fp_il2cpp_domain_get_assemblies(domain, &count);
+    if (!assemblies) { write_log("ERROR: no assemblies"); return 0; }
+
+    /* Find MGNPHCAAEIO class in any assembly */
+    for (size_t i = 0; i < count && !class_MGNPHCAAEIO; i++) {
+        Il2CppImage* image = fp_il2cpp_assembly_get_image(assemblies[i]);
+        if (!image) continue;
+        class_MGNPHCAAEIO = fp_il2cpp_class_from_name(image, "", "MGNPHCAAEIO");
+    }
+
+    if (!class_MGNPHCAAEIO) { write_log("ERROR: MGNPHCAAEIO class not found"); return 0; }
+    write_log("Found MGNPHCAAEIO class");
+
+    /* Find IAGKBFCKFKB methods */
+    /* First overload: (HOOAAGABMBL, KGNNFOHIBBD, int, Action, bool) = 5 params */
+    method_IAGKBFCKFKB_5 = fp_il2cpp_class_get_method_from_name(class_MGNPHCAAEIO, "IAGKBFCKFKB", 5);
+    /* Second overload: (HOOAAGABMBL, IGFGDDANEPE, KGNNFOHIBBD, int, Action, bool) = 6 params */
+    /* Try with 4 params first (default params might reduce visible count) */
+    method_IAGKBFCKFKB_4 = fp_il2cpp_class_get_method_from_name(class_MGNPHCAAEIO, "IAGKBFCKFKB", 4);
+
+    char buf[128];
+    snprintf(buf, sizeof(buf), "IAGKBFCKFKB_5=%p IAGKBFCKFKB_4=%p",
+             (void*)method_IAGKBFCKFKB_5, (void*)method_IAGKBFCKFKB_4);
+    write_log(buf);
+
+    return (method_IAGKBFCKFKB_5 || method_IAGKBFCKFKB_4) ? 1 : 0;
+}
+
+/* ==== Hook trampolines ==== */
+static uint8_t TRAMP_MAKE[32] __attribute__((aligned(16)));
 static uint8_t TRAMP_IAPK[32] __attribute__((aligned(16)));
 static uint8_t TRAMP_HDDF[32] __attribute__((aligned(16)));
 
-static void* hook_thread(void* arg) {
-    write_log("=== SF2 IAP Bypass v26 ===");
-    LOGI("Polling for libil2cpp.so...");
+static void install_entry_hook(uintptr_t target, uint8_t* tramp, const char* name) {
+    /* Copy original 16 bytes to trampoline */
+    memcpy(tramp, (void*)target, ENTRY_SIZE);
+    /* Append: ldr x16, [pc, #8]; br x16; .quad target+16 */
+    tramp[16] = 0x50; tramp[17] = 0x00; tramp[18] = 0x00; tramp[19] = 0x58;
+    tramp[20] = 0x00; tramp[21] = 0x02; tramp[22] = 0x1F; tramp[23] = 0xD6;
+    uintptr_t cont = target + ENTRY_SIZE;
+    memcpy(tramp + 24, &cont, 8);
 
+    /* Write entry: ldr x16, [pc, #8]; br x16; .quad tramp */
+    if (!make_writable((void*)target, 32)) {
+        char buf[128];
+        snprintf(buf, sizeof(buf), "ERROR: mprotect failed for %s", name);
+        write_log(buf);
+        return;
+    }
+    uint8_t entry[ENTRY_SIZE];
+    entry[0] = 0x50; entry[1] = 0x00; entry[2] = 0x00; entry[3] = 0x58;
+    entry[4] = 0x00; entry[5] = 0x02; entry[6] = 0x1F; entry[7] = 0xD6;
+    uintptr_t tramp_ptr = (uintptr_t)tramp;
+    memcpy(entry + 8, &tramp_ptr, 8);
+    memcpy((void*)target, entry, ENTRY_SIZE);
+    flush_icache((void*)target, ENTRY_SIZE);
+
+    char buf[128];
+    snprintf(buf, sizeof(buf), "%s hook installed @ 0x%lx", name, (long)target);
+    write_log(buf);
+}
+
+/* ==== IAGKBFCKFKB hook (safety net: RealMoney->Gold) ==== */
+static void hooked_iapk(uint64_t x0, uint64_t x1, uint64_t x2, uint64_t x3, uint64_t x4) {
+    int currencyType = (int)x1;
+    if (currencyType == 3) {
+        x1 = 1; /* Gold */
+        write_log("IAPK hook: RealMoney->Gold");
+    }
+    typedef void (*fn)(uint64_t, uint64_t, uint64_t, uint64_t, uint64_t);
+    ((fn)TRAMP_IAPK)(x0, x1, x2, x3, x4);
+}
+
+/* ==== HDDFDBIKKFH hook: amount=999999 ==== */
+static void hooked_hddf(uint64_t x0, uint64_t x1, uint64_t x2) {
+    x1 = 999999;
+    typedef void (*fn)(uint64_t, uint64_t, uint64_t);
+    ((fn)TRAMP_HDDF)(x0, x1, x2);
+}
+
+/* ==== MakePurchase hook: intercept before Google Play ==== */
+/*
+ * PaymentUI.MakePurchase(HOOAAGABMBL item, Nullable<ObscuredLong> price)
+ * x0 = this (PaymentUI)
+ * x1 = HOOAAGABMBL (item)
+ * x2 = Nullable<ObscuredLong>* (price override pointer)
+ *
+ * Strategy: Instead of calling original (which goes to Unity IAP -> Google Play),
+ * we check if item has RealMoneyItem ID. If so, call IAGKBFCKFKB directly
+ * with KGNNFOHIBBD=1 (Gold).
+ */
+typedef void (*fn_makepurchase)(uint64_t, uint64_t, uint64_t);
+
+static void hooked_makepurchase(uint64_t x0, uint64_t x1, uint64_t x2) {
+    if (!il2cpp_api_loaded || !method_IAGKBFCKFKB_5) {
+        /* Fallback: call original */
+        ((fn_makepurchase)TRAMP_MAKE)(x0, x1, x2);
+        return;
+    }
+
+    /*
+     * Check if item is a real-money item by examining its string fields.
+     * HOOAAGABMBL fields at various offsets are strings.
+     * We'll check offset 0x10 (DPLBMJODBEK type) for "RealMoneyItem".
+     *
+     * Actually, let's use a simpler approach: just ALWAYS redirect to Gold.
+     * This means ALL purchases go through Gold path (no Google Play).
+     * The player has 999999 Gold from HDDFDBIKKFH hook, so it always succeeds.
+     */
+
+    /* Call IAGKBFCKFKB via IL2CPP runtime_invoke */
+    /* params: x0=item, x1=Gold(1), x2=amount(1), x3=callback(null), x4=bool(1) */
+    void* args[5];
+    args[0] = (void*)x1;           /* item */
+    args[1] = (void*)(uint64_t)1;  /* KGNNFOHIBBD = Gold */
+    args[2] = (void*)(uint64_t)1;  /* amount */
+    args[3] = NULL;                 /* callback (null) */
+    args[4] = (void*)(uint64_t)1;  /* bool = true */
+
+    void* exc = NULL;
+    write_log("MakePurchase intercepted -> calling IAGKBFCKFKB(Gold) via IL2CPP");
+    fp_il2cpp_runtime_invoke(method_IAGKBFCKFKB_5, NULL, args, &exc);
+
+    if (exc) {
+        write_log("ERROR: IAGKBFCKFKB invoke failed, falling back to original");
+        ((fn_makepurchase)TRAMP_MAKE)(x0, x1, x2);
+    }
+}
+
+/* ==== Main hook thread ==== */
+static void* hook_thread(void* arg) {
+    write_log("=== SF2 IAP Bypass v27 ===");
+
+    /* Load IL2CPP API */
+    if (!load_il2cpp_api()) {
+        write_log("ERROR: Failed to load IL2CPP API");
+        return NULL;
+    }
+
+    /* Find libil2cpp base */
     uintptr_t il2cpp_base = 0;
     for (int i = 0; i < 200; i++) {
         il2cpp_base = find_libil2cpp();
         if (il2cpp_base) break;
         usleep(100000);
     }
-
     if (!il2cpp_base) {
         write_log("ERROR: libil2cpp.so not found");
         return NULL;
     }
-    LOGI("libil2cpp.so base: 0x%lx (first mapping)", (long)il2cpp_base);
     { char buf[128]; snprintf(buf, sizeof(buf), "libil2cpp.so base=0x%lx", (long)il2cpp_base); write_log(buf); }
 
-    /* Build IAPK_STUB */
-    memset(IAPK_STUB, 0, sizeof(IAPK_STUB));
-    /* cmp w1, #3 */
-    IAPK_STUB[0] = 0x3F; IAPK_STUB[1] = 0x0C; IAPK_STUB[2] = 0x00; IAPK_STUB[3] = 0x71;
-    /* b.ne +2 (skip mov, jump to ldr x16 at offset 12) */
-    IAPK_STUB[4] = 0x41; IAPK_STUB[5] = 0x00; IAPK_STUB[6] = 0x00; IAPK_STUB[7] = 0x54;
-    /* mov w1, #1 */
-    IAPK_STUB[8] = 0x21; IAPK_STUB[9] = 0x00; IAPK_STUB[10] = 0x80; IAPK_STUB[11] = 0x52;
-    /* ldr x16, [pc, #8] -> loads from offset 16 */
-    IAPK_STUB[12] = 0x50; IAPK_STUB[13] = 0x00; IAPK_STUB[14] = 0x00; IAPK_STUB[15] = 0x58;
-    /* br x16 */
-    IAPK_STUB[16] = 0x00; IAPK_STUB[17] = 0x02; IAPK_STUB[18] = 0x1F; IAPK_STUB[19] = 0xD6;
-    /* literal pool: trampoline address (offset 20) - patched below */
+    /* Find IL2CPP methods */
+    if (!find_il2cpp_methods()) {
+        write_log("ERROR: Failed to find IL2CPP methods");
+        return NULL;
+    }
 
-    /* Build HDDF_STUB */
-    memset(HDDF_STUB, 0, sizeof(HDDF_STUB));
-    /* movz w1, #0x423F */
-    HDDF_STUB[0] = 0xE1; HDDF_STUB[1] = 0x84; HDDF_STUB[2] = 0x92; HDDF_STUB[3] = 0x52;
-    /* movk w1, #0x000F, lsl #16 */
-    HDDF_STUB[4] = 0xE1; HDDF_STUB[5] = 0x01; HDDF_STUB[6] = 0xA0; HDDF_STUB[7] = 0x72;
-    /* ldr x16, [pc, #8] -> loads from offset 16 */
-    HDDF_STUB[8] = 0x50; HDDF_STUB[9] = 0x00; HDDF_STUB[10] = 0x00; HDDF_STUB[11] = 0x58;
-    /* br x16 */
-    HDDF_STUB[12] = 0x00; HDDF_STUB[13] = 0x02; HDDF_STUB[14] = 0x1F; HDDF_STUB[15] = 0xD6;
-    /* literal pool: trampoline address (offset 16) - patched below */
+    /* Hook 1: MakePurchase - intercept before Google Play */
+    uintptr_t makepurchase_target = il2cpp_base + MAKEPURCHASE_RVA;
+    install_entry_hook(makepurchase_target, TRAMP_MAKE, "MakePurchase");
 
-    /* === Hook 1: IAGKBFCKFKB === */
+    /* Hook 2: IAGKBFCKFKB - safety net (RealMoney->Gold) */
     uintptr_t iapk_target = il2cpp_base + IAGKBFCKFKB_RVA;
-    LOGI("IAGKBFCKFKB @ 0x%lx", (long)iapk_target);
+    install_entry_hook(iapk_target, TRAMP_IAPK, "IAGKBFCKFKB");
 
-    /* Build trampoline */
-    memcpy(TRAMP_IAPK, (void*)iapk_target, ENTRY_SIZE);
-    { char buf[128]; snprintf(buf, sizeof(buf), "Trampoline built from 0x%lx", (long)iapk_target); write_log(buf); }
-    TRAMP_IAPK[16] = 0x50; TRAMP_IAPK[17] = 0x00; TRAMP_IAPK[18] = 0x00; TRAMP_IAPK[19] = 0x58;
-    TRAMP_IAPK[20] = 0x00; TRAMP_IAPK[21] = 0x02; TRAMP_IAPK[22] = 0x1F; TRAMP_IAPK[23] = 0xD6;
-    uintptr_t tramp_iapk_cont = iapk_target + ENTRY_SIZE;
-    memcpy(TRAMP_IAPK + 24, &tramp_iapk_cont, 8);
-
-    /* Patch stub trampoline address */
-    uintptr_t tramp_iapk_ptr = (uintptr_t)TRAMP_IAPK;
-    memcpy(IAPK_STUB + 20, &tramp_iapk_ptr, 8);
-
-    /* Write entry hook */
-    if (!make_writable((void*)iapk_target, 32)) {
-        write_log("ERROR: mprotect failed for IAGKBFCKFKB");
-        return NULL;
-    }
-    uint8_t entry[ENTRY_SIZE];
-    entry[0] = 0x50; entry[1] = 0x00; entry[2] = 0x00; entry[3] = 0x58;
-    entry[4] = 0x00; entry[5] = 0x02; entry[6] = 0x1F; entry[7] = 0xD6;
-    uintptr_t stub_ptr = (uintptr_t)IAPK_STUB;
-    memcpy(entry + 8, &stub_ptr, 8);
-    memcpy((void*)iapk_target, entry, ENTRY_SIZE);
-    flush_icache((void*)iapk_target, ENTRY_SIZE);
-    write_log("IAGKBFCKFKB hook installed (RealMoney->Gold)");
-
-    /* === Hook 2: HDDFDBIKKFH === */
+    /* Hook 3: HDDFDBIKKFH - amount=999999 */
     uintptr_t hddf_target = il2cpp_base + HDDFDBIKKFH_RVA;
-    LOGI("HDDFDBIKKFH @ 0x%lx", (long)hddf_target);
+    install_entry_hook(hddf_target, TRAMP_HDDF, "HDDFDBIKKFH");
 
-    memcpy(TRAMP_HDDF, (void*)hddf_target, ENTRY_SIZE);
-    { char buf[128]; snprintf(buf, sizeof(buf), "Trampoline built from 0x%lx", (long)hddf_target); write_log(buf); }
-    TRAMP_HDDF[16] = 0x50; TRAMP_HDDF[17] = 0x00; TRAMP_HDDF[18] = 0x00; TRAMP_HDDF[19] = 0x58;
-    TRAMP_HDDF[20] = 0x00; TRAMP_HDDF[21] = 0x02; TRAMP_HDDF[22] = 0x1F; TRAMP_HDDF[23] = 0xD6;
-    uintptr_t tramp_hddf_cont = hddf_target + ENTRY_SIZE;
-    memcpy(TRAMP_HDDF + 24, &tramp_hddf_cont, 8);
-
-    uintptr_t tramp_hddf_ptr = (uintptr_t)TRAMP_HDDF;
-    memcpy(HDDF_STUB + 16, &tramp_hddf_ptr, 8);
-
-    if (!make_writable((void*)hddf_target, 32)) {
-        write_log("ERROR: mprotect failed for HDDFDBIKKFH");
-        return NULL;
-    }
-    entry[0] = 0x50; entry[1] = 0x00; entry[2] = 0x00; entry[3] = 0x58;
-    entry[4] = 0x00; entry[5] = 0x02; entry[6] = 0x1F; entry[7] = 0xD6;
-    stub_ptr = (uintptr_t)HDDF_STUB;
-    memcpy(entry + 8, &stub_ptr, 8);
-    memcpy((void*)hddf_target, entry, ENTRY_SIZE);
-    flush_icache((void*)hddf_target, ENTRY_SIZE);
-    write_log("HDDFDBIKKFH hook installed (amount=999999)");
-
-    /* Verify */
-    uint32_t* v1 = (uint32_t*)iapk_target;
-    uint32_t* v2 = (uint32_t*)hddf_target;
-    LOGI("IAGKBFCKFKB: [0]=0x%08x [1]=0x%08x", v1[0], v1[1]);
-    LOGI("HDDFDBIKKFH: [0]=0x%08x [1]=0x%08x", v2[0], v2[1]);
     write_log("=== All hooks installed ===");
     return NULL;
 }
