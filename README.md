@@ -9,7 +9,7 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.32.2](https://github.com/legendsciber/morphe-patches/releases/tag/v1.32.2)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;16 patches total
+> **[v1.33.0](https://github.com/legendsciber/morphe-patches/releases/tag/v1.33.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;12 patches total
 <details open>
 <summary>📦 Block Blast&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
 <br>
@@ -87,7 +87,7 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Shadow Fight 2 IAP Bypass](#shadow-fight-2-iap-bypass) | Bypasses Google Play billing. Real-money purchases use Gold instead. Currency set to 999999. |  |
-| [Shadow Fight 2 IAP Bypass Trigger](#shadow-fight-2-iap-bypass-trigger) | Loads IAP bypass native library on startup. |  |
+| [Shadow Fight 2 IAP Bypass Trigger](#shadow-fight-2-iap-bypass-trigger) | Loads IAP bypass native library. |  |
 
 </details>
 

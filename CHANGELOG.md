@@ -1,3 +1,9 @@
+## [1.33.0](https://github.com/legendsciber/morphe-patches/compare/v1.32.2...v1.33.0) (2026-09-06)
+
+### ✨ New Features
+
+* SF2 IAP Bypass - hook IAGKBFCKFKB (RealMoney->Gold) + HDDFDBIKKFH (999999) ([eeb7779](https://github.com/legendsciber/morphe-patches/commit/eeb7779ea298d071a5fc3c5dc8cf8523d8705b56))
+
 ## [1.32.2](https://github.com/legendsciber/morphe-patches/compare/v1.32.1...v1.32.2) (2026-09-05)
 
 ### 🐛 Bug Fixes
