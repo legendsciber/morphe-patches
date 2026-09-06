@@ -1,3 +1,9 @@
+## [1.34.5](https://github.com/legendsciber/morphe-patches/compare/v1.34.4...v1.34.5) (2026-09-06)
+
+### 🐛 Bug Fixes
+
+* v30 - fix dlsym symbol names (il2cpp_ prefix) ([e8f6609](https://github.com/legendsciber/morphe-patches/commit/e8f6609570216ad251c9a215a746b9c8061f7297))
+
 ## [1.34.4](https://github.com/legendsciber/morphe-patches/compare/v1.34.3...v1.34.4) (2026-09-06)
 
 ### 🐛 Bug Fixes
