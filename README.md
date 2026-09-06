@@ -86,7 +86,7 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
-| [Shadow Fight 2 IAP Bypass](#shadow-fight-2-iap-bypass) | Bypasses Google Play billing. Real-money purchases use Gold instead. Currency set to 999999. |  |
+| [Shadow Fight 2 IAP Bypass](#shadow-fight-2-iap-bypass) | Bypasses Google Play billing. Intercepts GooglePlayStore.Purchase and triggers PurchasingManager.OnPurchaseSucceeded directly, delivering items without payment. |  |
 | [Shadow Fight 2 IAP Bypass Trigger](#shadow-fight-2-iap-bypass-trigger) | Loads IAP bypass native library. |  |
 
 </details>
