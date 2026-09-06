@@ -76,7 +76,7 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 </details>
 
 <details open>
-<summary>📦 Shadow Fight 2&nbsp;&nbsp;•&nbsp;&nbsp;6 patches</summary>
+<summary>📦 Shadow Fight 2&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
 <br>
 
 **🎯 Supported versions:**
@@ -86,12 +86,8 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
-| [Shadow Fight 2 Crash Log](#shadow-fight-2-crash-log) | Saves crash info to a file if the game crashes. |  |
-| [Shadow Fight 2 Crash Trigger](#shadow-fight-2-crash-trigger) | Enables crash logging. |  |
-| [Shadow Fight 2 Dump Trigger](#shadow-fight-2-dump-trigger) | Triggers ShadowDump via UnityPlayerActivity.onCreate |  |
-| [Shadow Fight 2 Runtime Dump](#shadow-fight-2-runtime-dump) | Dumps all Unity classes/fields with ObscuredInt to logcat and files. Use logcat -s ShadowDump or cat shizuku-terminal/shadowdump-log.txt |  |
-| [Shadow Fight 2 Unlimited Values](#shadow-fight-2-unlimited-values) | Sets in-game values to unlimited. |  |
-| [Shadow Fight 2 Values Trigger](#shadow-fight-2-values-trigger) | Enables unlimited values. |  |
+| [Shadow Fight 2 IAP Bypass](#shadow-fight-2-iap-bypass) | Bypasses Google Play billing. Real-money purchases use Gold instead. Currency set to 999999. |  |
+| [Shadow Fight 2 IAP Bypass Trigger](#shadow-fight-2-iap-bypass-trigger) | Loads IAP bypass native library on startup. |  |
 
 </details>
 
