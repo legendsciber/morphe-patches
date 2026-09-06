@@ -1,3 +1,9 @@
+## [1.35.0](https://github.com/legendsciber/morphe-patches/compare/v1.34.10...v1.35.0) (2026-09-06)
+
+### ✨ New Features
+
+* v33 - back to runtime_invoke approach with step-by-step logging ([9863bdc](https://github.com/legendsciber/morphe-patches/commit/9863bdc85639dded9620a1471cc9c57193501498))
+
 ## [1.34.10](https://github.com/legendsciber/morphe-patches/compare/v1.34.9...v1.34.10) (2026-09-06)
 
 ### 🐛 Bug Fixes
