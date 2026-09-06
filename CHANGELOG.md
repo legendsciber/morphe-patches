@@ -1,3 +1,9 @@
+## [1.34.9](https://github.com/legendsciber/morphe-patches/compare/v1.34.8...v1.34.9) (2026-09-06)
+
+### 🐛 Bug Fixes
+
+* v32 - improved crash handler, truncate logs, filter r-xp only ([0705031](https://github.com/legendsciber/morphe-patches/commit/070503151a8f47d82040473870c200593c5f3194))
+
 ## [1.34.8](https://github.com/legendsciber/morphe-patches/compare/v1.34.7...v1.34.8) (2026-09-06)
 
 ### 🐛 Bug Fixes
