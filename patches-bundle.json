@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-06T12:18:08",
-  "description": "## [1.34.5](https://github.com/legendsciber/morphe-patches/compare/v1.34.4...v1.34.5) (2026-09-06)\n\n### 🐛 Bug Fixes\n\n* v30 - fix dlsym symbol names (il2cpp_ prefix) ([e8f6609](https://github.com/legendsciber/morphe-patches/commit/e8f6609570216ad251c9a215a746b9c8061f7297))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.34.5/patches-1.34.5.mpp",
+  "created_at": "2026-09-06T12:28:48",
+  "description": "## [1.34.6](https://github.com/legendsciber/morphe-patches/compare/v1.34.5...v1.34.6) (2026-09-06)\n\n### 🐛 Bug Fixes\n\n* v30 - add correct namespace for PurchasingManager ([dc52edf](https://github.com/legendsciber/morphe-patches/commit/dc52edf5deb76fd6e72def94ee88fa0b82ffc0f8))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.34.6/patches-1.34.6.mpp",
   "signature_download_url": "",
-  "version": "1.34.5"
+  "version": "1.34.6"
 }

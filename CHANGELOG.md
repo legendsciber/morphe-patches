@@ -1,3 +1,9 @@
+## [1.34.6](https://github.com/legendsciber/morphe-patches/compare/v1.34.5...v1.34.6) (2026-09-06)
+
+### 🐛 Bug Fixes
+
+* v30 - add correct namespace for PurchasingManager ([dc52edf](https://github.com/legendsciber/morphe-patches/commit/dc52edf5deb76fd6e72def94ee88fa0b82ffc0f8))
+
 ## [1.34.5](https://github.com/legendsciber/morphe-patches/compare/v1.34.4...v1.34.5) (2026-09-06)
 
 ### 🐛 Bug Fixes
