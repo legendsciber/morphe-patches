@@ -1,3 +1,9 @@
+## [1.34.2](https://github.com/legendsciber/morphe-patches/compare/v1.34.1...v1.34.2) (2026-09-06)
+
+### 🐛 Bug Fixes
+
+* v29 - remove IL2CPP domain_get, use direct RVA addressing ([585ecf0](https://github.com/legendsciber/morphe-patches/commit/585ecf07c7f05d46f8142306931c1c3559dae99b))
+
 ## [1.34.1](https://github.com/legendsciber/morphe-patches/compare/v1.34.0...v1.34.1) (2026-09-06)
 
 ### 🐛 Bug Fixes
