@@ -1,3 +1,9 @@
+## [1.33.1](https://github.com/legendsciber/morphe-patches/compare/v1.33.0...v1.33.1) (2026-09-06)
+
+### 🐛 Bug Fixes
+
+* SF2 IAP Bypass v26 - fix libil2cpp base address parsing ([a11b359](https://github.com/legendsciber/morphe-patches/commit/a11b3590539414f81d3053995e73c05f5120daa9))
+
 ## [1.33.0](https://github.com/legendsciber/morphe-patches/compare/v1.32.2...v1.33.0) (2026-09-06)
 
 ### ✨ New Features
