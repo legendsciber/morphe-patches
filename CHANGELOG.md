@@ -1,3 +1,9 @@
+## [1.36.0](https://github.com/legendsciber/morphe-patches/compare/v1.35.0...v1.36.0) (2026-09-06)
+
+### ✨ New Features
+
+* v34 - direct function call instead of runtime_invoke ([62fcb0a](https://github.com/legendsciber/morphe-patches/commit/62fcb0ac319ebb08c52afbdeb56a0692f8b31297))
+
 ## [1.35.0](https://github.com/legendsciber/morphe-patches/compare/v1.34.10...v1.35.0) (2026-09-06)
 
 ### ✨ New Features
