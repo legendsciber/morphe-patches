@@ -1,3 +1,9 @@
+## [1.34.10](https://github.com/legendsciber/morphe-patches/compare/v1.34.9...v1.34.10) (2026-09-06)
+
+### 🐛 Bug Fixes
+
+* v32 - use new log paths (old files owned by root, app can't write) ([1d05f9b](https://github.com/legendsciber/morphe-patches/commit/1d05f9b6e60de82ed9432c281b888978445e8607))
+
 ## [1.34.9](https://github.com/legendsciber/morphe-patches/compare/v1.34.8...v1.34.9) (2026-09-06)
 
 ### 🐛 Bug Fixes
