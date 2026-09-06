@@ -1,3 +1,9 @@
+## [1.37.0](https://github.com/legendsciber/morphe-patches/compare/v1.36.0...v1.37.0) (2026-09-06)
+
+### ✨ New Features
+
+* v35 - read method pointer from MethodInfo[0] directly ([162ec7d](https://github.com/legendsciber/morphe-patches/commit/162ec7d200e8d0062b74141d0792d4c42c623372))
+
 ## [1.36.0](https://github.com/legendsciber/morphe-patches/compare/v1.35.0...v1.36.0) (2026-09-06)
 
 ### ✨ New Features

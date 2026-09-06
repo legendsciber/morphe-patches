@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-06T19:24:00",
-  "description": "## [1.36.0](https://github.com/legendsciber/morphe-patches/compare/v1.35.0...v1.36.0) (2026-09-06)\n\n### ✨ New Features\n\n* v34 - direct function call instead of runtime_invoke ([62fcb0a](https://github.com/legendsciber/morphe-patches/commit/62fcb0ac319ebb08c52afbdeb56a0692f8b31297))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.36.0/patches-1.36.0.mpp",
+  "created_at": "2026-09-06T19:34:06",
+  "description": "## [1.37.0](https://github.com/legendsciber/morphe-patches/compare/v1.36.0...v1.37.0) (2026-09-06)\n\n### ✨ New Features\n\n* v35 - read method pointer from MethodInfo[0] directly ([162ec7d](https://github.com/legendsciber/morphe-patches/commit/162ec7d200e8d0062b74141d0792d4c42c623372))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.37.0/patches-1.37.0.mpp",
   "signature_download_url": "",
-  "version": "1.36.0"
+  "version": "1.37.0"
 }
