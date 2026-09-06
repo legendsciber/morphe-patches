@@ -1,3 +1,9 @@
+## [1.34.3](https://github.com/legendsciber/morphe-patches/compare/v1.34.2...v1.34.3) (2026-09-06)
+
+### 🐛 Bug Fixes
+
+* v29 - use full path from /proc/self/maps for dlopen ([3404be1](https://github.com/legendsciber/morphe-patches/commit/3404be14b2c81e7b189141513d7f503ed2d45265))
+
 ## [1.34.2](https://github.com/legendsciber/morphe-patches/compare/v1.34.1...v1.34.2) (2026-09-06)
 
 ### 🐛 Bug Fixes
