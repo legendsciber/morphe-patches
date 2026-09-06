@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-06T19:34:06",
-  "description": "## [1.37.0](https://github.com/legendsciber/morphe-patches/compare/v1.36.0...v1.37.0) (2026-09-06)\n\n### ✨ New Features\n\n* v35 - read method pointer from MethodInfo[0] directly ([162ec7d](https://github.com/legendsciber/morphe-patches/commit/162ec7d200e8d0062b74141d0792d4c42c623372))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.37.0/patches-1.37.0.mpp",
+  "created_at": "2026-09-06T19:44:41",
+  "description": "## [1.38.0](https://github.com/legendsciber/morphe-patches/compare/v1.37.0...v1.38.0) (2026-09-06)\n\n### ✨ New Features\n\n* v36 - hook VerifyPurchase + ConfirmPurchase to bypass server check ([7c4edaa](https://github.com/legendsciber/morphe-patches/commit/7c4edaafc9e960768574775dba7f0795118998d6))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.38.0/patches-1.38.0.mpp",
   "signature_download_url": "",
-  "version": "1.37.0"
+  "version": "1.38.0"
 }
