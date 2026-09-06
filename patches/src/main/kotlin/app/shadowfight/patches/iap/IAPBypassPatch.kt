@@ -9,13 +9,13 @@ import app.shadowfight.patches.iap.IAPBypassFingerprint
 @Suppress("unused")
 val sfIAPBypassPatch = rawResourcePatch(
     name = "Shadow Fight 2 IAP Bypass",
-    description = "Bypasses Google Play billing. Real-money purchases use Gold instead. Currency set to 999999.",
+    description = "Bypasses Google Play billing. Intercepts Purchase and triggers OnPurchaseSucceeded directly.",
     default = true
 ) {
     compatibleWith(COMPATIBILITY_SF2)
     execute {
         val soFile = get("lib/arm64-v8a/libShadowHardcode.so", true)
-        val soBytes = IAPBypassSoBytes.part1() + IAPBypassSoBytes.part2() + IAPBypassSoBytes.part3() + IAPBypassSoBytes.part4() + IAPBypassSoBytes.part5()
+        val soBytes = IAPBypassSoBytes.soBytes()
         soFile.writeBytes(soBytes)
     }
 }
