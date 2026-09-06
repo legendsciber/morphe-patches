@@ -1,3 +1,9 @@
+## [1.34.7](https://github.com/legendsciber/morphe-patches/compare/v1.34.6...v1.34.7) (2026-09-06)
+
+### 🐛 Bug Fixes
+
+* v30 - fix Il2CppString offset (0x14 not 0x24) ([5fda8c6](https://github.com/legendsciber/morphe-patches/commit/5fda8c6df5e8fbe747172b1ca3ccec781047e44c))
+
 ## [1.34.6](https://github.com/legendsciber/morphe-patches/compare/v1.34.5...v1.34.6) (2026-09-06)
 
 ### 🐛 Bug Fixes
