@@ -1,3 +1,9 @@
+## [1.34.0](https://github.com/legendsciber/morphe-patches/compare/v1.33.1...v1.34.0) (2026-09-06)
+
+### ✨ New Features
+
+* SF2 IAP Bypass v27 - hook MakePurchase with IL2CPP API to bypass Google Play ([d53e2cd](https://github.com/legendsciber/morphe-patches/commit/d53e2cde6738e385b9025a2254bea6110ad9a345))
+
 ## [1.33.1](https://github.com/legendsciber/morphe-patches/compare/v1.33.0...v1.33.1) (2026-09-06)
 
 ### 🐛 Bug Fixes
