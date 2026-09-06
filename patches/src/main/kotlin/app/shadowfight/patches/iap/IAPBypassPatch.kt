@@ -15,7 +15,7 @@ val sfIAPBypassPatch = rawResourcePatch(
     compatibleWith(COMPATIBILITY_SF2)
     execute {
         val soFile = get("lib/arm64-v8a/libShadowHardcode.so", true)
-        val soBytes = IAPBypassSoBytes.soBytes()
+        val soBytes = IAPBypassSoBytes.part1() + IAPBypassSoBytes.part2() + IAPBypassSoBytes.part3()
         soFile.writeBytes(soBytes)
     }
 }
