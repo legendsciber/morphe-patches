@@ -106,6 +106,7 @@ static void* (*fp_class_get_field_from_name)(Il2CppClass*, const char*);
 static Il2CppObject* (*fp_object_new)(const Il2CppClass*);
 static Il2CppString* (*fp_string_new)(const char*);
 static void (*fp_field_set_value)(Il2CppObject*, Il2CppField*, void*);
+static void* (*fp_thread_attach)(const Il2CppDomain*);
 
 static int il2cpp_loaded = 0;
 
@@ -127,6 +128,7 @@ static int load_il2cpp_api(void* handle) {
     TRY(object_new,            "il2cpp_object_new")
     TRY(string_new,            "il2cpp_string_new")
     TRY(field_set_value,       "il2cpp_field_set_value")
+    TRY(thread_attach,         "il2cpp_thread_attach")
 
     #undef TRY
 
@@ -170,15 +172,17 @@ static void install_hook(uintptr_t target, const char* name) {
 static Il2CppMethod* m_OnPurchaseSucceeded = 0;
 
 static void find_methods(void) {
+    char buf[512];
+    write_log("find_methods: calling domain_get...");
     Il2CppDomain* domain = fp_domain_get();
+    snprintf(buf, sizeof(buf), "find_methods: domain=%p", domain);
+    write_log(buf);
     if (!domain) { write_log("ERROR: domain_get failed"); return; }
-    write_log("domain_get OK");
 
     size_t count = 0;
     const Il2CppAssembly** assemblies = fp_domain_get_assemblies(domain, &count);
     if (!assemblies || count == 0) { write_log("ERROR: no assemblies"); return; }
 
-    char buf[512];
     snprintf(buf, sizeof(buf), "Found %zu assemblies", count);
     write_log(buf);
 
@@ -360,6 +364,10 @@ static void* hook_thread(void* arg) {
         write_log("ERROR: IL2CPP API load failed");
         return NULL;
     }
+
+    write_log("Calling il2cpp_thread_attach...");
+    fp_thread_attach(NULL);
+    write_log("il2cpp_thread_attach done");
 
     find_methods();
 
