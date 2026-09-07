@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-07T18:23:56",
-  "description": "## [1.40.8](https://github.com/legendsciber/morphe-patches/compare/v1.40.7...v1.40.8) (2026-09-07)\n\n### 🐛 Bug Fixes\n\n* v41 lazy IL2CPP init - only load API on first purchase trigger ([c142eb6](https://github.com/legendsciber/morphe-patches/commit/c142eb67b95b37279f8155b33113384ad72d1e9b))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.40.8/patches-1.40.8.mpp",
+  "created_at": "2026-09-07T18:34:43",
+  "description": "## [1.41.0](https://github.com/legendsciber/morphe-patches/compare/v1.40.8...v1.41.0) (2026-09-07)\n\n### ✨ New Features\n\n* v42 method pointer rewrite instead of entry hook ([e77ee1c](https://github.com/legendsciber/morphe-patches/commit/e77ee1cb6ff4ace4b1411e985ec3d40a9d016ef8))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.41.0/patches-1.41.0.mpp",
   "signature_download_url": "",
-  "version": "1.40.8"
+  "version": "1.41.0"
 }
