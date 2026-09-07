@@ -1,3 +1,9 @@
+## [1.40.6](https://github.com/legendsciber/morphe-patches/compare/v1.40.5...v1.40.6) (2026-09-07)
+
+### 🐛 Bug Fixes
+
+* add il2cpp_thread_attach before API calls to prevent crash ([2409fe2](https://github.com/legendsciber/morphe-patches/commit/2409fe2875b779fcbb4e5b56ee4994587e7332bc))
+
 ## [1.40.5](https://github.com/legendsciber/morphe-patches/compare/v1.40.4...v1.40.5) (2026-09-07)
 
 ### 🐛 Bug Fixes
