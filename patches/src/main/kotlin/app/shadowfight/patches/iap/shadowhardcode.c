@@ -225,20 +225,56 @@ static void* init_thread(void* arg) {
             continue;
         }
 
-        /* REWRITE METHOD POINTER */
+        long page = sysconf(_SC_PAGESIZE);
+
+        /* Get the original method pointer */
+        void* orig_ptr = *(void**)purchase_method;
+
+        /* REWRITE METHOD POINTER (for direct calls) */
         void** slot = (void**)purchase_method;
-        snprintf(buf, sizeof(buf), "Rewrite: %p -> %p", slot[0], (void*)hooked_purchase_entry);
+        snprintf(buf, sizeof(buf), "MethodInfo rewrite: %p -> %p", orig_ptr, (void*)hooked_purchase_entry);
         write_log(buf);
 
-        long page = sysconf(_SC_PAGESIZE);
         void* start = (void*)((uintptr_t)slot & ~(page - 1));
         if (mprotect(start, 2 * page, PROT_READ | PROT_WRITE) == 0) {
             slot[0] = (void*)hooked_purchase_entry;
-            write_log("=== METHOD POINTER REWRITTEN ===");
-        } else {
-            write_log("ERROR: mprotect");
+            write_log("MethodInfo pointer rewritten");
         }
 
+        /* REWRITE VTABLE ENTRY (for virtual calls)
+         * Scan memory near the class for the original method pointer.
+         * The vtable contains copies of method pointers.
+         * The class pointer is at MethodInfo+0x20 (klass field).
+         */
+        void* klass_ptr = *(void**)((uintptr_t)purchase_method + 0x20);
+        snprintf(buf, sizeof(buf), "Class=%p, scanning for vtable...", klass_ptr);
+        write_log(buf);
+
+        /* Scan a 4KB region starting from the class pointer for the original method ptr */
+        int vtable_found = 0;
+        uintptr_t scan_start = (uintptr_t)klass_ptr;
+        uintptr_t scan_end = scan_start + 0x2000; /* scan 8KB */
+
+        for (uintptr_t addr = scan_start; addr < scan_end; addr += sizeof(void*)) {
+            void* val = *(void**)addr;
+            if (val == orig_ptr) {
+                snprintf(buf, sizeof(buf), "Vtable match at offset 0x%lx, rewriting", (long)(addr - scan_start));
+                write_log(buf);
+                void* pg = (void*)(addr & ~(page - 1));
+                if (mprotect(pg, page, PROT_READ | PROT_WRITE) == 0) {
+                    *(void**)addr = (void*)hooked_purchase_entry;
+                    vtable_found = 1;
+                    write_log("Vtable entry rewritten!");
+                }
+                break;
+            }
+        }
+
+        if (!vtable_found) {
+            write_log("WARNING: vtable entry not found, only MethodInfo rewritten");
+        }
+
+        write_log("=== ALL REWRITES DONE ===");
         return NULL;
     }
 
