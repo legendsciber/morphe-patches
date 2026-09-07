@@ -222,7 +222,7 @@ static void* init_thread(void* arg) {
             Il2CppImage* image = SAFE_CALL(Il2CppImage*, fp_assembly_get_image(assemblies[i]));
             if (!image) continue;
 
-            Il2CppClass* klass = SAFE_CALL(Il2CppClass*, fp_class_from_name(image, "", "GooglePlayStore"));
+            Il2CppClass* klass = SAFE_CALL(Il2CppClass*, fp_class_from_name(image, "UnityEngine.Purchasing", "GooglePlayStore"));
             if (klass) {
                 snprintf(buf, sizeof(buf), "Found GooglePlayStore in assembly %zu", i);
                 write_log(buf);
