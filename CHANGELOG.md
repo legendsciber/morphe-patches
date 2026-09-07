@@ -1,3 +1,9 @@
+## [1.41.1](https://github.com/legendsciber/morphe-patches/compare/v1.41.0...v1.41.1) (2026-09-07)
+
+### 🐛 Bug Fixes
+
+* poll assemblies until loaded, add log recursion guard ([29ca303](https://github.com/legendsciber/morphe-patches/commit/29ca3036492ec1f64978b0a990e150e503574a2d))
+
 ## [1.41.0](https://github.com/legendsciber/morphe-patches/compare/v1.40.8...v1.41.0) (2026-09-07)
 
 ### ✨ New Features
