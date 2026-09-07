@@ -1,3 +1,9 @@
+## [1.40.1](https://github.com/legendsciber/morphe-patches/compare/v1.40.0...v1.40.1) (2026-09-07)
+
+### 🐛 Bug Fixes
+
+* IAP bypass method pointer and hook improvements ([5377b2e](https://github.com/legendsciber/morphe-patches/commit/5377b2e0a3c24a06578d1131af3cbd1d4fbb1231))
+
 ## [1.40.0](https://github.com/legendsciber/morphe-patches/compare/v1.39.0...v1.40.0) (2026-09-06)
 
 ### ✨ New Features
