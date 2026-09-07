@@ -302,9 +302,17 @@ static void* hook_thread(void* arg) {
     sigaction(SIGBUS, &sa, NULL);
     sigaction(SIGABRT, &sa, NULL);
 
-    uintptr_t il2cpp_base = find_libil2cpp();
+    uintptr_t il2cpp_base = 0;
+    for (int attempt = 0; attempt < 60; attempt++) {
+        il2cpp_base = find_libil2cpp();
+        if (il2cpp_base) break;
+        char buf2[128];
+        snprintf(buf2, sizeof(buf2), "Waiting for libil2cpp... attempt %d", attempt + 1);
+        write_log(buf2);
+        usleep(500000);
+    }
     if (!il2cpp_base) {
-        write_log("ERROR: libil2cpp.so not found via dl_iterate_phdr");
+        write_log("ERROR: libil2cpp.so not found after 30s");
         return NULL;
     }
 
@@ -312,9 +320,17 @@ static void* hook_thread(void* arg) {
     snprintf(buf, sizeof(buf), "libil2cpp base=0x%lx", (long)il2cpp_base);
     write_log(buf);
 
-    void* handle = dlopen("libil2cpp.so", RTLD_NOW | RTLD_NOLOAD);
+    void* handle = NULL;
+
+    handle = dlopen("libil2cpp.so", RTLD_NOW | RTLD_NOLOAD);
+    if (handle) { write_log("dlopen(RTLD_NOLOAD) OK"); }
+
     if (!handle) {
-        write_log("dlopen RTLD_NOLOAD failed, trying dlopen with full path from maps");
+        handle = dlopen("libil2cpp.so", RTLD_NOW);
+        if (handle) { write_log("dlopen(RTLD_NOW) OK"); }
+    }
+
+    if (!handle) {
         FILE* fp = fopen("/proc/self/maps", "r");
         if (fp) {
             char line[512];
@@ -325,7 +341,7 @@ static void* hook_thread(void* arg) {
                         char* nl = strchr(path, '\n');
                         if (nl) *nl = 0;
                         handle = dlopen(path, RTLD_NOW);
-                        snprintf(buf, sizeof(buf), "dlopen(%s) = %p", path, handle);
+                        snprintf(buf, sizeof(buf), "dlopen(maps:%s) = %p", path, handle);
                         write_log(buf);
                         break;
                     }
@@ -333,8 +349,6 @@ static void* hook_thread(void* arg) {
             }
             fclose(fp);
         }
-    } else {
-        write_log("dlopen RTLD_NOLOAD OK");
     }
 
     if (!handle) {
