@@ -1,3 +1,9 @@
+## [1.41.0](https://github.com/legendsciber/morphe-patches/compare/v1.40.8...v1.41.0) (2026-09-07)
+
+### ✨ New Features
+
+* v42 method pointer rewrite instead of entry hook ([e77ee1c](https://github.com/legendsciber/morphe-patches/commit/e77ee1cb6ff4ace4b1411e985ec3d40a9d016ef8))
+
 ## [1.40.8](https://github.com/legendsciber/morphe-patches/compare/v1.40.7...v1.40.8) (2026-09-07)
 
 ### 🐛 Bug Fixes
