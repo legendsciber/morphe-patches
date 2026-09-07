@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-07T22:24:33",
-  "description": "## [1.43.3](https://github.com/legendsciber/morphe-patches/compare/v1.43.2...v1.43.3) (2026-09-07)\n\n### 🐛 Bug Fixes\n\n* call OnPurchaseSucceeded with crash guard to prevent loading hang ([8e93553](https://github.com/legendsciber/morphe-patches/commit/8e93553f35fd9d847c7be0d80709234cccd99073))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.43.3/patches-1.43.3.mpp",
+  "created_at": "2026-09-07T22:52:06",
+  "description": "## [1.43.4](https://github.com/legendsciber/morphe-patches/compare/v1.43.3...v1.43.4) (2026-09-07)\n\n### 🐛 Bug Fixes\n\n* log crash signal and fault address in hook crash handler ([27665ec](https://github.com/legendsciber/morphe-patches/commit/27665eca088d71daf2ba39e789dba1c14016fcb0))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.43.4/patches-1.43.4.mpp",
   "signature_download_url": "",
-  "version": "1.43.3"
+  "version": "1.43.4"
 }
