@@ -1,3 +1,9 @@
+## [1.42.2](https://github.com/legendsciber/morphe-patches/compare/v1.42.1...v1.42.2) (2026-09-07)
+
+### 🐛 Bug Fixes
+
+* single sigsetjmp for entire init, no per-call crash guard ([202796c](https://github.com/legendsciber/morphe-patches/commit/202796c689ab654661a798a911a4574c73134f7b))
+
 ## [1.42.1](https://github.com/legendsciber/morphe-patches/compare/v1.42.0...v1.42.1) (2026-09-07)
 
 ### 🐛 Bug Fixes
