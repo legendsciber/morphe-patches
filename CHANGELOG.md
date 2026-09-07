@@ -1,3 +1,9 @@
+## [1.43.2](https://github.com/legendsciber/morphe-patches/compare/v1.43.1...v1.43.2) (2026-09-07)
+
+### 🐛 Bug Fixes
+
+* block-only mode - just block Google Play, no OnPurchaseSucceeded call ([50a1fcb](https://github.com/legendsciber/morphe-patches/commit/50a1fcb79516877533116ce325b0e31d75e95e38))
+
 ## [1.43.1](https://github.com/legendsciber/morphe-patches/compare/v1.43.0...v1.43.1) (2026-09-07)
 
 ### 🐛 Bug Fixes
