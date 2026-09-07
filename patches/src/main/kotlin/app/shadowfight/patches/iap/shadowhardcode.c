@@ -8,36 +8,36 @@
 #include <stdint.h>
 #include <dlfcn.h>
 #include <signal.h>
+#include <link.h>
 
 #define LOG_TAG "SF2IAP"
+#include <android/log.h>
 #define LOGI(...) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, __VA_ARGS__)
 #define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
-#include <android/log.h>
 
 /*
- * Shadow Fight 2 - IAP Bypass v39
+ * Shadow Fight 2 - IAP Bypass v40
  *
- * Fixed from v38:
- * - Removed broken RVA fallback for OnPurchaseSucceeded MethodInfo
- * - Added diagnostic logging for class/method search
- * - Hook ALWAYS blocks Google Play (never calls original)
- *
- * Flow:
- * 1. Hook GooglePlayStore.Purchase at entry → block Google Play
- * 2. Find PurchasingManager via IL2CPP API → call OnPurchaseSucceeded
- * 3. Rewrite VerifyPurchase/ConfirmPurchase method pointers → immediate success
+ * v40: Use dl_iterate_phdr instead of /proc/self/maps
+ *      Detailed dlsym logging
+ *      Always block Google Play
  */
 
 #define PURCHASE_RVA 0x3C6368C
 #define ENTRY_SIZE 16
 
 static void write_log(const char* msg) {
-    FILE* fp = fopen("/sdcard/Download/sf2-iap-v39.txt", "a");
-    if (fp) { fprintf(fp, "%s\n", msg); fclose(fp); }
+    FILE* fp = fopen("/sdcard/Download/sf2-iap-v40.txt", "a");
+    if (fp) { fprintf(fp, "%s\n", msg); fflush(fp); fclose(fp); }
+}
+
+static void write_log_crash(const char* msg) {
+    FILE* fp = fopen("/sdcard/Download/sf2-iap-v40-crash.txt", "a");
+    if (fp) { fprintf(fp, "%s\n", msg); fflush(fp); fclose(fp); }
 }
 
 static void write_crash(int sig, siginfo_t* info, void* ctx) {
-    FILE* fp = fopen("/sdcard/Download/sf2-iap-v39-crash.txt", "a");
+    FILE* fp = fopen("/sdcard/Download/sf2-iap-v40-crash.txt", "a");
     if (fp) {
         fprintf(fp, "=== CRASH sig=%d fault=%p ===\n", sig, info->si_addr);
         fflush(fp); fsync(fileno(fp)); fclose(fp);
@@ -45,25 +45,29 @@ static void write_crash(int sig, siginfo_t* info, void* ctx) {
     _exit(1);
 }
 
-static uintptr_t find_libil2cpp_fullpath(char* buf, size_t len) {
-    FILE* fp = fopen("/proc/self/maps", "r");
-    if (!fp) return 0;
-    char line[512];
-    uintptr_t base = 0;
-    while (fgets(line, sizeof(line), fp)) {
-        if (strstr(line, "libil2cpp.so")) {
-            char* path = strchr(line, '/');
-            if (path) {
-                char* nl = strchr(path, '\n');
-                if (nl) *nl = 0;
-                strncpy(buf, path, len);
-                sscanf(line, "%lx-", &base);
-                break;
-            }
-        }
+static uintptr_t found_base = 0;
+
+static int callback(struct dl_phdr_info* info, size_t size, void* data) {
+    if (!info->dlpi_name) return 0;
+    const char* name = info->dlpi_name;
+    const char* last_slash = strrchr(name, '/');
+    const char* libname = last_slash ? last_slash + 1 : name;
+
+    if (strstr(libname, "libil2cpp.so")) {
+        found_base = (uintptr_t)info->dlpi_addr;
+        char buf[512];
+        snprintf(buf, sizeof(buf), "dl_iterate: found libil2cpp base=0x%lx name=%s",
+                 (long)found_base, info->dlpi_name);
+        write_log(buf);
+        return 1;
     }
-    fclose(fp);
-    return base;
+    return 0;
+}
+
+static uintptr_t find_libil2cpp(void) {
+    found_base = 0;
+    dl_iterate_phdr(callback, NULL);
+    return found_base;
 }
 
 static int make_writable(void* addr, size_t len) {
@@ -130,7 +134,7 @@ static int load_il2cpp_api(void* handle) {
         il2cpp_loaded = 1;
         write_log("IL2CPP API loaded OK");
     } else {
-        write_log("IL2CPP API load FAILED - see above");
+        write_log("IL2CPP API load FAILED");
     }
     return ok;
 }
@@ -168,6 +172,7 @@ static Il2CppMethod* m_OnPurchaseSucceeded = 0;
 static void find_methods(void) {
     Il2CppDomain* domain = fp_domain_get();
     if (!domain) { write_log("ERROR: domain_get failed"); return; }
+    write_log("domain_get OK");
 
     size_t count = 0;
     const Il2CppAssembly** assemblies = fp_domain_get_assemblies(domain, &count);
@@ -177,7 +182,6 @@ static void find_methods(void) {
     snprintf(buf, sizeof(buf), "Found %zu assemblies", count);
     write_log(buf);
 
-    /* Find PurchasingManager.OnPurchaseSucceeded(string, string, string) */
     for (size_t i = 0; i < count; i++) {
         Il2CppImage* image = fp_assembly_get_image(assemblies[i]);
         if (!image) continue;
@@ -201,15 +205,6 @@ static void find_methods(void) {
 
     if (!m_OnPurchaseSucceeded) {
         write_log("ERROR: PurchasingManager class not found in any assembly");
-        /* Log all assembly images for debugging */
-        for (size_t i = 0; i < count && i < 10; i++) {
-            Il2CppImage* image = fp_assembly_get_image(assemblies[i]);
-            if (image) {
-                const char* name = ""; /* IL2CPP doesn't expose name getter easily */
-                snprintf(buf, sizeof(buf), "Assembly %zu: image=%p", i, image);
-                write_log(buf);
-            }
-        }
     }
 }
 
@@ -220,11 +215,10 @@ static void hooked_purchase(uint64_t x0, uint64_t x1, uint64_t x2) {
     write_log(">>> PURCHASE INTERCEPTED - blocking Google Play");
 
     if (!il2cpp_loaded || !m_OnPurchaseSucceeded) {
-        write_log("ERROR: not ready, but still blocking Google Play");
-        return; /* DO NOT call original - Google Play is blocked */
+        write_log("ERROR: not ready, blocking Google Play anyway");
+        return;
     }
 
-    /* Extract product ID from ProductDefinition (offset 0x18 = storeSpecificId) */
     void* product_id_ptr = *(void**)(x1 + 0x18);
     char product_id[256] = "unknown";
     if (product_id_ptr) {
@@ -242,10 +236,6 @@ static void hooked_purchase(uint64_t x0, uint64_t x1, uint64_t x2) {
     snprintf(buf, sizeof(buf), "Product: %s", product_id);
     write_log(buf);
 
-    /* Get PurchasingManager:
-     * GooglePlayStore + 0x30 = GooglePlayPurchaseCallback
-     * GooglePlayPurchaseCallback + 0x10 = PurchasingManager (m_StoreCallback)
-     */
     void* gp_cb = *(void**)(x0 + 0x30);
     if (!gp_cb) {
         write_log("ERROR: GooglePlayPurchaseCallback is NULL");
@@ -261,11 +251,9 @@ static void hooked_purchase(uint64_t x0, uint64_t x1, uint64_t x2) {
     snprintf(buf, sizeof(buf), "PurchasingManager=%p", mgr);
     write_log(buf);
 
-    /* Create fake receipt and tx ID */
     void* receipt = fp_string_new("{}");
     void* tx_id = fp_string_new("fake_tx_001");
 
-    /* Call OnPurchaseSucceeded(id, receipt, txId) */
     typedef void (*fn_onsuccess)(void* this, void* id, void* receipt, void* tx);
     fn_onsuccess fn = (fn_onsuccess)(*(void**)m_OnPurchaseSucceeded);
 
@@ -277,14 +265,6 @@ static void hooked_purchase(uint64_t x0, uint64_t x1, uint64_t x2) {
 }
 
 /* ==== VerifyPurchase / ConfirmPurchase bypass ==== */
-/*
- * Delegate layout (IL2CPP Unity 2021):
- *   0x00: klass
- *   0x08: monitor
- *   0x10: method_ptr
- *   0x18: invoke_impl
- *   0x20: target
- */
 static void invoke_callback(void* callback, int success) {
     if (!callback) return;
     void* method_ptr = *(void**)((uintptr_t)callback + 0x10);
@@ -312,7 +292,7 @@ static void hooked_confirm(void* this, void* data, void* cb) {
 
 /* ==== Main ==== */
 static void* hook_thread(void* arg) {
-    write_log("=== SF2 IAP Bypass v39 ===");
+    write_log("=== SF2 IAP Bypass v40 ===");
 
     struct sigaction sa;
     sa.sa_sigaction = write_crash;
@@ -322,25 +302,45 @@ static void* hook_thread(void* arg) {
     sigaction(SIGBUS, &sa, NULL);
     sigaction(SIGABRT, &sa, NULL);
 
-    char il2cpp_path[256] = {0};
-    uintptr_t il2cpp_base = find_libil2cpp_fullpath(il2cpp_path, sizeof(il2cpp_path));
+    uintptr_t il2cpp_base = find_libil2cpp();
     if (!il2cpp_base) {
-        write_log("ERROR: libil2cpp.so not found");
+        write_log("ERROR: libil2cpp.so not found via dl_iterate_phdr");
         return NULL;
     }
 
     char buf[512];
-    snprintf(buf, sizeof(buf), "libil2cpp base=0x%lx path=%s", (long)il2cpp_base, il2cpp_path);
+    snprintf(buf, sizeof(buf), "libil2cpp base=0x%lx", (long)il2cpp_base);
     write_log(buf);
 
-    void* handle = dlopen(il2cpp_path, RTLD_NOW);
+    void* handle = dlopen("libil2cpp.so", RTLD_NOW | RTLD_NOLOAD);
     if (!handle) {
-        snprintf(buf, sizeof(buf), "ERROR: dlopen: %s", dlerror());
-        write_log(buf);
+        write_log("dlopen RTLD_NOLOAD failed, trying dlopen with full path from maps");
+        FILE* fp = fopen("/proc/self/maps", "r");
+        if (fp) {
+            char line[512];
+            while (fgets(line, sizeof(line), fp)) {
+                if (strstr(line, "libil2cpp.so")) {
+                    char* path = strchr(line, '/');
+                    if (path) {
+                        char* nl = strchr(path, '\n');
+                        if (nl) *nl = 0;
+                        handle = dlopen(path, RTLD_NOW);
+                        snprintf(buf, sizeof(buf), "dlopen(%s) = %p", path, handle);
+                        write_log(buf);
+                        break;
+                    }
+                }
+            }
+            fclose(fp);
+        }
+    } else {
+        write_log("dlopen RTLD_NOLOAD OK");
+    }
+
+    if (!handle) {
+        write_log("ERROR: dlopen failed");
         return NULL;
     }
-    snprintf(buf, sizeof(buf), "dlopen OK handle=%p", handle);
-    write_log(buf);
 
     if (!load_il2cpp_api(handle)) {
         write_log("ERROR: IL2CPP API load failed");
@@ -349,10 +349,8 @@ static void* hook_thread(void* arg) {
 
     find_methods();
 
-    /* Install GooglePlayStore.Purchase hook */
     install_hook(il2cpp_base + PURCHASE_RVA, "GooglePlayStore.Purchase");
 
-    /* Rewrite VerifyPurchase / ConfirmPurchase method pointers */
     Il2CppDomain* domain = fp_domain_get();
     if (domain) {
         size_t count = 0;
@@ -390,7 +388,7 @@ static void* hook_thread(void* arg) {
 }
 
 JNIEXPORT jint JNI_OnLoad(JavaVM *vm, void *reserved) {
-    write_log("=== JNI_OnLoad v39 ===");
+    write_log("=== JNI_OnLoad v40 ===");
     pthread_t tid;
     pthread_create(&tid, NULL, hook_thread, NULL);
     pthread_detach(tid);
