@@ -16,28 +16,24 @@
 #define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
 
 /*
- * Shadow Fight 2 - IAP Bypass v40
+ * Shadow Fight 2 - IAP Bypass v41
  *
- * v40: Use dl_iterate_phdr instead of /proc/self/maps
- *      Detailed dlsym logging
- *      Always block Google Play
+ * Strategy: Don't use IL2CPP API at JNI_OnLoad time — runtime isn't init'd yet.
+ * 1. Hook GooglePlayStore.Purchase entry ONLY (blocks Google Play, no API needed)
+ * 2. On first purchase trigger → NOW init IL2CPP API (runtime is ready by then)
+ * 3. Find methods, rewrite VP/CP, trigger OnPurchaseSucceeded
  */
 
 #define PURCHASE_RVA 0x3C6368C
 #define ENTRY_SIZE 16
 
 static void write_log(const char* msg) {
-    FILE* fp = fopen("/sdcard/Download/sf2-iap-v40.txt", "a");
-    if (fp) { fprintf(fp, "%s\n", msg); fflush(fp); fclose(fp); }
-}
-
-static void write_log_crash(const char* msg) {
-    FILE* fp = fopen("/sdcard/Download/sf2-iap-v40-crash.txt", "a");
+    FILE* fp = fopen("/sdcard/Download/sf2-iap-v41.txt", "a");
     if (fp) { fprintf(fp, "%s\n", msg); fflush(fp); fclose(fp); }
 }
 
 static void write_crash(int sig, siginfo_t* info, void* ctx) {
-    FILE* fp = fopen("/sdcard/Download/sf2-iap-v40-crash.txt", "a");
+    FILE* fp = fopen("/sdcard/Download/sf2-iap-v41-crash.txt", "a");
     if (fp) {
         fprintf(fp, "=== CRASH sig=%d fault=%p ===\n", sig, info->si_addr);
         fflush(fp); fsync(fileno(fp)); fclose(fp);
@@ -47,17 +43,15 @@ static void write_crash(int sig, siginfo_t* info, void* ctx) {
 
 static uintptr_t found_base = 0;
 
-static int callback(struct dl_phdr_info* info, size_t size, void* data) {
+static int dl_callback(struct dl_phdr_info* info, size_t size, void* data) {
     if (!info->dlpi_name) return 0;
     const char* name = info->dlpi_name;
     const char* last_slash = strrchr(name, '/');
     const char* libname = last_slash ? last_slash + 1 : name;
-
     if (strstr(libname, "libil2cpp.so")) {
         found_base = (uintptr_t)info->dlpi_addr;
         char buf[512];
-        snprintf(buf, sizeof(buf), "dl_iterate: found libil2cpp base=0x%lx name=%s",
-                 (long)found_base, info->dlpi_name);
+        snprintf(buf, sizeof(buf), "dl_iterate: found libil2cpp base=0x%lx", (long)found_base);
         write_log(buf);
         return 1;
     }
@@ -66,7 +60,7 @@ static int callback(struct dl_phdr_info* info, size_t size, void* data) {
 
 static uintptr_t find_libil2cpp(void) {
     found_base = 0;
-    dl_iterate_phdr(callback, NULL);
+    dl_iterate_phdr(dl_callback, NULL);
     return found_base;
 }
 
@@ -87,7 +81,7 @@ static void flush_icache(void* addr, size_t len) {
     __asm__ volatile("isb");
 }
 
-/* ==== IL2CPP API ==== */
+/* ==== IL2CPP API (loaded on-demand) ==== */
 typedef void* Il2CppDomain;
 typedef void* Il2CppAssembly;
 typedef void* Il2CppImage;
@@ -102,16 +96,21 @@ static const Il2CppAssembly** (*fp_domain_get_assemblies)(const Il2CppDomain*, s
 static Il2CppImage* (*fp_assembly_get_image)(const Il2CppAssembly*);
 static Il2CppClass* (*fp_class_from_name)(const Il2CppImage*, const char*, const char*);
 static Il2CppMethod* (*fp_class_get_method_from_name)(Il2CppClass*, const char*, int);
-static void* (*fp_class_get_field_from_name)(Il2CppClass*, const char*);
 static Il2CppObject* (*fp_object_new)(const Il2CppClass*);
 static Il2CppString* (*fp_string_new)(const char*);
 static void (*fp_field_set_value)(Il2CppObject*, Il2CppField*, void*);
 
-static int il2cpp_loaded = 0;
+static int il2cpp_api_ready = 0;
 
-static int load_il2cpp_api(void* handle) {
+static int load_il2cpp_api(void) {
     char buf[256];
     int ok = 1;
+
+    void* handle = dlopen("libil2cpp.so", RTLD_NOW | RTLD_NOLOAD);
+    if (!handle) {
+        write_log("ERROR: dlopen failed in load_api");
+        return 0;
+    }
 
     #define TRY(var, sym) fp_##var = (typeof(fp_##var))dlsym(handle, sym); \
         snprintf(buf, sizeof(buf), "dlsym(%s) = %p", sym, fp_##var); \
@@ -123,15 +122,13 @@ static int load_il2cpp_api(void* handle) {
     TRY(assembly_get_image,    "il2cpp_assembly_get_image")
     TRY(class_from_name,       "il2cpp_class_from_name")
     TRY(class_get_method_from_name, "il2cpp_class_get_method_from_name")
-    TRY(class_get_field_from_name,  "il2cpp_class_get_field_from_name")
     TRY(object_new,            "il2cpp_object_new")
     TRY(string_new,            "il2cpp_string_new")
     TRY(field_set_value,       "il2cpp_field_set_value")
-
     #undef TRY
 
     if (ok) {
-        il2cpp_loaded = 1;
+        il2cpp_api_ready = 1;
         write_log("IL2CPP API loaded OK");
     } else {
         write_log("IL2CPP API load FAILED");
@@ -141,6 +138,7 @@ static int load_il2cpp_api(void* handle) {
 
 /* ==== Hook ==== */
 static uint8_t TRAMP[32] __attribute__((aligned(16)));
+static uintptr_t hook_target = 0;
 
 static void install_hook(uintptr_t target, const char* name) {
     memcpy(TRAMP, (void*)target, ENTRY_SIZE);
@@ -161,26 +159,40 @@ static void install_hook(uintptr_t target, const char* name) {
     memcpy((void*)target, entry, ENTRY_SIZE);
     flush_icache((void*)target, ENTRY_SIZE);
 
+    hook_target = target;
     char buf[128];
     snprintf(buf, sizeof(buf), "Hook OK: %s @ 0x%lx", name, (long)target);
     write_log(buf);
 }
 
-/* ==== Cached refs ==== */
+/* ==== Cached refs (set on first purchase) ==== */
 static Il2CppMethod* m_OnPurchaseSucceeded = 0;
+static int methods_ready = 0;
 
-static void find_methods(void) {
-    char buf[512];
-    write_log("find_methods: calling domain_get...");
+static void ensure_methods_ready(void) {
+    if (methods_ready) return;
+
+    write_log("ensure_methods: loading IL2CPP API...");
+    if (!load_il2cpp_api()) {
+        write_log("ERROR: load_il2cpp_api failed");
+        return;
+    }
+
+    write_log("ensure_methods: calling domain_get...");
     Il2CppDomain* domain = fp_domain_get();
-    snprintf(buf, sizeof(buf), "find_methods: domain=%p", domain);
-    write_log(buf);
-    if (!domain) { write_log("ERROR: domain_get failed"); return; }
+    if (!domain) {
+        write_log("ERROR: domain_get returned NULL (runtime not init?)");
+        return;
+    }
 
     size_t count = 0;
     const Il2CppAssembly** assemblies = fp_domain_get_assemblies(domain, &count);
-    if (!assemblies || count == 0) { write_log("ERROR: no assemblies"); return; }
+    if (!assemblies || count == 0) {
+        write_log("ERROR: no assemblies");
+        return;
+    }
 
+    char buf[512];
     snprintf(buf, sizeof(buf), "Found %zu assemblies", count);
     write_log(buf);
 
@@ -196,8 +208,7 @@ static void find_methods(void) {
 
         m_OnPurchaseSucceeded = fp_class_get_method_from_name(klass, "OnPurchaseSucceeded", 3);
         if (m_OnPurchaseSucceeded) {
-            void* ptr = *(void**)m_OnPurchaseSucceeded;
-            snprintf(buf, sizeof(buf), "OnPurchaseSucceeded methodPtr=%p", ptr);
+            snprintf(buf, sizeof(buf), "OnPurchaseSucceeded methodPtr=%p", *(void**)m_OnPurchaseSucceeded);
             write_log(buf);
         } else {
             write_log("ERROR: OnPurchaseSucceeded(3) not found");
@@ -206,21 +217,27 @@ static void find_methods(void) {
     }
 
     if (!m_OnPurchaseSucceeded) {
-        write_log("ERROR: PurchasingManager class not found in any assembly");
+        write_log("ERROR: PurchasingManager class not found");
     }
+
+    methods_ready = 1;
+    write_log("=== methods_ready ===");
 }
 
-/* ==== Purchase hook: BLOCK Google Play, trigger game flow ==== */
+/* ==== Purchase hook: BLOCK Google Play ==== */
 typedef void (*fn_purchase)(uint64_t, uint64_t, uint64_t);
 
 static void hooked_purchase(uint64_t x0, uint64_t x1, uint64_t x2) {
-    write_log(">>> PURCHASE INTERCEPTED - blocking Google Play");
+    write_log(">>> PURCHASE INTERCEPTED");
 
-    if (!il2cpp_loaded || !m_OnPurchaseSucceeded) {
-        write_log("ERROR: not ready, blocking Google Play anyway");
+    ensure_methods_ready();
+
+    if (!m_OnPurchaseSucceeded) {
+        write_log("ERROR: OnPurchaseSucceeded not available, blocking anyway");
         return;
     }
 
+    /* Extract product ID */
     void* product_id_ptr = *(void**)(x1 + 0x18);
     char product_id[256] = "unknown";
     if (product_id_ptr) {
@@ -238,20 +255,11 @@ static void hooked_purchase(uint64_t x0, uint64_t x1, uint64_t x2) {
     snprintf(buf, sizeof(buf), "Product: %s", product_id);
     write_log(buf);
 
+    /* Get PurchasingManager from GooglePlayStore + 0x30 -> + 0x10 */
     void* gp_cb = *(void**)(x0 + 0x30);
-    if (!gp_cb) {
-        write_log("ERROR: GooglePlayPurchaseCallback is NULL");
-        return;
-    }
-
+    if (!gp_cb) { write_log("ERROR: GooglePlayPurchaseCallback is NULL"); return; }
     void* mgr = *(void**)(gp_cb + 0x10);
-    if (!mgr) {
-        write_log("ERROR: PurchasingManager is NULL");
-        return;
-    }
-
-    snprintf(buf, sizeof(buf), "PurchasingManager=%p", mgr);
-    write_log(buf);
+    if (!mgr) { write_log("ERROR: PurchasingManager is NULL"); return; }
 
     void* receipt = fp_string_new("{}");
     void* tx_id = fp_string_new("fake_tx_001");
@@ -259,42 +267,16 @@ static void hooked_purchase(uint64_t x0, uint64_t x1, uint64_t x2) {
     typedef void (*fn_onsuccess)(void* this, void* id, void* receipt, void* tx);
     fn_onsuccess fn = (fn_onsuccess)(*(void**)m_OnPurchaseSucceeded);
 
-    snprintf(buf, sizeof(buf), "Calling OnPurchaseSucceeded(%s)", product_id);
+    snprintf(buf, sizeof(buf), "Calling OnPurchaseSucceeded(%s) mgr=%p fn=%p", product_id, mgr, fn);
     write_log(buf);
 
     fn(mgr, product_id_ptr, receipt, tx_id);
     write_log("OnPurchaseSucceeded returned OK");
 }
 
-/* ==== VerifyPurchase / ConfirmPurchase bypass ==== */
-static void invoke_callback(void* callback, int success) {
-    if (!callback) return;
-    void* method_ptr = *(void**)((uintptr_t)callback + 0x10);
-    void* target = *(void**)((uintptr_t)callback + 0x20);
-    if (!method_ptr) { write_log("ERROR: callback method_ptr NULL"); return; }
-
-    void* ok_str = fp_string_new("OK");
-    typedef void (*action_fn)(void* target, int arg1, void* arg2, void* arg3);
-    char buf[256];
-    snprintf(buf, sizeof(buf), "Callback: ptr=%p target=%p", method_ptr, target);
-    write_log(buf);
-    ((action_fn)method_ptr)(target, success, ok_str, NULL);
-    write_log("Callback done");
-}
-
-static void hooked_verify(void* this, void* data, void* cb) {
-    write_log(">>> VerifyPurchase bypassed");
-    invoke_callback(cb, 1);
-}
-
-static void hooked_confirm(void* this, void* data, void* cb) {
-    write_log(">>> ConfirmPurchase bypassed");
-    invoke_callback(cb, 1);
-}
-
 /* ==== Main ==== */
 static void* hook_thread(void* arg) {
-    write_log("=== SF2 IAP Bypass v40 ===");
+    write_log("=== SF2 IAP Bypass v41 ===");
 
     struct sigaction sa;
     sa.sa_sigaction = write_crash;
@@ -305,107 +287,29 @@ static void* hook_thread(void* arg) {
     sigaction(SIGABRT, &sa, NULL);
 
     uintptr_t il2cpp_base = 0;
-    for (int attempt = 0; attempt < 60; attempt++) {
+    for (int i = 0; i < 60; i++) {
         il2cpp_base = find_libil2cpp();
         if (il2cpp_base) break;
-        char buf2[128];
-        snprintf(buf2, sizeof(buf2), "Waiting for libil2cpp... attempt %d", attempt + 1);
-        write_log(buf2);
         usleep(500000);
     }
+
     if (!il2cpp_base) {
         write_log("ERROR: libil2cpp.so not found after 30s");
         return NULL;
     }
 
-    char buf[512];
+    char buf[256];
     snprintf(buf, sizeof(buf), "libil2cpp base=0x%lx", (long)il2cpp_base);
     write_log(buf);
 
-    void* handle = NULL;
-
-    handle = dlopen("libil2cpp.so", RTLD_NOW | RTLD_NOLOAD);
-    if (handle) { write_log("dlopen(RTLD_NOLOAD) OK"); }
-
-    if (!handle) {
-        handle = dlopen("libil2cpp.so", RTLD_NOW);
-        if (handle) { write_log("dlopen(RTLD_NOW) OK"); }
-    }
-
-    if (!handle) {
-        FILE* fp = fopen("/proc/self/maps", "r");
-        if (fp) {
-            char line[512];
-            while (fgets(line, sizeof(line), fp)) {
-                if (strstr(line, "libil2cpp.so")) {
-                    char* path = strchr(line, '/');
-                    if (path) {
-                        char* nl = strchr(path, '\n');
-                        if (nl) *nl = 0;
-                        handle = dlopen(path, RTLD_NOW);
-                        snprintf(buf, sizeof(buf), "dlopen(maps:%s) = %p", path, handle);
-                        write_log(buf);
-                        break;
-                    }
-                }
-            }
-            fclose(fp);
-        }
-    }
-
-    if (!handle) {
-        write_log("ERROR: dlopen failed");
-        return NULL;
-    }
-
-    if (!load_il2cpp_api(handle)) {
-        write_log("ERROR: IL2CPP API load failed");
-        return NULL;
-    }
-
-    write_log("IL2CPP API ready, calling find_methods...");
-    find_methods();
-
     install_hook(il2cpp_base + PURCHASE_RVA, "GooglePlayStore.Purchase");
 
-    Il2CppDomain* domain = fp_domain_get();
-    if (domain) {
-        size_t count = 0;
-        const Il2CppAssembly** assemblies = fp_domain_get_assemblies(domain, &count);
-        for (size_t i = 0; i < count; i++) {
-            Il2CppImage* image = fp_assembly_get_image(assemblies[i]);
-            if (!image) continue;
-            Il2CppClass* klass = fp_class_from_name(image, "", "ServerProvider");
-            if (!klass) continue;
-
-            snprintf(buf, sizeof(buf), "Found ServerProvider in assembly %zu", i);
-            write_log(buf);
-
-            Il2CppMethod* vp = fp_class_get_method_from_name(klass, "VerifyPurchase", 2);
-            if (vp) {
-                snprintf(buf, sizeof(buf), "VerifyPurchase: orig=%p", *(void**)vp);
-                write_log(buf);
-                *(void**)vp = hooked_verify;
-                write_log("VerifyPurchase rewritten");
-            }
-
-            Il2CppMethod* cp = fp_class_get_method_from_name(klass, "ConfirmPurchase", 2);
-            if (cp) {
-                snprintf(buf, sizeof(buf), "ConfirmPurchase: orig=%p", *(void**)cp);
-                write_log(buf);
-                *(void**)cp = hooked_confirm;
-                write_log("ConfirmPurchase rewritten");
-            }
-            break;
-        }
-    }
-
-    write_log("=== All hooks installed ===");
+    write_log("=== Hook installed, waiting for first purchase ===");
     return NULL;
 }
 
 JNIEXPORT jint JNI_OnLoad(JavaVM *vm, void *reserved) {
-    write_log("=== JNI_OnLoad v40 ===");
+    write_log("=== JNI_OnLoad v41 ===");
     pthread_t tid;
     pthread_create(&tid, NULL, hook_thread, NULL);
     pthread_detach(tid);
