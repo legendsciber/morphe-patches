@@ -1,3 +1,9 @@
+## [1.40.2](https://github.com/legendsciber/morphe-patches/compare/v1.40.1...v1.40.2) (2026-09-07)
+
+### 🐛 Bug Fixes
+
+* IL2CPP API symbol names for dlsym ([689a92c](https://github.com/legendsciber/morphe-patches/commit/689a92c8e046fedc603c0b6304cc7574d2468004))
+
 ## [1.40.1](https://github.com/legendsciber/morphe-patches/compare/v1.40.0...v1.40.1) (2026-09-07)
 
 ### 🐛 Bug Fixes
