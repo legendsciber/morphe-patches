@@ -1,3 +1,9 @@
+## [1.43.1](https://github.com/legendsciber/morphe-patches/compare/v1.43.0...v1.43.1) (2026-09-07)
+
+### 🐛 Bug Fixes
+
+* add step-by-step logging to hook function for crash diagnosis ([b08d061](https://github.com/legendsciber/morphe-patches/commit/b08d061de38fddb8e0a2db4603205be0689d9d74))
+
 ## [1.43.0](https://github.com/legendsciber/morphe-patches/compare/v1.42.4...v1.43.0) (2026-09-07)
 
 ### ✨ New Features
