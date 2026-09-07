@@ -106,7 +106,6 @@ static void* (*fp_class_get_field_from_name)(Il2CppClass*, const char*);
 static Il2CppObject* (*fp_object_new)(const Il2CppClass*);
 static Il2CppString* (*fp_string_new)(const char*);
 static void (*fp_field_set_value)(Il2CppObject*, Il2CppField*, void*);
-static void* (*fp_thread_attach)(const Il2CppDomain*);
 
 static int il2cpp_loaded = 0;
 
@@ -128,7 +127,6 @@ static int load_il2cpp_api(void* handle) {
     TRY(object_new,            "il2cpp_object_new")
     TRY(string_new,            "il2cpp_string_new")
     TRY(field_set_value,       "il2cpp_field_set_value")
-    TRY(thread_attach,         "il2cpp_thread_attach")
 
     #undef TRY
 
@@ -365,10 +363,7 @@ static void* hook_thread(void* arg) {
         return NULL;
     }
 
-    write_log("Calling il2cpp_thread_attach...");
-    fp_thread_attach(NULL);
-    write_log("il2cpp_thread_attach done");
-
+    write_log("IL2CPP API ready, calling find_methods...");
     find_methods();
 
     install_hook(il2cpp_base + PURCHASE_RVA, "GooglePlayStore.Purchase");
