@@ -26,9 +26,14 @@
  * 4. Our hook blocks Google Play + calls OnPurchaseSucceeded
  */
 
+static volatile int g_log_in_progress = 0;
+
 static void write_log(const char* msg) {
+    if (g_log_in_progress) return;
+    g_log_in_progress = 1;
     FILE* fp = fopen("/sdcard/Download/sf2-iap-v42.txt", "a");
     if (fp) { fprintf(fp, "%s\n", msg); fflush(fp); fclose(fp); }
+    g_log_in_progress = 0;
 }
 
 static void write_crash(int sig, siginfo_t* info, void* ctx) {
@@ -213,9 +218,23 @@ static void* init_thread(void* arg) {
     }
 
     size_t count = 0;
-    const Il2CppAssembly** assemblies = fp_domain_get_assemblies(domain, &count);
+    const Il2CppAssembly** assemblies = NULL;
+
+    /* Poll until assemblies are loaded */
+    for (int i = 0; i < 120; i++) {
+        count = 0;
+        assemblies = fp_domain_get_assemblies(domain, &count);
+        if (assemblies && count > 0) {
+            char buf2[128];
+            snprintf(buf2, sizeof(buf2), "Assemblies ready after %d attempts, count=%zu", i, count);
+            write_log(buf2);
+            break;
+        }
+        usleep(250000);
+    }
+
     if (!assemblies || count == 0) {
-        write_log("ERROR: no assemblies");
+        write_log("ERROR: assemblies not loaded after 30s");
         return NULL;
     }
 
