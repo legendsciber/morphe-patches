@@ -1,3 +1,9 @@
+## [1.42.3](https://github.com/legendsciber/morphe-patches/compare/v1.42.2...v1.42.3) (2026-09-07)
+
+### 🐛 Bug Fixes
+
+* revert to proven SAFE_CALL per-call crash guard, keep namespace fix ([eedcd53](https://github.com/legendsciber/morphe-patches/commit/eedcd53e44c9dcb588fd01919576a66bd6fa8341))
+
 ## [1.42.2](https://github.com/legendsciber/morphe-patches/compare/v1.42.1...v1.42.2) (2026-09-07)
 
 ### 🐛 Bug Fixes
