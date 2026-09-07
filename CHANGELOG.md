@@ -1,3 +1,9 @@
+## [1.42.1](https://github.com/legendsciber/morphe-patches/compare/v1.42.0...v1.42.1) (2026-09-07)
+
+### 🐛 Bug Fixes
+
+* GooglePlayStore namespace is UnityEngine.Purchasing, not empty ([38400d9](https://github.com/legendsciber/morphe-patches/commit/38400d90c2807b41d60e1fd71a006bb8d4349242))
+
 ## [1.42.0](https://github.com/legendsciber/morphe-patches/compare/v1.41.1...v1.42.0) (2026-09-07)
 
 ### ✨ New Features
