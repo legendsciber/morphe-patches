@@ -1,3 +1,9 @@
+## [1.42.4](https://github.com/legendsciber/morphe-patches/compare/v1.42.3...v1.42.4) (2026-09-07)
+
+### 🐛 Bug Fixes
+
+* wait 20s before IL2CPP calls to let runtime initialize safely ([de2e7d5](https://github.com/legendsciber/morphe-patches/commit/de2e7d560ae0bf77e3f3880cbba7cd58e326a5c3))
+
 ## [1.42.3](https://github.com/legendsciber/morphe-patches/compare/v1.42.2...v1.42.3) (2026-09-07)
 
 ### 🐛 Bug Fixes
