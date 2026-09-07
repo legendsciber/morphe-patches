@@ -1,3 +1,9 @@
+## [1.40.7](https://github.com/legendsciber/morphe-patches/compare/v1.40.6...v1.40.7) (2026-09-07)
+
+### 🐛 Bug Fixes
+
+* remove il2cpp_thread_attach crash, keep find_methods logging ([9e8700a](https://github.com/legendsciber/morphe-patches/commit/9e8700ae92335b82fd036a107f5092c0d5dba758))
+
 ## [1.40.6](https://github.com/legendsciber/morphe-patches/compare/v1.40.5...v1.40.6) (2026-09-07)
 
 ### 🐛 Bug Fixes

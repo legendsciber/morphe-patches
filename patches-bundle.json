@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-07T17:31:32",
-  "description": "## [1.40.6](https://github.com/legendsciber/morphe-patches/compare/v1.40.5...v1.40.6) (2026-09-07)\n\n### 🐛 Bug Fixes\n\n* add il2cpp_thread_attach before API calls to prevent crash ([2409fe2](https://github.com/legendsciber/morphe-patches/commit/2409fe2875b779fcbb4e5b56ee4994587e7332bc))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.40.6/patches-1.40.6.mpp",
+  "created_at": "2026-09-07T17:48:53",
+  "description": "## [1.40.7](https://github.com/legendsciber/morphe-patches/compare/v1.40.6...v1.40.7) (2026-09-07)\n\n### 🐛 Bug Fixes\n\n* remove il2cpp_thread_attach crash, keep find_methods logging ([9e8700a](https://github.com/legendsciber/morphe-patches/commit/9e8700ae92335b82fd036a107f5092c0d5dba758))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.40.7/patches-1.40.7.mpp",
   "signature_download_url": "",
-  "version": "1.40.6"
+  "version": "1.40.7"
 }
