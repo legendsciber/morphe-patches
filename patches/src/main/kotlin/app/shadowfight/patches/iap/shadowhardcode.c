@@ -106,18 +106,18 @@ static void (*fp_field_set_value)(Il2CppObject*, Il2CppField*, void*);
 static int il2cpp_loaded = 0;
 
 static int load_il2cpp_api(void* handle) {
-    #define LOAD(name) fp_##name = (typeof(fp_##name))dlsym(handle, #name); \
-        if (!fp_##name) { LOGE("Missing: " #name); return 0; }
+    #define LOAD(var, sym) fp_##var = (typeof(fp_##var))dlsym(handle, sym); \
+        if (!fp_##var) { LOGE("Missing: " sym); return 0; }
 
-    LOAD(domain_get)
-    LOAD(domain_get_assemblies)
-    LOAD(assembly_get_image)
-    LOAD(class_from_name)
-    LOAD(class_get_method_from_name)
-    LOAD(class_get_field_from_name)
-    LOAD(object_new)
-    LOAD(string_new)
-    LOAD(field_set_value)
+    LOAD(domain_get,            "il2cpp_domain_get")
+    LOAD(domain_get_assemblies, "il2cpp_domain_get_assemblies")
+    LOAD(assembly_get_image,    "il2cpp_assembly_get_image")
+    LOAD(class_from_name,       "il2cpp_class_from_name")
+    LOAD(class_get_method_from_name, "il2cpp_class_get_method_from_name")
+    LOAD(class_get_field_from_name,  "il2cpp_class_get_field_from_name")
+    LOAD(object_new,            "il2cpp_object_new")
+    LOAD(string_new,            "il2cpp_string_new")
+    LOAD(field_set_value,       "il2cpp_field_set_value")
 
     #undef LOAD
     il2cpp_loaded = 1;
