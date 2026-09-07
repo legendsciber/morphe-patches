@@ -101,9 +101,13 @@ static Il2CppMethod* m_OnPurchaseSucceeded = 0;
 /* Crash recovery for OnPurchaseSucceeded call */
 static sigjmp_buf g_hook_jmp;
 static volatile int g_hook_crashed = 0;
+static volatile int g_hook_sig = 0;
+static volatile void* g_hook_fault = NULL;
 
 static void hook_crash_handler(int sig, siginfo_t* info, void* ctx) {
     g_hook_crashed = 1;
+    g_hook_sig = sig;
+    g_hook_fault = info->si_addr;
     siglongjmp(g_hook_jmp, 1);
 }
 
@@ -160,7 +164,9 @@ void hooked_purchase_entry(void* this_ptr, void* product_def, void* price_overri
         fn(mgr, product_id_ptr, receipt, tx_id);
         write_log("OnPurchaseSucceeded returned OK");
     } else {
-        write_log("OnPurchaseSucceeded crashed - purchase blocked anyway");
+        char cbuf[256];
+        snprintf(cbuf, sizeof(cbuf), "OnPurchaseSucceeded CRASHED: sig=%d fault=%p", g_hook_sig, g_hook_fault);
+        write_log(cbuf);
     }
 
     /* Restore original handlers */
