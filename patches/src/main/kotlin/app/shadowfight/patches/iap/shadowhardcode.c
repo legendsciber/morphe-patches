@@ -15,10 +15,10 @@
 #include <android/log.h>
 
 /*
- * Shadow Fight 2 - IAP Bypass v42
+ * Shadow Fight 2 - IAP Bypass v44
  *
- * Method pointer rewrite. Per-call SAFE_CALL crash guard (proven to work).
- * GooglePlayStore is in UnityEngine.Purchasing namespace.
+ * Method pointer rewrite + vtable scan.
+ * Async OnPurchaseSucceeded with thread attach + GC-safe string copy.
  */
 
 static volatile int g_log_busy = 0;
@@ -26,7 +26,7 @@ static volatile int g_log_busy = 0;
 static void write_log(const char* msg) {
     if (g_log_busy) return;
     g_log_busy = 1;
-    FILE* fp = fopen("/sdcard/Download/sf2-iap-v42.txt", "a");
+    FILE* fp = fopen("/sdcard/Download/sf2-iap-v44.txt", "a");
     if (fp) { fprintf(fp, "%s\n", msg); fflush(fp); fclose(fp); }
     g_log_busy = 0;
 }
@@ -38,6 +38,7 @@ typedef void* Il2CppImage;
 typedef void* Il2CppClass;
 typedef void* Il2CppMethod;
 typedef void* Il2CppString;
+typedef void* Il2CppThread;
 
 static Il2CppDomain (*fp_domain_get)(void);
 static const Il2CppAssembly** (*fp_domain_get_assemblies)(const Il2CppDomain*, size_t*);
@@ -45,23 +46,30 @@ static Il2CppImage* (*fp_assembly_get_image)(const Il2CppAssembly*);
 static Il2CppClass* (*fp_class_from_name)(const Il2CppImage*, const char*, const char*);
 static Il2CppMethod* (*fp_class_get_method_from_name)(Il2CppClass*, const char*, int);
 static Il2CppString* (*fp_string_new)(const char*);
+static Il2CppThread* (*fp_thread_attach)(const Il2CppDomain*);
+static Il2CppThread* (*fp_thread_current)(void);
+static void* (*fp_domain_get_assemblies_fn)(const Il2CppDomain*, size_t*);
+
+static Il2CppDomain* g_domain = NULL;
 
 static int load_api(void* h) {
     int ok = 1;
-    #define L(sym, var) fp_##var = dlsym(h, #sym); if(!fp_##var) ok=0;
-    L(il2cpp_domain_get, domain_get);
-    L(il2cpp_domain_get_assemblies, domain_get_assemblies);
-    L(il2cpp_assembly_get_image, assembly_get_image);
-    L(il2cpp_class_from_name, class_from_name);
-    L(il2cpp_class_get_method_from_name, class_get_method_from_name);
-    L(il2cpp_string_new, string_new);
+    #define L(sym) fp_##sym = dlsym(h, "il2cpp_" #sym); if(!fp_##sym) { write_log("MISSING: " "il2cpp_" #sym); ok=0; }
+    L(domain_get);
+    L(domain_get_assemblies);
+    L(assembly_get_image);
+    L(class_from_name);
+    L(class_get_method_from_name);
+    L(string_new);
+    L(thread_attach);
+    L(thread_current);
     #undef L
-    if (ok) write_log("API loaded");
+    if (ok) write_log("API loaded (8 functions)");
     else write_log("API load FAILED");
     return ok;
 }
 
-/* ==== Crash guard: per-call sigsetjmp (proven working) ==== */
+/* ==== Crash guard ==== */
 static sigjmp_buf g_jmp;
 
 static void on_crash(int sig, siginfo_t* info, void* ctx) {
@@ -84,7 +92,6 @@ static void guard_off(void) {
     sigaction(SIGABRT, &g_old_abrt, NULL);
 }
 
-/* Safe call: returns result or NULL if crashed. NO write_log/snprintf in recovery. */
 #define SAFE(type, call) ({ \
     type _r = (type)0; \
     guard_on(); \
@@ -111,47 +118,56 @@ static void hook_crash_handler(int sig, siginfo_t* info, void* ctx) {
     siglongjmp(g_hook_jmp, 1);
 }
 
-void hooked_purchase_entry(void* this_ptr, void* product_def, void* price_override) {
-    write_log(">>> PURCHASE INTERCEPTED");
+/* GC-safe: copy product ID from Il2CppString into native buffer */
+static void copy_product_id(void* il2cpp_str, char* out, int max) {
+    out[0] = 0;
+    if (!il2cpp_str) return;
+    int len = *(int*)((uintptr_t)il2cpp_str + 0x10);
+    if (len <= 0 || len >= max) return;
+    uint16_t* chars = (uint16_t*)((uintptr_t)il2cpp_str + 0x14);
+    for (int i = 0; i < len; i++) out[i] = (char)chars[i];
+    out[len] = 0;
+}
+
+static void* async_purchase_thread(void* arg) {
+    /* Attach this thread to IL2CPP runtime */
+    if (fp_thread_attach && g_domain) {
+        fp_thread_attach(g_domain);
+        write_log("Async: thread attached to IL2CPP");
+    }
+
+    /* Wait for game state to settle */
+    usleep(1000000);
+
+    write_log("Async: attempting OnPurchaseSucceeded...");
 
     if (!m_OnPurchaseSucceeded || !fp_string_new) {
-        write_log("ERROR: not ready, blocking anyway");
-        return;
+        write_log("Async: not ready");
+        return NULL;
     }
 
-    /* Extract product ID */
-    void* product_id_ptr = product_def ? *(void**)((uintptr_t)product_def + 0x18) : NULL;
-    char product_id[256] = "unknown";
-    if (product_id_ptr) {
-        int len = *(int*)((uintptr_t)product_id_ptr + 0x10);
-        if (len > 0 && len < 128) {
-            uint16_t* chars = (uint16_t*)((uintptr_t)product_id_ptr + 0x14);
-            for (int i = 0; i < len && i < 255; i++) product_id[i] = (char)chars[i];
-            product_id[len] = 0;
-        }
+    /* Read stored values (native copies, GC-safe) */
+    extern void* g_async_mgr;
+    extern char g_async_pid_str[256];
+
+    if (!g_async_mgr || !g_async_pid_str[0]) {
+        write_log("Async: mgr or pid empty");
+        return NULL;
     }
 
-    char buf[512];
-    snprintf(buf, sizeof(buf), "Product: %s", product_id);
-    write_log(buf);
-
-    /* Get PurchasingManager */
-    void* gp_cb = *(void**)((uintptr_t)this_ptr + 0x30);
-    void* mgr = gp_cb ? *(void**)((uintptr_t)gp_cb + 0x10) : NULL;
-    if (!mgr) { write_log("ERROR: PurchasingManager NULL"); return; }
-
-    /* Create fake receipt and tx ID */
+    /* Create new IL2CPP strings from native copies */
+    void* product_id_str = fp_string_new(g_async_pid_str);
     void* receipt = fp_string_new("{}");
     void* tx_id = fp_string_new("fake_tx_001");
 
-    /* Get OnPurchaseSucceeded function pointer */
     typedef void (*fn_t)(void*, void*, void*, void*);
     fn_t fn = (fn_t)(*(void**)m_OnPurchaseSucceeded);
 
-    snprintf(buf, sizeof(buf), "Calling OnPurchaseSucceeded mgr=%p fn=%p", mgr, fn);
+    char buf[512];
+    snprintf(buf, sizeof(buf), "Async: fn=%p mgr=%p pid_str=%p receipt=%p tx=%p",
+             fn, g_async_mgr, product_id_str, receipt, tx_id);
     write_log(buf);
 
-    /* Install crash handler to catch failures */
     struct sigaction sa, old_segv, old_abrt;
     sa.sa_sigaction = hook_crash_handler;
     sa.sa_flags = SA_SIGINFO;
@@ -161,22 +177,61 @@ void hooked_purchase_entry(void* this_ptr, void* product_def, void* price_overri
     g_hook_crashed = 0;
 
     if (sigsetjmp(g_hook_jmp, 1) == 0) {
-        fn(mgr, product_id_ptr, receipt, tx_id);
-        write_log("OnPurchaseSucceeded returned OK");
+        fn(g_async_mgr, product_id_str, receipt, tx_id);
+        write_log("Async: OnPurchaseSucceeded returned OK!");
     } else {
         char cbuf[256];
-        snprintf(cbuf, sizeof(cbuf), "OnPurchaseSucceeded CRASHED: sig=%d fault=%p", g_hook_sig, g_hook_fault);
+        snprintf(cbuf, sizeof(cbuf), "Async: CRASHED sig=%d fault=%p", g_hook_sig, g_hook_fault);
         write_log(cbuf);
     }
 
-    /* Restore original handlers */
     sigaction(SIGSEGV, &old_segv, NULL);
     sigaction(SIGABRT, &old_abrt, NULL);
+    return NULL;
+}
+
+void* g_async_mgr = NULL;
+char g_async_pid_str[256] = {0};
+
+void hooked_purchase_entry(void* this_ptr, void* product_def, void* price_override) {
+    write_log(">>> PURCHASE INTERCEPTED");
+
+    if (!m_OnPurchaseSucceeded || !fp_string_new) {
+        write_log("ERROR: not ready, blocking anyway");
+        return;
+    }
+
+    /* Extract product ID into native buffer (GC-safe) */
+    void* product_id_ptr = product_def ? *(void**)((uintptr_t)product_def + 0x18) : NULL;
+    g_async_pid_str[0] = 0;
+    copy_product_id(product_id_ptr, g_async_pid_str, sizeof(g_async_pid_str));
+
+    char buf[512];
+    snprintf(buf, sizeof(buf), "Product: %s", g_async_pid_str);
+    write_log(buf);
+
+    /* Get PurchasingManager via GooglePlayPurchaseCallback -> m_StoreCallback */
+    void* gp_cb = *(void**)((uintptr_t)this_ptr + 0x30);
+    void* mgr = gp_cb ? *(void**)((uintptr_t)gp_cb + 0x10) : NULL;
+    if (!mgr) { write_log("ERROR: PurchasingManager NULL"); return; }
+
+    snprintf(buf, sizeof(buf), "gp_cb=%p mgr=%p", gp_cb, mgr);
+    write_log(buf);
+
+    /* Store for async call */
+    g_async_mgr = mgr;
+
+    /* Spawn async thread */
+    pthread_t tid;
+    pthread_create(&tid, NULL, async_purchase_thread, NULL);
+    pthread_detach(tid);
+
+    write_log("Hook returning, async thread spawned");
 }
 
 /* ==== Init thread ==== */
 static void* init_thread(void* arg) {
-    write_log("=== SF2 IAP Bypass v42 ===");
+    write_log("=== SF2 IAP Bypass v44 ===");
 
     /* Wait for libil2cpp.so */
     void* handle = NULL;
@@ -194,11 +249,10 @@ static void* init_thread(void* arg) {
     sleep(20);
     write_log("Wait done, starting init");
 
-    /* Poll until all IL2CPP calls succeed (each wrapped in SAFE) */
+    /* Poll until all IL2CPP calls succeed */
     for (int attempt = 0; attempt < 120; attempt++) {
         char buf[256];
 
-        /* domain_get */
         Il2CppDomain* domain = SAFE(Il2CppDomain*, fp_domain_get());
         if (!domain) {
             if (attempt % 10 == 0) {
@@ -208,8 +262,8 @@ static void* init_thread(void* arg) {
             usleep(500000);
             continue;
         }
+        g_domain = domain;
 
-        /* get_assemblies */
         size_t count = 0;
         const Il2CppAssembly** asms = SAFE(const Il2CppAssembly**, fp_domain_get_assemblies(domain, &count));
         if (!asms || count == 0) {
@@ -224,7 +278,7 @@ static void* init_thread(void* arg) {
         snprintf(buf, sizeof(buf), "Got %zu assemblies", count);
         write_log(buf);
 
-        /* Find GooglePlayStore.Purchase (namespace: UnityEngine.Purchasing) */
+        /* Find GooglePlayStore.Purchase */
         Il2CppMethod* purchase_method = NULL;
         for (size_t i = 0; i < count; i++) {
             void* img = SAFE(void*, fp_assembly_get_image(asms[i]));
@@ -262,11 +316,9 @@ static void* init_thread(void* arg) {
         }
 
         long page = sysconf(_SC_PAGESIZE);
-
-        /* Get the original method pointer */
         void* orig_ptr = *(void**)purchase_method;
 
-        /* REWRITE METHOD POINTER (for direct calls) */
+        /* REWRITE METHOD POINTER */
         void** slot = (void**)purchase_method;
         snprintf(buf, sizeof(buf), "MethodInfo rewrite: %p -> %p", orig_ptr, (void*)hooked_purchase_entry);
         write_log(buf);
@@ -277,24 +329,19 @@ static void* init_thread(void* arg) {
             write_log("MethodInfo pointer rewritten");
         }
 
-        /* REWRITE VTABLE ENTRY (for virtual calls)
-         * Scan memory near the class for the original method pointer.
-         * The vtable contains copies of method pointers.
-         * The class pointer is at MethodInfo+0x20 (klass field).
-         */
+        /* REWRITE VTABLE ENTRY */
         void* klass_ptr = *(void**)((uintptr_t)purchase_method + 0x20);
         snprintf(buf, sizeof(buf), "Class=%p, scanning for vtable...", klass_ptr);
         write_log(buf);
 
-        /* Scan a 4KB region starting from the class pointer for the original method ptr */
         int vtable_found = 0;
         uintptr_t scan_start = (uintptr_t)klass_ptr;
-        uintptr_t scan_end = scan_start + 0x2000; /* scan 8KB */
+        uintptr_t scan_end = scan_start + 0x2000;
 
         for (uintptr_t addr = scan_start; addr < scan_end; addr += sizeof(void*)) {
             void* val = *(void**)addr;
             if (val == orig_ptr) {
-                snprintf(buf, sizeof(buf), "Vtable match at offset 0x%lx, rewriting", (long)(addr - scan_start));
+                snprintf(buf, sizeof(buf), "Vtable match at offset 0x%lx", (long)(addr - scan_start));
                 write_log(buf);
                 void* pg = (void*)(addr & ~(page - 1));
                 if (mprotect(pg, page, PROT_READ | PROT_WRITE) == 0) {
@@ -307,7 +354,7 @@ static void* init_thread(void* arg) {
         }
 
         if (!vtable_found) {
-            write_log("WARNING: vtable entry not found, only MethodInfo rewritten");
+            write_log("WARNING: vtable entry not found");
         }
 
         write_log("=== ALL REWRITES DONE ===");
@@ -319,7 +366,7 @@ static void* init_thread(void* arg) {
 }
 
 JNIEXPORT jint JNI_OnLoad(JavaVM *vm, void *reserved) {
-    write_log("=== JNI_OnLoad v42 ===");
+    write_log("=== JNI_OnLoad v44 ===");
     pthread_t tid;
     pthread_create(&tid, NULL, init_thread, NULL);
     pthread_detach(tid);
