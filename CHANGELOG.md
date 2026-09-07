@@ -1,3 +1,9 @@
+## [1.43.0](https://github.com/legendsciber/morphe-patches/compare/v1.42.4...v1.43.0) (2026-09-07)
+
+### ✨ New Features
+
+* add vtable scan and rewrite for virtual method interception ([5faadf1](https://github.com/legendsciber/morphe-patches/commit/5faadf18b310c4f1c514d2af2b099b81d54bb7ab))
+
 ## [1.42.4](https://github.com/legendsciber/morphe-patches/compare/v1.42.3...v1.42.4) (2026-09-07)
 
 ### 🐛 Bug Fixes
