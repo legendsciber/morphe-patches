@@ -98,14 +98,74 @@ static void guard_off(void) {
 /* ==== Hook function ==== */
 static Il2CppMethod* m_OnPurchaseSucceeded = 0;
 
-void hooked_purchase_entry(void* this_ptr, void* product_def, void* price_override) {
-    write_log(">>> PURCHASE INTERCEPTED - blocking Google Play");
+/* Crash recovery for OnPurchaseSucceeded call */
+static sigjmp_buf g_hook_jmp;
+static volatile int g_hook_crashed = 0;
 
-    /* Just block Google Play. Don't call OnPurchaseSucceeded (crashes).
-     * The game will handle the "failed" purchase gracefully.
-     * No money is charged since Google Play never opens.
-     */
-    return;
+static void hook_crash_handler(int sig, siginfo_t* info, void* ctx) {
+    g_hook_crashed = 1;
+    siglongjmp(g_hook_jmp, 1);
+}
+
+void hooked_purchase_entry(void* this_ptr, void* product_def, void* price_override) {
+    write_log(">>> PURCHASE INTERCEPTED");
+
+    if (!m_OnPurchaseSucceeded || !fp_string_new) {
+        write_log("ERROR: not ready, blocking anyway");
+        return;
+    }
+
+    /* Extract product ID */
+    void* product_id_ptr = product_def ? *(void**)((uintptr_t)product_def + 0x18) : NULL;
+    char product_id[256] = "unknown";
+    if (product_id_ptr) {
+        int len = *(int*)((uintptr_t)product_id_ptr + 0x10);
+        if (len > 0 && len < 128) {
+            uint16_t* chars = (uint16_t*)((uintptr_t)product_id_ptr + 0x14);
+            for (int i = 0; i < len && i < 255; i++) product_id[i] = (char)chars[i];
+            product_id[len] = 0;
+        }
+    }
+
+    char buf[512];
+    snprintf(buf, sizeof(buf), "Product: %s", product_id);
+    write_log(buf);
+
+    /* Get PurchasingManager */
+    void* gp_cb = *(void**)((uintptr_t)this_ptr + 0x30);
+    void* mgr = gp_cb ? *(void**)((uintptr_t)gp_cb + 0x10) : NULL;
+    if (!mgr) { write_log("ERROR: PurchasingManager NULL"); return; }
+
+    /* Create fake receipt and tx ID */
+    void* receipt = fp_string_new("{}");
+    void* tx_id = fp_string_new("fake_tx_001");
+
+    /* Get OnPurchaseSucceeded function pointer */
+    typedef void (*fn_t)(void*, void*, void*, void*);
+    fn_t fn = (fn_t)(*(void**)m_OnPurchaseSucceeded);
+
+    snprintf(buf, sizeof(buf), "Calling OnPurchaseSucceeded mgr=%p fn=%p", mgr, fn);
+    write_log(buf);
+
+    /* Install crash handler to catch failures */
+    struct sigaction sa, old_segv, old_abrt;
+    sa.sa_sigaction = hook_crash_handler;
+    sa.sa_flags = SA_SIGINFO;
+    sigemptyset(&sa.sa_mask);
+    sigaction(SIGSEGV, &sa, &old_segv);
+    sigaction(SIGABRT, &sa, &old_abrt);
+    g_hook_crashed = 0;
+
+    if (sigsetjmp(g_hook_jmp, 1) == 0) {
+        fn(mgr, product_id_ptr, receipt, tx_id);
+        write_log("OnPurchaseSucceeded returned OK");
+    } else {
+        write_log("OnPurchaseSucceeded crashed - purchase blocked anyway");
+    }
+
+    /* Restore original handlers */
+    sigaction(SIGSEGV, &old_segv, NULL);
+    sigaction(SIGABRT, &old_abrt, NULL);
 }
 
 /* ==== Init thread ==== */
