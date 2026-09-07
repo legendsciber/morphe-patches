@@ -1,3 +1,9 @@
+## [1.40.3](https://github.com/legendsciber/morphe-patches/compare/v1.40.2...v1.40.3) (2026-09-07)
+
+### 🐛 Bug Fixes
+
+* detailed dlsym logging to diagnose API load failure ([320fcc2](https://github.com/legendsciber/morphe-patches/commit/320fcc2fe5997ec2a526b798f39a12d798ac9601))
+
 ## [1.40.2](https://github.com/legendsciber/morphe-patches/compare/v1.40.1...v1.40.2) (2026-09-07)
 
 ### 🐛 Bug Fixes
