@@ -1,3 +1,9 @@
+## [1.43.4](https://github.com/legendsciber/morphe-patches/compare/v1.43.3...v1.43.4) (2026-09-07)
+
+### 🐛 Bug Fixes
+
+* log crash signal and fault address in hook crash handler ([27665ec](https://github.com/legendsciber/morphe-patches/commit/27665eca088d71daf2ba39e789dba1c14016fcb0))
+
 ## [1.43.3](https://github.com/legendsciber/morphe-patches/compare/v1.43.2...v1.43.3) (2026-09-07)
 
 ### 🐛 Bug Fixes
