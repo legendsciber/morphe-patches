@@ -1,3 +1,9 @@
+## [1.40.4](https://github.com/legendsciber/morphe-patches/compare/v1.40.3...v1.40.4) (2026-09-07)
+
+### 🐛 Bug Fixes
+
+* use dl_iterate_phdr to find libil2cpp, fix maps reading ([f68f499](https://github.com/legendsciber/morphe-patches/commit/f68f4994114b355355f8acec42c2f0b46c321dcc))
+
 ## [1.40.3](https://github.com/legendsciber/morphe-patches/compare/v1.40.2...v1.40.3) (2026-09-07)
 
 ### 🐛 Bug Fixes
