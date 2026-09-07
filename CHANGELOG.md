@@ -1,3 +1,9 @@
+## [1.43.3](https://github.com/legendsciber/morphe-patches/compare/v1.43.2...v1.43.3) (2026-09-07)
+
+### 🐛 Bug Fixes
+
+* call OnPurchaseSucceeded with crash guard to prevent loading hang ([8e93553](https://github.com/legendsciber/morphe-patches/commit/8e93553f35fd9d847c7be0d80709234cccd99073))
+
 ## [1.43.2](https://github.com/legendsciber/morphe-patches/compare/v1.43.1...v1.43.2) (2026-09-07)
 
 ### 🐛 Bug Fixes
