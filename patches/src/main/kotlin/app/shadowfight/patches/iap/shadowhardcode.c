@@ -106,6 +106,7 @@ void hooked_purchase_entry(void* this_ptr, void* product_def, void* price_overri
         return;
     }
 
+    write_log("Step1: extract product ID");
     void* product_id_ptr = product_def ? *(void**)((uintptr_t)product_def + 0x18) : NULL;
     char product_id[256] = "unknown";
     if (product_id_ptr) {
@@ -118,24 +119,33 @@ void hooked_purchase_entry(void* this_ptr, void* product_def, void* price_overri
     }
 
     char buf[512];
-    snprintf(buf, sizeof(buf), "Product: %s", product_id);
+    snprintf(buf, sizeof(buf), "Product: %s this=%p pd=%p", product_id, this_ptr, product_def);
     write_log(buf);
 
+    write_log("Step2: get PurchasingManager");
     void* gp_cb = *(void**)((uintptr_t)this_ptr + 0x30);
-    void* mgr = gp_cb ? *(void**)((uintptr_t)gp_cb + 0x10) : NULL;
+    if (!gp_cb) { write_log("ERROR: GooglePlayPurchaseCallback NULL"); return; }
+    void* mgr = *(void**)((uintptr_t)gp_cb + 0x10);
     if (!mgr) { write_log("ERROR: PurchasingManager NULL"); return; }
 
-    void* receipt = fp_string_new("{}");
-    void* tx_id = fp_string_new("fake_tx_001");
-
-    typedef void (*fn_t)(void*, void*, void*, void*);
-    fn_t fn = (fn_t)(*(void**)m_OnPurchaseSucceeded);
-
-    snprintf(buf, sizeof(buf), "Calling OnPurchaseSucceeded mgr=%p", mgr);
+    snprintf(buf, sizeof(buf), "gp_cb=%p mgr=%p", gp_cb, mgr);
     write_log(buf);
 
+    write_log("Step3: create strings");
+    void* receipt = fp_string_new("{}");
+    void* tx_id = fp_string_new("fake_tx_001");
+    snprintf(buf, sizeof(buf), "receipt=%p tx_id=%p", receipt, tx_id);
+    write_log(buf);
+
+    write_log("Step4: get OnPurchaseSucceeded fn ptr");
+    typedef void (*fn_t)(void*, void*, void*, void*);
+    fn_t fn = (fn_t)(*(void**)m_OnPurchaseSucceeded);
+    snprintf(buf, sizeof(buf), "fn=%p mgr=%p pid=%p", fn, mgr, product_id_ptr);
+    write_log(buf);
+
+    write_log("Step5: calling OnPurchaseSucceeded...");
     fn(mgr, product_id_ptr, receipt, tx_id);
-    write_log("OnPurchaseSucceeded OK");
+    write_log("Step6: OnPurchaseSucceeded returned OK");
 }
 
 /* ==== Init thread ==== */
