@@ -13,26 +13,17 @@
 
 #define LOG_TAG "SF2IAP"
 #include <android/log.h>
-#define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
 
 /*
  * Shadow Fight 2 - IAP Bypass v42
  *
- * Method pointer rewrite (no entry hooks).
- * ALL IL2CPP calls wrapped in sigsetjmp crash guard.
+ * Method pointer rewrite. Single sigsetjmp for entire init.
+ * NO per-call sigsetjmp (crashes fprintf state).
  */
 
 static void write_log(const char* msg) {
     FILE* fp = fopen("/sdcard/Download/sf2-iap-v42.txt", "a");
     if (fp) { fprintf(fp, "%s\n", msg); fflush(fp); fclose(fp); }
-}
-
-static void write_crash(int sig, siginfo_t* info, void* ctx) {
-    FILE* fp = fopen("/sdcard/Download/sf2-iap-v42-crash.txt", "a");
-    if (fp) {
-        fprintf(fp, "=== CRASH sig=%d fault=%p ===\n", sig, info->si_addr);
-        fflush(fp); fsync(fileno(fp)); fclose(fp);
-    }
 }
 
 /* ==== IL2CPP API ==== */
@@ -41,7 +32,6 @@ typedef void* Il2CppAssembly;
 typedef void* Il2CppImage;
 typedef void* Il2CppClass;
 typedef void* Il2CppMethod;
-typedef void* Il2CppObject;
 typedef void* Il2CppString;
 
 static Il2CppDomain (*fp_domain_get)(void);
@@ -51,243 +41,205 @@ static Il2CppClass* (*fp_class_from_name)(const Il2CppImage*, const char*, const
 static Il2CppMethod* (*fp_class_get_method_from_name)(Il2CppClass*, const char*, int);
 static Il2CppString* (*fp_string_new)(const char*);
 
-static int load_il2cpp_api(void* handle) {
-    char buf[256];
+static int load_api(void* h) {
     int ok = 1;
-    #define TRY(var, sym) fp_##var = (typeof(fp_##var))dlsym(handle, sym); \
-        snprintf(buf, sizeof(buf), "dlsym(%s)=%p", sym, fp_##var); \
-        write_log(buf); \
-        if (!fp_##var) ok = 0;
-
-    TRY(domain_get,            "il2cpp_domain_get")
-    TRY(domain_get_assemblies, "il2cpp_domain_get_assemblies")
-    TRY(assembly_get_image,    "il2cpp_assembly_get_image")
-    TRY(class_from_name,       "il2cpp_class_from_name")
-    TRY(class_get_method_from_name, "il2cpp_class_get_method_from_name")
-    TRY(string_new,            "il2cpp_string_new")
-    #undef TRY
+    #define L(sym, var) fp_##var = dlsym(h, #sym); if(!fp_##var) ok=0;
+    L(il2cpp_domain_get, domain_get);
+    L(il2cpp_domain_get_assemblies, domain_get_assemblies);
+    L(il2cpp_assembly_get_image, assembly_get_image);
+    L(il2cpp_class_from_name, class_from_name);
+    L(il2cpp_class_get_method_from_name, class_get_method_from_name);
+    L(il2cpp_string_new, string_new);
+    #undef L
     return ok;
 }
 
-/* ==== Crash guard: wrap IL2CPP calls in sigsetjmp ==== */
-static sigjmp_buf g_jmpbuf;
-static volatile int g_crashed = 0;
-
-static void crash_guard(int sig, siginfo_t* info, void* ctx) {
-    g_crashed = 1;
-    siglongjmp(g_jmpbuf, 1);
-}
-
-static struct sigaction g_old_segv, g_old_abrt;
-
-static void install_crash_guard(void) {
-    struct sigaction sa;
-    sa.sa_sigaction = crash_guard;
-    sa.sa_flags = SA_SIGINFO;
-    sigemptyset(&sa.sa_mask);
-    sigaction(SIGSEGV, &sa, &g_old_segv);
-    sigaction(SIGABRT, &sa, &g_old_abrt);
-}
-
-static void restore_crash_guard(void) {
-    sigaction(SIGSEGV, &g_old_segv, NULL);
-    sigaction(SIGABRT, &g_old_abrt, NULL);
-}
-
-/* Call func inside crash guard. Returns result or NULL if crashed. */
-#define SAFE_CALL(type, func_call) ({ \
-    type _result = (type)0; \
-    g_crashed = 0; \
-    install_crash_guard(); \
-    if (sigsetjmp(g_jmpbuf, 1) == 0) { \
-        _result = func_call; \
-    } else { \
-        write_log("SAFE_CALL crashed, retrying later"); \
-    } \
-    restore_crash_guard(); \
-    _result; \
-})
-
-/* ==== Our hook function ==== */
+/* ==== Hook function ==== */
 static Il2CppMethod* m_OnPurchaseSucceeded = 0;
 
 void hooked_purchase_entry(void* this_ptr, void* product_def, void* price_override) {
-    write_log(">>> PURCHASE INTERCEPTED via method pointer rewrite");
+    write_log(">>> PURCHASE INTERCEPTED");
 
-    if (!m_OnPurchaseSucceeded) {
-        write_log("ERROR: OnPurchaseSucceeded not found");
+    if (!m_OnPurchaseSucceeded || !fp_string_new) {
+        write_log("ERROR: not ready");
         return;
     }
 
-    void* product_id_ptr = NULL;
-    if (product_def) {
-        product_id_ptr = *(void**)((uintptr_t)product_def + 0x18);
-    }
-
+    void* product_id_ptr = product_def ? *(void**)((uintptr_t)product_def + 0x18) : NULL;
     char product_id[256] = "unknown";
     if (product_id_ptr) {
         int len = *(int*)((uintptr_t)product_id_ptr + 0x10);
         if (len > 0 && len < 128) {
             uint16_t* chars = (uint16_t*)((uintptr_t)product_id_ptr + 0x14);
-            for (int i = 0; i < len && i < 255; i++) {
-                product_id[i] = (char)chars[i];
-            }
+            for (int i = 0; i < len && i < 255; i++) product_id[i] = (char)chars[i];
             product_id[len] = 0;
         }
     }
 
     char buf[512];
-    snprintf(buf, sizeof(buf), "Product: %s this=%p pd=%p", product_id, this_ptr, product_def);
+    snprintf(buf, sizeof(buf), "Product: %s", product_id);
     write_log(buf);
 
     void* gp_cb = *(void**)((uintptr_t)this_ptr + 0x30);
-    if (!gp_cb) { write_log("ERROR: GooglePlayPurchaseCallback NULL"); return; }
-    void* mgr = *(void**)((uintptr_t)gp_cb + 0x10);
+    void* mgr = gp_cb ? *(void**)((uintptr_t)gp_cb + 0x10) : NULL;
     if (!mgr) { write_log("ERROR: PurchasingManager NULL"); return; }
 
     void* receipt = fp_string_new("{}");
     void* tx_id = fp_string_new("fake_tx_001");
 
-    typedef void (*fn_onsuccess)(void* this, void* id, void* receipt, void* tx);
-    fn_onsuccess fn = (fn_onsuccess)(*(void**)m_OnPurchaseSucceeded);
+    typedef void (*fn_t)(void*, void*, void*, void*);
+    fn_t fn = (fn_t)(*(void**)m_OnPurchaseSucceeded);
 
-    snprintf(buf, sizeof(buf), "Calling OnPurchaseSucceeded mgr=%p fn=%p", mgr, fn);
+    snprintf(buf, sizeof(buf), "Calling OnPurchaseSucceeded mgr=%p", mgr);
     write_log(buf);
 
     fn(mgr, product_id_ptr, receipt, tx_id);
     write_log("OnPurchaseSucceeded OK");
 }
 
-/* ==== Init thread ==== */
+/* ==== Init: single crash guard for entire process ==== */
+static sigjmp_buf g_jmp;
+static volatile int g_crashed = 0;
+
+static void on_crash(int sig, siginfo_t* info, void* ctx) {
+    g_crashed = 1;
+    siglongjmp(g_jmp, 1);
+}
+
+/* Safe wrappers that use g_crashed flag */
+static Il2CppDomain* safe_domain_get(void) {
+    g_crashed = 0;
+    return fp_domain_get();
+}
+
+static const Il2CppAssembly** safe_get_assemblies(const Il2CppDomain* d, size_t* c) {
+    g_crashed = 0;
+    return fp_domain_get_assemblies(d, c);
+}
+
+static void* safe_image(const Il2CppAssembly* a) {
+    g_crashed = 0;
+    return fp_assembly_get_image(a);
+}
+
+static void* safe_class(void* img, const char* ns, const char* name) {
+    g_crashed = 0;
+    return fp_class_from_name(img, ns, name);
+}
+
+static void* safe_method(void* klass, const char* name, int argc) {
+    g_crashed = 0;
+    return fp_class_get_method_from_name(klass, name, argc);
+}
+
 static void* init_thread(void* arg) {
     write_log("=== SF2 IAP Bypass v42 ===");
 
-    struct sigaction sa;
-    sa.sa_sigaction = write_crash;
+    /* Install crash handler ONCE for the entire init */
+    struct sigaction sa, old_segv, old_abrt;
+    sa.sa_sigaction = on_crash;
     sa.sa_flags = SA_SIGINFO;
     sigemptyset(&sa.sa_mask);
-    sigaction(SIGSEGV, &sa, NULL);
-    sigaction(SIGBUS, &sa, NULL);
+    sigaction(SIGSEGV, &sa, &old_segv);
+    sigaction(SIGABRT, &sa, &old_abrt);
 
-    /* Step 1: Wait for libil2cpp.so */
+    /* Wait for libil2cpp.so */
     void* handle = NULL;
-    for (int i = 0; i < 120; i++) {
+    for (int i = 0; i < 120 && !handle; i++) {
         handle = dlopen("libil2cpp.so", RTLD_NOW | RTLD_NOLOAD);
-        if (handle) {
-            char buf[128];
-            snprintf(buf, sizeof(buf), "dlopen OK after %d attempts", i);
-            write_log(buf);
-            break;
-        }
-        usleep(250000);
+        if (!handle) usleep(250000);
     }
-    if (!handle) { write_log("ERROR: libil2cpp.so not found"); return NULL; }
+    if (!handle) { write_log("ERROR: no libil2cpp"); return NULL; }
+    write_log("libil2cpp found");
 
-    if (!load_il2cpp_api(handle)) {
-        write_log("ERROR: API load failed");
-        return NULL;
-    }
+    if (!load_api(handle)) { write_log("ERROR: API load"); return NULL; }
+    write_log("API loaded");
 
-    /* Step 2: Poll until ALL IL2CPP calls succeed */
+    /* Main init loop with crash recovery */
     for (int attempt = 0; attempt < 120; attempt++) {
         char buf[256];
-        snprintf(buf, sizeof(buf), "Init attempt %d...", attempt);
-        write_log(buf);
 
-        /* domain_get */
-        Il2CppDomain* domain = SAFE_CALL(Il2CppDomain*, fp_domain_get());
-        if (!domain) {
-            usleep(500000);
-            continue;
-        }
-
-        /* domain_get_assemblies */
-        size_t count = 0;
-        const Il2CppAssembly** assemblies = SAFE_CALL(const Il2CppAssembly**,
-            fp_domain_get_assemblies(domain, &count));
-        if (!assemblies || count == 0) {
-            snprintf(buf, sizeof(buf), "assemblies not ready (count=%zu), retrying...", count);
+        if (sigsetjmp(g_jmp, 1) != 0) {
+            /* Crashed — log and retry */
+            snprintf(buf, sizeof(buf), "Crash in attempt %d, retrying...", attempt);
             write_log(buf);
-            usleep(500000);
+            usleep(1000000);
             continue;
         }
 
-        snprintf(buf, sizeof(buf), "domain=%p assemblies=%zu — ready!", domain, count);
+        snprintf(buf, sizeof(buf), "Attempt %d", attempt);
         write_log(buf);
 
-        /* Step 3: Find GooglePlayStore + Purchase method */
+        Il2CppDomain* domain = safe_domain_get();
+        if (!domain) { usleep(500000); continue; }
+
+        size_t count = 0;
+        const Il2CppAssembly** asms = safe_get_assemblies(domain, &count);
+        if (!asms || count == 0) { usleep(500000); continue; }
+
+        snprintf(buf, sizeof(buf), "Got %zu assemblies", count);
+        write_log(buf);
+
+        /* Find GooglePlayStore.Purchase */
         Il2CppMethod* purchase_method = NULL;
-
         for (size_t i = 0; i < count; i++) {
-            Il2CppImage* image = SAFE_CALL(Il2CppImage*, fp_assembly_get_image(assemblies[i]));
-            if (!image) continue;
-
-            Il2CppClass* klass = SAFE_CALL(Il2CppClass*, fp_class_from_name(image, "UnityEngine.Purchasing", "GooglePlayStore"));
-            if (klass) {
-                snprintf(buf, sizeof(buf), "Found GooglePlayStore in assembly %zu", i);
+            void* img = safe_image(asms[i]);
+            if (!img) continue;
+            void* klass = safe_class(img, "UnityEngine.Purchasing", "GooglePlayStore");
+            if (!klass) continue;
+            snprintf(buf, sizeof(buf), "GooglePlayStore found in asm %zu", i);
+            write_log(buf);
+            purchase_method = safe_method(klass, "Purchase", 2);
+            if (purchase_method) {
+                snprintf(buf, sizeof(buf), "Purchase method=%p ptr=%p", purchase_method, *(void**)purchase_method);
                 write_log(buf);
-
-                purchase_method = SAFE_CALL(Il2CppMethod*,
-                    fp_class_get_method_from_name(klass, "Purchase", 2));
-                if (purchase_method) {
-                    snprintf(buf, sizeof(buf), "Purchase method=%p methodPtr=%p",
-                             purchase_method, *(void**)purchase_method);
-                    write_log(buf);
-                }
-                break;
             }
+            break;
         }
 
         /* Find PurchasingManager.OnPurchaseSucceeded */
         for (size_t i = 0; i < count; i++) {
-            Il2CppImage* image = SAFE_CALL(Il2CppImage*, fp_assembly_get_image(assemblies[i]));
-            if (!image) continue;
-
-            Il2CppClass* klass = SAFE_CALL(Il2CppClass*,
-                fp_class_from_name(image, "UnityEngine.Purchasing", "PurchasingManager"));
-            if (klass) {
-                m_OnPurchaseSucceeded = SAFE_CALL(Il2CppMethod*,
-                    fp_class_get_method_from_name(klass, "OnPurchaseSucceeded", 3));
-                if (m_OnPurchaseSucceeded) {
-                    snprintf(buf, sizeof(buf), "OnPurchaseSucceeded methodPtr=%p",
-                             *(void**)m_OnPurchaseSucceeded);
-                    write_log(buf);
-                }
-                break;
+            void* img = safe_image(asms[i]);
+            if (!img) continue;
+            void* klass = safe_class(img, "UnityEngine.Purchasing", "PurchasingManager");
+            if (!klass) continue;
+            m_OnPurchaseSucceeded = safe_method(klass, "OnPurchaseSucceeded", 3);
+            if (m_OnPurchaseSucceeded) {
+                snprintf(buf, sizeof(buf), "OnPurchaseSucceeded ptr=%p", *(void**)m_OnPurchaseSucceeded);
+                write_log(buf);
             }
+            break;
         }
 
-        if (!purchase_method) {
-            write_log("ERROR: Purchase method not found");
-            usleep(500000);
-            continue;
-        }
-        if (!m_OnPurchaseSucceeded) {
-            write_log("ERROR: OnPurchaseSucceeded not found");
+        if (!purchase_method || !m_OnPurchaseSucceeded) {
+            write_log("Methods not found yet");
             usleep(500000);
             continue;
         }
 
-        /* Step 4: REWRITE METHOD POINTER */
-        void** method_ptr_slot = (void**)purchase_method;
-
-        snprintf(buf, sizeof(buf), "Rewriting: %p -> %p",
-                 method_ptr_slot[0], (void*)hooked_purchase_entry);
+        /* REWRITE METHOD POINTER */
+        void** slot = (void**)purchase_method;
+        snprintf(buf, sizeof(buf), "Rewrite: %p -> %p", slot[0], (void*)hooked_purchase_entry);
         write_log(buf);
 
         long page = sysconf(_SC_PAGESIZE);
-        void* start = (void*)((uintptr_t)method_ptr_slot & ~(page - 1));
+        void* start = (void*)((uintptr_t)slot & ~(page - 1));
         if (mprotect(start, 2 * page, PROT_READ | PROT_WRITE) == 0) {
-            method_ptr_slot[0] = (void*)hooked_purchase_entry;
-            write_log("=== Purchase method pointer REWRITTEN ===");
+            slot[0] = (void*)hooked_purchase_entry;
+            write_log("=== METHOD POINTER REWRITTEN ===");
         } else {
-            write_log("ERROR: mprotect failed");
+            write_log("ERROR: mprotect");
         }
 
+        /* Restore original signal handlers */
+        sigaction(SIGSEGV, &old_segv, NULL);
+        sigaction(SIGABRT, &old_abrt, NULL);
         return NULL;
     }
 
     write_log("ERROR: init failed after all attempts");
+    sigaction(SIGSEGV, &old_segv, NULL);
+    sigaction(SIGABRT, &old_abrt, NULL);
     return NULL;
 }
 
