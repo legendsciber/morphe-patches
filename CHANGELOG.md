@@ -1,3 +1,9 @@
+## [1.40.5](https://github.com/legendsciber/morphe-patches/compare/v1.40.4...v1.40.5) (2026-09-07)
+
+### 🐛 Bug Fixes
+
+* poll for libil2cpp load with retry, try multiple dlopen methods ([4dcdfcf](https://github.com/legendsciber/morphe-patches/commit/4dcdfcfcb4dcc9496d725223ae2ed09c5bf29a83))
+
 ## [1.40.4](https://github.com/legendsciber/morphe-patches/compare/v1.40.3...v1.40.4) (2026-09-07)
 
 ### 🐛 Bug Fixes

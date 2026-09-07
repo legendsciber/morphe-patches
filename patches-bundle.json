@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-07T17:03:55",
-  "description": "## [1.40.4](https://github.com/legendsciber/morphe-patches/compare/v1.40.3...v1.40.4) (2026-09-07)\n\n### 🐛 Bug Fixes\n\n* use dl_iterate_phdr to find libil2cpp, fix maps reading ([f68f499](https://github.com/legendsciber/morphe-patches/commit/f68f4994114b355355f8acec42c2f0b46c321dcc))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.40.4/patches-1.40.4.mpp",
+  "created_at": "2026-09-07T17:13:10",
+  "description": "## [1.40.5](https://github.com/legendsciber/morphe-patches/compare/v1.40.4...v1.40.5) (2026-09-07)\n\n### 🐛 Bug Fixes\n\n* poll for libil2cpp load with retry, try multiple dlopen methods ([4dcdfcf](https://github.com/legendsciber/morphe-patches/commit/4dcdfcfcb4dcc9496d725223ae2ed09c5bf29a83))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.40.5/patches-1.40.5.mpp",
   "signature_download_url": "",
-  "version": "1.40.4"
+  "version": "1.40.5"
 }
