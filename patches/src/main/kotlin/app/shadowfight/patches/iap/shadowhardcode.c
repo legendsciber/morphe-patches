@@ -99,53 +99,13 @@ static void guard_off(void) {
 static Il2CppMethod* m_OnPurchaseSucceeded = 0;
 
 void hooked_purchase_entry(void* this_ptr, void* product_def, void* price_override) {
-    write_log(">>> PURCHASE INTERCEPTED");
+    write_log(">>> PURCHASE INTERCEPTED - blocking Google Play");
 
-    if (!m_OnPurchaseSucceeded || !fp_string_new) {
-        write_log("ERROR: not ready");
-        return;
-    }
-
-    write_log("Step1: extract product ID");
-    void* product_id_ptr = product_def ? *(void**)((uintptr_t)product_def + 0x18) : NULL;
-    char product_id[256] = "unknown";
-    if (product_id_ptr) {
-        int len = *(int*)((uintptr_t)product_id_ptr + 0x10);
-        if (len > 0 && len < 128) {
-            uint16_t* chars = (uint16_t*)((uintptr_t)product_id_ptr + 0x14);
-            for (int i = 0; i < len && i < 255; i++) product_id[i] = (char)chars[i];
-            product_id[len] = 0;
-        }
-    }
-
-    char buf[512];
-    snprintf(buf, sizeof(buf), "Product: %s this=%p pd=%p", product_id, this_ptr, product_def);
-    write_log(buf);
-
-    write_log("Step2: get PurchasingManager");
-    void* gp_cb = *(void**)((uintptr_t)this_ptr + 0x30);
-    if (!gp_cb) { write_log("ERROR: GooglePlayPurchaseCallback NULL"); return; }
-    void* mgr = *(void**)((uintptr_t)gp_cb + 0x10);
-    if (!mgr) { write_log("ERROR: PurchasingManager NULL"); return; }
-
-    snprintf(buf, sizeof(buf), "gp_cb=%p mgr=%p", gp_cb, mgr);
-    write_log(buf);
-
-    write_log("Step3: create strings");
-    void* receipt = fp_string_new("{}");
-    void* tx_id = fp_string_new("fake_tx_001");
-    snprintf(buf, sizeof(buf), "receipt=%p tx_id=%p", receipt, tx_id);
-    write_log(buf);
-
-    write_log("Step4: get OnPurchaseSucceeded fn ptr");
-    typedef void (*fn_t)(void*, void*, void*, void*);
-    fn_t fn = (fn_t)(*(void**)m_OnPurchaseSucceeded);
-    snprintf(buf, sizeof(buf), "fn=%p mgr=%p pid=%p", fn, mgr, product_id_ptr);
-    write_log(buf);
-
-    write_log("Step5: calling OnPurchaseSucceeded...");
-    fn(mgr, product_id_ptr, receipt, tx_id);
-    write_log("Step6: OnPurchaseSucceeded returned OK");
+    /* Just block Google Play. Don't call OnPurchaseSucceeded (crashes).
+     * The game will handle the "failed" purchase gracefully.
+     * No money is charged since Google Play never opens.
+     */
+    return;
 }
 
 /* ==== Init thread ==== */
