@@ -9,7 +9,7 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.40.5](https://github.com/legendsciber/morphe-patches/releases/tag/v1.40.5)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;12 patches total
+> **[v1.40.6](https://github.com/legendsciber/morphe-patches/releases/tag/v1.40.6)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;12 patches total
 <details open>
 <summary>📦 Block Blast&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
 <br>
