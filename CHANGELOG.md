@@ -1,3 +1,9 @@
+## [1.40.8](https://github.com/legendsciber/morphe-patches/compare/v1.40.7...v1.40.8) (2026-09-07)
+
+### 🐛 Bug Fixes
+
+* v41 lazy IL2CPP init - only load API on first purchase trigger ([c142eb6](https://github.com/legendsciber/morphe-patches/commit/c142eb67b95b37279f8155b33113384ad72d1e9b))
+
 ## [1.40.7](https://github.com/legendsciber/morphe-patches/compare/v1.40.6...v1.40.7) (2026-09-07)
 
 ### 🐛 Bug Fixes
