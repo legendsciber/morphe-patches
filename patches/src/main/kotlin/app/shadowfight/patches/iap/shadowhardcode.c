@@ -106,23 +106,33 @@ static void (*fp_field_set_value)(Il2CppObject*, Il2CppField*, void*);
 static int il2cpp_loaded = 0;
 
 static int load_il2cpp_api(void* handle) {
-    #define LOAD(var, sym) fp_##var = (typeof(fp_##var))dlsym(handle, sym); \
-        if (!fp_##var) { LOGE("Missing: " sym); return 0; }
+    char buf[256];
+    int ok = 1;
 
-    LOAD(domain_get,            "il2cpp_domain_get")
-    LOAD(domain_get_assemblies, "il2cpp_domain_get_assemblies")
-    LOAD(assembly_get_image,    "il2cpp_assembly_get_image")
-    LOAD(class_from_name,       "il2cpp_class_from_name")
-    LOAD(class_get_method_from_name, "il2cpp_class_get_method_from_name")
-    LOAD(class_get_field_from_name,  "il2cpp_class_get_field_from_name")
-    LOAD(object_new,            "il2cpp_object_new")
-    LOAD(string_new,            "il2cpp_string_new")
-    LOAD(field_set_value,       "il2cpp_field_set_value")
+    #define TRY(var, sym) fp_##var = (typeof(fp_##var))dlsym(handle, sym); \
+        snprintf(buf, sizeof(buf), "dlsym(%s) = %p", sym, fp_##var); \
+        write_log(buf); \
+        if (!fp_##var) { ok = 0; }
 
-    #undef LOAD
-    il2cpp_loaded = 1;
-    write_log("IL2CPP API loaded OK");
-    return 1;
+    TRY(domain_get,            "il2cpp_domain_get")
+    TRY(domain_get_assemblies, "il2cpp_domain_get_assemblies")
+    TRY(assembly_get_image,    "il2cpp_assembly_get_image")
+    TRY(class_from_name,       "il2cpp_class_from_name")
+    TRY(class_get_method_from_name, "il2cpp_class_get_method_from_name")
+    TRY(class_get_field_from_name,  "il2cpp_class_get_field_from_name")
+    TRY(object_new,            "il2cpp_object_new")
+    TRY(string_new,            "il2cpp_string_new")
+    TRY(field_set_value,       "il2cpp_field_set_value")
+
+    #undef TRY
+
+    if (ok) {
+        il2cpp_loaded = 1;
+        write_log("IL2CPP API loaded OK");
+    } else {
+        write_log("IL2CPP API load FAILED - see above");
+    }
+    return ok;
 }
 
 /* ==== Hook ==== */
@@ -329,6 +339,8 @@ static void* hook_thread(void* arg) {
         write_log(buf);
         return NULL;
     }
+    snprintf(buf, sizeof(buf), "dlopen OK handle=%p", handle);
+    write_log(buf);
 
     if (!load_il2cpp_api(handle)) {
         write_log("ERROR: IL2CPP API load failed");
