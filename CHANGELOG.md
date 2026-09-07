@@ -1,3 +1,9 @@
+## [1.42.0](https://github.com/legendsciber/morphe-patches/compare/v1.41.1...v1.42.0) (2026-09-07)
+
+### ✨ New Features
+
+* wrap ALL IL2CPP calls in sigsetjmp crash guard with retry loop ([e23eeaf](https://github.com/legendsciber/morphe-patches/commit/e23eeaf39a6f1046d37251db4359c6562215417f))
+
 ## [1.41.1](https://github.com/legendsciber/morphe-patches/compare/v1.41.0...v1.41.1) (2026-09-07)
 
 ### 🐛 Bug Fixes
