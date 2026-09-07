@@ -153,6 +153,11 @@ static void* init_thread(void* arg) {
 
     if (!load_api(handle)) return NULL;
 
+    /* Wait 20 seconds for IL2CPP runtime to fully initialize */
+    write_log("Waiting 20s for IL2CPP runtime...");
+    sleep(20);
+    write_log("Wait done, starting init");
+
     /* Poll until all IL2CPP calls succeed (each wrapped in SAFE) */
     for (int attempt = 0; attempt < 120; attempt++) {
         char buf[256];
