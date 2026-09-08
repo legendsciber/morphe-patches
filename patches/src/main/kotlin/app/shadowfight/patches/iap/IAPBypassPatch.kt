@@ -35,8 +35,6 @@ val sfIAPBypassSmaliPatch = bytecodePatch(
     compatibleWith(COMPATIBILITY_SF2)
     execute {
         IAPBypassSmaliFingerprint.method.addInstructionsWithLabels(0, """
-            # === MORPHE IAP BYPASS PATCH ===
-            # Get ProductDetailsParams list via zzh() getter (modern billing path)
             invoke-virtual {p2}, Lcom/android/billingclient/api/BillingFlowParams;->zzh()Ljava/util/List;
 
             move-result-object v0
@@ -65,7 +63,6 @@ val sfIAPBypassSmaliPatch = bytecodePatch(
 
             move-result-object v0
 
-            # Build fake purchase JSON
             new-instance v1, Ljava/lang/StringBuilder;
 
             invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -84,21 +81,18 @@ val sfIAPBypassSmaliPatch = bytecodePatch(
 
             move-result-object v0
 
-            # Create Purchase(jsonData, signature)
             new-instance v1, Lcom/android/billingclient/api/Purchase;
 
             const-string v2, ""
 
             invoke-direct {v1, v0, v2}, Lcom/android/billingclient/api/Purchase;-><init>(Ljava/lang/String;Ljava/lang/String;)V
 
-            # Create ArrayList<Purchase> with our fake purchase
             new-instance v0, Ljava/util/ArrayList;
 
             invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
 
             invoke-virtual {v0, v1}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-            # Get PurchasesUpdatedListener from this.zze (zzn).zzd()
             iget-object v1, p0, Lcom/android/billingclient/api/BillingClientImpl;->zze:Lcom/android/billingclient/api/zzn;
 
             if-eqz v1, :fallback_error
@@ -109,19 +103,15 @@ val sfIAPBypassSmaliPatch = bytecodePatch(
 
             if-eqz v1, :fallback_error
 
-            # Get OK BillingResult (responseCode=0)
             sget-object v2, Lcom/android/billingclient/api/zzcj;->zzl:Lcom/android/billingclient/api/BillingResult;
 
-            # Call listener.onPurchasesUpdated(OK_result, [fake_purchase])
             invoke-interface {v1, v2, v0}, Lcom/android/billingclient/api/PurchasesUpdatedListener;->onPurchasesUpdated(Lcom/android/billingclient/api/BillingResult;Ljava/util/List;)V
 
             return-object v2
 
-            # Fallback: return OK result if anything fails
             :fallback_error
             sget-object v0, Lcom/android/billingclient/api/zzcj;->zzl:Lcom/android/billingclient/api/BillingResult;
             return-object v0
-            nop
         """.trimIndent())
     }
 }
