@@ -1,3 +1,9 @@
+## [1.43.8](https://github.com/legendsciber/morphe-patches/compare/v1.43.7...v1.43.8) (2026-09-08)
+
+### 🐛 Bug Fixes
+
+* v46 - ELF .dynsym parser to bypass dlsym, dl_iterate_phdr for libil2cpp discovery ([2e23dff](https://github.com/legendsciber/morphe-patches/commit/2e23dffcf2cba14108bb6171674c0cfcdbf09960))
+
 ## [1.43.7](https://github.com/legendsciber/morphe-patches/compare/v1.43.6...v1.43.7) (2026-09-08)
 
 ### 🐛 Bug Fixes
