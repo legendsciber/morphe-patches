@@ -1,3 +1,9 @@
+## [1.43.6](https://github.com/legendsciber/morphe-patches/compare/v1.43.5...v1.43.6) (2026-09-08)
+
+### 🐛 Bug Fixes
+
+* v44.2 - add dlerror logging, use RTLD_LAZY for dlopen to debug symbol loading ([d2b428c](https://github.com/legendsciber/morphe-patches/commit/d2b428c385edbfbe2391d505fc08c63310255ab3))
+
 ## [1.43.5](https://github.com/legendsciber/morphe-patches/compare/v1.43.4...v1.43.5) (2026-09-08)
 
 ### 🐛 Bug Fixes
