@@ -1,3 +1,13 @@
+## [1.46.0](https://github.com/legendsciber/morphe-patches/compare/v1.45.0...v1.46.0) (2026-09-08)
+
+### 🐛 Bug Fixes
+
+* **iap:** escape dollar sign in smali string templates ([a44a70e](https://github.com/legendsciber/morphe-patches/commit/a44a70e257a99ee70b67bac21a2fecc576637c13))
+
+### ✨ New Features
+
+* **iap:** add smali-only IAP bypass via launchBillingFlow interception ([0a74e17](https://github.com/legendsciber/morphe-patches/commit/0a74e177545456611ff0fe9cdf107f5f43e231e1))
+
 ## [1.45.0](https://github.com/legendsciber/morphe-patches/compare/v1.44.2...v1.45.0) (2026-09-08)
 
 ### ✨ New Features
