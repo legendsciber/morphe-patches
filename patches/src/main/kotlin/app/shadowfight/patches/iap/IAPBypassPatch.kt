@@ -53,9 +53,9 @@ val sfIAPBypassSmaliPatch = bytecodePatch(
 
             move-result-object v0
 
-            check-cast v0, Lcom/android/billingclient/api/BillingFlowParams\$ProductDetailsParams;
+            check-cast v0, Lcom/android/billingclient/api/BillingFlowParams${'$'}ProductDetailsParams;
 
-            iget-object v0, v0, Lcom/android/billingclient/api/BillingFlowParams\$ProductDetailsParams;->zza:Lcom/android/billingclient/api/ProductDetails;
+            iget-object v0, v0, Lcom/android/billingclient/api/BillingFlowParams${'$'}ProductDetailsParams;->zza:Lcom/android/billingclient/api/ProductDetails;
 
             invoke-virtual {v0}, Lcom/android/billingclient/api/ProductDetails;->getProductId()Ljava/lang/String;
 
