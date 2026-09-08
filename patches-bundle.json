@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-08T13:22:21",
-  "description": "## [1.44.2](https://github.com/legendsciber/morphe-patches/compare/v1.44.1...v1.44.2) (2026-09-08)\n\n### 🐛 Bug Fixes\n\n* v50 - read IL2CPP exception message from OnPurchaseSuccessful ([25d8588](https://github.com/legendsciber/morphe-patches/commit/25d8588d91abd9f253c28b0be832fea0d9fb55ac))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.44.2/patches-1.44.2.mpp",
+  "created_at": "2026-09-08T13:49:40",
+  "description": "## [1.45.0](https://github.com/legendsciber/morphe-patches/compare/v1.44.2...v1.45.0) (2026-09-08)\n\n### ✨ New Features\n\n* v51 - exception type name dump + gp_cb field dump + il2cpp_class_get_name ([ac5ec73](https://github.com/legendsciber/morphe-patches/commit/ac5ec7301dd9686d15ddf70a1a2e00e4a1f6ffec))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.45.0/patches-1.45.0.mpp",
   "signature_download_url": "",
-  "version": "1.44.2"
+  "version": "1.45.0"
 }
