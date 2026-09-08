@@ -1,3 +1,9 @@
+## [1.46.2](https://github.com/legendsciber/morphe-patches/compare/v1.46.1...v1.46.2) (2026-09-08)
+
+### 🐛 Bug Fixes
+
+* **iap:** remove smali comments that crash InlineSmaliCompiler ([964b9e1](https://github.com/legendsciber/morphe-patches/commit/964b9e154777327340935135168e996440cec55a))
+
 ## [1.46.1](https://github.com/legendsciber/morphe-patches/compare/v1.46.0...v1.46.1) (2026-09-08)
 
 ### 🐛 Bug Fixes
