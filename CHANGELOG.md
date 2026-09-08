@@ -1,3 +1,9 @@
+## [1.43.5](https://github.com/legendsciber/morphe-patches/compare/v1.43.4...v1.43.5) (2026-09-08)
+
+### 🐛 Bug Fixes
+
+* v44 - attach thread to IL2CPP + GC-safe string copy for async OnPurchaseSucceeded ([1c910c2](https://github.com/legendsciber/morphe-patches/commit/1c910c27d804a328b29c8b30534b98f05ea93f12))
+
 ## [1.43.4](https://github.com/legendsciber/morphe-patches/compare/v1.43.3...v1.43.4) (2026-09-07)
 
 ### 🐛 Bug Fixes
