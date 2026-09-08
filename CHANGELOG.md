@@ -1,3 +1,9 @@
+## [1.43.7](https://github.com/legendsciber/morphe-patches/compare/v1.43.6...v1.43.7) (2026-09-08)
+
+### 🐛 Bug Fixes
+
+* v45 - revert load_api to v43.3 format, restore RTLD_NOW|RTLD_NOLOAD dlopen ([daca437](https://github.com/legendsciber/morphe-patches/commit/daca4379b0e7ff723041bb050442506a364e8130))
+
 ## [1.43.6](https://github.com/legendsciber/morphe-patches/compare/v1.43.5...v1.43.6) (2026-09-08)
 
 ### 🐛 Bug Fixes
