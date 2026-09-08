@@ -54,7 +54,18 @@ static Il2CppDomain* g_domain = NULL;
 
 static int load_api(void* h) {
     int ok = 1;
-    #define L(sym) fp_##sym = dlsym(h, "il2cpp_" #sym); if(!fp_##sym) { write_log("MISSING: " "il2cpp_" #sym); ok=0; }
+
+    dlerror(); /* clear any error */
+    const char* err = dlerror();
+    if (err) { char buf[256]; snprintf(buf, sizeof(buf), "dlerror before: %s", err); write_log(buf); }
+
+    #define L(name) do { \
+        fp_##name = dlsym(h, "il2cpp_" #name); \
+        const char* e = dlerror(); \
+        if (e) { char buf[256]; snprintf(buf, sizeof(buf), "dlsym " #name " error: %s", e); write_log(buf); } \
+        if (!fp_##name) ok = 0; \
+    } while(0)
+
     L(domain_get);
     L(domain_get_assemblies);
     L(assembly_get_image);
@@ -64,6 +75,7 @@ static int load_api(void* h) {
     L(thread_attach);
     L(thread_current);
     #undef L
+
     if (ok) write_log("API loaded (8 functions)");
     else write_log("API load FAILED");
     return ok;
@@ -236,8 +248,13 @@ static void* init_thread(void* arg) {
     /* Wait for libil2cpp.so */
     void* handle = NULL;
     for (int i = 0; i < 120 && !handle; i++) {
-        handle = dlopen("libil2cpp.so", RTLD_NOW | RTLD_NOLOAD);
-        if (!handle) usleep(250000);
+        handle = dlopen("libil2cpp.so", RTLD_LAZY);
+        if (!handle) {
+            char buf[256];
+            snprintf(buf, sizeof(buf), "dlopen attempt %d failed: %s", i, dlerror());
+            write_log(buf);
+            usleep(250000);
+        }
     }
     if (!handle) { write_log("ERROR: no libil2cpp"); return NULL; }
     write_log("libil2cpp found");
