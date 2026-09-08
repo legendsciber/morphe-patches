@@ -15,7 +15,7 @@
 #include <android/log.h>
 
 /*
- * Shadow Fight 2 - IAP Bypass v49
+ * Shadow Fight 2 - IAP Bypass v50
  *
  * ELF .dynsym parser — bypasses dlsym entirely.
  * Uses dl_iterate_phdr to find libil2cpp.so, then manually parses
@@ -28,7 +28,7 @@ static volatile int g_log_busy = 0;
 static void write_log(const char* msg) {
     if (g_log_busy) return;
     g_log_busy = 1;
-    FILE* fp = fopen("/sdcard/Download/sf2-iap-v49.txt", "a");
+    FILE* fp = fopen("/sdcard/Download/sf2-iap-v50.txt", "a");
     if (fp) { fprintf(fp, "%s\n", msg); fflush(fp); fclose(fp); }
     g_log_busy = 0;
 }
@@ -412,7 +412,24 @@ static void* async_purchase_thread(void* arg) {
                 fn(g_async_gp_cb, fake_purchase, receipt, purchase_token);
             }
             if (exc) {
-                write_log("Async: OnPurchaseSuccessful returned exception");
+                /* Read exception message: IL2CppException+0x10 = Il2CppString* message */
+                void* exc_msg_ptr = *(void**)((uintptr_t)exc + 0x10);
+                if (exc_msg_ptr) {
+                    int mlen = *(int*)((uintptr_t)exc_msg_ptr + 0x10);
+                    if (mlen > 0 && mlen < 500) {
+                        uint16_t* mchars = (uint16_t*)((uintptr_t)exc_msg_ptr + 0x14);
+                        char mbuf[512];
+                        for (int i = 0; i < mlen; i++) mbuf[i] = (char)mchars[i];
+                        mbuf[mlen] = 0;
+                        char logbuf[600];
+                        snprintf(logbuf, sizeof(logbuf), "Async: EXCEPTION: %s", mbuf);
+                        write_log(logbuf);
+                    } else {
+                        write_log("Async: OnPurchaseSuccessful returned exception (no msg)");
+                    }
+                } else {
+                    write_log("Async: OnPurchaseSuccessful returned exception (null msg)");
+                }
             } else {
                 write_log("Async: OnPurchaseSuccessful OK!");
             }
@@ -493,7 +510,7 @@ void hooked_purchase_entry(void* this_ptr, void* product_def, void* price_overri
 
 /* ==== Init thread ==== */
 static void* init_thread(void* arg) {
-    write_log("=== SF2 IAP Bypass v49 ===");
+    write_log("=== SF2 IAP Bypass v50 ===");
 
     /* Wait for libil2cpp.so to be loaded by the game */
     int found = 0;
@@ -656,7 +673,7 @@ static void* init_thread(void* arg) {
 }
 
 JNIEXPORT jint JNI_OnLoad(JavaVM *vm, void *reserved) {
-    write_log("=== JNI_OnLoad v49 ===");
+    write_log("=== JNI_OnLoad v50 ===");
     pthread_t tid;
     pthread_create(&tid, NULL, init_thread, NULL);
     pthread_detach(tid);
