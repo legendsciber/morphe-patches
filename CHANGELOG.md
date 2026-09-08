@@ -1,3 +1,9 @@
+## [1.45.0](https://github.com/legendsciber/morphe-patches/compare/v1.44.2...v1.45.0) (2026-09-08)
+
+### ✨ New Features
+
+* v51 - exception type name dump + gp_cb field dump + il2cpp_class_get_name ([ac5ec73](https://github.com/legendsciber/morphe-patches/commit/ac5ec7301dd9686d15ddf70a1a2e00e4a1f6ffec))
+
 ## [1.44.2](https://github.com/legendsciber/morphe-patches/compare/v1.44.1...v1.44.2) (2026-09-08)
 
 ### 🐛 Bug Fixes
