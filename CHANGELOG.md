@@ -1,3 +1,9 @@
+## [1.43.9](https://github.com/legendsciber/morphe-patches/compare/v1.43.8...v1.43.9) (2026-09-08)
+
+### 🐛 Bug Fixes
+
+* v47 - add il2cpp_runtime_invoke for proper IL2CPP invocation context ([049a871](https://github.com/legendsciber/morphe-patches/commit/049a8710cf26b11fea0f7a37606bdde59faa6078))
+
 ## [1.43.8](https://github.com/legendsciber/morphe-patches/compare/v1.43.7...v1.43.8) (2026-09-08)
 
 ### 🐛 Bug Fixes
