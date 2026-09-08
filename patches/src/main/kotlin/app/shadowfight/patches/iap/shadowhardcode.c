@@ -15,7 +15,7 @@
 #include <android/log.h>
 
 /*
- * Shadow Fight 2 - IAP Bypass v48
+ * Shadow Fight 2 - IAP Bypass v49
  *
  * ELF .dynsym parser — bypasses dlsym entirely.
  * Uses dl_iterate_phdr to find libil2cpp.so, then manually parses
@@ -28,7 +28,7 @@ static volatile int g_log_busy = 0;
 static void write_log(const char* msg) {
     if (g_log_busy) return;
     g_log_busy = 1;
-    FILE* fp = fopen("/sdcard/Download/sf2-iap-v48.txt", "a");
+    FILE* fp = fopen("/sdcard/Download/sf2-iap-v49.txt", "a");
     if (fp) { fprintf(fp, "%s\n", msg); fflush(fp); fclose(fp); }
     g_log_busy = 0;
 }
@@ -382,38 +382,20 @@ static void* async_purchase_thread(void* arg) {
         snprintf(buf, sizeof(buf), "Async: fake_purchase=%p", fake_purchase);
         write_log(buf);
 
-        if (fake_purchase && fp_class_get_field_from_name && fp_field_set_value_object) {
-            /* Set GooglePurchase fields */
-            void* f_isAcknowledged = fp_class_get_field_from_name(c_GooglePurchase, "isAcknowledged");
-            void* f_purchaseState = fp_class_get_field_from_name(c_GooglePurchase, "purchaseState");
-            void* f_skus = fp_class_get_field_from_name(c_GooglePurchase, "skus");
-            void* f_orderId = fp_class_get_field_from_name(c_GooglePurchase, "orderId");
-            void* f_receipt = fp_class_get_field_from_name(c_GooglePurchase, "receipt");
-            void* f_signature = fp_class_get_field_from_name(c_GooglePurchase, "signature");
-            void* f_originalJson = fp_class_get_field_from_name(c_GooglePurchase, "originalJson");
-            void* f_purchaseToken = fp_class_get_field_from_name(c_GooglePurchase, "purchaseToken");
-
-            snprintf(buf, sizeof(buf), "Async: fields ack=%p state=%p skus=%p order=%p recv=%p sig=%p json=%p token=%p",
-                f_isAcknowledged, f_purchaseState, f_skus, f_orderId, f_receipt, f_signature, f_originalJson, f_purchaseToken);
-            write_log(buf);
-
-            if (f_isAcknowledged) {
-                int32_t false_val = 0;
-                fp_field_set_value_object(fake_purchase, f_isAcknowledged, &false_val);
-            }
-            if (f_purchaseState) {
-                int32_t purchased = 0;
-                fp_field_set_value_object(fake_purchase, f_purchaseState, &purchased);
-            }
-            if (f_skus) {
-                /* Create a List<string> with our product ID */
-                /* For now skip — might crash if List constructor not ready */
-            }
-            if (f_orderId) fp_field_set_value_object(fake_purchase, f_orderId, fp_string_new("fake_order_001"));
-            if (f_receipt) fp_field_set_value_object(fake_purchase, f_receipt, receipt);
-            if (f_signature) fp_field_set_value_object(fake_purchase, f_signature, fp_string_new("fake_sig"));
-            if (f_originalJson) fp_field_set_value_object(fake_purchase, f_originalJson, fp_string_new("{}"));
-            if (f_purchaseToken) fp_field_set_value_object(fake_purchase, f_purchaseToken, purchase_token);
+        if (fake_purchase) {
+            /* Set GooglePurchase fields via direct offset writes (readonly bypass) */
+            /* Offsets from dump.cs: 0x10=isAcknowledged(bool), 0x14=purchaseState(int),
+               0x18=skus(List<string>), 0x20=orderId, 0x28=receipt, 0x30=signature,
+               0x38=originalJson, 0x40=purchaseToken */
+            *(uint8_t*)((uintptr_t)fake_purchase + 0x10) = 0;   /* isAcknowledged = false */
+            *(int32_t*)((uintptr_t)fake_purchase + 0x14) = 0;   /* purchaseState = 0 (Purchased) */
+            /* skus at offset 0x18 — skip, game lookup uses storeSpecificId string */
+            *(uintptr_t*)((uintptr_t)fake_purchase + 0x20) = (uintptr_t)fp_string_new("fake_order_001");
+            *(uintptr_t*)((uintptr_t)fake_purchase + 0x28) = (uintptr_t)receipt;
+            *(uintptr_t*)((uintptr_t)fake_purchase + 0x30) = (uintptr_t)fp_string_new("fake_sig");
+            *(uintptr_t*)((uintptr_t)fake_purchase + 0x38) = (uintptr_t)fp_string_new("{}");
+            *(uintptr_t*)((uintptr_t)fake_purchase + 0x40) = (uintptr_t)purchase_token;
+            write_log("Async: GooglePurchase fields set via offset write");
         }
 
         snprintf(buf, sizeof(buf), "Async: gp_cb=%p method=%p", g_async_gp_cb, *(void**)m_OnPurchaseSuccessful);
@@ -445,29 +427,7 @@ static void* async_purchase_thread(void* arg) {
         write_log(buf);
     }
 
-    /* Method 2: Try OnPurchaseFailed to dismiss loading (fallback) */
-    if (g_hook_crashed && m_OnPurchaseFailed && g_async_gp_cb) {
-        write_log("Async: trying OnPurchaseFailed...");
-        g_hook_crashed = 0;
-        if (sigsetjmp(g_hook_jmp, 1) == 0) {
-            if (fp_runtime_invoke) {
-                void* params[2] = { product_id_str, receipt };
-                Il2CppException* exc2 = NULL;
-                fp_runtime_invoke(m_OnPurchaseFailed, g_async_gp_cb, params, &exc2);
-            } else {
-                typedef void (*fn_t)(void*, void*, void*);
-                fn_t fn = (fn_t)(*(void**)m_OnPurchaseFailed);
-                fn(g_async_gp_cb, product_id_str, receipt);
-            }
-            write_log("Async: OnPurchaseFailed OK!");
-        } else {
-            char cbuf[256];
-            snprintf(cbuf, sizeof(cbuf), "Async: OnPurchaseFailed CRASHED sig=%d fault=%p", g_hook_sig, g_hook_fault);
-            write_log(cbuf);
-        }
-    }
-
-    /* Method 3: Direct call to PurchasingManager.OnPurchaseSucceeded (last resort) */
+    /* Method 2: Direct call to PurchasingManager.OnPurchaseSucceeded (last resort) */
     if (g_hook_crashed && m_OnPurchaseSucceeded) {
         write_log("Async: trying OnPurchaseSucceeded (last resort)...");
         g_hook_crashed = 0;
@@ -533,7 +493,7 @@ void hooked_purchase_entry(void* this_ptr, void* product_def, void* price_overri
 
 /* ==== Init thread ==== */
 static void* init_thread(void* arg) {
-    write_log("=== SF2 IAP Bypass v48 ===");
+    write_log("=== SF2 IAP Bypass v49 ===");
 
     /* Wait for libil2cpp.so to be loaded by the game */
     int found = 0;
@@ -614,7 +574,7 @@ static void* init_thread(void* arg) {
         for (size_t i = 0; i < count; i++) {
             void* img = SAFE(void*, fp_assembly_get_image(asms[i]));
             if (!img) continue;
-            void* klass = SAFE(void*, fp_class_from_name(img, "UnityEngine.Purchasing", "GooglePurchase"));
+            void* klass = SAFE(void*, fp_class_from_name(img, "UnityEngine.Purchasing.Models", "GooglePurchase"));
             if (!klass) continue;
             c_GooglePurchase = klass;
             snprintf(buf, sizeof(buf), "GooglePurchase class=%p", klass);
@@ -696,7 +656,7 @@ static void* init_thread(void* arg) {
 }
 
 JNIEXPORT jint JNI_OnLoad(JavaVM *vm, void *reserved) {
-    write_log("=== JNI_OnLoad v48 ===");
+    write_log("=== JNI_OnLoad v49 ===");
     pthread_t tid;
     pthread_create(&tid, NULL, init_thread, NULL);
     pthread_detach(tid);
