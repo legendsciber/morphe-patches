@@ -15,10 +15,11 @@
 #include <android/log.h>
 
 /*
- * Shadow Fight 2 - IAP Bypass v44
+ * Shadow Fight 2 - IAP Bypass v45
  *
- * Method pointer rewrite + vtable scan.
- * Async OnPurchaseSucceeded with thread attach + GC-safe string copy.
+ * Reverted load_api macro to v43.3 format (proven working).
+ * Method pointer rewrite + vtable scan + async OnPurchaseSucceeded.
+ * il2cpp_thread_attach for async thread.
  */
 
 static volatile int g_log_busy = 0;
@@ -26,7 +27,7 @@ static volatile int g_log_busy = 0;
 static void write_log(const char* msg) {
     if (g_log_busy) return;
     g_log_busy = 1;
-    FILE* fp = fopen("/sdcard/Download/sf2-iap-v44.txt", "a");
+    FILE* fp = fopen("/sdcard/Download/sf2-iap-v45.txt", "a");
     if (fp) { fprintf(fp, "%s\n", msg); fflush(fp); fclose(fp); }
     g_log_busy = 0;
 }
@@ -54,28 +55,16 @@ static Il2CppDomain* g_domain = NULL;
 
 static int load_api(void* h) {
     int ok = 1;
-
-    dlerror(); /* clear any error */
-    const char* err = dlerror();
-    if (err) { char buf[256]; snprintf(buf, sizeof(buf), "dlerror before: %s", err); write_log(buf); }
-
-    #define L(name) do { \
-        fp_##name = dlsym(h, "il2cpp_" #name); \
-        const char* e = dlerror(); \
-        if (e) { char buf[256]; snprintf(buf, sizeof(buf), "dlsym " #name " error: %s", e); write_log(buf); } \
-        if (!fp_##name) ok = 0; \
-    } while(0)
-
-    L(domain_get);
-    L(domain_get_assemblies);
-    L(assembly_get_image);
-    L(class_from_name);
-    L(class_get_method_from_name);
-    L(string_new);
-    L(thread_attach);
-    L(thread_current);
+    #define L(sym, var) fp_##var = dlsym(h, #sym); if(!fp_##var) { write_log("MISSING: " #sym); ok=0; }
+    L(il2cpp_domain_get, domain_get);
+    L(il2cpp_domain_get_assemblies, domain_get_assemblies);
+    L(il2cpp_assembly_get_image, assembly_get_image);
+    L(il2cpp_class_from_name, class_from_name);
+    L(il2cpp_class_get_method_from_name, class_get_method_from_name);
+    L(il2cpp_string_new, string_new);
+    L(il2cpp_thread_attach, thread_attach);
+    L(il2cpp_thread_current, thread_current);
     #undef L
-
     if (ok) write_log("API loaded (8 functions)");
     else write_log("API load FAILED");
     return ok;
@@ -243,18 +232,13 @@ void hooked_purchase_entry(void* this_ptr, void* product_def, void* price_overri
 
 /* ==== Init thread ==== */
 static void* init_thread(void* arg) {
-    write_log("=== SF2 IAP Bypass v44 ===");
+    write_log("=== SF2 IAP Bypass v45 ===");
 
     /* Wait for libil2cpp.so */
     void* handle = NULL;
     for (int i = 0; i < 120 && !handle; i++) {
-        handle = dlopen("libil2cpp.so", RTLD_LAZY);
-        if (!handle) {
-            char buf[256];
-            snprintf(buf, sizeof(buf), "dlopen attempt %d failed: %s", i, dlerror());
-            write_log(buf);
-            usleep(250000);
-        }
+        handle = dlopen("libil2cpp.so", RTLD_NOW | RTLD_NOLOAD);
+        if (!handle) usleep(250000);
     }
     if (!handle) { write_log("ERROR: no libil2cpp"); return NULL; }
     write_log("libil2cpp found");
@@ -383,7 +367,7 @@ static void* init_thread(void* arg) {
 }
 
 JNIEXPORT jint JNI_OnLoad(JavaVM *vm, void *reserved) {
-    write_log("=== JNI_OnLoad v44 ===");
+    write_log("=== JNI_OnLoad v45 ===");
     pthread_t tid;
     pthread_create(&tid, NULL, init_thread, NULL);
     pthread_detach(tid);
