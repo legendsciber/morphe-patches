@@ -7,23 +7,23 @@ import app.shadowfight.patches.shared.Constants.COMPATIBILITY_SF2
 /**
  * Shadow Fight 2 IAP Bypass — Smali-only version
  *
- * Intercepts zzcc.launchBillingFlow() (the obfuscated BillingClientImpl
- * subclass that actually launches Google Play billing) and replaces it
- * with a fake purchase flow:
+ * Intercepts BillingClientImpl.launchBillingFlow() (the base class method
+ * called via JNI from libil2cpp.so) and replaces it with a fake purchase
+ * flow:
  *
- * 1. Extract product ID from BillingFlowParams.zzf (ProductDetailsParams)
- * 2. Build a fake Purchase JSON with the product ID
- * 3. Create a Purchase object from the fake JSON
- * 4. Get the PurchasesUpdatedListener from BillingClientImpl.zze.zzb
- * 5. Call listener.onPurchasesUpdated(OK, [fakePurchase])
- * 6. Return OK BillingResult
+ * 1. Get ProductDetailsParams list via BillingFlowParams.zzh() getter
+ * 2. Extract product ID from the first ProductDetailsParams
+ * 3. Build a fake Purchase JSON with the product ID
+ * 4. Create a Purchase object from the fake JSON
+ * 5. Get the PurchasesUpdatedListener from BillingClientImpl.zze.zzb
+ * 6. Call listener.onPurchasesUpdated(OK, [fakePurchase])
+ * 7. Return OK BillingResult
  *
  * This triggers the game's normal purchase completion flow (C# callback
- * chain → PurchasingManager → item delivery) without opening Google Play.
+ * chain -> PurchasingManager -> item delivery) without opening Google Play.
  *
- * The method has .locals 3 (v0-v2), which is sufficient for this code.
- * The injected code ends with return-object, so the original method body
- * becomes dead code.
+ * Injected at index 0 of the method. The return-object instructions ensure
+ * the original method body is never reached (dead code).
  */
 @Suppress("unused")
 val sfIAPBypassSmaliPatch = bytecodePatch(
@@ -36,12 +36,14 @@ val sfIAPBypassSmaliPatch = bytecodePatch(
     execute {
         IAPBypassSmaliFingerprint.method.addInstructionsWithLabels(0, """
             # === MORPHE IAP BYPASS PATCH ===
-            # Extract product ID from BillingFlowParams.zzf (ArrayList<ProductDetailsParams>)
-            iget-object v0, p2, Lcom/android/billingclient/api/BillingFlowParams;->zzf:Ljava/util/ArrayList;
+            # Get ProductDetailsParams list via zzh() getter (modern billing path)
+            invoke-virtual {p2}, Lcom/android/billingclient/api/BillingFlowParams;->zzh()Ljava/util/List;
+
+            move-result-object v0
 
             if-eqz v0, :fallback_error
 
-            invoke-virtual {v0}, Ljava/util/ArrayList;->size()I
+            invoke-interface {v0}, Ljava/util/List;->size()I
 
             move-result v1
 
@@ -49,13 +51,15 @@ val sfIAPBypassSmaliPatch = bytecodePatch(
 
             const/4 v1, 0x0
 
-            invoke-virtual {v0, v1}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
+            invoke-interface {v0, v1}, Ljava/util/List;->get(I)Ljava/lang/Object;
 
             move-result-object v0
 
             check-cast v0, Lcom/android/billingclient/api/BillingFlowParams${'$'}ProductDetailsParams;
 
-            iget-object v0, v0, Lcom/android/billingclient/api/BillingFlowParams${'$'}ProductDetailsParams;->zza:Lcom/android/billingclient/api/ProductDetails;
+            invoke-virtual {v0}, Lcom/android/billingclient/api/BillingFlowParams${'$'}ProductDetailsParams;->zza()Lcom/android/billingclient/api/ProductDetails;
+
+            move-result-object v0
 
             invoke-virtual {v0}, Lcom/android/billingclient/api/ProductDetails;->getProductId()Ljava/lang/String;
 
