@@ -1,3 +1,9 @@
+## [1.44.1](https://github.com/legendsciber/morphe-patches/compare/v1.44.0...v1.44.1) (2026-09-08)
+
+### 🐛 Bug Fixes
+
+* v49 - GooglePurchase namespace fix + offset-based field write + remove OnPurchaseFailed ([10ee89f](https://github.com/legendsciber/morphe-patches/commit/10ee89fbfa6772774a4c3b2962ffc078644d7d38))
+
 ## [1.44.0](https://github.com/legendsciber/morphe-patches/compare/v1.43.9...v1.44.0) (2026-09-08)
 
 ### ✨ New Features
