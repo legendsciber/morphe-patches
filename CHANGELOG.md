@@ -1,3 +1,9 @@
+## [1.44.2](https://github.com/legendsciber/morphe-patches/compare/v1.44.1...v1.44.2) (2026-09-08)
+
+### 🐛 Bug Fixes
+
+* v50 - read IL2CPP exception message from OnPurchaseSuccessful ([25d8588](https://github.com/legendsciber/morphe-patches/commit/25d8588d91abd9f253c28b0be832fea0d9fb55ac))
+
 ## [1.44.1](https://github.com/legendsciber/morphe-patches/compare/v1.44.0...v1.44.1) (2026-09-08)
 
 ### 🐛 Bug Fixes
