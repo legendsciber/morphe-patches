@@ -15,11 +15,12 @@
 #include <android/log.h>
 
 /*
- * Shadow Fight 2 - IAP Bypass v46
+ * Shadow Fight 2 - IAP Bypass v48
  *
  * ELF .dynsym parser — bypasses dlsym entirely.
  * Uses dl_iterate_phdr to find libil2cpp.so, then manually parses
  * the ELF dynamic symbol table to resolve il2cpp_* functions.
+ * Creates fake GooglePurchase object and calls OnPurchaseSuccessful on gp_cb.
  */
 
 static volatile int g_log_busy = 0;
@@ -27,7 +28,7 @@ static volatile int g_log_busy = 0;
 static void write_log(const char* msg) {
     if (g_log_busy) return;
     g_log_busy = 1;
-    FILE* fp = fopen("/sdcard/Download/sf2-iap-v46.txt", "a");
+    FILE* fp = fopen("/sdcard/Download/sf2-iap-v48.txt", "a");
     if (fp) { fprintf(fp, "%s\n", msg); fflush(fp); fclose(fp); }
     g_log_busy = 0;
 }
@@ -297,6 +298,10 @@ static void guard_off(void) {
 
 /* ==== Hook function ==== */
 static Il2CppMethod* m_OnPurchaseSucceeded = 0;
+static Il2CppMethod* m_OnPurchaseSuccessful = 0;
+static Il2CppMethod* m_OnPurchaseFailed = 0;
+static void* c_GooglePurchase = NULL;
+static void* c_List = NULL;
 
 static sigjmp_buf g_hook_jmp;
 static volatile int g_hook_crashed = 0;
@@ -327,13 +332,9 @@ static void* async_purchase_thread(void* arg) {
     }
 
     usleep(1000000);
-    write_log("Async: attempting OnPurchaseSucceeded...");
+    write_log("Async: attempting purchase completion...");
 
-    if (!m_OnPurchaseSucceeded || !fp_string_new) {
-        write_log("Async: not ready");
-        return NULL;
-    }
-
+    extern void* g_async_gp_cb;
     extern void* g_async_mgr;
     extern char g_async_pid_str[256];
 
@@ -342,14 +343,27 @@ static void* async_purchase_thread(void* arg) {
         return NULL;
     }
 
+    /* Dump PurchasingManager fields for debugging */
+    {
+        char buf[256];
+        void* m_store = *(void**)((uintptr_t)g_async_mgr + 0x10);
+        void* m_listener = *(void**)((uintptr_t)g_async_mgr + 0x18);
+        void* products = *(void**)((uintptr_t)g_async_mgr + 0x70);
+        snprintf(buf, sizeof(buf), "mgr dump: m_store=%p m_listener=%p products=%p", m_store, m_listener, products);
+        write_log(buf);
+    }
+
+    if (!fp_string_new || !fp_object_new) {
+        write_log("Async: string_new or object_new missing");
+        return NULL;
+    }
+
     void* product_id_str = fp_string_new(g_async_pid_str);
     void* receipt = fp_string_new("{}");
     void* tx_id = fp_string_new("fake_tx_001");
+    void* purchase_token = fp_string_new("fake_token_001");
 
     char buf[512];
-    snprintf(buf, sizeof(buf), "Async: mgr=%p pid=%p receipt=%p tx=%p",
-             g_async_mgr, product_id_str, receipt, tx_id);
-    write_log(buf);
 
     struct sigaction sa, old_segv, old_abrt;
     sa.sa_sigaction = hook_crash_handler;
@@ -359,39 +373,118 @@ static void* async_purchase_thread(void* arg) {
     sigaction(SIGABRT, &sa, &old_abrt);
     g_hook_crashed = 0;
 
-    /* Method 1: Try il2cpp_runtime_invoke (proper IL2CPP invocation) */
-    if (fp_runtime_invoke) {
-        write_log("Async: trying runtime_invoke...");
-        void* params[3] = { product_id_str, receipt, tx_id };
+    /* Method 1: Create fake GooglePurchase + call GooglePlayPurchaseCallback.OnPurchaseSuccessful */
+    if (c_GooglePurchase && m_OnPurchaseSuccessful && g_async_gp_cb) {
+        write_log("Async: trying OnPurchaseSuccessful with fake GooglePurchase...");
         Il2CppException* exc = NULL;
+
+        void* fake_purchase = fp_object_new(c_GooglePurchase);
+        snprintf(buf, sizeof(buf), "Async: fake_purchase=%p", fake_purchase);
+        write_log(buf);
+
+        if (fake_purchase && fp_class_get_field_from_name && fp_field_set_value_object) {
+            /* Set GooglePurchase fields */
+            void* f_isAcknowledged = fp_class_get_field_from_name(c_GooglePurchase, "isAcknowledged");
+            void* f_purchaseState = fp_class_get_field_from_name(c_GooglePurchase, "purchaseState");
+            void* f_skus = fp_class_get_field_from_name(c_GooglePurchase, "skus");
+            void* f_orderId = fp_class_get_field_from_name(c_GooglePurchase, "orderId");
+            void* f_receipt = fp_class_get_field_from_name(c_GooglePurchase, "receipt");
+            void* f_signature = fp_class_get_field_from_name(c_GooglePurchase, "signature");
+            void* f_originalJson = fp_class_get_field_from_name(c_GooglePurchase, "originalJson");
+            void* f_purchaseToken = fp_class_get_field_from_name(c_GooglePurchase, "purchaseToken");
+
+            snprintf(buf, sizeof(buf), "Async: fields ack=%p state=%p skus=%p order=%p recv=%p sig=%p json=%p token=%p",
+                f_isAcknowledged, f_purchaseState, f_skus, f_orderId, f_receipt, f_signature, f_originalJson, f_purchaseToken);
+            write_log(buf);
+
+            if (f_isAcknowledged) {
+                int32_t false_val = 0;
+                fp_field_set_value_object(fake_purchase, f_isAcknowledged, &false_val);
+            }
+            if (f_purchaseState) {
+                int32_t purchased = 0;
+                fp_field_set_value_object(fake_purchase, f_purchaseState, &purchased);
+            }
+            if (f_skus) {
+                /* Create a List<string> with our product ID */
+                /* For now skip — might crash if List constructor not ready */
+            }
+            if (f_orderId) fp_field_set_value_object(fake_purchase, f_orderId, fp_string_new("fake_order_001"));
+            if (f_receipt) fp_field_set_value_object(fake_purchase, f_receipt, receipt);
+            if (f_signature) fp_field_set_value_object(fake_purchase, f_signature, fp_string_new("fake_sig"));
+            if (f_originalJson) fp_field_set_value_object(fake_purchase, f_originalJson, fp_string_new("{}"));
+            if (f_purchaseToken) fp_field_set_value_object(fake_purchase, f_purchaseToken, purchase_token);
+        }
+
+        snprintf(buf, sizeof(buf), "Async: gp_cb=%p method=%p", g_async_gp_cb, *(void**)m_OnPurchaseSuccessful);
+        write_log(buf);
+
+        g_hook_crashed = 0;
         if (sigsetjmp(g_hook_jmp, 1) == 0) {
-            fp_runtime_invoke(m_OnPurchaseSucceeded, g_async_mgr, params, &exc);
-            if (exc) {
-                write_log("Async: runtime_invoke returned exception");
+            if (fp_runtime_invoke) {
+                void* params[3] = { fake_purchase, receipt, purchase_token };
+                fp_runtime_invoke(m_OnPurchaseSuccessful, g_async_gp_cb, params, &exc);
             } else {
-                write_log("Async: runtime_invoke OK!");
+                typedef void (*fn_t)(void*, void*, void*, void*);
+                fn_t fn = (fn_t)(*(void**)m_OnPurchaseSuccessful);
+                fn(g_async_gp_cb, fake_purchase, receipt, purchase_token);
+            }
+            if (exc) {
+                write_log("Async: OnPurchaseSuccessful returned exception");
+            } else {
+                write_log("Async: OnPurchaseSuccessful OK!");
             }
         } else {
             char cbuf[256];
-            snprintf(cbuf, sizeof(cbuf), "Async: runtime_invoke CRASHED sig=%d fault=%p", g_hook_sig, g_hook_fault);
+            snprintf(cbuf, sizeof(cbuf), "Async: OnPurchaseSuccessful CRASHED sig=%d fault=%p", g_hook_sig, g_hook_fault);
+            write_log(cbuf);
+        }
+    } else {
+        snprintf(buf, sizeof(buf), "Async: skip OnPurchaseSuccessful (gp_cb=%p c_GP=%p m=%p)",
+            g_async_gp_cb, c_GooglePurchase, m_OnPurchaseSuccessful);
+        write_log(buf);
+    }
+
+    /* Method 2: Try OnPurchaseFailed to dismiss loading (fallback) */
+    if (g_hook_crashed && m_OnPurchaseFailed && g_async_gp_cb) {
+        write_log("Async: trying OnPurchaseFailed...");
+        g_hook_crashed = 0;
+        if (sigsetjmp(g_hook_jmp, 1) == 0) {
+            if (fp_runtime_invoke) {
+                void* params[2] = { product_id_str, receipt };
+                Il2CppException* exc2 = NULL;
+                fp_runtime_invoke(m_OnPurchaseFailed, g_async_gp_cb, params, &exc2);
+            } else {
+                typedef void (*fn_t)(void*, void*, void*);
+                fn_t fn = (fn_t)(*(void**)m_OnPurchaseFailed);
+                fn(g_async_gp_cb, product_id_str, receipt);
+            }
+            write_log("Async: OnPurchaseFailed OK!");
+        } else {
+            char cbuf[256];
+            snprintf(cbuf, sizeof(cbuf), "Async: OnPurchaseFailed CRASHED sig=%d fault=%p", g_hook_sig, g_hook_fault);
             write_log(cbuf);
         }
     }
 
-    /* Method 2: Direct function pointer call (fallback) */
-    if (g_hook_crashed || !fp_runtime_invoke) {
-        write_log("Async: trying direct fn call...");
-        typedef void (*fn_t)(void*, void*, void*, void*);
-        fn_t fn = (fn_t)(*(void**)m_OnPurchaseSucceeded);
-        snprintf(buf, sizeof(buf), "Async: fn=%p", fn);
-        write_log(buf);
+    /* Method 3: Direct call to PurchasingManager.OnPurchaseSucceeded (last resort) */
+    if (g_hook_crashed && m_OnPurchaseSucceeded) {
+        write_log("Async: trying OnPurchaseSucceeded (last resort)...");
         g_hook_crashed = 0;
         if (sigsetjmp(g_hook_jmp, 1) == 0) {
-            fn(g_async_mgr, product_id_str, receipt, tx_id);
-            write_log("Async: direct call OK!");
+            if (fp_runtime_invoke) {
+                void* params[3] = { product_id_str, receipt, tx_id };
+                Il2CppException* exc3 = NULL;
+                fp_runtime_invoke(m_OnPurchaseSucceeded, g_async_mgr, params, &exc3);
+            } else {
+                typedef void (*fn_t)(void*, void*, void*, void*);
+                fn_t fn = (fn_t)(*(void**)m_OnPurchaseSucceeded);
+                fn(g_async_mgr, product_id_str, receipt, tx_id);
+            }
+            write_log("Async: OnPurchaseSucceeded OK!");
         } else {
             char cbuf[256];
-            snprintf(cbuf, sizeof(cbuf), "Async: direct call CRASHED sig=%d fault=%p", g_hook_sig, g_hook_fault);
+            snprintf(cbuf, sizeof(cbuf), "Async: OnPurchaseSucceeded CRASHED sig=%d fault=%p", g_hook_sig, g_hook_fault);
             write_log(cbuf);
         }
     }
@@ -401,13 +494,14 @@ static void* async_purchase_thread(void* arg) {
     return NULL;
 }
 
+void* g_async_gp_cb = NULL;
 void* g_async_mgr = NULL;
 char g_async_pid_str[256] = {0};
 
 void hooked_purchase_entry(void* this_ptr, void* product_def, void* price_override) {
     write_log(">>> PURCHASE INTERCEPTED");
 
-    if (!m_OnPurchaseSucceeded || !fp_string_new) {
+    if (!fp_string_new) {
         write_log("ERROR: not ready, blocking anyway");
         return;
     }
@@ -427,6 +521,7 @@ void hooked_purchase_entry(void* this_ptr, void* product_def, void* price_overri
     snprintf(buf, sizeof(buf), "gp_cb=%p mgr=%p", gp_cb, mgr);
     write_log(buf);
 
+    g_async_gp_cb = gp_cb;
     g_async_mgr = mgr;
 
     pthread_t tid;
@@ -438,7 +533,7 @@ void hooked_purchase_entry(void* this_ptr, void* product_def, void* price_overri
 
 /* ==== Init thread ==== */
 static void* init_thread(void* arg) {
-    write_log("=== SF2 IAP Bypass v47 ===");
+    write_log("=== SF2 IAP Bypass v48 ===");
 
     /* Wait for libil2cpp.so to be loaded by the game */
     int found = 0;
@@ -515,7 +610,38 @@ static void* init_thread(void* arg) {
             break;
         }
 
-        if (!purchase_method || !m_OnPurchaseSucceeded) {
+        /* Find GooglePurchase class */
+        for (size_t i = 0; i < count; i++) {
+            void* img = SAFE(void*, fp_assembly_get_image(asms[i]));
+            if (!img) continue;
+            void* klass = SAFE(void*, fp_class_from_name(img, "UnityEngine.Purchasing", "GooglePurchase"));
+            if (!klass) continue;
+            c_GooglePurchase = klass;
+            snprintf(buf, sizeof(buf), "GooglePurchase class=%p", klass);
+            write_log(buf);
+            break;
+        }
+
+        /* Find GooglePlayPurchaseCallback.OnPurchaseSuccessful */
+        for (size_t i = 0; i < count; i++) {
+            void* img = SAFE(void*, fp_assembly_get_image(asms[i]));
+            if (!img) continue;
+            void* klass = SAFE(void*, fp_class_from_name(img, "UnityEngine.Purchasing", "GooglePlayPurchaseCallback"));
+            if (!klass) continue;
+            m_OnPurchaseSuccessful = SAFE(Il2CppMethod*, fp_class_get_method_from_name(klass, "OnPurchaseSuccessful", 3));
+            if (m_OnPurchaseSuccessful) {
+                snprintf(buf, sizeof(buf), "OnPurchaseSuccessful ptr=%p", *(void**)m_OnPurchaseSuccessful);
+                write_log(buf);
+            }
+            m_OnPurchaseFailed = SAFE(Il2CppMethod*, fp_class_get_method_from_name(klass, "OnPurchaseFailed", 2));
+            if (m_OnPurchaseFailed) {
+                snprintf(buf, sizeof(buf), "OnPurchaseFailed ptr=%p", *(void**)m_OnPurchaseFailed);
+                write_log(buf);
+            }
+            break;
+        }
+
+        if (!purchase_method) {
             write_log("Methods not found yet");
             usleep(500000);
             continue;
@@ -570,7 +696,7 @@ static void* init_thread(void* arg) {
 }
 
 JNIEXPORT jint JNI_OnLoad(JavaVM *vm, void *reserved) {
-    write_log("=== JNI_OnLoad v47 ===");
+    write_log("=== JNI_OnLoad v48 ===");
     pthread_t tid;
     pthread_create(&tid, NULL, init_thread, NULL);
     pthread_detach(tid);
