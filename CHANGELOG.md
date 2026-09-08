@@ -1,3 +1,9 @@
+## [1.46.4](https://github.com/legendsciber/morphe-patches/compare/v1.46.3...v1.46.4) (2026-09-08)
+
+### 🐛 Bug Fixes
+
+* **iap:** use /range and /from16 for high registers (p0/v34+) ([3a731d9](https://github.com/legendsciber/morphe-patches/commit/3a731d9ff98b99c4756534722a43b4bc059f5c4c))
+
 ## [1.46.3](https://github.com/legendsciber/morphe-patches/compare/v1.46.2...v1.46.3) (2026-09-08)
 
 ### 🐛 Bug Fixes

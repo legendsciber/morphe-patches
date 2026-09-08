@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-08T22:48:45",
-  "description": "## [1.46.3](https://github.com/legendsciber/morphe-patches/compare/v1.46.2...v1.46.3) (2026-09-08)\n\n### 🐛 Bug Fixes\n\n* **iap:** remove blank lines from smali that crash InlineSmaliCompiler ([8ddb6dc](https://github.com/legendsciber/morphe-patches/commit/8ddb6dc11a942eb672292025ad4f95150a38cf9b))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.46.3/patches-1.46.3.mpp",
+  "created_at": "2026-09-08T23:47:41",
+  "description": "## [1.46.4](https://github.com/legendsciber/morphe-patches/compare/v1.46.3...v1.46.4) (2026-09-08)\n\n### 🐛 Bug Fixes\n\n* **iap:** use /range and /from16 for high registers (p0/v34+) ([3a731d9](https://github.com/legendsciber/morphe-patches/commit/3a731d9ff98b99c4756534722a43b4bc059f5c4c))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.46.4/patches-1.46.4.mpp",
   "signature_download_url": "",
-  "version": "1.46.3"
+  "version": "1.46.4"
 }
