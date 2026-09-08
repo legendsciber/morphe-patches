@@ -15,11 +15,11 @@
 #include <android/log.h>
 
 /*
- * Shadow Fight 2 - IAP Bypass v45
+ * Shadow Fight 2 - IAP Bypass v46
  *
- * Reverted load_api macro to v43.3 format (proven working).
- * Method pointer rewrite + vtable scan + async OnPurchaseSucceeded.
- * il2cpp_thread_attach for async thread.
+ * ELF .dynsym parser — bypasses dlsym entirely.
+ * Uses dl_iterate_phdr to find libil2cpp.so, then manually parses
+ * the ELF dynamic symbol table to resolve il2cpp_* functions.
  */
 
 static volatile int g_log_busy = 0;
@@ -27,12 +27,122 @@ static volatile int g_log_busy = 0;
 static void write_log(const char* msg) {
     if (g_log_busy) return;
     g_log_busy = 1;
-    FILE* fp = fopen("/sdcard/Download/sf2-iap-v45.txt", "a");
+    FILE* fp = fopen("/sdcard/Download/sf2-iap-v46.txt", "a");
     if (fp) { fprintf(fp, "%s\n", msg); fflush(fp); fclose(fp); }
     g_log_busy = 0;
 }
 
-/* ==== IL2CPP API ==== */
+/* ==== ELF types for manual symbol resolution ==== */
+#include <elf.h>
+
+/* Using NDK elf.h for all ELF types */
+
+/* ==== dl_iterate_phdr callback to find libil2cpp.so ==== */
+static uintptr_t g_lib_base = 0;
+static uintptr_t g_lib_end = 0;
+
+static int find_lib_callback(struct dl_phdr_info* info, size_t size, void* data) {
+    if (!info->dlpi_name || !info->dlpi_name[0]) return 0;
+    if (strstr(info->dlpi_name, "libil2cpp.so")) {
+        g_lib_base = info->dlpi_addr;
+        if (info->dlpi_phnum > 0) {
+            g_lib_end = info->dlpi_addr + info->dlpi_phdr[info->dlpi_phnum - 1].p_vaddr
+                        + info->dlpi_phdr[info->dlpi_phnum - 1].p_memsz;
+        }
+        char buf[256];
+        snprintf(buf, sizeof(buf), "Found libil2cpp at base=%p name=%s",
+                 (void*)g_lib_base, info->dlpi_name);
+        write_log(buf);
+        return 1;
+    }
+    return 0;
+}
+
+/* ==== ELF symbol table search ==== */
+static void* find_symbol_in_elf(uintptr_t base, const char* sym_name) {
+    Elf64_Ehdr* ehdr = (Elf64_Ehdr*)base;
+
+    /* Validate ELF magic */
+    if (memcmp(ehdr, "\x7f""ELF", 4) != 0) {
+        write_log("Invalid ELF magic");
+        return NULL;
+    }
+
+    /* Find section headers */
+    Elf64_Shdr* shdr_table = (Elf64_Shdr*)(base + ehdr->e_shoff);
+    int sh_count = ehdr->e_shnum;
+
+    /* Find .dynsym and .dynstr */
+    Elf64_Shdr* dynsym_sh = NULL;
+    Elf64_Shdr* dynstr_sh = NULL;
+
+    for (int i = 0; i < sh_count; i++) {
+        if (shdr_table[i].sh_type == SHT_DYNSYM) {
+            dynsym_sh = &shdr_table[i];
+            /* dynstr is linked section */
+            if (shdr_table[i].sh_link < sh_count) {
+                dynstr_sh = &shdr_table[shdr_table[i].sh_link];
+            }
+        }
+    }
+
+    if (!dynsym_sh || !dynstr_sh) {
+        /* Try PT_DYNAMIC segment approach */
+        Elf64_Phdr* phdr = (Elf64_Phdr*)(base + ehdr->e_phoff);
+        for (int i = 0; i < ehdr->e_phnum; i++) {
+            if (phdr[i].p_type == 2) { /* PT_DYNAMIC */
+                /* Parse dynamic section for DT_SYMTAB and DT_STRTAB */
+                uint64_t* dyn = (uint64_t*)(base + phdr[i].p_vaddr);
+                uint64_t symtab_addr = 0;
+                uint64_t strtab_addr = 0;
+                uint64_t strtab_size = 0;
+
+                for (int j = 0; dyn[j] != 0; j += 2) {
+                    if (dyn[j] == 6) symtab_addr = dyn[j+1];   /* DT_SYMTAB */
+                    if (dyn[j] == 5) strtab_addr = dyn[j+1];   /* DT_STRTAB */
+                    if (dyn[j] == 10) strtab_size = dyn[j+1];  /* DT_STRSZ */
+                }
+
+                if (symtab_addr && strtab_addr) {
+                    char* strtab = (char*)(base + strtab_addr);
+                    Elf64_Sym* symtab = (Elf64_Sym*)(base + symtab_addr);
+
+                    /* Estimate sym count: use strtab_size as rough upper bound */
+                    int max_syms = strtab_size / 24;
+
+                    for (int s = 0; s < max_syms; s++) {
+                        if (symtab[s].st_name == 0) continue;
+                        if (symtab[s].st_value == 0) continue;
+                        const char* name = strtab + symtab[s].st_name;
+                        if (strcmp(name, sym_name) == 0) {
+                            return (void*)(base + symtab[s].st_value);
+                        }
+                    }
+                }
+                break;
+            }
+        }
+        write_log("No .dynsym found via sections, PT_DYNAMIC fallback also failed");
+        return NULL;
+    }
+
+    char* dynstr = (char*)(base + dynstr_sh->sh_offset);
+    Elf64_Sym* dynsym = (Elf64_Sym*)(base + dynsym_sh->sh_offset);
+    int sym_count = dynsym_sh->sh_size / sizeof(Elf64_Sym);
+
+    for (int i = 0; i < sym_count; i++) {
+        if (dynsym[i].st_name == 0) continue;
+        if (dynsym[i].st_value == 0) continue;
+        const char* name = dynstr + dynsym[i].st_name;
+        if (strcmp(name, sym_name) == 0) {
+            return (void*)(base + dynsym[i].st_value);
+        }
+    }
+
+    return NULL;
+}
+
+/* ==== Resolve IL2CPP API via ELF parsing ==== */
 typedef void* Il2CppDomain;
 typedef void* Il2CppAssembly;
 typedef void* Il2CppImage;
@@ -49,13 +159,70 @@ static Il2CppMethod* (*fp_class_get_method_from_name)(Il2CppClass*, const char*,
 static Il2CppString* (*fp_string_new)(const char*);
 static Il2CppThread* (*fp_thread_attach)(const Il2CppDomain*);
 static Il2CppThread* (*fp_thread_current)(void);
-static void* (*fp_domain_get_assemblies_fn)(const Il2CppDomain*, size_t*);
 
 static Il2CppDomain* g_domain = NULL;
 
-static int load_api(void* h) {
+static int load_api_elf(void) {
     int ok = 1;
-    #define L(sym, var) fp_##var = dlsym(h, #sym); if(!fp_##var) { write_log("MISSING: " #sym); ok=0; }
+
+    /* First try dlsym with the handle approach (original method) */
+    void* handle = dlopen("libil2cpp.so", RTLD_NOW | RTLD_NOLOAD);
+    if (handle) {
+        write_log("dlopen handle obtained, trying dlsym...");
+        #define L(sym, var) fp_##var = dlsym(handle, #sym); if(!fp_##var) ok=0;
+        L(il2cpp_domain_get, domain_get);
+        L(il2cpp_domain_get_assemblies, domain_get_assemblies);
+        L(il2cpp_assembly_get_image, assembly_get_image);
+        L(il2cpp_class_from_name, class_from_name);
+        L(il2cpp_class_get_method_from_name, class_get_method_from_name);
+        L(il2cpp_string_new, string_new);
+        L(il2cpp_thread_attach, thread_attach);
+        L(il2cpp_thread_current, thread_current);
+        #undef L
+
+        if (ok) {
+            write_log("API loaded via dlsym (8 functions)");
+            return 1;
+        }
+        write_log("dlsym failed for some symbols, falling back to ELF parse");
+        /* Reset */
+        ok = 1;
+        fp_domain_get = NULL;
+        fp_domain_get_assemblies = NULL;
+        fp_assembly_get_image = NULL;
+        fp_class_from_name = NULL;
+        fp_class_get_method_from_name = NULL;
+        fp_string_new = NULL;
+        fp_thread_attach = NULL;
+        fp_thread_current = NULL;
+    } else {
+        write_log("dlopen failed, using ELF parse only");
+    }
+
+    /* Fallback: ELF symbol table parse via dl_iterate_phdr */
+    write_log("Trying dl_iterate_phdr + ELF parse...");
+    g_lib_base = 0;
+    dl_iterate_phdr(find_lib_callback, NULL);
+
+    if (!g_lib_base) {
+        write_log("ERROR: libil2cpp.so not found via dl_iterate_phdr");
+        return 0;
+    }
+
+    char buf[256];
+    snprintf(buf, sizeof(buf), "ELF parse: base=%p", (void*)g_lib_base);
+    write_log(buf);
+
+    /* Resolve each symbol */
+    #define L(sym, var) do { \
+        fp_##var = find_symbol_in_elf(g_lib_base, #sym); \
+        if (!fp_##var) { write_log("ELF MISS: " #sym); ok=0; } \
+        else { \
+            snprintf(buf, sizeof(buf), "ELF OK: %s = %p", #sym, (void*)fp_##var); \
+            write_log(buf); \
+        } \
+    } while(0)
+
     L(il2cpp_domain_get, domain_get);
     L(il2cpp_domain_get_assemblies, domain_get_assemblies);
     L(il2cpp_assembly_get_image, assembly_get_image);
@@ -65,9 +232,14 @@ static int load_api(void* h) {
     L(il2cpp_thread_attach, thread_attach);
     L(il2cpp_thread_current, thread_current);
     #undef L
-    if (ok) write_log("API loaded (8 functions)");
-    else write_log("API load FAILED");
-    return ok;
+
+    if (ok) {
+        write_log("API loaded via ELF parse (8 functions)");
+        return 1;
+    }
+
+    write_log("API load FAILED (both methods)");
+    return 0;
 }
 
 /* ==== Crash guard ==== */
@@ -106,7 +278,6 @@ static void guard_off(void) {
 /* ==== Hook function ==== */
 static Il2CppMethod* m_OnPurchaseSucceeded = 0;
 
-/* Crash recovery for OnPurchaseSucceeded call */
 static sigjmp_buf g_hook_jmp;
 static volatile int g_hook_crashed = 0;
 static volatile int g_hook_sig = 0;
@@ -119,7 +290,6 @@ static void hook_crash_handler(int sig, siginfo_t* info, void* ctx) {
     siglongjmp(g_hook_jmp, 1);
 }
 
-/* GC-safe: copy product ID from Il2CppString into native buffer */
 static void copy_product_id(void* il2cpp_str, char* out, int max) {
     out[0] = 0;
     if (!il2cpp_str) return;
@@ -131,15 +301,12 @@ static void copy_product_id(void* il2cpp_str, char* out, int max) {
 }
 
 static void* async_purchase_thread(void* arg) {
-    /* Attach this thread to IL2CPP runtime */
     if (fp_thread_attach && g_domain) {
         fp_thread_attach(g_domain);
         write_log("Async: thread attached to IL2CPP");
     }
 
-    /* Wait for game state to settle */
     usleep(1000000);
-
     write_log("Async: attempting OnPurchaseSucceeded...");
 
     if (!m_OnPurchaseSucceeded || !fp_string_new) {
@@ -147,7 +314,6 @@ static void* async_purchase_thread(void* arg) {
         return NULL;
     }
 
-    /* Read stored values (native copies, GC-safe) */
     extern void* g_async_mgr;
     extern char g_async_pid_str[256];
 
@@ -156,7 +322,6 @@ static void* async_purchase_thread(void* arg) {
         return NULL;
     }
 
-    /* Create new IL2CPP strings from native copies */
     void* product_id_str = fp_string_new(g_async_pid_str);
     void* receipt = fp_string_new("{}");
     void* tx_id = fp_string_new("fake_tx_001");
@@ -165,7 +330,7 @@ static void* async_purchase_thread(void* arg) {
     fn_t fn = (fn_t)(*(void**)m_OnPurchaseSucceeded);
 
     char buf[512];
-    snprintf(buf, sizeof(buf), "Async: fn=%p mgr=%p pid_str=%p receipt=%p tx=%p",
+    snprintf(buf, sizeof(buf), "Async: fn=%p mgr=%p pid=%p receipt=%p tx=%p",
              fn, g_async_mgr, product_id_str, receipt, tx_id);
     write_log(buf);
 
@@ -202,7 +367,6 @@ void hooked_purchase_entry(void* this_ptr, void* product_def, void* price_overri
         return;
     }
 
-    /* Extract product ID into native buffer (GC-safe) */
     void* product_id_ptr = product_def ? *(void**)((uintptr_t)product_def + 0x18) : NULL;
     g_async_pid_str[0] = 0;
     copy_product_id(product_id_ptr, g_async_pid_str, sizeof(g_async_pid_str));
@@ -211,7 +375,6 @@ void hooked_purchase_entry(void* this_ptr, void* product_def, void* price_overri
     snprintf(buf, sizeof(buf), "Product: %s", g_async_pid_str);
     write_log(buf);
 
-    /* Get PurchasingManager via GooglePlayPurchaseCallback -> m_StoreCallback */
     void* gp_cb = *(void**)((uintptr_t)this_ptr + 0x30);
     void* mgr = gp_cb ? *(void**)((uintptr_t)gp_cb + 0x10) : NULL;
     if (!mgr) { write_log("ERROR: PurchasingManager NULL"); return; }
@@ -219,10 +382,8 @@ void hooked_purchase_entry(void* this_ptr, void* product_def, void* price_overri
     snprintf(buf, sizeof(buf), "gp_cb=%p mgr=%p", gp_cb, mgr);
     write_log(buf);
 
-    /* Store for async call */
     g_async_mgr = mgr;
 
-    /* Spawn async thread */
     pthread_t tid;
     pthread_create(&tid, NULL, async_purchase_thread, NULL);
     pthread_detach(tid);
@@ -232,23 +393,24 @@ void hooked_purchase_entry(void* this_ptr, void* product_def, void* price_overri
 
 /* ==== Init thread ==== */
 static void* init_thread(void* arg) {
-    write_log("=== SF2 IAP Bypass v45 ===");
+    write_log("=== SF2 IAP Bypass v46 ===");
 
-    /* Wait for libil2cpp.so */
-    void* handle = NULL;
-    for (int i = 0; i < 120 && !handle; i++) {
-        handle = dlopen("libil2cpp.so", RTLD_NOW | RTLD_NOLOAD);
-        if (!handle) usleep(250000);
+    /* Wait for libil2cpp.so to be loaded by the game */
+    int found = 0;
+    for (int i = 0; i < 60; i++) {
+        g_lib_base = 0;
+        dl_iterate_phdr(find_lib_callback, NULL);
+        if (g_lib_base) { found = 1; break; }
+        usleep(500000);
     }
-    if (!handle) { write_log("ERROR: no libil2cpp"); return NULL; }
-    write_log("libil2cpp found");
+    if (!found) { write_log("ERROR: libil2cpp not found via dl_iterate_phdr"); return NULL; }
 
-    if (!load_api(handle)) return NULL;
-
-    /* Wait 20 seconds for IL2CPP runtime to fully initialize */
+    /* Wait for IL2CPP runtime to initialize */
     write_log("Waiting 20s for IL2CPP runtime...");
     sleep(20);
-    write_log("Wait done, starting init");
+    write_log("Wait done, loading API");
+
+    if (!load_api_elf()) return NULL;
 
     /* Poll until all IL2CPP calls succeed */
     for (int attempt = 0; attempt < 120; attempt++) {
@@ -279,7 +441,6 @@ static void* init_thread(void* arg) {
         snprintf(buf, sizeof(buf), "Got %zu assemblies", count);
         write_log(buf);
 
-        /* Find GooglePlayStore.Purchase */
         Il2CppMethod* purchase_method = NULL;
         for (size_t i = 0; i < count; i++) {
             void* img = SAFE(void*, fp_assembly_get_image(asms[i]));
@@ -296,7 +457,6 @@ static void* init_thread(void* arg) {
             break;
         }
 
-        /* Find PurchasingManager.OnPurchaseSucceeded */
         for (size_t i = 0; i < count; i++) {
             void* img = SAFE(void*, fp_assembly_get_image(asms[i]));
             if (!img) continue;
@@ -319,7 +479,6 @@ static void* init_thread(void* arg) {
         long page = sysconf(_SC_PAGESIZE);
         void* orig_ptr = *(void**)purchase_method;
 
-        /* REWRITE METHOD POINTER */
         void** slot = (void**)purchase_method;
         snprintf(buf, sizeof(buf), "MethodInfo rewrite: %p -> %p", orig_ptr, (void*)hooked_purchase_entry);
         write_log(buf);
@@ -330,7 +489,6 @@ static void* init_thread(void* arg) {
             write_log("MethodInfo pointer rewritten");
         }
 
-        /* REWRITE VTABLE ENTRY */
         void* klass_ptr = *(void**)((uintptr_t)purchase_method + 0x20);
         snprintf(buf, sizeof(buf), "Class=%p, scanning for vtable...", klass_ptr);
         write_log(buf);
@@ -367,7 +525,7 @@ static void* init_thread(void* arg) {
 }
 
 JNIEXPORT jint JNI_OnLoad(JavaVM *vm, void *reserved) {
-    write_log("=== JNI_OnLoad v45 ===");
+    write_log("=== JNI_OnLoad v46 ===");
     pthread_t tid;
     pthread_create(&tid, NULL, init_thread, NULL);
     pthread_detach(tid);
