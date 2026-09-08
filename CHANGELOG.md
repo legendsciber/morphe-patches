@@ -1,3 +1,9 @@
+## [1.44.0](https://github.com/legendsciber/morphe-patches/compare/v1.43.9...v1.44.0) (2026-09-08)
+
+### ✨ New Features
+
+* v48 - fake GooglePurchase + OnPurchaseSuccessful via gp_cb, debug dump mgr fields ([55da5a5](https://github.com/legendsciber/morphe-patches/commit/55da5a525efb9265ce6dd818ebf9698d2faa8464))
+
 ## [1.43.9](https://github.com/legendsciber/morphe-patches/compare/v1.43.8...v1.43.9) (2026-09-08)
 
 ### 🐛 Bug Fixes
