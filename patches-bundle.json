@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-08T12:41:26",
-  "description": "## [1.44.0](https://github.com/legendsciber/morphe-patches/compare/v1.43.9...v1.44.0) (2026-09-08)\n\n### ✨ New Features\n\n* v48 - fake GooglePurchase + OnPurchaseSuccessful via gp_cb, debug dump mgr fields ([55da5a5](https://github.com/legendsciber/morphe-patches/commit/55da5a525efb9265ce6dd818ebf9698d2faa8464))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.44.0/patches-1.44.0.mpp",
+  "created_at": "2026-09-08T13:03:29",
+  "description": "## [1.44.1](https://github.com/legendsciber/morphe-patches/compare/v1.44.0...v1.44.1) (2026-09-08)\n\n### 🐛 Bug Fixes\n\n* v49 - GooglePurchase namespace fix + offset-based field write + remove OnPurchaseFailed ([10ee89f](https://github.com/legendsciber/morphe-patches/commit/10ee89fbfa6772774a4c3b2962ffc078644d7d38))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.44.1/patches-1.44.1.mpp",
   "signature_download_url": "",
-  "version": "1.44.0"
+  "version": "1.44.1"
 }
