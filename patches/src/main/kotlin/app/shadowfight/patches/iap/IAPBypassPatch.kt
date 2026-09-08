@@ -35,7 +35,7 @@ val sfIAPBypassSmaliPatch = bytecodePatch(
     compatibleWith(COMPATIBILITY_SF2)
     execute {
         IAPBypassSmaliFingerprint.method.addInstructionsWithLabels(0, """
-            invoke-virtual {p2}, Lcom/android/billingclient/api/BillingFlowParams;->zzh()Ljava/util/List;
+            invoke-virtual/range {p2 .. p2}, Lcom/android/billingclient/api/BillingFlowParams;->zzh()Ljava/util/List;
             move-result-object v0
             if-eqz v0, :fallback_error
             invoke-interface {v0}, Ljava/util/List;->size()I
@@ -64,7 +64,8 @@ val sfIAPBypassSmaliPatch = bytecodePatch(
             new-instance v0, Ljava/util/ArrayList;
             invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
             invoke-virtual {v0, v1}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
-            iget-object v1, p0, Lcom/android/billingclient/api/BillingClientImpl;->zze:Lcom/android/billingclient/api/zzn;
+            move-object/from16 v3, p0
+            iget-object v1, v3, Lcom/android/billingclient/api/BillingClientImpl;->zze:Lcom/android/billingclient/api/zzn;
             if-eqz v1, :fallback_error
             invoke-virtual {v1}, Lcom/android/billingclient/api/zzn;->zzd()Lcom/android/billingclient/api/PurchasesUpdatedListener;
             move-result-object v1
