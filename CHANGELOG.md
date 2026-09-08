@@ -1,3 +1,9 @@
+## [1.46.1](https://github.com/legendsciber/morphe-patches/compare/v1.46.0...v1.46.1) (2026-09-08)
+
+### 🐛 Bug Fixes
+
+* **iap:** target BillingClientImpl.launchBillingFlow, fix field access ([ee3d202](https://github.com/legendsciber/morphe-patches/commit/ee3d202bad670cbc202445eb89307bc7df2267bb))
+
 ## [1.46.0](https://github.com/legendsciber/morphe-patches/compare/v1.45.0...v1.46.0) (2026-09-08)
 
 ### 🐛 Bug Fixes
