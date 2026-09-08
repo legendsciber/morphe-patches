@@ -159,6 +159,14 @@ static Il2CppMethod* (*fp_class_get_method_from_name)(Il2CppClass*, const char*,
 static Il2CppString* (*fp_string_new)(const char*);
 static Il2CppThread* (*fp_thread_attach)(const Il2CppDomain*);
 static Il2CppThread* (*fp_thread_current)(void);
+typedef void* Il2CppMethodInfo;
+typedef void* Il2CppObject;
+typedef void* Il2CppException;
+typedef void* Il2CppField;
+static Il2CppObject* (*fp_runtime_invoke)(Il2CppMethodInfo* method, void* obj, void** params, Il2CppException** exc);
+static Il2CppObject* (*fp_object_new)(void* klass);
+static Il2CppField* (*fp_class_get_field_from_name)(void* klass, const char* name);
+static void (*fp_field_set_value_object)(void* obj, void* field, void* value);
 
 static Il2CppDomain* g_domain = NULL;
 
@@ -178,10 +186,14 @@ static int load_api_elf(void) {
         L(il2cpp_string_new, string_new);
         L(il2cpp_thread_attach, thread_attach);
         L(il2cpp_thread_current, thread_current);
+        L(il2cpp_runtime_invoke, runtime_invoke);
+        L(il2cpp_object_new, object_new);
+        L(il2cpp_class_get_field_from_name, class_get_field_from_name);
+        L(il2cpp_field_set_value_object, field_set_value_object);
         #undef L
 
         if (ok) {
-            write_log("API loaded via dlsym (8 functions)");
+            write_log("API loaded via dlsym (12 functions)");
             return 1;
         }
         write_log("dlsym failed for some symbols, falling back to ELF parse");
@@ -195,6 +207,10 @@ static int load_api_elf(void) {
         fp_string_new = NULL;
         fp_thread_attach = NULL;
         fp_thread_current = NULL;
+        fp_runtime_invoke = NULL;
+        fp_object_new = NULL;
+        fp_class_get_field_from_name = NULL;
+        fp_field_set_value_object = NULL;
     } else {
         write_log("dlopen failed, using ELF parse only");
     }
@@ -231,10 +247,14 @@ static int load_api_elf(void) {
     L(il2cpp_string_new, string_new);
     L(il2cpp_thread_attach, thread_attach);
     L(il2cpp_thread_current, thread_current);
+    L(il2cpp_runtime_invoke, runtime_invoke);
+    L(il2cpp_object_new, object_new);
+    L(il2cpp_class_get_field_from_name, class_get_field_from_name);
+    L(il2cpp_field_set_value_object, field_set_value_object);
     #undef L
 
     if (ok) {
-        write_log("API loaded via ELF parse (8 functions)");
+        write_log("API loaded via ELF parse (12 functions)");
         return 1;
     }
 
@@ -326,12 +346,9 @@ static void* async_purchase_thread(void* arg) {
     void* receipt = fp_string_new("{}");
     void* tx_id = fp_string_new("fake_tx_001");
 
-    typedef void (*fn_t)(void*, void*, void*, void*);
-    fn_t fn = (fn_t)(*(void**)m_OnPurchaseSucceeded);
-
     char buf[512];
-    snprintf(buf, sizeof(buf), "Async: fn=%p mgr=%p pid=%p receipt=%p tx=%p",
-             fn, g_async_mgr, product_id_str, receipt, tx_id);
+    snprintf(buf, sizeof(buf), "Async: mgr=%p pid=%p receipt=%p tx=%p",
+             g_async_mgr, product_id_str, receipt, tx_id);
     write_log(buf);
 
     struct sigaction sa, old_segv, old_abrt;
@@ -342,13 +359,41 @@ static void* async_purchase_thread(void* arg) {
     sigaction(SIGABRT, &sa, &old_abrt);
     g_hook_crashed = 0;
 
-    if (sigsetjmp(g_hook_jmp, 1) == 0) {
-        fn(g_async_mgr, product_id_str, receipt, tx_id);
-        write_log("Async: OnPurchaseSucceeded returned OK!");
-    } else {
-        char cbuf[256];
-        snprintf(cbuf, sizeof(cbuf), "Async: CRASHED sig=%d fault=%p", g_hook_sig, g_hook_fault);
-        write_log(cbuf);
+    /* Method 1: Try il2cpp_runtime_invoke (proper IL2CPP invocation) */
+    if (fp_runtime_invoke) {
+        write_log("Async: trying runtime_invoke...");
+        void* params[3] = { product_id_str, receipt, tx_id };
+        Il2CppException* exc = NULL;
+        if (sigsetjmp(g_hook_jmp, 1) == 0) {
+            fp_runtime_invoke(m_OnPurchaseSucceeded, g_async_mgr, params, &exc);
+            if (exc) {
+                write_log("Async: runtime_invoke returned exception");
+            } else {
+                write_log("Async: runtime_invoke OK!");
+            }
+        } else {
+            char cbuf[256];
+            snprintf(cbuf, sizeof(cbuf), "Async: runtime_invoke CRASHED sig=%d fault=%p", g_hook_sig, g_hook_fault);
+            write_log(cbuf);
+        }
+    }
+
+    /* Method 2: Direct function pointer call (fallback) */
+    if (g_hook_crashed || !fp_runtime_invoke) {
+        write_log("Async: trying direct fn call...");
+        typedef void (*fn_t)(void*, void*, void*, void*);
+        fn_t fn = (fn_t)(*(void**)m_OnPurchaseSucceeded);
+        snprintf(buf, sizeof(buf), "Async: fn=%p", fn);
+        write_log(buf);
+        g_hook_crashed = 0;
+        if (sigsetjmp(g_hook_jmp, 1) == 0) {
+            fn(g_async_mgr, product_id_str, receipt, tx_id);
+            write_log("Async: direct call OK!");
+        } else {
+            char cbuf[256];
+            snprintf(cbuf, sizeof(cbuf), "Async: direct call CRASHED sig=%d fault=%p", g_hook_sig, g_hook_fault);
+            write_log(cbuf);
+        }
     }
 
     sigaction(SIGSEGV, &old_segv, NULL);
@@ -393,7 +438,7 @@ void hooked_purchase_entry(void* this_ptr, void* product_def, void* price_overri
 
 /* ==== Init thread ==== */
 static void* init_thread(void* arg) {
-    write_log("=== SF2 IAP Bypass v46 ===");
+    write_log("=== SF2 IAP Bypass v47 ===");
 
     /* Wait for libil2cpp.so to be loaded by the game */
     int found = 0;
@@ -525,7 +570,7 @@ static void* init_thread(void* arg) {
 }
 
 JNIEXPORT jint JNI_OnLoad(JavaVM *vm, void *reserved) {
-    write_log("=== JNI_OnLoad v46 ===");
+    write_log("=== JNI_OnLoad v47 ===");
     pthread_t tid;
     pthread_create(&tid, NULL, init_thread, NULL);
     pthread_detach(tid);
