@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-08T22:39:54",
-  "description": "## [1.46.2](https://github.com/legendsciber/morphe-patches/compare/v1.46.1...v1.46.2) (2026-09-08)\n\n### 🐛 Bug Fixes\n\n* **iap:** remove smali comments that crash InlineSmaliCompiler ([964b9e1](https://github.com/legendsciber/morphe-patches/commit/964b9e154777327340935135168e996440cec55a))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.46.2/patches-1.46.2.mpp",
+  "created_at": "2026-09-08T22:48:45",
+  "description": "## [1.46.3](https://github.com/legendsciber/morphe-patches/compare/v1.46.2...v1.46.3) (2026-09-08)\n\n### 🐛 Bug Fixes\n\n* **iap:** remove blank lines from smali that crash InlineSmaliCompiler ([8ddb6dc](https://github.com/legendsciber/morphe-patches/commit/8ddb6dc11a942eb672292025ad4f95150a38cf9b))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.46.3/patches-1.46.3.mpp",
   "signature_download_url": "",
-  "version": "1.46.2"
+  "version": "1.46.3"
 }

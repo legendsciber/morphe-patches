@@ -1,3 +1,9 @@
+## [1.46.3](https://github.com/legendsciber/morphe-patches/compare/v1.46.2...v1.46.3) (2026-09-08)
+
+### 🐛 Bug Fixes
+
+* **iap:** remove blank lines from smali that crash InlineSmaliCompiler ([8ddb6dc](https://github.com/legendsciber/morphe-patches/commit/8ddb6dc11a942eb672292025ad4f95150a38cf9b))
+
 ## [1.46.2](https://github.com/legendsciber/morphe-patches/compare/v1.46.1...v1.46.2) (2026-09-08)
 
 ### 🐛 Bug Fixes
