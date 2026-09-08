@@ -15,7 +15,7 @@
 #include <android/log.h>
 
 /*
- * Shadow Fight 2 - IAP Bypass v50
+ * Shadow Fight 2 - IAP Bypass v51
  *
  * ELF .dynsym parser — bypasses dlsym entirely.
  * Uses dl_iterate_phdr to find libil2cpp.so, then manually parses
@@ -28,7 +28,7 @@ static volatile int g_log_busy = 0;
 static void write_log(const char* msg) {
     if (g_log_busy) return;
     g_log_busy = 1;
-    FILE* fp = fopen("/sdcard/Download/sf2-iap-v50.txt", "a");
+    FILE* fp = fopen("/sdcard/Download/sf2-iap-v51.txt", "a");
     if (fp) { fprintf(fp, "%s\n", msg); fflush(fp); fclose(fp); }
     g_log_busy = 0;
 }
@@ -168,6 +168,7 @@ static Il2CppObject* (*fp_runtime_invoke)(Il2CppMethodInfo* method, void* obj, v
 static Il2CppObject* (*fp_object_new)(void* klass);
 static Il2CppField* (*fp_class_get_field_from_name)(void* klass, const char* name);
 static void (*fp_field_set_value_object)(void* obj, void* field, void* value);
+static const char* (*fp_class_get_name)(void* klass);
 
 static Il2CppDomain* g_domain = NULL;
 
@@ -191,10 +192,11 @@ static int load_api_elf(void) {
         L(il2cpp_object_new, object_new);
         L(il2cpp_class_get_field_from_name, class_get_field_from_name);
         L(il2cpp_field_set_value_object, field_set_value_object);
+        L(il2cpp_class_get_name, class_get_name);
         #undef L
 
         if (ok) {
-            write_log("API loaded via dlsym (12 functions)");
+            write_log("API loaded via dlsym (13 functions)");
             return 1;
         }
         write_log("dlsym failed for some symbols, falling back to ELF parse");
@@ -212,6 +214,7 @@ static int load_api_elf(void) {
         fp_object_new = NULL;
         fp_class_get_field_from_name = NULL;
         fp_field_set_value_object = NULL;
+        fp_class_get_name = NULL;
     } else {
         write_log("dlopen failed, using ELF parse only");
     }
@@ -252,10 +255,11 @@ static int load_api_elf(void) {
     L(il2cpp_object_new, object_new);
     L(il2cpp_class_get_field_from_name, class_get_field_from_name);
     L(il2cpp_field_set_value_object, field_set_value_object);
+    L(il2cpp_class_get_name, class_get_name);
     #undef L
 
     if (ok) {
-        write_log("API loaded via ELF parse (12 functions)");
+        write_log("API loaded via ELF parse (13 functions)");
         return 1;
     }
 
@@ -353,6 +357,16 @@ static void* async_purchase_thread(void* arg) {
         write_log(buf);
     }
 
+    /* Dump GooglePlayPurchaseCallback fields for debugging */
+    {
+        char buf[256];
+        void* m_store_cb = g_async_gp_cb ? *(void**)((uintptr_t)g_async_gp_cb + 0x10) : NULL;
+        void* m_config = g_async_gp_cb ? *(void**)((uintptr_t)g_async_gp_cb + 0x18) : NULL;
+        void* m_util = g_async_gp_cb ? *(void**)((uintptr_t)g_async_gp_cb + 0x20) : NULL;
+        snprintf(buf, sizeof(buf), "gp_cb dump: m_store_cb=%p m_config=%p m_util=%p", m_store_cb, m_config, m_util);
+        write_log(buf);
+    }
+
     if (!fp_string_new || !fp_object_new) {
         write_log("Async: string_new or object_new missing");
         return NULL;
@@ -412,6 +426,18 @@ static void* async_purchase_thread(void* arg) {
                 fn(g_async_gp_cb, fake_purchase, receipt, purchase_token);
             }
             if (exc) {
+                /* Read exception type name: exc+0x00 = klass ptr, klass+0x00 = Il2CppClass->name */
+                if (fp_class_get_name) {
+                    void* exc_klass = *(void**)((uintptr_t)exc + 0x00);
+                    if (exc_klass) {
+                        const char* exc_type = fp_class_get_name(exc_klass);
+                        if (exc_type) {
+                            char tbuf[256];
+                            snprintf(tbuf, sizeof(tbuf), "Async: EXCEPTION TYPE: %s", exc_type);
+                            write_log(tbuf);
+                        }
+                    }
+                }
                 /* Read exception message: IL2CppException+0x10 = Il2CppString* message */
                 void* exc_msg_ptr = *(void**)((uintptr_t)exc + 0x10);
                 if (exc_msg_ptr) {
@@ -422,13 +448,13 @@ static void* async_purchase_thread(void* arg) {
                         for (int i = 0; i < mlen; i++) mbuf[i] = (char)mchars[i];
                         mbuf[mlen] = 0;
                         char logbuf[600];
-                        snprintf(logbuf, sizeof(logbuf), "Async: EXCEPTION: %s", mbuf);
+                        snprintf(logbuf, sizeof(logbuf), "Async: EXCEPTION MSG: %s", mbuf);
                         write_log(logbuf);
                     } else {
-                        write_log("Async: OnPurchaseSuccessful returned exception (no msg)");
+                        write_log("Async: EXCEPTION MSG: (empty/null)");
                     }
                 } else {
-                    write_log("Async: OnPurchaseSuccessful returned exception (null msg)");
+                    write_log("Async: EXCEPTION MSG: (null)");
                 }
             } else {
                 write_log("Async: OnPurchaseSuccessful OK!");
@@ -510,7 +536,7 @@ void hooked_purchase_entry(void* this_ptr, void* product_def, void* price_overri
 
 /* ==== Init thread ==== */
 static void* init_thread(void* arg) {
-    write_log("=== SF2 IAP Bypass v50 ===");
+    write_log("=== SF2 IAP Bypass v51 ===");
 
     /* Wait for libil2cpp.so to be loaded by the game */
     int found = 0;
@@ -673,7 +699,7 @@ static void* init_thread(void* arg) {
 }
 
 JNIEXPORT jint JNI_OnLoad(JavaVM *vm, void *reserved) {
-    write_log("=== JNI_OnLoad v50 ===");
+    write_log("=== JNI_OnLoad v51 ===");
     pthread_t tid;
     pthread_create(&tid, NULL, init_thread, NULL);
     pthread_detach(tid);
