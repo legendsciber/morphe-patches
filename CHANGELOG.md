@@ -1,3 +1,9 @@
+## [1.51.0](https://github.com/legendsciber/morphe-patches/compare/v1.50.0...v1.51.0) (2026-09-09)
+
+### ✨ New Features
+
+* **iap:** minimal v6 - only isReady + startConnection + launchBillingFlow ([cec008d](https://github.com/legendsciber/morphe-patches/commit/cec008de56f555a6b8a695513bbb0e9987b3d9fe))
+
 ## [1.50.0](https://github.com/legendsciber/morphe-patches/compare/v1.49.0...v1.50.0) (2026-09-09)
 
 ### ✨ New Features
