@@ -30,8 +30,13 @@ val sfIAPBypassSmaliPatch = bytecodePatch(
             return v0
         """.trimIndent())
 
-        // === 2. Intercept startConnection: call listener.onBillingSetupFinished(OK) ===
+        // === 2. Intercept startConnection: set zzb=2 + call listener.onBillingSetupFinished(OK) ===
         IAPBypassStartConnectionFingerprint.method.addInstructionsWithLabels(0, """
+            iget-object v0, p0, Lcom/android/billingclient/api/BillingClientImpl;->zza:Ljava/lang/Object;
+            monitor-enter v0
+            const/4 v1, 0x2
+            iput v1, p0, Lcom/android/billingclient/api/BillingClientImpl;->zzb:I
+            monitor-exit v0
             sget-object v0, Lcom/android/billingclient/api/zzcj;->zzl:Lcom/android/billingclient/api/BillingResult;
             invoke-interface {p1, v0}, Lcom/android/billingclient/api/BillingClientStateListener;->onBillingSetupFinished(Lcom/android/billingclient/api/BillingResult;)V
             return-void
