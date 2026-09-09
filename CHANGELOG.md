@@ -1,3 +1,9 @@
+## [1.46.5](https://github.com/legendsciber/morphe-patches/compare/v1.46.4...v1.46.5) (2026-09-09)
+
+### 🐛 Bug Fixes
+
+* **iap:** set purchaseState=1 and acknowledged=true in fake Purchase JSON ([7a65066](https://github.com/legendsciber/morphe-patches/commit/7a65066de3c2ef85ab06891c1ff17dbe1015aca9))
+
 ## [1.46.4](https://github.com/legendsciber/morphe-patches/compare/v1.46.3...v1.46.4) (2026-09-08)
 
 ### 🐛 Bug Fixes
