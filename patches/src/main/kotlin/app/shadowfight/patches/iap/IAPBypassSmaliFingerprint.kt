@@ -84,3 +84,52 @@ object IAPBypassQueryPurchasesAsyncStringFingerprint : Fingerprint(
         "Lcom/android/billingclient/api/PurchasesResponseListener;"
     )
 )
+
+/**
+ * BillingClientImpl.isReady() — returns true to make the game think
+ * the billing client is connected to Google Play, preventing
+ * "connection error" when the game checks billing state.
+ */
+object IAPBypassIsReadyFingerprint : Fingerprint(
+    definingClass = "Lcom/android/billingclient/api/BillingClientImpl;",
+    name = "isReady",
+    returnType = "Z",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
+    parameters = emptyList()
+)
+
+/**
+ * BillingClientStateListener.onBillingSetupFinished callback interface
+ * used by startConnection interception.
+ */
+
+/**
+ * BillingClientImpl.startConnection(BillingClientStateListener)
+ * — intercepts to call listener.onBillingSetupFinished(OK) immediately,
+ * making the game think billing is connected.
+ */
+object IAPBypassStartConnectionFingerprint : Fingerprint(
+    definingClass = "Lcom/android/billingclient/api/BillingClientImpl;",
+    name = "startConnection",
+    returnType = "V",
+    accessFlags = listOf(AccessFlags.PUBLIC),
+    parameters = listOf(
+        "Lcom/android/billingclient/api/BillingClientStateListener;"
+    )
+)
+
+/**
+ * BillingClientImpl.querySkuDetailsAsync(SkuDetailsParams, SkuDetailsResponseListener)
+ * — intercepts to return fake OK result with empty list, preventing
+ * connection error when querying product details.
+ */
+object IAPBypassQuerySkuDetailsAsyncFingerprint : Fingerprint(
+    definingClass = "Lcom/android/billingclient/api/BillingClientImpl;",
+    name = "querySkuDetailsAsync",
+    returnType = "V",
+    accessFlags = listOf(AccessFlags.PUBLIC),
+    parameters = listOf(
+        "Lcom/android/billingclient/api/SkuDetailsParams;",
+        "Lcom/android/billingclient/api/SkuDetailsResponseListener;"
+    )
+)
