@@ -13,7 +13,7 @@ object IAPBypassOnPurchasesUpdatedFingerprint : Fingerprint(
     definingClass = "Lcom/android/billingclient/api/zzbm;",
     name = "onPurchasesUpdated",
     returnType = "V",
-    accessFlags = listOf(AccessFlags.PUBLIC),
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
     parameters = listOf(
         "Lcom/android/billingclient/api/BillingResult;",
         "Ljava/util/List;"
@@ -29,7 +29,7 @@ object IAPBypassOnQueryPurchasesResponseFingerprint : Fingerprint(
     definingClass = "Lcom/android/billingclient/api/zzbm;",
     name = "onQueryPurchasesResponse",
     returnType = "V",
-    accessFlags = listOf(AccessFlags.PUBLIC),
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
     parameters = listOf(
         "Lcom/android/billingclient/api/BillingResult;",
         "Ljava/util/List;"
