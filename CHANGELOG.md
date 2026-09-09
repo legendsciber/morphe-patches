@@ -1,3 +1,9 @@
+## [1.47.0](https://github.com/legendsciber/morphe-patches/compare/v1.46.5...v1.47.0) (2026-09-09)
+
+### ✨ New Features
+
+* **iap:** intercept zzbm callbacks for dual purchase injection ([11a02f2](https://github.com/legendsciber/morphe-patches/commit/11a02f2c1d04a02e4e4c810a9d3bf6b28fb15c50))
+
 ## [1.46.5](https://github.com/legendsciber/morphe-patches/compare/v1.46.4...v1.46.5) (2026-09-09)
 
 ### 🐛 Bug Fixes
