@@ -5,39 +5,21 @@ import app.morphe.patcher.patch.bytecodePatch
 import app.shadowfight.patches.shared.Constants.COMPATIBILITY_SF2
 
 /**
- * Shadow Fight 2 IAP Bypass — Octuple interception (v5)
+ * Shadow Fight 2 IAP Bypass — Minimal v6
  *
- * Eight interception points work together:
+ * Only 3 interceptions:
+ * 1. isReady() → true (billing client appears connected)
+ * 2. startConnection → onBillingSetupFinished(OK) (fake connection success)
+ * 3. launchBillingFlow → fake purchase + onPurchasesUpdated callback
  *
- * 1. BillingClientImpl.isReady() — always returns true so the game
- *    thinks the billing client is connected to Google Play.
- *
- * 2. BillingClientImpl.startConnection — calls listener
- *    onBillingSetupFinished(OK) immediately, faking a successful
- *    connection without actually connecting to Google Play.
- *
- * 3. BillingClientImpl.launchBillingFlow — prevents Google Play from
- *    opening, extracts product ID, builds fake Purchase, calls
- *    PurchasesUpdatedListener.onPurchasesUpdated directly, returns OK.
- *
- * 4. zzbm.onPurchasesUpdated — intercepts the callback triggered by
- *    step 3, injects fake Purchase into nativeOnPurchasesUpdated so
- *    the C++ layer receives valid purchase data.
- *
- * 5. zzbm.onQueryPurchasesResponse — ensures C++ verification via
- *    queryPurchasesAsync also sees a valid purchase.
- *
- * 6-7. BillingClientImpl.queryPurchasesAsync (both overloads) — returns
- *    fake OK result with empty list.
- *
- * 8. BillingClientImpl.querySkuDetailsAsync — returns fake OK result
- *    with empty list for product details queries.
+ * Removed all other interceptions (queryPurchasesAsync, onPurchasesUpdated,
+ * onQueryPurchasesResponse, querySkuDetailsAsync) to avoid conflicts.
  */
 @Suppress("unused")
 val sfIAPBypassSmaliPatch = bytecodePatch(
     name = "Shadow Fight 2 IAP Bypass (Smali)",
     description = "Bypasses in-app purchases via smali patching. " +
-        "Eight interceptions: billing connection + launchBillingFlow + zzbm callbacks + queries.",
+        "Minimal: isReady + startConnection + launchBillingFlow.",
     default = true
 ) {
     compatibleWith(COMPATIBILITY_SF2)
@@ -97,103 +79,6 @@ val sfIAPBypassSmaliPatch = bytecodePatch(
             :lbill_fallback
             sget-object v0, Lcom/android/billingclient/api/zzcj;->zzl:Lcom/android/billingclient/api/BillingResult;
             return-object v0
-        """.trimIndent())
-
-        // === 4. Intercept onPurchasesUpdated: inject fake Purchase into native layer ===
-        IAPBypassOnPurchasesUpdatedFingerprint.method.addInstructionsWithLabels(0, """
-            new-instance v0, Ljava/lang/StringBuilder;
-            invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
-            const-string v1, "{\"orderId\":\"morphe_bypass\",\"packageName\":\"com.nekki.shadowfight\",\"productIds\":[\"gem_d pack\"],\"purchaseTime\":"
-            invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-            invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
-            move-result-wide v2
-            invoke-static {v2, v3}, Ljava/lang/String;->valueOf(J)Ljava/lang/String;
-            move-result-object v1
-            invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-            const-string v1, ",\"purchaseState\":1,\"purchaseToken\":\"morphe_bypass_token\",\"acknowledged\":true}"
-            invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-            invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-            move-result-object v0
-            new-instance v1, Lcom/android/billingclient/api/Purchase;
-            const-string v2, ""
-            invoke-direct {v1, v0, v2}, Lcom/android/billingclient/api/Purchase;-><init>(Ljava/lang/String;Ljava/lang/String;)V
-            new-instance v0, Ljava/util/ArrayList;
-            invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
-            invoke-virtual {v0, v1}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
-            invoke-virtual {v0}, Ljava/util/ArrayList;->size()I
-            move-result v1
-            new-array v1, v1, [Lcom/android/billingclient/api/Purchase;
-            invoke-virtual {v0, v1}, Ljava/util/ArrayList;->toArray([Ljava/lang/Object;)[Ljava/lang/Object;
-            move-result-object v0
-            check-cast v0, [Lcom/android/billingclient/api/Purchase;
-            move-object/from16 v3, v0
-            const/4 v1, 0x0
-            const-string v2, ""
-            invoke-static/range {v1 .. v3}, Lcom/android/billingclient/api/zzbm;->nativeOnPurchasesUpdated(ILjava/lang/String;[Lcom/android/billingclient/api/Purchase;)V
-            return-void
-        """.trimIndent())
-
-        // === 5. Intercept onQueryPurchasesResponse: fake purchase for C++ verification ===
-        IAPBypassOnQueryPurchasesResponseFingerprint.method.addInstructionsWithLabels(0, """
-            new-instance v0, Ljava/lang/StringBuilder;
-            invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
-            const-string v1, "{\"orderId\":\"morphe_bypass\",\"packageName\":\"com.nekki.shadowfight\",\"productIds\":[\"gem_d pack\"],\"purchaseTime\":"
-            invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-            invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
-            move-result-wide v2
-            invoke-static {v2, v3}, Ljava/lang/String;->valueOf(J)Ljava/lang/String;
-            move-result-object v1
-            invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-            const-string v1, ",\"purchaseState\":1,\"purchaseToken\":\"morphe_bypass_token\",\"acknowledged\":true}"
-            invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-            invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-            move-result-object v0
-            new-instance v1, Lcom/android/billingclient/api/Purchase;
-            const-string v2, ""
-            invoke-direct {v1, v0, v2}, Lcom/android/billingclient/api/Purchase;-><init>(Ljava/lang/String;Ljava/lang/String;)V
-            new-instance v0, Ljava/util/ArrayList;
-            invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
-            invoke-virtual {v0, v1}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
-            invoke-virtual {v0}, Ljava/util/ArrayList;->size()I
-            move-result v1
-            new-array v1, v1, [Lcom/android/billingclient/api/Purchase;
-            invoke-virtual {v0, v1}, Ljava/util/ArrayList;->toArray([Ljava/lang/Object;)[Ljava/lang/Object;
-            move-result-object v0
-            check-cast v0, [Lcom/android/billingclient/api/Purchase;
-            move-object/from16 v5, v0
-            move-object/from16 v4, p0
-            iget-wide v0, v4, Lcom/android/billingclient/api/zzbm;->zza:J
-            move-wide v6, v0
-            const/4 v3, 0x0
-            const-string v4, ""
-            invoke-static/range {v3 .. v7}, Lcom/android/billingclient/api/zzbm;->nativeOnQueryPurchasesResponse(ILjava/lang/String;[Lcom/android/billingclient/api/Purchase;J)V
-            return-void
-        """.trimIndent())
-
-        // === 6. Intercept queryPurchasesAsync(QueryPurchasesParams): prevent connection error ===
-        IAPBypassQueryPurchasesAsyncParamsFingerprint.method.addInstructionsWithLabels(0, """
-            sget-object v0, Lcom/android/billingclient/api/zzcj;->zzl:Lcom/android/billingclient/api/BillingResult;
-            new-instance v1, Ljava/util/ArrayList;
-            invoke-direct {v1}, Ljava/util/ArrayList;-><init>()V
-            invoke-interface {p2, v0, v1}, Lcom/android/billingclient/api/PurchasesResponseListener;->onQueryPurchasesResponse(Lcom/android/billingclient/api/BillingResult;Ljava/util/List;)V
-            return-void
-        """.trimIndent())
-
-        // === 7. Intercept queryPurchasesAsync(String): prevent connection error ===
-        IAPBypassQueryPurchasesAsyncStringFingerprint.method.addInstructionsWithLabels(0, """
-            sget-object v0, Lcom/android/billingclient/api/zzcj;->zzl:Lcom/android/billingclient/api/BillingResult;
-            new-instance v1, Ljava/util/ArrayList;
-            invoke-direct {v1}, Ljava/util/ArrayList;-><init>()V
-            invoke-interface {p2, v0, v1}, Lcom/android/billingclient/api/PurchasesResponseListener;->onQueryPurchasesResponse(Lcom/android/billingclient/api/BillingResult;Ljava/util/List;)V
-            return-void
-        """.trimIndent())
-
-        // === 8. Intercept querySkuDetailsAsync: prevent connection error for product queries ===
-        IAPBypassQuerySkuDetailsAsyncFingerprint.method.addInstructionsWithLabels(0, """
-            sget-object v0, Lcom/android/billingclient/api/zzcj;->zzl:Lcom/android/billingclient/api/BillingResult;
-            const/4 v1, 0x0
-            invoke-interface {p2, v0, v1}, Lcom/android/billingclient/api/SkuDetailsResponseListener;->onSkuDetailsResponse(Lcom/android/billingclient/api/BillingResult;Ljava/util/List;)V
-            return-void
         """.trimIndent())
     }
 }
