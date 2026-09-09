@@ -1,3 +1,9 @@
+## [1.54.0](https://github.com/legendsciber/morphe-patches/compare/v1.53.0...v1.54.0) (2026-09-09)
+
+### ✨ New Features
+
+* **iap:** v8 - DISABLED for testing ([11364ee](https://github.com/legendsciber/morphe-patches/commit/11364eef164fd4f2e3788025dd01a571b6b3c7fa))
+
 ## [1.53.0](https://github.com/legendsciber/morphe-patches/compare/v1.52.0...v1.53.0) (2026-09-09)
 
 ### ✨ New Features
