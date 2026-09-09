@@ -1,3 +1,9 @@
+## [1.47.1](https://github.com/legendsciber/morphe-patches/compare/v1.47.0...v1.47.1) (2026-09-09)
+
+### 🐛 Bug Fixes
+
+* **iap:** include FINAL in fingerprint access flags ([fe45f53](https://github.com/legendsciber/morphe-patches/commit/fe45f531def4d6284c00c3e7dbaf2957848670bc))
+
 ## [1.47.0](https://github.com/legendsciber/morphe-patches/compare/v1.46.5...v1.47.0) (2026-09-09)
 
 ### ✨ New Features
