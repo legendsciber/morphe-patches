@@ -1,3 +1,9 @@
+## [1.52.0](https://github.com/legendsciber/morphe-patches/compare/v1.51.0...v1.52.0) (2026-09-09)
+
+### ✨ New Features
+
+* **iap:** set zzb=2 in startConnection to fake connected state ([b3cf543](https://github.com/legendsciber/morphe-patches/commit/b3cf543f2053418b77b670be367abfbd8d52dc9d))
+
 ## [1.51.0](https://github.com/legendsciber/morphe-patches/compare/v1.50.0...v1.51.0) (2026-09-09)
 
 ### ✨ New Features
