@@ -1,3 +1,9 @@
+## [1.54.1](https://github.com/legendsciber/morphe-patches/compare/v1.54.0...v1.54.1) (2026-09-09)
+
+### 🐛 Bug Fixes
+
+* **iap:** return int from launchBillingFlow interception ([d2d7455](https://github.com/legendsciber/morphe-patches/commit/d2d745566f95372fb914c231c384192998abfb1f))
+
 ## [1.54.0](https://github.com/legendsciber/morphe-patches/compare/v1.53.0...v1.54.0) (2026-09-09)
 
 ### ✨ New Features

@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-09T11:00:50",
-  "description": "## [1.54.0](https://github.com/legendsciber/morphe-patches/compare/v1.53.0...v1.54.0) (2026-09-09)\n\n### ✨ New Features\n\n* **iap:** v8 - DISABLED for testing ([11364ee](https://github.com/legendsciber/morphe-patches/commit/11364eef164fd4f2e3788025dd01a571b6b3c7fa))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.54.0/patches-1.54.0.mpp",
+  "created_at": "2026-09-09T11:29:32",
+  "description": "## [1.54.1](https://github.com/legendsciber/morphe-patches/compare/v1.54.0...v1.54.1) (2026-09-09)\n\n### 🐛 Bug Fixes\n\n* **iap:** return int from launchBillingFlow interception ([d2d7455](https://github.com/legendsciber/morphe-patches/commit/d2d745566f95372fb914c231c384192998abfb1f))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.54.1/patches-1.54.1.mpp",
   "signature_download_url": "",
-  "version": "1.54.0"
+  "version": "1.54.1"
 }
