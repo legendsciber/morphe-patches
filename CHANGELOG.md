@@ -1,3 +1,9 @@
+## [1.55.0](https://github.com/legendsciber/morphe-patches/compare/v1.54.1...v1.55.0) (2026-09-09)
+
+### ✨ New Features
+
+* **iap:** v10 - minimal launchBillingFlow test ([5c5348e](https://github.com/legendsciber/morphe-patches/commit/5c5348e9a41b4dda45928691e6dbda0faa308a8e))
+
 ## [1.54.1](https://github.com/legendsciber/morphe-patches/compare/v1.54.0...v1.54.1) (2026-09-09)
 
 ### 🐛 Bug Fixes
