@@ -54,7 +54,7 @@ val sfIAPBypassSmaliPatch = bytecodePatch(
             const-string v2, "{\"orderId\":\"morphe_bypass\",\"packageName\":\"com.nekki.shadowfight\",\"productIds\":[\""
             invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
             invoke-virtual {v1, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-            const-string v2, "\"],\"purchaseTime\":0,\"purchaseState\":0,\"purchaseToken\":\"morphe_bypass_token\"}"
+            const-string v2, "\"],\"purchaseTime\":0,\"purchaseState\":1,\"purchaseToken\":\"morphe_bypass_token\",\"acknowledged\":true}"
             invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
             invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
             move-result-object v0
