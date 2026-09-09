@@ -1,3 +1,9 @@
+## [1.48.0](https://github.com/legendsciber/morphe-patches/compare/v1.47.1...v1.48.0) (2026-09-09)
+
+### ✨ New Features
+
+* **iap:** triple interception - restore launchBillingFlow + keep zzbm callbacks ([9a2d1b9](https://github.com/legendsciber/morphe-patches/commit/9a2d1b9aa9820f4b2a92641e109b7272d64f866c))
+
 ## [1.47.1](https://github.com/legendsciber/morphe-patches/compare/v1.47.0...v1.47.1) (2026-09-09)
 
 ### 🐛 Bug Fixes
