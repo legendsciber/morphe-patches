@@ -1,3 +1,9 @@
+## [1.49.0](https://github.com/legendsciber/morphe-patches/compare/v1.48.0...v1.49.0) (2026-09-09)
+
+### ✨ New Features
+
+* **iap:** intercept queryPurchasesAsync to prevent connection error ([c62bf8e](https://github.com/legendsciber/morphe-patches/commit/c62bf8e9e607decf0cc8039abbc202ac54a60951))
+
 ## [1.48.0](https://github.com/legendsciber/morphe-patches/compare/v1.47.1...v1.48.0) (2026-09-09)
 
 ### ✨ New Features
