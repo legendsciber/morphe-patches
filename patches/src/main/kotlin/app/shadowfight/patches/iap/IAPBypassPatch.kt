@@ -5,44 +5,22 @@ import app.morphe.patcher.patch.bytecodePatch
 import app.shadowfight.patches.shared.Constants.COMPATIBILITY_SF2
 
 /**
- * Shadow Fight 2 IAP Bypass — Minimal v6
+ * Shadow Fight 2 IAP Bypass — launchBillingFlow only (v7)
  *
- * Only 3 interceptions:
- * 1. isReady() → true (billing client appears connected)
- * 2. startConnection → onBillingSetupFinished(OK) (fake connection success)
- * 3. launchBillingFlow → fake purchase + onPurchasesUpdated callback
- *
- * Removed all other interceptions (queryPurchasesAsync, onPurchasesUpdated,
- * onQueryPurchasesResponse, querySkuDetailsAsync) to avoid conflicts.
+ * Only intercepts launchBillingFlow to prevent Google Play from opening
+ * and trigger a fake purchase callback. All other interceptions removed
+ * to avoid breaking the natural billing flow.
  */
 @Suppress("unused")
 val sfIAPBypassSmaliPatch = bytecodePatch(
     name = "Shadow Fight 2 IAP Bypass (Smali)",
     description = "Bypasses in-app purchases via smali patching. " +
-        "Minimal: isReady + startConnection + launchBillingFlow.",
+        "Intercepts launchBillingFlow only.",
     default = true
 ) {
     compatibleWith(COMPATIBILITY_SF2)
     execute {
-        // === 1. Intercept isReady: always return true ===
-        IAPBypassIsReadyFingerprint.method.addInstructionsWithLabels(0, """
-            const/4 v0, 0x1
-            return v0
-        """.trimIndent())
-
-        // === 2. Intercept startConnection: set zzb=2 + call listener.onBillingSetupFinished(OK) ===
-        IAPBypassStartConnectionFingerprint.method.addInstructionsWithLabels(0, """
-            iget-object v0, p0, Lcom/android/billingclient/api/BillingClientImpl;->zza:Ljava/lang/Object;
-            monitor-enter v0
-            const/4 v1, 0x2
-            iput v1, p0, Lcom/android/billingclient/api/BillingClientImpl;->zzb:I
-            monitor-exit v0
-            sget-object v0, Lcom/android/billingclient/api/zzcj;->zzl:Lcom/android/billingclient/api/BillingResult;
-            invoke-interface {p1, v0}, Lcom/android/billingclient/api/BillingClientStateListener;->onBillingSetupFinished(Lcom/android/billingclient/api/BillingResult;)V
-            return-void
-        """.trimIndent())
-
-        // === 3. Intercept launchBillingFlow: prevent Google Play, trigger callback ===
+        // Intercept launchBillingFlow: prevent Google Play, trigger callback
         IAPBypassLaunchBillingFlowFingerprint.method.addInstructionsWithLabels(0, """
             invoke-virtual/range {p2 .. p2}, Lcom/android/billingclient/api/BillingFlowParams;->zzh()Ljava/util/List;
             move-result-object v0
