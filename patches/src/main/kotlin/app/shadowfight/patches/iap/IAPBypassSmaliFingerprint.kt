@@ -4,6 +4,23 @@ import app.morphe.patcher.Fingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 
 /**
+ * BillingClientImpl.launchBillingFlow — the base implementation called
+ * at runtime when the game's C++ code invokes launchBillingFlow via JNI.
+ * Intercepted to prevent Google Play from opening and instead trigger
+ * the purchase callback with a fake Purchase.
+ */
+object IAPBypassLaunchBillingFlowFingerprint : Fingerprint(
+    definingClass = "Lcom/android/billingclient/api/BillingClientImpl;",
+    name = "launchBillingFlow",
+    returnType = "Lcom/android/billingclient/api/BillingResult;",
+    accessFlags = listOf(AccessFlags.PUBLIC),
+    parameters = listOf(
+        "Landroid/app/Activity;",
+        "Lcom/android/billingclient/api/BillingFlowParams;"
+    )
+)
+
+/**
  * zzbm.onPurchasesUpdated — Unity JNI bridge callback that receives
  * purchase results from Google Play Billing. Intercepted to inject a
  * fake Purchase and call nativeOnPurchasesUpdated directly, bypassing
