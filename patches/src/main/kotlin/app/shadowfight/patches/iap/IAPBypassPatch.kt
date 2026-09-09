@@ -5,58 +5,46 @@ import app.morphe.patcher.patch.bytecodePatch
 import app.shadowfight.patches.shared.Constants.COMPATIBILITY_SF2
 
 /**
- * Shadow Fight 2 IAP Bypass — Smali-only version
+ * Shadow Fight 2 IAP Bypass — Smali-only version (v2)
  *
- * Intercepts BillingClientImpl.launchBillingFlow() (the base class method
- * called via JNI from libil2cpp.so) and replaces it with a fake purchase
- * flow:
+ * Intercepts two callbacks in zzbm (Unity JNI bridge) to inject fake
+ * purchase data directly into the C++ layer:
  *
- * 1. Get ProductDetailsParams list via BillingFlowParams.zzh() getter
- * 2. Extract product ID from the first ProductDetailsParams
- * 3. Build a fake Purchase JSON with the product ID
- * 4. Create a Purchase object from the fake JSON
- * 5. Get the PurchasesUpdatedListener from BillingClientImpl.zze.zzb
- * 6. Call listener.onPurchasesUpdated(OK, [fakePurchase])
- * 7. Return OK BillingResult
+ * 1. onPurchasesUpdated — creates a fake Purchase and calls
+ *    nativeOnPurchasesUpdated(OK, "", [fakePurchase]) so the game's
+ *    C# purchase completion flow triggers.
  *
- * This triggers the game's normal purchase completion flow (C# callback
- * chain -> PurchasingManager -> item delivery) without opening Google Play.
+ * 2. onQueryPurchasesResponse — creates the same fake Purchase and calls
+ *    nativeOnQueryPurchasesResponse(OK, "", [fakePurchase], handle) so
+ *    the C++ side sees a valid purchase when verifying via
+ *    queryPurchasesAsync.
  *
- * Injected at index 0 of the method. The return-object instructions ensure
- * the original method body is never reached (dead code).
+ * purchaseTime is set to System.currentTimeMillis() to avoid rejection
+ * by the C++ purchase validation logic.
  */
 @Suppress("unused")
 val sfIAPBypassSmaliPatch = bytecodePatch(
     name = "Shadow Fight 2 IAP Bypass (Smali)",
     description = "Bypasses in-app purchases via smali patching. " +
-        "Intercepts launchBillingFlow and triggers fake purchase callback.",
+        "Intercepts zzbm callbacks to inject fake purchase data into C++ layer.",
     default = true
 ) {
     compatibleWith(COMPATIBILITY_SF2)
     execute {
-        IAPBypassSmaliFingerprint.method.addInstructionsWithLabels(0, """
-            invoke-virtual/range {p2 .. p2}, Lcom/android/billingclient/api/BillingFlowParams;->zzh()Ljava/util/List;
-            move-result-object v0
-            if-eqz v0, :fallback_error
-            invoke-interface {v0}, Ljava/util/List;->size()I
-            move-result v1
-            if-lez v1, :fallback_error
-            const/4 v1, 0x0
-            invoke-interface {v0, v1}, Ljava/util/List;->get(I)Ljava/lang/Object;
-            move-result-object v0
-            check-cast v0, Lcom/android/billingclient/api/BillingFlowParams${'$'}ProductDetailsParams;
-            invoke-virtual {v0}, Lcom/android/billingclient/api/BillingFlowParams${'$'}ProductDetailsParams;->zza()Lcom/android/billingclient/api/ProductDetails;
-            move-result-object v0
-            invoke-virtual {v0}, Lcom/android/billingclient/api/ProductDetails;->getProductId()Ljava/lang/String;
-            move-result-object v0
-            new-instance v1, Ljava/lang/StringBuilder;
-            invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
-            const-string v2, "{\"orderId\":\"morphe_bypass\",\"packageName\":\"com.nekki.shadowfight\",\"productIds\":[\""
-            invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-            invoke-virtual {v1, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-            const-string v2, "\"],\"purchaseTime\":0,\"purchaseState\":1,\"purchaseToken\":\"morphe_bypass_token\",\"acknowledged\":true}"
-            invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-            invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+        // Intercept onPurchasesUpdated: inject fake Purchase and call nativeOnPurchasesUpdated
+        IAPBypassOnPurchasesUpdatedFingerprint.method.addInstructionsWithLabels(0, """
+            new-instance v0, Ljava/lang/StringBuilder;
+            invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+            const-string v1, "{\"orderId\":\"morphe_bypass\",\"packageName\":\"com.nekki.shadowfight\",\"productIds\":[\"gem_d pack\"],\"purchaseTime\":"
+            invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+            invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
+            move-result-wide v2
+            invoke-static {v2, v3}, Ljava/lang/String;->valueOf(J)Ljava/lang/String;
+            move-result-object v1
+            invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+            const-string v1, ",\"purchaseState\":1,\"purchaseToken\":\"morphe_bypass_token\",\"acknowledged\":true}"
+            invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+            invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
             move-result-object v0
             new-instance v1, Lcom/android/billingclient/api/Purchase;
             const-string v2, ""
@@ -64,18 +52,54 @@ val sfIAPBypassSmaliPatch = bytecodePatch(
             new-instance v0, Ljava/util/ArrayList;
             invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
             invoke-virtual {v0, v1}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
-            move-object/from16 v3, p0
-            iget-object v1, v3, Lcom/android/billingclient/api/BillingClientImpl;->zze:Lcom/android/billingclient/api/zzn;
-            if-eqz v1, :fallback_error
-            invoke-virtual {v1}, Lcom/android/billingclient/api/zzn;->zzd()Lcom/android/billingclient/api/PurchasesUpdatedListener;
+            invoke-virtual {v0}, Ljava/util/ArrayList;->size()I
+            move-result v1
+            new-array v1, v1, [Lcom/android/billingclient/api/Purchase;
+            invoke-virtual {v0, v1}, Ljava/util/ArrayList;->toArray([Ljava/lang/Object;)[Ljava/lang/Object;
+            move-result-object v0
+            check-cast v0, [Lcom/android/billingclient/api/Purchase;
+            move-object/from16 v3, v0
+            const/4 v1, 0x0
+            const-string v2, ""
+            invoke-static/range {v1 .. v3}, Lcom/android/billingclient/api/zzbm;->nativeOnPurchasesUpdated(ILjava/lang/String;[Lcom/android/billingclient/api/Purchase;)V
+            return-void
+        """.trimIndent())
+
+        // Intercept onQueryPurchasesResponse: inject fake Purchase and call nativeOnQueryPurchasesResponse
+        IAPBypassOnQueryPurchasesResponseFingerprint.method.addInstructionsWithLabels(0, """
+            new-instance v0, Ljava/lang/StringBuilder;
+            invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+            const-string v1, "{\"orderId\":\"morphe_bypass\",\"packageName\":\"com.nekki.shadowfight\",\"productIds\":[\"gem_d pack\"],\"purchaseTime\":"
+            invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+            invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
+            move-result-wide v2
+            invoke-static {v2, v3}, Ljava/lang/String;->valueOf(J)Ljava/lang/String;
             move-result-object v1
-            if-eqz v1, :fallback_error
-            sget-object v2, Lcom/android/billingclient/api/zzcj;->zzl:Lcom/android/billingclient/api/BillingResult;
-            invoke-interface {v1, v2, v0}, Lcom/android/billingclient/api/PurchasesUpdatedListener;->onPurchasesUpdated(Lcom/android/billingclient/api/BillingResult;Ljava/util/List;)V
-            return-object v2
-            :fallback_error
-            sget-object v0, Lcom/android/billingclient/api/zzcj;->zzl:Lcom/android/billingclient/api/BillingResult;
-            return-object v0
+            invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+            const-string v1, ",\"purchaseState\":1,\"purchaseToken\":\"morphe_bypass_token\",\"acknowledged\":true}"
+            invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+            invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+            move-result-object v0
+            new-instance v1, Lcom/android/billingclient/api/Purchase;
+            const-string v2, ""
+            invoke-direct {v1, v0, v2}, Lcom/android/billingclient/api/Purchase;-><init>(Ljava/lang/String;Ljava/lang/String;)V
+            new-instance v0, Ljava/util/ArrayList;
+            invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
+            invoke-virtual {v0, v1}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+            invoke-virtual {v0}, Ljava/util/ArrayList;->size()I
+            move-result v1
+            new-array v1, v1, [Lcom/android/billingclient/api/Purchase;
+            invoke-virtual {v0, v1}, Ljava/util/ArrayList;->toArray([Ljava/lang/Object;)[Ljava/lang/Object;
+            move-result-object v0
+            check-cast v0, [Lcom/android/billingclient/api/Purchase;
+            move-object/from16 v5, v0
+            move-object/from16 v4, p0
+            iget-wide v0, v4, Lcom/android/billingclient/api/zzbm;->zza:J
+            move-wide v6, v0
+            const/4 v3, 0x0
+            const-string v4, ""
+            invoke-static/range {v3 .. v7}, Lcom/android/billingclient/api/zzbm;->nativeOnQueryPurchasesResponse(ILjava/lang/String;[Lcom/android/billingclient/api/Purchase;J)V
+            return-void
         """.trimIndent())
     }
 }
