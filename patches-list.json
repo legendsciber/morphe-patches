@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.47.1",
+  "version": "1.48.0",
   "patches": [
     {
       "name": "Ad Removal",
@@ -238,7 +238,7 @@
     },
     {
       "name": "Shadow Fight 2 IAP Bypass (Smali)",
-      "description": "Bypasses in-app purchases via smali patching. Intercepts zzbm callbacks to inject fake purchase data into C++ layer.",
+      "description": "Bypasses in-app purchases via smali patching. Triple interception: launchBillingFlow + zzbm callbacks.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
