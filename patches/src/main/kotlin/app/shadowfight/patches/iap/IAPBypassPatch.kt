@@ -5,33 +5,75 @@ import app.morphe.patcher.patch.bytecodePatch
 import app.shadowfight.patches.shared.Constants.COMPATIBILITY_SF2
 
 /**
- * Shadow Fight 2 IAP Bypass — Smali-only version (v2)
+ * Shadow Fight 2 IAP Bypass — Triple interception (v3)
  *
- * Intercepts two callbacks in zzbm (Unity JNI bridge) to inject fake
- * purchase data directly into the C++ layer:
+ * Three interception points work together:
  *
- * 1. onPurchasesUpdated — creates a fake Purchase and calls
- *    nativeOnPurchasesUpdated(OK, "", [fakePurchase]) so the game's
- *    C# purchase completion flow triggers.
+ * 1. BillingClientImpl.launchBillingFlow — prevents Google Play from
+ *    opening, extracts product ID, builds fake Purchase, calls
+ *    PurchasesUpdatedListener.onPurchasesUpdated directly, returns OK.
  *
- * 2. onQueryPurchasesResponse — creates the same fake Purchase and calls
- *    nativeOnQueryPurchasesResponse(OK, "", [fakePurchase], handle) so
- *    the C++ side sees a valid purchase when verifying via
- *    queryPurchasesAsync.
+ * 2. zzbm.onPurchasesUpdated — intercepts the callback triggered by
+ *    step 1, injects fake Purchase into nativeOnPurchasesUpdated so
+ *    the C++ layer receives valid purchase data.
  *
- * purchaseTime is set to System.currentTimeMillis() to avoid rejection
- * by the C++ purchase validation logic.
+ * 3. zzbm.onQueryPurchasesResponse — ensures C++ verification via
+ *    queryPurchasesAsync also sees a valid purchase.
  */
 @Suppress("unused")
 val sfIAPBypassSmaliPatch = bytecodePatch(
     name = "Shadow Fight 2 IAP Bypass (Smali)",
     description = "Bypasses in-app purchases via smali patching. " +
-        "Intercepts zzbm callbacks to inject fake purchase data into C++ layer.",
+        "Triple interception: launchBillingFlow + zzbm callbacks.",
     default = true
 ) {
     compatibleWith(COMPATIBILITY_SF2)
     execute {
-        // Intercept onPurchasesUpdated: inject fake Purchase and call nativeOnPurchasesUpdated
+        // === 1. Intercept launchBillingFlow: prevent Google Play, trigger callback ===
+        IAPBypassLaunchBillingFlowFingerprint.method.addInstructionsWithLabels(0, """
+            invoke-virtual/range {p2 .. p2}, Lcom/android/billingclient/api/BillingFlowParams;->zzh()Ljava/util/List;
+            move-result-object v0
+            if-eqz v0, :lbill_fallback
+            invoke-interface {v0}, Ljava/util/List;->size()I
+            move-result v1
+            if-lez v1, :lbill_fallback
+            const/4 v1, 0x0
+            invoke-interface {v0, v1}, Ljava/util/List;->get(I)Ljava/lang/Object;
+            move-result-object v0
+            check-cast v0, Lcom/android/billingclient/api/BillingFlowParams${'$'}ProductDetailsParams;
+            invoke-virtual {v0}, Lcom/android/billingclient/api/BillingFlowParams${'$'}ProductDetailsParams;->zza()Lcom/android/billingclient/api/ProductDetails;
+            move-result-object v0
+            invoke-virtual {v0}, Lcom/android/billingclient/api/ProductDetails;->getProductId()Ljava/lang/String;
+            move-result-object v0
+            new-instance v1, Ljava/lang/StringBuilder;
+            invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+            const-string v2, "{\"orderId\":\"morphe_bypass\",\"packageName\":\"com.nekki.shadowfight\",\"productIds\":[\""
+            invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+            invoke-virtual {v1, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+            const-string v2, "\"],\"purchaseTime\":0,\"purchaseState\":1,\"purchaseToken\":\"morphe_bypass_token\",\"acknowledged\":true}"
+            invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+            invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+            move-result-object v0
+            new-instance v1, Lcom/android/billingclient/api/Purchase;
+            const-string v2, ""
+            invoke-direct {v1, v0, v2}, Lcom/android/billingclient/api/Purchase;-><init>(Ljava/lang/String;Ljava/lang/String;)V
+            new-instance v0, Ljava/util/ArrayList;
+            invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
+            invoke-virtual {v0, v1}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+            iget-object v1, p0, Lcom/android/billingclient/api/BillingClientImpl;->zze:Lcom/android/billingclient/api/zzn;
+            if-eqz v1, :lbill_fallback
+            invoke-virtual {v1}, Lcom/android/billingclient/api/zzn;->zzd()Lcom/android/billingclient/api/PurchasesUpdatedListener;
+            move-result-object v1
+            if-eqz v1, :lbill_fallback
+            sget-object v2, Lcom/android/billingclient/api/zzcj;->zzl:Lcom/android/billingclient/api/BillingResult;
+            invoke-interface {v2, v0}, Lcom/android/billingclient/api/PurchasesUpdatedListener;->onPurchasesUpdated(Lcom/android/billingclient/api/BillingResult;Ljava/util/List;)V
+            return-object v2
+            :lbill_fallback
+            sget-object v0, Lcom/android/billingclient/api/zzcj;->zzl:Lcom/android/billingclient/api/BillingResult;
+            return-object v0
+        """.trimIndent())
+
+        // === 2. Intercept onPurchasesUpdated: inject fake Purchase into native layer ===
         IAPBypassOnPurchasesUpdatedFingerprint.method.addInstructionsWithLabels(0, """
             new-instance v0, Ljava/lang/StringBuilder;
             invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -65,7 +107,7 @@ val sfIAPBypassSmaliPatch = bytecodePatch(
             return-void
         """.trimIndent())
 
-        // Intercept onQueryPurchasesResponse: inject fake Purchase and call nativeOnQueryPurchasesResponse
+        // === 3. Intercept onQueryPurchasesResponse: fake purchase for C++ verification ===
         IAPBypassOnQueryPurchasesResponseFingerprint.method.addInstructionsWithLabels(0, """
             new-instance v0, Ljava/lang/StringBuilder;
             invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
