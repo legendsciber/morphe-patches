@@ -1,32 +1,37 @@
 package app.shadowfight.patches.iap
 
 import app.morphe.patcher.Fingerprint
-import app.morphe.patcher.methodCall
-import app.morphe.patcher.string
 import com.android.tools.smali.dexlib2.AccessFlags
 
 /**
- * BillingClientImpl.launchBillingFlow — the base implementation that is
- * called at runtime when the game's C++ code (libil2cpp.so) invokes
- * launchBillingFlow via JNI. The zzcc subclass is only used when
- * BillingClient testing overrides are enabled in the manifest, which is
- * NOT the case in production builds.
- *
- * This is the actual entry point for Google Play billing. The JNI bridge
- * method launchBillingFlowCpp() calls this via virtual dispatch.
- *
- * Replacing this method body skips the Google Play billing flow entirely
- * and instead creates a fake Purchase, calls PurchasesUpdatedListener
- * directly, and returns OK — so the game's purchase completion flow
- * triggers naturally, delivering items without Google Play.
+ * zzbm.onPurchasesUpdated — Unity JNI bridge callback that receives
+ * purchase results from Google Play Billing. Intercepted to inject a
+ * fake Purchase and call nativeOnPurchasesUpdated directly, bypassing
+ * Google Play while triggering the game's C# purchase completion flow.
  */
-object IAPBypassSmaliFingerprint : Fingerprint(
-    definingClass = "Lcom/android/billingclient/api/BillingClientImpl;",
-    name = "launchBillingFlow",
-    returnType = "Lcom/android/billingclient/api/BillingResult;",
+object IAPBypassOnPurchasesUpdatedFingerprint : Fingerprint(
+    definingClass = "Lcom/android/billingclient/api/zzbm;",
+    name = "onPurchasesUpdated",
+    returnType = "V",
     accessFlags = listOf(AccessFlags.PUBLIC),
     parameters = listOf(
-        "Landroid/app/Activity;",
-        "Lcom/android/billingclient/api/BillingFlowParams;"
+        "Lcom/android/billingclient/api/BillingResult;",
+        "Ljava/util/List;"
+    )
+)
+
+/**
+ * zzbm.onQueryPurchasesResponse — Unity JNI bridge callback that receives
+ * query-purchase results. Intercepted to inject the same fake Purchase so
+ * the C++ side sees a valid purchase when verifying via queryPurchasesAsync.
+ */
+object IAPBypassOnQueryPurchasesResponseFingerprint : Fingerprint(
+    definingClass = "Lcom/android/billingclient/api/zzbm;",
+    name = "onQueryPurchasesResponse",
+    returnType = "V",
+    accessFlags = listOf(AccessFlags.PUBLIC),
+    parameters = listOf(
+        "Lcom/android/billingclient/api/BillingResult;",
+        "Ljava/util/List;"
     )
 )
