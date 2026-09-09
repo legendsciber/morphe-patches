@@ -5,9 +5,9 @@ import app.morphe.patcher.patch.bytecodePatch
 import app.shadowfight.patches.shared.Constants.COMPATIBILITY_SF2
 
 /**
- * Shadow Fight 2 IAP Bypass — Triple interception (v3)
+ * Shadow Fight 2 IAP Bypass — Quintuple interception (v4)
  *
- * Three interception points work together:
+ * Five interception points work together:
  *
  * 1. BillingClientImpl.launchBillingFlow — prevents Google Play from
  *    opening, extracts product ID, builds fake Purchase, calls
@@ -19,12 +19,16 @@ import app.shadowfight.patches.shared.Constants.COMPATIBILITY_SF2
  *
  * 3. zzbm.onQueryPurchasesResponse — ensures C++ verification via
  *    queryPurchasesAsync also sees a valid purchase.
+ *
+ * 4-5. BillingClientImpl.queryPurchasesAsync (both overloads) — returns
+ *    fake OK result with empty list to prevent "connection error" when
+ *    the game queries purchases without a Google Play connection.
  */
 @Suppress("unused")
 val sfIAPBypassSmaliPatch = bytecodePatch(
     name = "Shadow Fight 2 IAP Bypass (Smali)",
     description = "Bypasses in-app purchases via smali patching. " +
-        "Triple interception: launchBillingFlow + zzbm callbacks.",
+        "Five interceptions: launchBillingFlow + zzbm callbacks + queryPurchasesAsync.",
     default = true
 ) {
     compatibleWith(COMPATIBILITY_SF2)
@@ -141,6 +145,24 @@ val sfIAPBypassSmaliPatch = bytecodePatch(
             const/4 v3, 0x0
             const-string v4, ""
             invoke-static/range {v3 .. v7}, Lcom/android/billingclient/api/zzbm;->nativeOnQueryPurchasesResponse(ILjava/lang/String;[Lcom/android/billingclient/api/Purchase;J)V
+            return-void
+        """.trimIndent())
+
+        // === 4. Intercept queryPurchasesAsync(QueryPurchasesParams): prevent connection error ===
+        IAPBypassQueryPurchasesAsyncParamsFingerprint.method.addInstructionsWithLabels(0, """
+            sget-object v0, Lcom/android/billingclient/api/zzcj;->zzl:Lcom/android/billingclient/api/BillingResult;
+            new-instance v1, Ljava/util/ArrayList;
+            invoke-direct {v1}, Ljava/util/ArrayList;-><init>()V
+            invoke-interface {p2, v0, v1}, Lcom/android/billingclient/api/PurchasesResponseListener;->onQueryPurchasesResponse(Lcom/android/billingclient/api/BillingResult;Ljava/util/List;)V
+            return-void
+        """.trimIndent())
+
+        // === 5. Intercept queryPurchasesAsync(String): prevent connection error ===
+        IAPBypassQueryPurchasesAsyncStringFingerprint.method.addInstructionsWithLabels(0, """
+            sget-object v0, Lcom/android/billingclient/api/zzcj;->zzl:Lcom/android/billingclient/api/BillingResult;
+            new-instance v1, Ljava/util/ArrayList;
+            invoke-direct {v1}, Ljava/util/ArrayList;-><init>()V
+            invoke-interface {p2, v0, v1}, Lcom/android/billingclient/api/PurchasesResponseListener;->onQueryPurchasesResponse(Lcom/android/billingclient/api/BillingResult;Ljava/util/List;)V
             return-void
         """.trimIndent())
     }

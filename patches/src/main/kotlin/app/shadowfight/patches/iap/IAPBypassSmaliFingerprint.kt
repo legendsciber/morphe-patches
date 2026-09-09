@@ -52,3 +52,35 @@ object IAPBypassOnQueryPurchasesResponseFingerprint : Fingerprint(
         "Ljava/util/List;"
     )
 )
+
+/**
+ * BillingClientImpl.queryPurchasesAsync(QueryPurchasesParams, PurchasesResponseListener)
+ * — intercepts the query to return fake OK result with empty list, preventing
+ * the "connection error" that occurs when zzaI checks isReady() (false without
+ * Google Play connection).
+ */
+object IAPBypassQueryPurchasesAsyncParamsFingerprint : Fingerprint(
+    definingClass = "Lcom/android/billingclient/api/BillingClientImpl;",
+    name = "queryPurchasesAsync",
+    returnType = "V",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
+    parameters = listOf(
+        "Lcom/android/billingclient/api/QueryPurchasesParams;",
+        "Lcom/android/billingclient/api/PurchasesResponseListener;"
+    )
+)
+
+/**
+ * BillingClientImpl.queryPurchasesAsync(String, PurchasesResponseListener)
+ * — intercepts the query to return fake OK result with empty list.
+ */
+object IAPBypassQueryPurchasesAsyncStringFingerprint : Fingerprint(
+    definingClass = "Lcom/android/billingclient/api/BillingClientImpl;",
+    name = "queryPurchasesAsync",
+    returnType = "V",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
+    parameters = listOf(
+        "Ljava/lang/String;",
+        "Lcom/android/billingclient/api/PurchasesResponseListener;"
+    )
+)
