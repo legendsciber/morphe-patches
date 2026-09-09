@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-09T08:36:09",
-  "description": "## [1.49.0](https://github.com/legendsciber/morphe-patches/compare/v1.48.0...v1.49.0) (2026-09-09)\n\n### ✨ New Features\n\n* **iap:** intercept queryPurchasesAsync to prevent connection error ([c62bf8e](https://github.com/legendsciber/morphe-patches/commit/c62bf8e9e607decf0cc8039abbc202ac54a60951))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.49.0/patches-1.49.0.mpp",
+  "created_at": "2026-09-09T08:49:55",
+  "description": "## [1.50.0](https://github.com/legendsciber/morphe-patches/compare/v1.49.0...v1.50.0) (2026-09-09)\n\n### ✨ New Features\n\n* **iap:** fake billing connection - intercept isReady + startConnection ([5ddc8a8](https://github.com/legendsciber/morphe-patches/commit/5ddc8a87c0f979aa83d562841a2c52980384784e))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.50.0/patches-1.50.0.mpp",
   "signature_download_url": "",
-  "version": "1.49.0"
+  "version": "1.50.0"
 }

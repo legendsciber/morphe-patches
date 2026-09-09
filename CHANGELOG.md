@@ -1,3 +1,9 @@
+## [1.50.0](https://github.com/legendsciber/morphe-patches/compare/v1.49.0...v1.50.0) (2026-09-09)
+
+### ✨ New Features
+
+* **iap:** fake billing connection - intercept isReady + startConnection ([5ddc8a8](https://github.com/legendsciber/morphe-patches/commit/5ddc8a87c0f979aa83d562841a2c52980384784e))
+
 ## [1.49.0](https://github.com/legendsciber/morphe-patches/compare/v1.48.0...v1.49.0) (2026-09-09)
 
 ### ✨ New Features
