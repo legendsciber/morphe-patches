@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-09T10:09:26",
-  "description": "## [1.52.0](https://github.com/legendsciber/morphe-patches/compare/v1.51.0...v1.52.0) (2026-09-09)\n\n### ✨ New Features\n\n* **iap:** set zzb=2 in startConnection to fake connected state ([b3cf543](https://github.com/legendsciber/morphe-patches/commit/b3cf543f2053418b77b670be367abfbd8d52dc9d))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.52.0/patches-1.52.0.mpp",
+  "created_at": "2026-09-09T10:29:05",
+  "description": "## [1.53.0](https://github.com/legendsciber/morphe-patches/compare/v1.52.0...v1.53.0) (2026-09-09)\n\n### ✨ New Features\n\n* **iap:** v7 - only intercept launchBillingFlow ([e1aa7a8](https://github.com/legendsciber/morphe-patches/commit/e1aa7a8e1c6828edb96d5eaa49037a937263fc77))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.53.0/patches-1.53.0.mpp",
   "signature_download_url": "",
-  "version": "1.52.0"
+  "version": "1.53.0"
 }

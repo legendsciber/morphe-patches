@@ -1,3 +1,9 @@
+## [1.53.0](https://github.com/legendsciber/morphe-patches/compare/v1.52.0...v1.53.0) (2026-09-09)
+
+### ✨ New Features
+
+* **iap:** v7 - only intercept launchBillingFlow ([e1aa7a8](https://github.com/legendsciber/morphe-patches/commit/e1aa7a8e1c6828edb96d5eaa49037a937263fc77))
+
 ## [1.52.0](https://github.com/legendsciber/morphe-patches/compare/v1.51.0...v1.52.0) (2026-09-09)
 
 ### ✨ New Features
