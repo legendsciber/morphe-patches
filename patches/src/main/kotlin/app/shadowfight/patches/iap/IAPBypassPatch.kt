@@ -7,14 +7,14 @@ import app.shadowfight.patches.shared.Constants.COMPATIBILITY_SF2
 @Suppress("unused")
 val sfIAPBypassSmaliPatch = bytecodePatch(
     name = "Shadow Fight 2 IAP Bypass (Smali)",
-    description = "Bypasses in-app purchases via smali patching.",
+    description = "Bypasses anti-tamper security check to restore billing flow.",
     default = true
 ) {
     compatibleWith(COMPATIBILITY_SF2)
     execute {
-        IAPBypassLaunchBillingFlowFingerprint.method.addInstructionsWithLabels(0, """
-            const/4 v0, 0x0
-            return v0
+        IAPBypassSecurityVerifyStepFingerprint.method.addInstructionsWithLabels(0, """
+            invoke-static {}, Lcom/nekki/utils/security/SecurityManager;->NotifyOnSuccess()V
+            return-void
         """.trimIndent())
     }
 }
