@@ -1,3 +1,9 @@
+## [1.56.0](https://github.com/legendsciber/morphe-patches/compare/v1.55.0...v1.56.0) (2026-09-10)
+
+### ✨ New Features
+
+* **iap:** bypass anti-tamper security check ([04f3bfa](https://github.com/legendsciber/morphe-patches/commit/04f3bfa9f389c4836fca2f51ca0ca3ce9376b4c7))
+
 ## [1.55.0](https://github.com/legendsciber/morphe-patches/compare/v1.54.1...v1.55.0) (2026-09-09)
 
 ### ✨ New Features
