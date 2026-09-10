@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-10T12:28:18",
-  "description": "## [1.56.0](https://github.com/legendsciber/morphe-patches/compare/v1.55.0...v1.56.0) (2026-09-10)\n\n### ✨ New Features\n\n* **iap:** bypass anti-tamper security check ([04f3bfa](https://github.com/legendsciber/morphe-patches/commit/04f3bfa9f389c4836fca2f51ca0ca3ce9376b4c7))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.56.0/patches-1.56.0.mpp",
+  "created_at": "2026-09-10T12:40:35",
+  "description": "## [1.57.0](https://github.com/legendsciber/morphe-patches/compare/v1.56.0...v1.57.0) (2026-09-10)\n\n### ✨ New Features\n\n* **iap:** add launchBillingFlow interception on top of anti-tamper bypass ([5829170](https://github.com/legendsciber/morphe-patches/commit/5829170312a218fffea4bbc18b3636c2dadd2e6d))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.57.0/patches-1.57.0.mpp",
   "signature_download_url": "",
-  "version": "1.56.0"
+  "version": "1.57.0"
 }
