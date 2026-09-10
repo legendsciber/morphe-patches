@@ -1,3 +1,9 @@
+## [1.57.0](https://github.com/legendsciber/morphe-patches/compare/v1.56.0...v1.57.0) (2026-09-10)
+
+### ✨ New Features
+
+* **iap:** add launchBillingFlow interception on top of anti-tamper bypass ([5829170](https://github.com/legendsciber/morphe-patches/commit/5829170312a218fffea4bbc18b3636c2dadd2e6d))
+
 ## [1.56.0](https://github.com/legendsciber/morphe-patches/compare/v1.55.0...v1.56.0) (2026-09-10)
 
 ### ✨ New Features
