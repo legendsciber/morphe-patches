@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-11T23:22:41",
-  "description": "## [1.61.4](https://github.com/legendsciber/morphe-patches/compare/v1.61.3...v1.61.4) (2026-09-11)\n\n### 🐛 Bug Fixes\n\n* **iap:** cast zzh() elements to ProductDetailsParams ([718bc13](https://github.com/legendsciber/morphe-patches/commit/718bc136107744aa175a1e2665306b63ec83dae3))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.61.4/patches-1.61.4.mpp",
+  "created_at": "2026-09-11T23:48:35",
+  "description": "## [1.61.5](https://github.com/legendsciber/morphe-patches/compare/v1.61.4...v1.61.5) (2026-09-11)\n\n### 🐛 Bug Fixes\n\n* **iap:** store fake purchase for queryPurchasesAsync verification ([59ae133](https://github.com/legendsciber/morphe-patches/commit/59ae133171992b5ecc28deeb593019b5b344aaf5))\n* **iap:** use System.setProperty for purchase state (no field needed) ([368b068](https://github.com/legendsciber/morphe-patches/commit/368b068bb13d038ee48f82d47a4752d50621cb1e))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.61.5/patches-1.61.5.mpp",
   "signature_download_url": "",
-  "version": "1.61.4"
+  "version": "1.61.5"
 }
