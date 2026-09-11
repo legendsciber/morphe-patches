@@ -1,3 +1,9 @@
+## [1.59.0](https://github.com/legendsciber/morphe-patches/compare/v1.58.1...v1.59.0) (2026-09-11)
+
+### ✨ New Features
+
+* **iap:** add debug logging to morphe_log.txt ([949bc8c](https://github.com/legendsciber/morphe-patches/commit/949bc8cabe2877ff24feedfa38068adeb1a35d66))
+
 ## [1.58.1](https://github.com/legendsciber/morphe-patches/compare/v1.58.0...v1.58.1) (2026-09-11)
 
 ### 🐛 Bug Fixes
