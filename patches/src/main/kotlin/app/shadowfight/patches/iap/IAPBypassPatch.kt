@@ -85,7 +85,7 @@ val sfIAPBypassSmaliPatch = bytecodePatch(
                 move-result-object v1
                 invoke-virtual {v1}, Ljava/util/ArrayList;->size()I
                 move-result v2
-                if-lez v2, :sku_done
+                if-lez v2, :try_sku
                 const/4 v2, 0x0
                 invoke-virtual {v1, v2}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
                 move-result-object v1
@@ -95,8 +95,23 @@ val sfIAPBypassSmaliPatch = bytecodePatch(
                 invoke-virtual {v1}, Lcom/android/billingclient/api/ProductDetails;->getProductId()Ljava/lang/String;
                 move-result-object v4
                 goto :json_build
+                :try_sku
+                invoke-virtual {p1}, Lcom/android/billingclient/api/BillingFlowParams;->zzh()Ljava/util/List;
+                move-result-object v1
+                if-eqz v1, :sku_done
+                invoke-interface {v1}, Ljava/util/List;->isEmpty()Z
+                move-result v2
+                if-nez v2, :sku_detail
                 :sku_done
                 const-string v4, "unknown_sku"
+                goto :json_build
+                :sku_detail
+                const/4 v2, 0x0
+                invoke-interface {v1, v2}, Ljava/util/List;->get(I)Ljava/lang/Object;
+                move-result-object v1
+                check-cast v1, Lcom/android/billingclient/api/SkuDetails;
+                invoke-virtual {v1}, Lcom/android/billingclient/api/SkuDetails;->getSku()Ljava/lang/String;
+                move-result-object v4
                 :json_build
                 new-instance v7, Ljava/lang/StringBuilder;
                 invoke-direct {v7}, Ljava/lang/StringBuilder;-><init>()V
