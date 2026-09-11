@@ -155,7 +155,7 @@ val sfIAPBypassSmaliPatch = bytecodePatch(
                 invoke-direct {v3, v5, v2}, Lcom/android/billingclient/api/Purchase;-><init>(Ljava/lang/String;Ljava/lang/String;)V
                 const-string v8, "morphe.last.purchase"
                 invoke-static {v8, v5}, Ljava/lang/System;->setProperty(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-                pop
+                move-result-object v8
                 iget-object v1, p0, Lcom/android/billingclient/api/BillingClientImpl;->zze:Lcom/android/billingclient/api/zzn;
                 const-string v7, "[MORPHE] checking zze field..."
                 invoke-static {v7}, Lcom/android/billingclient/api/BillingClientImpl;->morpheLog(Ljava/lang/String;)V
