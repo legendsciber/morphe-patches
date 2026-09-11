@@ -69,7 +69,7 @@ val sfIAPBypassSmaliPatch = bytecodePatch(
             AccessFlags.PRIVATE.value or AccessFlags.FINAL.value,
             null,
             null,
-            MutableMethodImplementation(11)
+            MutableMethodImplementation(16)
         ).toMutable().apply {
             addInstructionsWithLabels(0, """
                 const-string v7, "[MORPHE] morpheFakePurchase called"
@@ -105,9 +105,19 @@ val sfIAPBypassSmaliPatch = bytecodePatch(
                 const/4 v2, 0x0
                 invoke-interface {v1, v2}, Ljava/util/List;->get(I)Ljava/lang/Object;
                 move-result-object v1
-                check-cast v1, Lcom/android/billingclient/api/SkuDetails;
-                invoke-virtual {v1}, Lcom/android/billingclient/api/SkuDetails;->getSku()Ljava/lang/String;
+                invoke-virtual {v1}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+                move-result-object v1
+                invoke-virtual {v1}, Ljava/lang/Class;->getName()Ljava/lang/String;
                 move-result-object v4
+                new-instance v8, Ljava/lang/StringBuilder;
+                invoke-direct {v8}, Ljava/lang/StringBuilder;-><init>()V
+                const-string v9, "[MORPHE] zzh element class="
+                invoke-virtual {v8, v9}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+                invoke-virtual {v8, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+                invoke-virtual {v8}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+                move-result-object v8
+                invoke-static {v8}, Lcom/android/billingclient/api/BillingClientImpl;->morpheLog(Ljava/lang/String;)V
+                const-string v4, "unknown_sku"
                 goto :json_build
                 :sku_done
                 const-string v4, "unknown_sku"
