@@ -30,16 +30,6 @@ object IAPBypassLaunchBillingFlowFingerprint : Fingerprint(
     parameters = listOf(
         "Landroid/app/Activity;",
         "Lcom/android/billingclient/api/BillingFlowParams;"
-    ),
-    filters = listOf(
-        methodCall(
-            definingClass = "Lcom/android/billingclient/api/BillingClientImpl;",
-            name = "isReady"
-        ),
-        methodCall(
-            definingClass = "Lcom/android/billingclient/api/BillingFlowParams;",
-            name = "zzg"
-        )
     )
 )
 
@@ -114,9 +104,22 @@ object IAPBypassQueryPurchasesAsyncFingerprint : Fingerprint(
     definingClass = "Lcom/android/billingclient/api/BillingClientImpl;",
     name = "queryPurchasesAsync",
     returnType = "V",
-    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
+    accessFlags = listOf(AccessFlags.PUBLIC),
     parameters = listOf(
         "Lcom/android/billingclient/api/QueryPurchasesParams;",
         "Lcom/android/billingclient/api/PurchasesResponseListener;"
     )
+)
+
+/**
+ * BillingClientImpl.isReady()Z — returns whether billing client is connected.
+ * C++ code checks this before calling launchBillingFlowCpp. Hooked to always
+ * return true so C++ purchase flow proceeds.
+ */
+object IAPBypassIsReadyFingerprint : Fingerprint(
+    definingClass = "Lcom/android/billingclient/api/BillingClientImpl;",
+    name = "isReady",
+    returnType = "Z",
+    accessFlags = listOf(AccessFlags.PUBLIC),
+    parameters = emptyList()
 )
