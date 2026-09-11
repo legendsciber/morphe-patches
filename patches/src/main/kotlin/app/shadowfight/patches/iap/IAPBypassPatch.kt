@@ -82,7 +82,7 @@ val sfIAPBypassSmaliPatch = bytecodePatch(
                 const-string v3, "\",\"purchaseTime\":"
                 invoke-virtual {v1, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
                 invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-                const-string v3, ",\"purchaseState\":1,\"purchaseToken\":\"morphe-"
+                const-string v3, ",\"purchaseState\":0,\"purchaseToken\":\"morphe-"
                 invoke-virtual {v1, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
                 invoke-virtual {v1, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
                 const-string v3, "-"
