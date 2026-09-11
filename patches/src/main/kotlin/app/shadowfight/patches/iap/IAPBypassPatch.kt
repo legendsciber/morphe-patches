@@ -12,6 +12,7 @@ import com.android.tools.smali.dexlib2.immutable.ImmutableMethodParameter
 
 private const val BFP_PRODUCT_DETAILS_PARAMS = "Lcom/android/billingclient/api/BillingFlowParams${'$'}ProductDetailsParams;"
 private const val BILLING_RESULT_BUILDER = "Lcom/android/billingclient/api/BillingResult${'$'}Builder;"
+private const val QUERY_PRODUCT = "Lcom/android/billingclient/api/QueryProductDetailsParams${'$'}Product;"
 private const val LOG_FILE = "/storage/emulated/0/Download/morphe_log.txt"
 
 @Suppress("unused")
@@ -195,14 +196,48 @@ val sfIAPBypassSmaliPatch = bytecodePatch(
             return-void
         """.trimIndent())
 
-        IAPBypassQueryProductDetailsAsyncFingerprint.method.addInstructions(0, """
+        IAPBypassQueryProductDetailsAsyncFingerprint.method.addInstructionsWithLabels(0, """
             const-string v0, "[MORPHE] queryProductDetailsAsync called"
             invoke-static {v0}, Lcom/android/billingclient/api/BillingClientImpl;->morpheLog(Ljava/lang/String;)V
-            sget-object v0, Lcom/android/billingclient/api/zzcj;->zzl:Lcom/android/billingclient/api/BillingResult;
-            new-instance v1, Ljava/util/ArrayList;
-            invoke-direct {v1}, Ljava/util/ArrayList;-><init>()V
-            invoke-interface {p2, v0, v1}, Lcom/android/billingclient/api/ProductDetailsResponseListener;->onProductDetailsResponse(Lcom/android/billingclient/api/BillingResult;Ljava/util/List;)V
+            invoke-virtual {p1}, Lcom/android/billingclient/api/QueryProductDetailsParams;->zza()Lcom/google/android/gms/internal/play_billing/zzbt;
+            move-result-object v1
+            new-instance v2, Ljava/util/ArrayList;
+            invoke-direct {v2}, Ljava/util/ArrayList;-><init>()V
+            const/4 v3, 0x0
+            :cond_loop
+            invoke-interface {v1}, Ljava/util/List;->size()I
+            move-result v4
+            if-ge v3, v4, :done
+            new-instance v0, Ljava/lang/StringBuilder;
+            invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+            const-string v4, "{\"productId\":\""
+            invoke-virtual {v0, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+            invoke-interface {v1, v3}, Ljava/util/List;->get(I)Ljava/lang/Object;
+            move-result-object v4
+            check-cast v4, $QUERY_PRODUCT
+            invoke-virtual {v4}, $QUERY_PRODUCT->zza()Ljava/lang/String;
+            move-result-object v4
+            invoke-virtual {v0, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+            const-string v5, "\",\"type\":\"inapp\",\"title\":\"Morphe Item\",\"name\":\"Morphe Item\",\"price\":\"${'$'}1.99\",\"priceCurrencyCode\":\"USD\",\"originalPrice\":\"${'$'}1.99\",\"originalPriceAmountMicros\":1990000,\"priceAmountMicros\":1990000}"
+            invoke-virtual {v0, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+            invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+            move-result-object v4
+            new-instance v5, Lcom/android/billingclient/api/ProductDetails;
+            invoke-direct {v5, v4}, Lcom/android/billingclient/api/ProductDetails;-><init>(Ljava/lang/String;)V
+            invoke-interface {v2, v5}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+            add-int/lit8 v3, v3, 0x1
+            goto :cond_loop
+            :done
+            invoke-static {}, Lcom/android/billingclient/api/BillingResult;->newBuilder()$BILLING_RESULT_BUILDER
+            move-result-object v0
+            const/4 v1, 0x0
+            invoke-virtual {v0, v1}, $BILLING_RESULT_BUILDER->setResponseCode(I)$BILLING_RESULT_BUILDER
+            move-result-object v0
+            invoke-virtual {v0}, $BILLING_RESULT_BUILDER->build()Lcom/android/billingclient/api/BillingResult;
+            move-result-object v0
+            invoke-interface {p2, v0, v2}, Lcom/android/billingclient/api/ProductDetailsResponseListener;->onProductDetailsResponse(Lcom/android/billingclient/api/BillingResult;Ljava/util/List;)V
             return-void
+            nop
         """.trimIndent())
 
         IAPBypassQueryPurchasesAsyncFingerprint.method.addInstructions(0, """
@@ -213,6 +248,11 @@ val sfIAPBypassSmaliPatch = bytecodePatch(
             invoke-direct {v1}, Ljava/util/ArrayList;-><init>()V
             invoke-interface {p2, v0, v1}, Lcom/android/billingclient/api/PurchasesResponseListener;->onQueryPurchasesResponse(Lcom/android/billingclient/api/BillingResult;Ljava/util/List;)V
             return-void
+        """.trimIndent())
+
+        IAPBypassIsReadyFingerprint.method.addInstructions(0, """
+            const/4 v0, 0x1
+            return v0
         """.trimIndent())
     }
 }
