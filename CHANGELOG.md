@@ -1,3 +1,9 @@
+## [1.58.1](https://github.com/legendsciber/morphe-patches/compare/v1.58.0...v1.58.1) (2026-09-11)
+
+### 🐛 Bug Fixes
+
+* **iap:** purchaseState 0 instead of 1 (PURCHASED not CANCELED) ([be1b310](https://github.com/legendsciber/morphe-patches/commit/be1b310889a354adff65ab28126140e05d31ad85))
+
 ## [1.58.0](https://github.com/legendsciber/morphe-patches/compare/v1.57.0...v1.58.0) (2026-09-11)
 
 ### 🐛 Bug Fixes
