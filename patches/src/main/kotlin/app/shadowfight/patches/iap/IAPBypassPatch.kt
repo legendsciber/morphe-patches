@@ -250,11 +250,14 @@ val sfIAPBypassSmaliPatch = bytecodePatch(
             return-void
         """.trimIndent())
 
-        IAPBypassIsReadyFingerprint.method.addInstructions(0, """
-            const-string v0, "[MORPHE] isReady called"
+        IAPBypassStartConnectionFingerprint.method.addInstructions(0, """
+            const-string v0, "[MORPHE] startConnection hooked - faking connected state"
             invoke-static {v0}, Lcom/android/billingclient/api/BillingClientImpl;->morpheLog(Ljava/lang/String;)V
-            const/4 v0, 0x1
-            return v0
+            const/4 v0, 0x2
+            invoke-direct {p0, v0}, Lcom/android/billingclient/api/BillingClientImpl;->zzaJ(I)V
+            sget-object v0, Lcom/android/billingclient/api/zzcj;->zzl:Lcom/android/billingclient/api/BillingResult;
+            invoke-interface {p1, v0}, Lcom/android/billingclient/api/BillingClientStateListener;->onBillingSetupFinished(Lcom/android/billingclient/api/BillingResult;)V
+            return-void
         """.trimIndent())
     }
 }

@@ -113,14 +113,17 @@ object IAPBypassQueryPurchasesAsyncFingerprint : Fingerprint(
 )
 
 /**
- * BillingClientImpl.isReady()Z — returns whether billing client is connected.
- * C++ code checks this before calling launchBillingFlowCpp. Hooked to always
- * return true so C++ purchase flow proceeds.
+ * BillingClientImpl.startConnection(BillingClientStateListener)
+ * — fakes billing connection by setting zzb=2 (CONNECTED) and calling
+ * onBillingSetupFinished(OK) immediately. This makes C++ code see a
+ * properly connected billing client.
  */
-object IAPBypassIsReadyFingerprint : Fingerprint(
+object IAPBypassStartConnectionFingerprint : Fingerprint(
     definingClass = "Lcom/android/billingclient/api/BillingClientImpl;",
-    name = "isReady",
-    returnType = "Z",
-    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
-    parameters = emptyList()
+    name = "startConnection",
+    returnType = "V",
+    accessFlags = listOf(AccessFlags.PUBLIC),
+    parameters = listOf(
+        "Lcom/android/billingclient/api/BillingClientStateListener;"
+    )
 )
