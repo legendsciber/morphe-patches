@@ -199,7 +199,7 @@ val sfIAPBypassSmaliPatch = bytecodePatch(
         IAPBypassQueryProductDetailsAsyncFingerprint.method.addInstructionsWithLabels(0, """
             const-string v0, "[MORPHE] queryProductDetailsAsync called"
             invoke-static {v0}, Lcom/android/billingclient/api/BillingClientImpl;->morpheLog(Ljava/lang/String;)V
-            invoke-virtual {p1}, Lcom/android/billingclient/api/QueryProductDetailsParams;->zza()Lcom/google/android/gms/internal/play_billing/zzbt;
+            invoke-virtual {p1}, Lcom/android/billingclient/api/QueryProductDetailsParams;->zza()Lcom/google/android/gms/internal/play_billing/zzco;
             move-result-object v1
             new-instance v2, Ljava/util/ArrayList;
             invoke-direct {v2}, Ljava/util/ArrayList;-><init>()V
@@ -251,6 +251,8 @@ val sfIAPBypassSmaliPatch = bytecodePatch(
         """.trimIndent())
 
         IAPBypassIsReadyFingerprint.method.addInstructions(0, """
+            const-string v0, "[MORPHE] isReady called"
+            invoke-static {v0}, Lcom/android/billingclient/api/BillingClientImpl;->morpheLog(Ljava/lang/String;)V
             const/4 v0, 0x1
             return v0
         """.trimIndent())
