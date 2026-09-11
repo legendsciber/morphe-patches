@@ -1,3 +1,9 @@
+## [1.61.2](https://github.com/legendsciber/morphe-patches/compare/v1.61.1...v1.61.2) (2026-09-11)
+
+### 🐛 Bug Fixes
+
+* **iap:** fix SkuDetails label ordering in morpheFakePurchase ([3e97210](https://github.com/legendsciber/morphe-patches/commit/3e9721071bafe77f5e1331115ac6eaa3118b95e2))
+
 ## [1.61.1](https://github.com/legendsciber/morphe-patches/compare/v1.61.0...v1.61.1) (2026-09-11)
 
 ### 🐛 Bug Fixes
