@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-10T12:40:35",
-  "description": "## [1.57.0](https://github.com/legendsciber/morphe-patches/compare/v1.56.0...v1.57.0) (2026-09-10)\n\n### ✨ New Features\n\n* **iap:** add launchBillingFlow interception on top of anti-tamper bypass ([5829170](https://github.com/legendsciber/morphe-patches/commit/5829170312a218fffea4bbc18b3636c2dadd2e6d))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.57.0/patches-1.57.0.mpp",
+  "created_at": "2026-09-11T11:48:14",
+  "description": "## [1.58.0](https://github.com/legendsciber/morphe-patches/compare/v1.57.0...v1.58.0) (2026-09-11)\n\n### 🐛 Bug Fixes\n\n* **iap:** move const vals to file level, fix $ escaping for inner classes ([1645b00](https://github.com/legendsciber/morphe-patches/commit/1645b00c7300ab6ab0202a71dbce4219f76fb814))\n\n### ✨ New Features\n\n* **iap:** 6-hook smali bypass with helper method pattern ([ced0ca4](https://github.com/legendsciber/morphe-patches/commit/ced0ca4f56ed66ca8ef00a9766198f490fd6bf9b))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.58.0/patches-1.58.0.mpp",
   "signature_download_url": "",
-  "version": "1.57.0"
+  "version": "1.58.0"
 }

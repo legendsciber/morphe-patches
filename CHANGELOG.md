@@ -1,3 +1,13 @@
+## [1.58.0](https://github.com/legendsciber/morphe-patches/compare/v1.57.0...v1.58.0) (2026-09-11)
+
+### 🐛 Bug Fixes
+
+* **iap:** move const vals to file level, fix $ escaping for inner classes ([1645b00](https://github.com/legendsciber/morphe-patches/commit/1645b00c7300ab6ab0202a71dbce4219f76fb814))
+
+### ✨ New Features
+
+* **iap:** 6-hook smali bypass with helper method pattern ([ced0ca4](https://github.com/legendsciber/morphe-patches/commit/ced0ca4f56ed66ca8ef00a9766198f490fd6bf9b))
+
 ## [1.57.0](https://github.com/legendsciber/morphe-patches/compare/v1.56.0...v1.57.0) (2026-09-10)
 
 ### ✨ New Features
