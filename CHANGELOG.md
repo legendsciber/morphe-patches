@@ -1,3 +1,9 @@
+## [1.61.6](https://github.com/legendsciber/morphe-patches/compare/v1.61.5...v1.61.6) (2026-09-11)
+
+### 🐛 Bug Fixes
+
+* **iap:** replace invalid 'pop' smali with 'move-result-object' ([a0bc5ea](https://github.com/legendsciber/morphe-patches/commit/a0bc5ea63b4243c6f479e7af53d38bf22c118650))
+
 ## [1.61.5](https://github.com/legendsciber/morphe-patches/compare/v1.61.4...v1.61.5) (2026-09-11)
 
 ### 🐛 Bug Fixes
