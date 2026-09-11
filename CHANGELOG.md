@@ -1,3 +1,9 @@
+## [1.61.4](https://github.com/legendsciber/morphe-patches/compare/v1.61.3...v1.61.4) (2026-09-11)
+
+### 🐛 Bug Fixes
+
+* **iap:** cast zzh() elements to ProductDetailsParams ([718bc13](https://github.com/legendsciber/morphe-patches/commit/718bc136107744aa175a1e2665306b63ec83dae3))
+
 ## [1.61.3](https://github.com/legendsciber/morphe-patches/compare/v1.61.2...v1.61.3) (2026-09-11)
 
 ### 🐛 Bug Fixes
