@@ -1,3 +1,9 @@
+## [1.60.2](https://github.com/legendsciber/morphe-patches/compare/v1.60.1...v1.60.2) (2026-09-11)
+
+### 🐛 Bug Fixes
+
+* **iap:** zzbt→zzco return type + isReady debug log ([172853d](https://github.com/legendsciber/morphe-patches/commit/172853db7bac11919958096bf46640d8520e2487))
+
 ## [1.60.1](https://github.com/legendsciber/morphe-patches/compare/v1.60.0...v1.60.1) (2026-09-11)
 
 ### 🐛 Bug Fixes
