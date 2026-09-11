@@ -1,3 +1,10 @@
+## [1.61.5](https://github.com/legendsciber/morphe-patches/compare/v1.61.4...v1.61.5) (2026-09-11)
+
+### 🐛 Bug Fixes
+
+* **iap:** store fake purchase for queryPurchasesAsync verification ([59ae133](https://github.com/legendsciber/morphe-patches/commit/59ae133171992b5ecc28deeb593019b5b344aaf5))
+* **iap:** use System.setProperty for purchase state (no field needed) ([368b068](https://github.com/legendsciber/morphe-patches/commit/368b068bb13d038ee48f82d47a4752d50621cb1e))
+
 ## [1.61.4](https://github.com/legendsciber/morphe-patches/compare/v1.61.3...v1.61.4) (2026-09-11)
 
 ### 🐛 Bug Fixes
