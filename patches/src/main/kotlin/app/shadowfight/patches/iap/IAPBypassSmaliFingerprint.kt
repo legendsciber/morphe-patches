@@ -99,12 +99,13 @@ object IAPBypassQueryProductDetailsAsyncFingerprint : Fingerprint(
 /**
  * BillingClientImpl.queryPurchasesAsync(QueryPurchasesParams, PurchasesResponseListener)
  * — intercepts to return OK with empty purchase list.
+ * Method is `public final` in SF2 billing 7.1.1.
  */
 object IAPBypassQueryPurchasesAsyncFingerprint : Fingerprint(
     definingClass = "Lcom/android/billingclient/api/BillingClientImpl;",
     name = "queryPurchasesAsync",
     returnType = "V",
-    accessFlags = listOf(AccessFlags.PUBLIC),
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
     parameters = listOf(
         "Lcom/android/billingclient/api/QueryPurchasesParams;",
         "Lcom/android/billingclient/api/PurchasesResponseListener;"
@@ -120,6 +121,6 @@ object IAPBypassIsReadyFingerprint : Fingerprint(
     definingClass = "Lcom/android/billingclient/api/BillingClientImpl;",
     name = "isReady",
     returnType = "Z",
-    accessFlags = listOf(AccessFlags.PUBLIC),
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
     parameters = emptyList()
 )
