@@ -1,3 +1,9 @@
+## [1.60.0](https://github.com/legendsciber/morphe-patches/compare/v1.59.0...v1.60.0) (2026-09-11)
+
+### ✨ New Features
+
+* **iap:** hook isReady(true) + fake ProductDetails + remove FINAL ([40858e7](https://github.com/legendsciber/morphe-patches/commit/40858e7487c9bc9ad70b38092945f0f1d0bb6f91))
+
 ## [1.59.0](https://github.com/legendsciber/morphe-patches/compare/v1.58.1...v1.59.0) (2026-09-11)
 
 ### ✨ New Features

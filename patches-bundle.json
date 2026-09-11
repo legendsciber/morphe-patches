@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-11T18:05:54",
-  "description": "## [1.59.0](https://github.com/legendsciber/morphe-patches/compare/v1.58.1...v1.59.0) (2026-09-11)\n\n### ✨ New Features\n\n* **iap:** add debug logging to morphe_log.txt ([949bc8c](https://github.com/legendsciber/morphe-patches/commit/949bc8cabe2877ff24feedfa38068adeb1a35d66))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.59.0/patches-1.59.0.mpp",
+  "created_at": "2026-09-11T19:33:40",
+  "description": "## [1.60.0](https://github.com/legendsciber/morphe-patches/compare/v1.59.0...v1.60.0) (2026-09-11)\n\n### ✨ New Features\n\n* **iap:** hook isReady(true) + fake ProductDetails + remove FINAL ([40858e7](https://github.com/legendsciber/morphe-patches/commit/40858e7487c9bc9ad70b38092945f0f1d0bb6f91))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.60.0/patches-1.60.0.mpp",
   "signature_download_url": "",
-  "version": "1.59.0"
+  "version": "1.60.0"
 }
