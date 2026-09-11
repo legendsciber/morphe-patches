@@ -1,3 +1,10 @@
+## [1.61.3](https://github.com/legendsciber/morphe-patches/compare/v1.61.2...v1.61.3) (2026-09-11)
+
+### 🐛 Bug Fixes
+
+* **iap:** force release for zzh() debug logging ([e6d9821](https://github.com/legendsciber/morphe-patches/commit/e6d9821f3a78d8b62fec393ae22e5096a5dae25e))
+* **iap:** log zzh() element class name for SKU extraction ([779feb0](https://github.com/legendsciber/morphe-patches/commit/779feb0092ee25c7f416604bb805248ac1272a38))
+
 ## [1.61.2](https://github.com/legendsciber/morphe-patches/compare/v1.61.1...v1.61.2) (2026-09-11)
 
 ### 🐛 Bug Fixes
