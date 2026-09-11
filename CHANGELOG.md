@@ -1,3 +1,9 @@
+## [1.60.1](https://github.com/legendsciber/morphe-patches/compare/v1.60.0...v1.60.1) (2026-09-11)
+
+### 🐛 Bug Fixes
+
+* **iap:** queryPurchasesAsync FINAL + isReady FINAL flags restored ([97da8af](https://github.com/legendsciber/morphe-patches/commit/97da8afc11bbb2a4d89551613c0cc19cd534a251))
+
 ## [1.60.0](https://github.com/legendsciber/morphe-patches/compare/v1.59.0...v1.60.0) (2026-09-11)
 
 ### ✨ New Features
