@@ -1,3 +1,9 @@
+## [1.61.1](https://github.com/legendsciber/morphe-patches/compare/v1.61.0...v1.61.1) (2026-09-11)
+
+### 🐛 Bug Fixes
+
+* **iap:** extract SKU from SkuDetails fallback ([d4af4fc](https://github.com/legendsciber/morphe-patches/commit/d4af4fc66d49c8277bb54c1b60ca15834ba0f3fc))
+
 ## [1.61.0](https://github.com/legendsciber/morphe-patches/compare/v1.60.2...v1.61.0) (2026-09-11)
 
 ### ✨ New Features
