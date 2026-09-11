@@ -1,3 +1,9 @@
+## [1.61.0](https://github.com/legendsciber/morphe-patches/compare/v1.60.2...v1.61.0) (2026-09-11)
+
+### ✨ New Features
+
+* **iap:** hook startConnection to fake billing connection state ([eab345b](https://github.com/legendsciber/morphe-patches/commit/eab345bb8ddf52efc2e886dde74d39376683823f))
+
 ## [1.60.2](https://github.com/legendsciber/morphe-patches/compare/v1.60.1...v1.60.2) (2026-09-11)
 
 ### 🐛 Bug Fixes
