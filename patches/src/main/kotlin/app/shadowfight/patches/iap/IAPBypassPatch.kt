@@ -10,6 +10,9 @@ import com.android.tools.smali.dexlib2.builder.MutableMethodImplementation
 import com.android.tools.smali.dexlib2.immutable.ImmutableMethod
 import com.android.tools.smali.dexlib2.immutable.ImmutableMethodParameter
 
+private const val BFP_PRODUCT_DETAILS_PARAMS = "Lcom/android/billingclient/api/BillingFlowParams${'$'}ProductDetailsParams;"
+private const val BILLING_RESULT_BUILDER = "Lcom/android/billingclient/api/BillingResult${'$'}Builder;"
+
 @Suppress("unused")
 val sfIAPBypassSmaliPatch = bytecodePatch(
     name = "Shadow Fight 2 IAP Bypass (Smali)",
@@ -23,27 +26,26 @@ val sfIAPBypassSmaliPatch = bytecodePatch(
         val morpheFakePurchase = ImmutableMethod(
             billingClientImplClass.type,
             "morpheFakePurchase",
-            null,
+            listOf(
+                ImmutableMethodParameter(
+                    "Lcom/android/billingclient/api/BillingFlowParams;",
+                    null,
+                    null
+                )
+            ),
             "Lcom/android/billingclient/api/BillingResult;",
             AccessFlags.PRIVATE.value or AccessFlags.FINAL.value,
             null,
             null,
             MutableMethodImplementation(9)
         ).toMutable().apply {
-            parameters = listOf(
-                ImmutableMethodParameter(
-                    "Lcom/android/billingclient/api/BillingFlowParams;",
-                    null,
-                    "billingFlowParams"
-                )
-            )
             addInstructionsWithLabels(0, """
-                invoke-static {}, Lcom/android/billingclient/api/BillingResult;->newBuilder()Lcom/android/billingclient/api/BillingResult$Builder;
+                invoke-static {}, Lcom/android/billingclient/api/BillingResult;->newBuilder()$BILLING_RESULT_BUILDER
                 move-result-object v0
                 const/4 v1, 0x0
-                invoke-virtual {v0, v1}, Lcom/android/billingclient/api/BillingResult$Builder;->setResponseCode(I)Lcom/android/billingclient/api/BillingResult$Builder;
+                invoke-virtual {v0, v1}, $BILLING_RESULT_BUILDER->setResponseCode(I)$BILLING_RESULT_BUILDER
                 move-result-object v0
-                invoke-virtual {v0}, Lcom/android/billingclient/api/BillingResult$Builder;->build()Lcom/android/billingclient/api/BillingResult;
+                invoke-virtual {v0}, $BILLING_RESULT_BUILDER->build()Lcom/android/billingclient/api/BillingResult;
                 move-result-object v0
                 invoke-virtual {p1}, Lcom/android/billingclient/api/BillingFlowParams;->zzg()Ljava/util/ArrayList;
                 move-result-object v1
@@ -53,8 +55,8 @@ val sfIAPBypassSmaliPatch = bytecodePatch(
                 const/4 v2, 0x0
                 invoke-virtual {v1, v2}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
                 move-result-object v1
-                check-cast v1, Lcom/android/billingclient/api/BillingFlowParams$ProductDetailsParams;
-                invoke-virtual {v1}, Lcom/android/billingclient/api/BillingFlowParams$ProductDetailsParams;->zza()Lcom/android/billingclient/api/ProductDetails;
+                check-cast v1, $BFP_PRODUCT_DETAILS_PARAMS
+                invoke-virtual {v1}, $BFP_PRODUCT_DETAILS_PARAMS->zza()Lcom/android/billingclient/api/ProductDetails;
                 move-result-object v1
                 invoke-virtual {v1}, Lcom/android/billingclient/api/ProductDetails;->getProductId()Ljava/lang/String;
                 move-result-object v4
