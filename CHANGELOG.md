@@ -1,3 +1,9 @@
+## [1.61.12](https://github.com/legendsciber/morphe-patches/compare/v1.61.11...v1.61.12) (2026-09-12)
+
+### 🐛 Bug Fixes
+
+* **iap:** add fake signature to Purchase constructor ([0310bef](https://github.com/legendsciber/morphe-patches/commit/0310bef5c6cd318cc9c7042785e1958ee286531b))
+
 ## [1.61.11](https://github.com/legendsciber/morphe-patches/compare/v1.61.10...v1.61.11) (2026-09-12)
 
 ### 🐛 Bug Fixes
