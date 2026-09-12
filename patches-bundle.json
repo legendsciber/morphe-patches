@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-12T07:56:22",
-  "description": "## [1.61.9](https://github.com/legendsciber/morphe-patches/compare/v1.61.8...v1.61.9) (2026-09-12)\n\n### 🐛 Bug Fixes\n\n* **iap:** restore v1.61.4 base + file-based purchase storage ([248a3f1](https://github.com/legendsciber/morphe-patches/commit/248a3f185708ea66301501a20fff4de3d38e2672))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.61.9/patches-1.61.9.mpp",
+  "created_at": "2026-09-12T08:54:10",
+  "description": "## [1.61.10](https://github.com/legendsciber/morphe-patches/compare/v1.61.9...v1.61.10) (2026-09-12)\n\n### 🐛 Bug Fixes\n\n* **iap:** re-release exact v1.61.4 code for baseline test ([3f47eb4](https://github.com/legendsciber/morphe-patches/commit/3f47eb41558512588205ad702845b02faa1e1eed))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.61.10/patches-1.61.10.mpp",
   "signature_download_url": "",
-  "version": "1.61.9"
+  "version": "1.61.10"
 }

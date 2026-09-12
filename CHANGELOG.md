@@ -1,3 +1,9 @@
+## [1.61.10](https://github.com/legendsciber/morphe-patches/compare/v1.61.9...v1.61.10) (2026-09-12)
+
+### 🐛 Bug Fixes
+
+* **iap:** re-release exact v1.61.4 code for baseline test ([3f47eb4](https://github.com/legendsciber/morphe-patches/commit/3f47eb41558512588205ad702845b02faa1e1eed))
+
 ## [1.61.9](https://github.com/legendsciber/morphe-patches/compare/v1.61.8...v1.61.9) (2026-09-12)
 
 ### 🐛 Bug Fixes
