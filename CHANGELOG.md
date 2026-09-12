@@ -1,3 +1,9 @@
+## [1.61.9](https://github.com/legendsciber/morphe-patches/compare/v1.61.8...v1.61.9) (2026-09-12)
+
+### 🐛 Bug Fixes
+
+* **iap:** restore v1.61.4 base + file-based purchase storage ([248a3f1](https://github.com/legendsciber/morphe-patches/commit/248a3f185708ea66301501a20fff4de3d38e2672))
+
 ## [1.61.8](https://github.com/legendsciber/morphe-patches/compare/v1.61.7...v1.61.8) (2026-09-12)
 
 ### 🐛 Bug Fixes
