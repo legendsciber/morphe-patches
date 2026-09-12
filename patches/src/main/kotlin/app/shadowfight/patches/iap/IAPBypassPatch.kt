@@ -35,9 +35,16 @@ val sfIAPBypassSmaliPatch = bytecodePatch(
             AccessFlags.PUBLIC.value or AccessFlags.STATIC.value,
             null,
             null,
-            MutableMethodImplementation(4)
+            MutableMethodImplementation(5)
         ).toMutable().apply {
             addInstructionsWithLabels(0, """
+                invoke-static {}, Landroid/app/ActivityThread;->currentApplication()Landroid/app/Application;
+                move-result-object v0
+                if-eqz v0, :skip_toast
+                invoke-static {v0, p0}, Landroid/widget/Toast;->makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
+                move-result-object v1
+                invoke-virtual {v1}, Landroid/widget/Toast;->show()V
+                :skip_toast
                 :try_start
                 new-instance v0, Ljava/io/FileWriter;
                 const-string v1, "$LOG_FILE"
