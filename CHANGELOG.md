@@ -1,3 +1,9 @@
+## [1.61.11](https://github.com/legendsciber/morphe-patches/compare/v1.61.10...v1.61.11) (2026-09-12)
+
+### 🐛 Bug Fixes
+
+* **iap:** add file-based purchase storage with register-safe smali ([24a9168](https://github.com/legendsciber/morphe-patches/commit/24a91684b7d441af35c99643406a496d9acadf26))
+
 ## [1.61.10](https://github.com/legendsciber/morphe-patches/compare/v1.61.9...v1.61.10) (2026-09-12)
 
 ### 🐛 Bug Fixes
