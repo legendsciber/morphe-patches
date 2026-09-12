@@ -1,3 +1,9 @@
+## [1.62.0](https://github.com/legendsciber/morphe-patches/compare/v1.61.12...v1.62.0) (2026-09-12)
+
+### ✨ New Features
+
+* add libil2cpp.so hex patch for server verification bypass ([63e088e](https://github.com/legendsciber/morphe-patches/commit/63e088eaba540ba66b201500bba9663b68baae4b))
+
 ## [1.61.12](https://github.com/legendsciber/morphe-patches/compare/v1.61.11...v1.61.12) (2026-09-12)
 
 ### 🐛 Bug Fixes
