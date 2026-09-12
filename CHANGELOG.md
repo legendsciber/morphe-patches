@@ -1,3 +1,9 @@
+## [1.61.7](https://github.com/legendsciber/morphe-patches/compare/v1.61.6...v1.61.7) (2026-09-12)
+
+### 🐛 Bug Fixes
+
+* **iap:** replace System.setProperty with file-based purchase storage ([69cc6a8](https://github.com/legendsciber/morphe-patches/commit/69cc6a8adecdcca9631fddaf721cb8b3a5d1e931))
+
 ## [1.61.6](https://github.com/legendsciber/morphe-patches/compare/v1.61.5...v1.61.6) (2026-09-11)
 
 ### 🐛 Bug Fixes
