@@ -1,3 +1,9 @@
+## [1.61.8](https://github.com/legendsciber/morphe-patches/compare/v1.61.7...v1.61.8) (2026-09-12)
+
+### 🐛 Bug Fixes
+
+* **iap:** add Toast fallback to morpheLog for debugging ([6e417f4](https://github.com/legendsciber/morphe-patches/commit/6e417f4f6b9f939f4a2fab7a85faef1ce61649fc))
+
 ## [1.61.7](https://github.com/legendsciber/morphe-patches/compare/v1.61.6...v1.61.7) (2026-09-12)
 
 ### 🐛 Bug Fixes
