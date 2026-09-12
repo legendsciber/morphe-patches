@@ -15,6 +15,7 @@ private const val BILLING_RESULT_BUILDER = "Lcom/android/billingclient/api/Billi
 private const val QUERY_PRODUCT = "Lcom/android/billingclient/api/QueryProductDetailsParams${'$'}Product;"
 private const val LOG_FILE = "/storage/emulated/0/Download/morphe_log.txt"
 private const val PURCHASE_FILE = "/storage/emulated/0/Download/morphe_purchase.json"
+private const val FAKE_SIGNATURE = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0Z3VS5JJcds3xfn/ygWyF8PbnGy0AHB7MhgHcLiRoK5OFhEBCRFKWHvMfJ06dYU5NOOOKK8M0fH6UpA7KTXkKwY0l1aE0dODuqNCmNATBF6FqNJl5bB7T5O6sI4HnGCBHSQ5EwDnIYfFeFRrOZ4bTWIEj9O0j+8V0Z9L3D8JL3D8JL3D8J" // fake Google Play-style signature
 
 @Suppress("unused")
 val sfIAPBypassSmaliPatch = bytecodePatch(
@@ -209,7 +210,7 @@ val sfIAPBypassSmaliPatch = bytecodePatch(
                 invoke-virtual {v1, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
                 invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
                 move-result-object v5
-                const-string v2, ""
+                const-string v2, "$FAKE_SIGNATURE"
                 new-instance v3, Lcom/android/billingclient/api/Purchase;
                 invoke-direct {v3, v5, v2}, Lcom/android/billingclient/api/Purchase;-><init>(Ljava/lang/String;Ljava/lang/String;)V
                 invoke-static {v5}, Lcom/android/billingclient/api/BillingClientImpl;->morpheSavePurchase(Ljava/lang/String;)V
@@ -326,7 +327,7 @@ val sfIAPBypassSmaliPatch = bytecodePatch(
             move-result-object v2
             if-eqz v2, :no_purchase
             new-instance v1, Lcom/android/billingclient/api/Purchase;
-            const-string v0, ""
+            const-string v0, "$FAKE_SIGNATURE"
             invoke-direct {v1, v2, v0}, Lcom/android/billingclient/api/Purchase;-><init>(Ljava/lang/String;Ljava/lang/String;)V
             invoke-static {v1}, Ljava/util/Collections;->singletonList(Ljava/lang/Object;)Ljava/util/List;
             move-result-object v1
