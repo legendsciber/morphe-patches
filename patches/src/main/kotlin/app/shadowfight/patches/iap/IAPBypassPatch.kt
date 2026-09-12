@@ -35,16 +35,9 @@ val sfIAPBypassSmaliPatch = bytecodePatch(
             AccessFlags.PUBLIC.value or AccessFlags.STATIC.value,
             null,
             null,
-            MutableMethodImplementation(5)
+            MutableMethodImplementation(4)
         ).toMutable().apply {
             addInstructionsWithLabels(0, """
-                invoke-static {}, Landroid/app/ActivityThread;->currentApplication()Landroid/app/Application;
-                move-result-object v0
-                if-eqz v0, :skip_toast
-                invoke-static {v0, p0}, Landroid/widget/Toast;->makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
-                move-result-object v1
-                invoke-virtual {v1}, Landroid/widget/Toast;->show()V
-                :skip_toast
                 :try_start
                 new-instance v0, Ljava/io/FileWriter;
                 const-string v1, "$LOG_FILE"
@@ -63,7 +56,6 @@ val sfIAPBypassSmaliPatch = bytecodePatch(
         }
         billingClientImplClass.methods.add(morpheLogMethod)
 
-        // ═══ Save Purchase to File ═══
         val morpheSavePurchaseMethod = ImmutableMethod(
             billingClientImplClass.type,
             "morpheSavePurchase",
@@ -90,7 +82,6 @@ val sfIAPBypassSmaliPatch = bytecodePatch(
         }
         billingClientImplClass.methods.add(morpheSavePurchaseMethod)
 
-        // ═══ Load Purchase from File ═══
         val morpheLoadPurchaseMethod = ImmutableMethod(
             billingClientImplClass.type,
             "morpheLoadPurchase",
@@ -221,8 +212,6 @@ val sfIAPBypassSmaliPatch = bytecodePatch(
                 const-string v2, ""
                 new-instance v3, Lcom/android/billingclient/api/Purchase;
                 invoke-direct {v3, v5, v2}, Lcom/android/billingclient/api/Purchase;-><init>(Ljava/lang/String;Ljava/lang/String;)V
-                const-string v8, "[MORPHE] saving purchase to file..."
-                invoke-static {v8}, Lcom/android/billingclient/api/BillingClientImpl;->morpheLog(Ljava/lang/String;)V
                 invoke-static {v5}, Lcom/android/billingclient/api/BillingClientImpl;->morpheSavePurchase(Ljava/lang/String;)V
                 iget-object v1, p0, Lcom/android/billingclient/api/BillingClientImpl;->zze:Lcom/android/billingclient/api/zzn;
                 const-string v7, "[MORPHE] checking zze field..."
@@ -327,7 +316,7 @@ val sfIAPBypassSmaliPatch = bytecodePatch(
             nop
         """.trimIndent())
 
-        IAPBypassQueryPurchasesAsyncFingerprint.method.addInstructions(0, """
+        IAPBypassQueryPurchasesAsyncFingerprint.method.addInstructionsWithLabels(0, """
             const-string v0, "[MORPHE] queryPurchasesAsync called"
             invoke-static {v0}, Lcom/android/billingclient/api/BillingClientImpl;->morpheLog(Ljava/lang/String;)V
             sget-object v0, Lcom/android/billingclient/api/zzcj;->zzl:Lcom/android/billingclient/api/BillingResult;
