@@ -1,3 +1,9 @@
+## [1.62.1](https://github.com/legendsciber/morphe-patches/compare/v1.62.0...v1.62.1) (2026-09-13)
+
+### 🐛 Bug Fixes
+
+* remove appInfo reference from hex patch ([96af74b](https://github.com/legendsciber/morphe-patches/commit/96af74bf6991121ac5021343e712780fc1f41a59))
+
 ## [1.62.0](https://github.com/legendsciber/morphe-patches/compare/v1.61.12...v1.62.0) (2026-09-12)
 
 ### ✨ New Features
