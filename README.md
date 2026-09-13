@@ -9,7 +9,7 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.62.0](https://github.com/legendsciber/morphe-patches/releases/tag/v1.62.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;12 patches total
+> **[v1.62.1](https://github.com/legendsciber/morphe-patches/releases/tag/v1.62.1)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;11 patches total
 <details open>
 <summary>📦 Block Blast&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
 <br>
@@ -76,21 +76,6 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 </details>
 
 <details open>
-<summary>📦 Shadow Fight 2&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
-<br>
-
-**🎯 Supported versions:**
-
-| 🧪&nbsp;2.46.0 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Shadow Fight 2 IAP Bypass (Smali)](#shadow-fight-2-iap-bypass-smali) | Bypasses anti-tamper + intercepts billing for free IAP. |  |
-
-</details>
-
-<details open>
 <summary>📦 Smash Hit&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
 <br>
 
@@ -111,7 +96,7 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
-| [Shadow Fight 2 IAP Bypass (Hex)](#shadow-fight-2-iap-bypass-hex) | Patches libil2cpp.so to bypass server-side receipt verification and force items delivery. |  |
+| [In-App Purchase Bypass](#in-app-purchase-bypass) | Bypasses server-side purchase verification. |  |
 
 </details>
 
