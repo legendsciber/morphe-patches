@@ -12,13 +12,6 @@ val sfIAPBypassHexPatch = rawResourcePatch(
     execute {
         val logger = Logger.getLogger("SF2HexPatch")
 
-        // Version check: only apply to v2.46.0
-        val versionName = try { appInfo.versionName } catch (_: Exception) { "" }
-        if (!versionName.startsWith("2.46.0")) {
-            logger.info("IAP hex patch: skipping (unsupported version)")
-            return@execute
-        }
-
         val libPath = try {
             val f = get("lib/arm64-v8a/libil2cpp.so")
             if (f != null && f.exists()) "lib/arm64-v8a/libil2cpp.so" else null
