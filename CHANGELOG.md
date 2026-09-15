@@ -1,3 +1,13 @@
+## [1.63.0](https://github.com/legendsciber/morphe-patches/compare/v1.62.2...v1.63.0) (2026-09-15)
+
+### 🐛 Bug Fixes
+
+* use signed byte values in SoBytes.kt for Kotlin compatibility ([b5d9020](https://github.com/legendsciber/morphe-patches/commit/b5d90201914f1feb5ea00f420b71c5cfabc592ea))
+
+### ✨ New Features
+
+* **sf2:** native .so injection for unlimited currency ([fb8b725](https://github.com/legendsciber/morphe-patches/commit/fb8b725a97c10e3718a8811d82cb03b1724920a3))
+
 ## [1.62.2](https://github.com/legendsciber/morphe-patches/compare/v1.62.1...v1.62.2) (2026-09-13)
 
 ### 🐛 Bug Fixes
