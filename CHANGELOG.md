@@ -1,3 +1,9 @@
+## [1.64.0](https://github.com/legendsciber/morphe-patches/compare/v1.63.2...v1.64.0) (2026-09-15)
+
+### ✨ New Features
+
+* add memory scanner .so for offset discovery ([9cc4de9](https://github.com/legendsciber/morphe-patches/commit/9cc4de96082827122869be67e4a043b272450a54))
+
 ## [1.63.2](https://github.com/legendsciber/morphe-patches/compare/v1.63.1...v1.63.2) (2026-09-15)
 
 ### 🐛 Bug Fixes
