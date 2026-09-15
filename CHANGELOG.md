@@ -1,3 +1,10 @@
+## [1.63.2](https://github.com/legendsciber/morphe-patches/compare/v1.63.1...v1.63.2) (2026-09-15)
+
+### 🐛 Bug Fixes
+
+* recompile libsf2hook.so with Android NDK (Bionic libc) ([201c542](https://github.com/legendsciber/morphe-patches/commit/201c542837f9cf33a128739edde1d106cd587b8d))
+* use signed byte values in regenerated SoBytes.kt ([fb79850](https://github.com/legendsciber/morphe-patches/commit/fb79850c5eaaaf2f8199916eea077c4d8c9bd3ec))
+
 ## [1.63.1](https://github.com/legendsciber/morphe-patches/compare/v1.63.0...v1.63.1) (2026-09-15)
 
 ### 🐛 Bug Fixes
