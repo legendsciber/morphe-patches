@@ -1,3 +1,9 @@
+## [1.66.0](https://github.com/legendsciber/morphe-patches/compare/v1.65.0...v1.66.0) (2026-09-15)
+
+### ✨ New Features
+
+* scanner v3 - safe memory read with SIGSEGV handler ([f7f007a](https://github.com/legendsciber/morphe-patches/commit/f7f007a01c2bfa040d24cb3849c15a541d03fc28))
+
 ## [1.65.0](https://github.com/legendsciber/morphe-patches/compare/v1.64.0...v1.65.0) (2026-09-15)
 
 ### ✨ New Features
