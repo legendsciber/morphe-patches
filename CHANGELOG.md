@@ -1,3 +1,9 @@
+## [1.63.1](https://github.com/legendsciber/morphe-patches/compare/v1.63.0...v1.63.1) (2026-09-15)
+
+### 🐛 Bug Fixes
+
+* target NekkiUnityPlayerActivity after R8 inlined FCM class ([124d94b](https://github.com/legendsciber/morphe-patches/commit/124d94b286f44cc5a32ed1fc643d23a41414a9c8))
+
 ## [1.63.0](https://github.com/legendsciber/morphe-patches/compare/v1.62.2...v1.63.0) (2026-09-15)
 
 ### 🐛 Bug Fixes
