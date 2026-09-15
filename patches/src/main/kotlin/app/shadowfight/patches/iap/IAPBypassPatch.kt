@@ -15,11 +15,7 @@ val sf2AddNativeLib = rawResourcePatch(
     compatibleWith(COMPATIBILITY_SF2)
     execute {
         val soFile = get("lib/arm64-v8a/libsf2hook.so", true)
-        val soBytes = SoBytes.part0() + SoBytes.part1() + SoBytes.part2() + SoBytes.part3() +
-                SoBytes.part4() + SoBytes.part5() + SoBytes.part6() + SoBytes.part7() +
-                SoBytes.part8() + SoBytes.part9() + SoBytes.part10() + SoBytes.part11() +
-                SoBytes.part12() + SoBytes.part13() + SoBytes.part14() + SoBytes.part15() +
-                SoBytes.part16()
+        val soBytes = SoBytes.part0() + SoBytes.part1()
         soFile.writeBytes(soBytes)
     }
 }
