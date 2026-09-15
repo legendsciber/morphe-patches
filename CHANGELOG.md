@@ -1,3 +1,9 @@
+## [1.65.0](https://github.com/legendsciber/morphe-patches/compare/v1.64.0...v1.65.0) (2026-09-15)
+
+### ✨ New Features
+
+* scanner v2 - delayed periodic scan with int32/int64 ([3b9e3ec](https://github.com/legendsciber/morphe-patches/commit/3b9e3ec75a7be761cc411ae21ed4b03a472bbd4d))
+
 ## [1.64.0](https://github.com/legendsciber/morphe-patches/compare/v1.63.2...v1.64.0) (2026-09-15)
 
 ### ✨ New Features
