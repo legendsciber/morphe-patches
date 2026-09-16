@@ -30,8 +30,8 @@ val redBall4PremiumUnlock = bytecodePatch(
         val idx = OnCreateFingerprint.instructionMatches[0].index + 1
 
         targetMethod.addInstructions(idx, """
-            const-string p1, "legendsciber"
-            invoke-static {p1}, Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V
+            const-string v1, "legendsciber"
+            invoke-static {v1}, Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V
         """.trimIndent())
     }
 }
