@@ -1,3 +1,9 @@
+## [1.18.5](https://github.com/legendsciber/morphe-patches/compare/v1.18.4...v1.18.5) (2026-09-16)
+
+### 🐛 Bug Fixes
+
+* **redball4:** patch premium/skins via direct libil2cpp.so binary patching ([aecfd6f](https://github.com/legendsciber/morphe-patches/commit/aecfd6fcb1e79da23b3b629593fca29719d25f79))
+
 ## [1.18.4](https://github.com/legendsciber/morphe-patches/compare/v1.18.3...v1.18.4) (2026-09-16)
 
 ### 🐛 Bug Fixes
