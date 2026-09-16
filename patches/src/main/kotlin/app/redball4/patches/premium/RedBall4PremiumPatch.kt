@@ -13,7 +13,7 @@ val redBall4AddNativeLib = rawResourcePatch(
 ) {
     compatibleWith(COMPATIBILITY_REDBALL4)
     execute {
-        val soFile = get("lib/arm64-v8a/legendsciber.so", true)
+        val soFile = get("lib/arm64-v8a/liblegendsciber.so", true)
         soFile.writeBytes(SoBytes.bytes())
     }
 }
