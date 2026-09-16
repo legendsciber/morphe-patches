@@ -9,23 +9,7 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.18.5](https://github.com/legendsciber/morphe-patches/releases/tag/v1.18.5)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;11 patches total
-<details open>
-<summary>📦 Block Blast&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
-<br>
-
-**🎯 Supported versions:**
-
-| 10.4.5 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Ad Removal](#ad-removal) | Removes all ads (banner, interstitial, rewarded). |  |
-| [Premium (Subscription Simulation)](#premium-subscription-simulation) | Simulates an active subscription to unlock premium features. |  |
-
-</details>
-
+> **[v1.19.0](https://github.com/legendsciber/morphe-patches/releases/tag/v1.19.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;10 patches total
 <details open>
 <summary>📦 Toolbox for Minecraft PE&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
 <br>
@@ -39,6 +23,21 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 |----------|----------------|-----------|
 | [Bypass Google Play Install Check](#bypass-google-play-install-check) | App always behaves as if installed from Google Play, bypassing the install source check. |  |
 | [Premium](#premium) | Enables premium features by bypassing in-app purchase verification. |  |
+
+</details>
+
+<details open>
+<summary>📦 Clumsy Ninja&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 1.33.5 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Clumsy Ninja License Bypass](#clumsy-ninja-license-bypass) | Bypasses Google Play license verification at startup. |  |
 
 </details>
 
