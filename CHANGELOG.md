@@ -1,3 +1,9 @@
+## [1.18.3](https://github.com/legendsciber/morphe-patches/compare/v1.18.2...v1.18.3) (2026-09-16)
+
+### 🐛 Bug Fixes
+
+* **redball4:** correct IL2CPP method offsets from script.json ([caf0c31](https://github.com/legendsciber/morphe-patches/commit/caf0c317cf21ee994cb79674d4ed4f41cf68855d))
+
 ## [1.18.2](https://github.com/legendsciber/morphe-patches/compare/v1.18.1...v1.18.2) (2026-09-16)
 
 ### 🐛 Bug Fixes
