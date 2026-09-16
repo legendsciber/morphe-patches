@@ -1,3 +1,9 @@
+## [1.18.4](https://github.com/legendsciber/morphe-patches/compare/v1.18.3...v1.18.4) (2026-09-16)
+
+### 🐛 Bug Fixes
+
+* **redball4:** defer IL2CPP patching until libil2cpp.so is loaded ([7a6ffe4](https://github.com/legendsciber/morphe-patches/commit/7a6ffe42d14533beaa46d9ca8de7c5f94f3959df))
+
 ## [1.18.3](https://github.com/legendsciber/morphe-patches/compare/v1.18.2...v1.18.3) (2026-09-16)
 
 ### 🐛 Bug Fixes
