@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-16T20:06:01",
-  "description": "## [1.18.1](https://github.com/legendsciber/morphe-patches/compare/v1.18.0...v1.18.1) (2026-09-16)\n\n### 🐛 Bug Fixes\n\n* **redball4:** use v1 register to avoid Intent type mismatch crash ([075aba9](https://github.com/legendsciber/morphe-patches/commit/075aba94950c1c0b2d8974bf0f0288b3f52ea1b6))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.18.1/patches-1.18.1.mpp",
+  "created_at": "2026-09-16T21:20:38",
+  "description": "## [1.18.2](https://github.com/legendsciber/morphe-patches/compare/v1.18.1...v1.18.2) (2026-09-16)\n\n### 🐛 Bug Fixes\n\n* **redball4:** rename so to liblegendsciber for System.loadLibrary ([1e3470f](https://github.com/legendsciber/morphe-patches/commit/1e3470febe0213d1ca2dc1ff8d438f0c92b6bbb4))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.18.2/patches-1.18.2.mpp",
   "signature_download_url": "",
-  "version": "1.18.1"
+  "version": "1.18.2"
 }

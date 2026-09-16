@@ -1,3 +1,9 @@
+## [1.18.2](https://github.com/legendsciber/morphe-patches/compare/v1.18.1...v1.18.2) (2026-09-16)
+
+### 🐛 Bug Fixes
+
+* **redball4:** rename so to liblegendsciber for System.loadLibrary ([1e3470f](https://github.com/legendsciber/morphe-patches/commit/1e3470febe0213d1ca2dc1ff8d438f0c92b6bbb4))
+
 ## [1.18.1](https://github.com/legendsciber/morphe-patches/compare/v1.18.0...v1.18.1) (2026-09-16)
 
 ### 🐛 Bug Fixes
