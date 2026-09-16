@@ -1,3 +1,9 @@
+## [1.68.0](https://github.com/legendsciber/morphe-patches/compare/v1.67.0...v1.68.0) (2026-09-16)
+
+### ✨ New Features
+
+* **redball4:** add premium & skin unlock patch ([082b0f7](https://github.com/legendsciber/morphe-patches/commit/082b0f72d6cad3ffc0606b794409500b38ed7f97))
+
 ## [1.67.0](https://github.com/legendsciber/morphe-patches/compare/v1.66.0...v1.67.0) (2026-09-16)
 
 ### ✨ New Features

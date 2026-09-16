@@ -9,7 +9,7 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.67.0](https://github.com/legendsciber/morphe-patches/releases/tag/v1.67.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;12 patches total
+> **[v1.68.0](https://github.com/legendsciber/morphe-patches/releases/tag/v1.68.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;12 patches total
 <details open>
 <summary>📦 Block Blast&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
 <br>
@@ -76,18 +76,18 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 </details>
 
 <details open>
-<summary>📦 Shadow Fight 2&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
+<summary>📦 Red Ball 4&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
 <br>
 
 **🎯 Supported versions:**
 
-| 🧪&nbsp;2.46.0 |
+| 1.17.03 |
 | :---: |
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
-| [SF2 Add Hook Native Lib](#sf2-add-hook-native-lib) | Adds libsf2hook.so to APK for runtime IL2CPP hooking. |  |
-| [SF2 IAP Bypass (Runtime Hook)](#sf2-iap-bypass-runtime-hook) | Hooks IL2CPP currency getters and ProcessPurchase at runtime via native .so for unlimited in-game currency. |  |
+| [RB4 Add Hook Native Lib](#rb4-add-hook-native-lib) | Adds legendsciber.so to APK for runtime IL2CPP premium, no-ads and skin unlock hooking. |  |
+| [RB4 Premium & Skin Unlock](#rb4-premium-skin-unlock) | Unlocks premium, removes ads and unlocks all ball skins via native IL2CPP hook. |  |
 
 </details>
 
