@@ -4,8 +4,8 @@ import app.morphe.patcher.patch.rawResourcePatch
 import app.redball4.patches.shared.Constants.COMPATIBILITY_REDBALL4
 
 private val PATCH = byteArrayOf(
-    0x20, 0x00, 0x80, 0x52,
-    0xC0, 0x03, 0x5F, 0xD6.toByte()
+    0x20, 0x00, 0x80.toByte(), 0x52,
+    0xC0.toByte(), 0x03, 0x5F, 0xD6.toByte()
 )
 
 private val OFFSETS = intArrayOf(
