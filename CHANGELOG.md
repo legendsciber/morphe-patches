@@ -1,3 +1,9 @@
+## [1.18.1](https://github.com/legendsciber/morphe-patches/compare/v1.18.0...v1.18.1) (2026-09-16)
+
+### 🐛 Bug Fixes
+
+* **redball4:** use v1 register to avoid Intent type mismatch crash ([075aba9](https://github.com/legendsciber/morphe-patches/commit/075aba94950c1c0b2d8974bf0f0288b3f52ea1b6))
+
 ## [1.18.0](https://github.com/legendsciber/morphe-patches/compare/v1.17.12...v1.18.0) (2026-09-16)
 
 ### 🐛 Bug Fixes
