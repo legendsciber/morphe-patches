@@ -1,3 +1,9 @@
+## [1.67.0](https://github.com/legendsciber/morphe-patches/compare/v1.66.0...v1.67.0) (2026-09-16)
+
+### ✨ New Features
+
+* scanner v4 - fast 4KB chunk scanning with mincore ([a04bbff](https://github.com/legendsciber/morphe-patches/commit/a04bbff5ea03ee28d00cd0becf7d5e8b9f23f7c2))
+
 ## [1.66.0](https://github.com/legendsciber/morphe-patches/compare/v1.65.0...v1.66.0) (2026-09-15)
 
 ### ✨ New Features
