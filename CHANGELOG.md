@@ -1,3 +1,9 @@
+## [1.68.1](https://github.com/legendsciber/morphe-patches/compare/v1.68.0...v1.68.1) (2026-09-16)
+
+### 🐛 Bug Fixes
+
+* **redball4:** correct fingerprint filter to match onCreate body ([dfb47fa](https://github.com/legendsciber/morphe-patches/commit/dfb47fa430f763ba27fec3091b783a35c365cd56))
+
 ## [1.68.0](https://github.com/legendsciber/morphe-patches/compare/v1.67.0...v1.68.0) (2026-09-16)
 
 ### ✨ New Features

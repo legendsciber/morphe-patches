@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-16T18:01:56",
-  "description": "## [1.68.0](https://github.com/legendsciber/morphe-patches/compare/v1.67.0...v1.68.0) (2026-09-16)\n\n### ✨ New Features\n\n* **redball4:** add premium & skin unlock patch ([082b0f7](https://github.com/legendsciber/morphe-patches/commit/082b0f72d6cad3ffc0606b794409500b38ed7f97))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.68.0/patches-1.68.0.mpp",
+  "created_at": "2026-09-16T18:19:25",
+  "description": "## [1.68.1](https://github.com/legendsciber/morphe-patches/compare/v1.68.0...v1.68.1) (2026-09-16)\n\n### 🐛 Bug Fixes\n\n* **redball4:** correct fingerprint filter to match onCreate body ([dfb47fa](https://github.com/legendsciber/morphe-patches/commit/dfb47fa430f763ba27fec3091b783a35c365cd56))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.68.1/patches-1.68.1.mpp",
   "signature_download_url": "",
-  "version": "1.68.0"
+  "version": "1.68.1"
 }
