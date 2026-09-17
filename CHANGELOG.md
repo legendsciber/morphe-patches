@@ -1,3 +1,9 @@
+## [1.19.6](https://github.com/legendsciber/morphe-patches/compare/v1.19.5...v1.19.6) (2026-09-17)
+
+### 🐛 Bug Fixes
+
+* **clumsy-ninja:** add Google Play license bypass ([0239066](https://github.com/legendsciber/morphe-patches/commit/0239066ad2f96c468ad334fc47dba66a547d9225))
+
 ## [1.19.5](https://github.com/legendsciber/morphe-patches/compare/v1.19.4...v1.19.5) (2026-09-17)
 
 ### 🐛 Bug Fixes

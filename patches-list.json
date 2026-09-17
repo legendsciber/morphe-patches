@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.19.5",
+  "version": "1.19.6",
   "patches": [
     {
       "name": "Bypass Google Play Install Check",
@@ -148,6 +148,32 @@
           "targets": [
             {
               "version": "1.71.1",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "License Bypass",
+      "description": "Redirects Google Play license failure callbacks to allow.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.naturalmotion.clumsyninja",
+          "name": "Clumsy Ninja",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#FF6F00",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "1.33.5",
               "versionCodes": null,
               "isExperimental": false,
               "minSdk": null,

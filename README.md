@@ -9,7 +9,7 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.19.5](https://github.com/legendsciber/morphe-patches/releases/tag/v1.19.5)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;11 patches total
+> **[v1.19.6](https://github.com/legendsciber/morphe-patches/releases/tag/v1.19.6)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;12 patches total
 <details open>
 <summary>📦 Toolbox for Minecraft PE&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
 <br>
@@ -60,6 +60,23 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 </details>
 
 <details open>
+<summary>📦 Clumsy Ninja&nbsp;&nbsp;•&nbsp;&nbsp;3 patches</summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 1.33.5 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [License Bypass](#license-bypass) | Redirects Google Play license failure callbacks to allow. |  |
+| [Source Check Bypass](#source-check-bypass) | Patches native BootFlow state machine to skip installer/source verification. |  |
+| [Storage Permission Bypass](#storage-permission-bypass) | Bypasses storage permission check so the game proceeds without asking. |  |
+
+</details>
+
+<details open>
 <summary>📦 Red Ball 4&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
 <br>
 
@@ -86,22 +103,6 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Smash Hit Premium Unlock](#smash-hit-premium-unlock) | Unlocks premium and all game modes without purchase. |  |
-
-</details>
-
-<details open>
-<summary>📦 Clumsy Ninja&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
-<br>
-
-**🎯 Supported versions:**
-
-| 1.33.5 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Source Check Bypass](#source-check-bypass) | Patches native BootFlow state machine to skip installer/source verification. |  |
-| [Storage Permission Bypass](#storage-permission-bypass) | Bypasses storage permission check so the game proceeds without asking. |  |
 
 </details>
 
