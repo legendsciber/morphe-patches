@@ -1,3 +1,13 @@
+## [1.19.0](https://github.com/legendsciber/morphe-patches/compare/v1.18.5...v1.19.0) (2026-09-17)
+
+### 🐛 Bug Fixes
+
+* **clumsyninja:** license bypass patch added ([b173719](https://github.com/legendsciber/morphe-patches/commit/b1737191117c6045b994ca22ba011029550c281a))
+
+### ✨ New Features
+
+* **clumsyninja:** add license bypass patch; remove blockblast ([5f0259e](https://github.com/legendsciber/morphe-patches/commit/5f0259e0ec8ab1daa152c0b294f7f0356d6f4031))
+
 ## [1.19.0](https://github.com/legendsciber/morphe-patches/compare/v1.18.5...v1.19.0) (2026-09-16)
 
 ### ✨ New Features
