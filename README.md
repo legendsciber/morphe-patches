@@ -9,7 +9,7 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.19.6](https://github.com/legendsciber/morphe-patches/releases/tag/v1.19.6)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;12 patches total
+> **[v1.19.0](https://github.com/legendsciber/morphe-patches/releases/tag/v1.19.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;10 patches total
 <details open>
 <summary>📦 Toolbox for Minecraft PE&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
 <br>
@@ -23,6 +23,21 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 |----------|----------------|-----------|
 | [Bypass Google Play Install Check](#bypass-google-play-install-check) | App always behaves as if installed from Google Play, bypassing the install source check. |  |
 | [Premium](#premium) | Enables premium features by bypassing in-app purchase verification. |  |
+
+</details>
+
+<details open>
+<summary>📦 Dan The Man&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 1.14.02 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Dan The Man Free IAP](#dan-the-man-free-iap) | All in-app purchases are granted instantly and free without Google Play billing. |  |
 
 </details>
 
@@ -56,23 +71,6 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 | [Hill Climb Racing Ad Removal](#hill-climb-racing-ad-removal) | Completely removes ads: banners and interstitials can never be displayed (CFirebaseAds.showBanners/showInterstitial become no-ops) and ad-free is granted once per app start — loadStore() seeds mAdFree = 1, the native engine's poll grants it and the store's own reset (inappPurchasesProcessed) zeroes the field, so no repeated purchase popups. |  |
 | [Hill Climb Racing Free Store](#hill-climb-racing-free-store) | Every store item is granted instantly and free: coins, gems, paints, ad-skips, ad-free and bundles, without launching Google Play billing. |  |
 | [Hill Climb Racing Instant Rewarded Video Rewards](#hill-climb-racing-instant-rewarded-video-rewards) | Rewarded video ads grant their reward instantly without playing the ad: the native engine receives onVideoStartedSuccess + onVideoCompletedSuccess on the GL thread, exactly as if the video had been watched and completed. |  |
-
-</details>
-
-<details open>
-<summary>📦 Clumsy Ninja&nbsp;&nbsp;•&nbsp;&nbsp;3 patches</summary>
-<br>
-
-**🎯 Supported versions:**
-
-| 1.33.5 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [License Bypass](#license-bypass) | Redirects Google Play license failure callbacks to allow. |  |
-| [Source Check Bypass](#source-check-bypass) | Patches native BootFlow state machine to skip installer/source verification. |  |
-| [Storage Permission Bypass](#storage-permission-bypass) | Bypasses storage permission check so the game proceeds without asking. |  |
 
 </details>
 
