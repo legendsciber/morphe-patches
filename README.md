@@ -9,7 +9,7 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.19.2](https://github.com/legendsciber/morphe-patches/releases/tag/v1.19.2)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;10 patches total
+> **[v1.19.3](https://github.com/legendsciber/morphe-patches/releases/tag/v1.19.3)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;10 patches total
 <details open>
 <summary>📦 Toolbox for Minecraft PE&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
 <br>
@@ -23,21 +23,6 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 |----------|----------------|-----------|
 | [Bypass Google Play Install Check](#bypass-google-play-install-check) | App always behaves as if installed from Google Play, bypassing the install source check. |  |
 | [Premium](#premium) | Enables premium features by bypassing in-app purchase verification. |  |
-
-</details>
-
-<details open>
-<summary>📦 Clumsy Ninja&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
-<br>
-
-**🎯 Supported versions:**
-
-| 1.33.5 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Clumsy Ninja License Bypass](#clumsy-ninja-license-bypass) | Bypasses Google Play license and source verification at startup. |  |
 
 </details>
 
@@ -101,6 +86,21 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Smash Hit Premium Unlock](#smash-hit-premium-unlock) | Unlocks premium and all game modes without purchase. |  |
+
+</details>
+
+<details open>
+<summary>📦 Clumsy Ninja&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 1.33.5 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Storage Permission Bypass](#storage-permission-bypass) | Bypasses storage permission check so the game proceeds without asking. |  |
 
 </details>
 

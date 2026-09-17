@@ -1,3 +1,9 @@
+## [1.19.3](https://github.com/legendsciber/morphe-patches/compare/v1.19.2...v1.19.3) (2026-09-17)
+
+### 🐛 Bug Fixes
+
+* **clumsy-ninja:** replace license bypass with storage permission bypass ([2b12a3c](https://github.com/legendsciber/morphe-patches/commit/2b12a3caf982ec0e2034c6b779303cdd8567d7fe))
+
 ## [1.19.2](https://github.com/legendsciber/morphe-patches/compare/v1.19.1...v1.19.2) (2026-09-17)
 
 ### 🐛 Bug Fixes
