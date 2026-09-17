@@ -12,12 +12,3 @@ object QueryPermissionFingerprint : Fingerprint(
         string("QueryPermission: ")
     )
 )
-
-object GetApplicationInstallerFingerprint : Fingerprint(
-    definingClass = "Lorg/naturalmotion/NmgSystem/NmgMarketplace;",
-    name = "GetApplicationInstaller",
-    returnType = "I",
-    filters = listOf(
-        string("PackageManager.getInstallerPackageName aka Market name: ")
-    )
-)

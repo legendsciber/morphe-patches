@@ -13,11 +13,6 @@ val clumsyNinjaPermissionPatch = bytecodePatch(
     compatibleWith(COMPATIBILITY_CLUMSYNINJA)
 
     execute {
-        GetApplicationInstallerFingerprint.method.addInstructions(0, """
-            const/4 v0, 0x3
-            return v0
-        """.trimIndent())
-
         QueryPermissionFingerprint.method.addInstructions(0, """
             const/4 v0, 0x1
             return v0
