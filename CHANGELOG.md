@@ -1,3 +1,9 @@
+## [1.19.2](https://github.com/legendsciber/morphe-patches/compare/v1.19.1...v1.19.2) (2026-09-17)
+
+### 🐛 Bug Fixes
+
+* **clumsyninja:** spoof installer as Google Play to bypass source check ([6cf2350](https://github.com/legendsciber/morphe-patches/commit/6cf2350d81238db78cb5a06095e989df5823ee1d))
+
 ## [1.19.1](https://github.com/legendsciber/morphe-patches/compare/v1.19.0...v1.19.1) (2026-09-17)
 
 ### 🐛 Bug Fixes
