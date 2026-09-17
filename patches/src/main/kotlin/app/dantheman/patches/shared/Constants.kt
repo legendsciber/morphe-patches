@@ -9,7 +9,7 @@ object Constants {
         name = "Dan The Man",
         packageName = "com.halfbrick.dantheman",
         apkFileType = ApkFileType.APK,
-        appIconColor = 0xFF4CAF50.toInt(),
+        appIconColor = 0x4CAF50,
         targets = listOf(
             AppTarget(version = "1.14.02")
         )
