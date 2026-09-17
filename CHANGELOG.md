@@ -1,3 +1,9 @@
+## [1.19.5](https://github.com/legendsciber/morphe-patches/compare/v1.19.4...v1.19.5) (2026-09-17)
+
+### 🐛 Bug Fixes
+
+* **clumsy-ninja:** add native binary patch for source check bypass ([2bd3817](https://github.com/legendsciber/morphe-patches/commit/2bd38177a1c641cc2579fa58fa508c11f2b6c604)), closes [#0](https://github.com/legendsciber/morphe-patches/issues/0)
+
 ## [1.19.4](https://github.com/legendsciber/morphe-patches/compare/v1.19.3...v1.19.4) (2026-09-17)
 
 ### 🐛 Bug Fixes
