@@ -16,9 +16,7 @@ val danTheManFreeIAPPatch = bytecodePatch(
     compatibleWith(COMPATIBILITY_DANTHEMAN)
 
     execute {
-        findMethod {
-            name == "DoPurchase" && parameters == listOf("Ljava/lang/String;")
-        }.addInstructions(0, """
+        DoPurchaseFingerprint.method.addInstructions(0, """
             invoke-static {}, $NATIVE_GAME_LIB;->BeginCallNativeCode()V
             const/4 v0, 0x0
             const-string v1, "fake_token"
@@ -29,9 +27,7 @@ val danTheManFreeIAPPatch = bytecodePatch(
             return-void
         """.trimIndent())
 
-        findMethod {
-            name == "GetProductInfo" && parameters == listOf("Ljava/lang/String;")
-        }.addInstructions(0, """
+        GetProductInfoFingerprint.method.addInstructions(0, """
             const/4 v0, 0x0
             const-string v1, "0.00"
             const-string v2, "USD"
