@@ -1,3 +1,9 @@
+## [1.19.4](https://github.com/legendsciber/morphe-patches/compare/v1.19.3...v1.19.4) (2026-09-17)
+
+### 🐛 Bug Fixes
+
+* **clumsy-ninja:** add installer spoof back alongside permission bypass ([23f0133](https://github.com/legendsciber/morphe-patches/commit/23f01332ba0a4078c3267a81f5795908b8d2eeab))
+
 ## [1.19.3](https://github.com/legendsciber/morphe-patches/compare/v1.19.2...v1.19.3) (2026-09-17)
 
 ### 🐛 Bug Fixes
