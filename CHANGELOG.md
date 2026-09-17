@@ -1,3 +1,9 @@
+## [1.19.1](https://github.com/legendsciber/morphe-patches/compare/v1.19.0...v1.19.1) (2026-09-17)
+
+### 🐛 Bug Fixes
+
+* **clumsyninja:** fix smali string escaping for inner class reference ([0a51b96](https://github.com/legendsciber/morphe-patches/commit/0a51b96657d057e40e2ee767e659a8f08ccd2e2a))
+
 ## [1.19.0](https://github.com/legendsciber/morphe-patches/compare/v1.18.5...v1.19.0) (2026-09-17)
 
 ### 🐛 Bug Fixes
