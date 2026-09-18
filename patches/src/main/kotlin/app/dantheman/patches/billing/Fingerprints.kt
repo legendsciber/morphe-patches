@@ -1,6 +1,7 @@
 package app.dantheman.patches.billing
 
 import app.morphe.patcher.Fingerprint
+import app.morphe.patcher.fieldAccess
 import app.morphe.patcher.methodCall
 import app.morphe.patcher.string
 import com.android.tools.smali.dexlib2.AccessFlags
@@ -14,7 +15,7 @@ object DoPurchaseFingerprint : Fingerprint(
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC),
     parameters = listOf("Ljava/lang/String;"),
     filters = listOf(
-        string("DoPurchase"),
+        fieldAccess(smali = "$BILLING_MANAGER->mCurrentPurchaseSKU:Ljava/lang/String;"),
         methodCall(
             definingClass = "Lcom/halfbrick/mortar/MortarGameActivity;",
             name = "runOnUiThread"
