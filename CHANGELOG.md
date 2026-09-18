@@ -1,3 +1,9 @@
+## [1.19.1](https://github.com/legendsciber/morphe-patches/compare/v1.19.0...v1.19.1) (2026-09-18)
+
+### 🐛 Bug Fixes
+
+* **dantheman:** use fieldAccess filter for DoPurchase fingerprint (no string constants in method) ([93c53d1](https://github.com/legendsciber/morphe-patches/commit/93c53d1d1df4e9abfcc3bb3b31fd878f9efa2761))
+
 ## [1.19.0](https://github.com/legendsciber/morphe-patches/compare/v1.18.5...v1.19.0) (2026-09-17)
 
 ### 🐛 Bug Fixes
