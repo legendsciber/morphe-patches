@@ -1,3 +1,9 @@
+## [1.20.0](https://github.com/legendsciber/morphe-patches/compare/v1.19.3...v1.20.0) (2026-09-19)
+
+### ✨ New Features
+
+* **dantheman:** add native binary patch to bypass server validation ([7e72cb8](https://github.com/legendsciber/morphe-patches/commit/7e72cb81878d362e6b953033dfc2f0c154b6aba4))
+
 ## [1.19.3](https://github.com/legendsciber/morphe-patches/compare/v1.19.2...v1.19.3) (2026-09-19)
 
 ### 🐛 Bug Fixes

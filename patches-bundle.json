@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-19T12:36:40",
-  "description": "## [1.19.3](https://github.com/legendsciber/morphe-patches/compare/v1.19.2...v1.19.3) (2026-09-19)\n\n### 🐛 Bug Fixes\n\n* **dantheman:** fix register overflow in DoPurchase patch ([9c8ecc1](https://github.com/legendsciber/morphe-patches/commit/9c8ecc16868e2c712b9b389970a9ebfc11518ccf))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.19.3/patches-1.19.3.mpp",
+  "created_at": "2026-09-19T15:25:57",
+  "description": "## [1.20.0](https://github.com/legendsciber/morphe-patches/compare/v1.19.3...v1.20.0) (2026-09-19)\n\n### ✨ New Features\n\n* **dantheman:** add native binary patch to bypass server validation ([7e72cb8](https://github.com/legendsciber/morphe-patches/commit/7e72cb81878d362e6b953033dfc2f0c154b6aba4))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.20.0/patches-1.20.0.mpp",
   "signature_download_url": "",
-  "version": "1.19.3"
+  "version": "1.20.0"
 }
