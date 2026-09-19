@@ -1,3 +1,9 @@
+## [1.23.1](https://github.com/legendsciber/morphe-patches/compare/v1.23.0...v1.23.1) (2026-09-19)
+
+### 🐛 Bug Fixes
+
+* **worldsoccerchamps:** use ${} for smali constant interpolation ([6537ea7](https://github.com/legendsciber/morphe-patches/commit/6537ea70b582f558a32e4d1cb9ce37e63600fe5b))
+
 ## [1.23.0](https://github.com/legendsciber/morphe-patches/compare/v1.22.0...v1.23.0) (2026-09-19)
 
 ### ✨ New Features
