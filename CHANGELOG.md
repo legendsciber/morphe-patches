@@ -1,3 +1,9 @@
+## [1.23.0](https://github.com/legendsciber/morphe-patches/compare/v1.22.0...v1.23.0) (2026-09-19)
+
+### ✨ New Features
+
+* **worldsoccerchamps:** add free IAP patch ([c2358f4](https://github.com/legendsciber/morphe-patches/commit/c2358f48794c757009e99c99608eefc74a0a687b))
+
 ## [1.22.0](https://github.com/legendsciber/morphe-patches/compare/v1.21.1...v1.22.0) (2026-09-19)
 
 ### ✨ New Features
