@@ -19,10 +19,8 @@ val danTheManFreeIAPPatch = bytecodePatch(
         DoPurchaseFingerprint.method.addInstructions(0, """
             invoke-static {}, $NATIVE_GAME_LIB->BeginCallNativeCode()V
             const/4 v0, 0x0
-            const-string v1, "fake_token"
-            const-string v2, "fake_order"
-            const-string v3, "success"
-            invoke-static {v0, v1, v2, p0, v3}, $BILLING_MANAGER->ConsumedResponse(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+            const-string v1, ""
+            invoke-static {v0, v1, v1, p0, v1}, $BILLING_MANAGER->ConsumedResponse(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
             invoke-static {}, $NATIVE_GAME_LIB->EndCallNativeCode()V
             return-void
         """.trimIndent())
