@@ -19,18 +19,14 @@ val danTheManFreeIAPPatch = rawResourcePatch(
         val soFile = get("lib/arm64-v8a/libmortargame.so", true)
         val bytes = soFile.readBytes()
 
+        // IAP_Support::DoPurchase: mov w8, #1 → mov w8, #0
+        // Set purchase result to 0 (success) immediately instead of 1 (pending).
+        // GetLastPurchaseResult reads [0x111c208]; game sees success and grants items.
+        bytes[0x68f464] = 0x08.toByte()
+
         // IAP_Support::DoPurchase: b BillingManagerAndroidWrapper::DoPurchase → ret
-        // Skips the JNI call to Java, preventing Google Play billing UI from opening.
+        // Skip the JNI call to Java, preventing Google Play billing UI from opening.
         java.nio.ByteBuffer.wrap(bytes, 0x68f4a8, 4).order(java.nio.ByteOrder.LITTLE_ENDIAN).putInt(0xd65f03c0.toInt())
-
-        // IAP_Support::Update: b.eq empty-queue-return → b success-path
-        // When the cloud function queue is empty, jump directly to the success path
-        // that sets result = 0 instead of returning early with pending state.
-        java.nio.ByteBuffer.wrap(bytes, 0x68fb60, 4).order(java.nio.ByteOrder.LITTLE_ENDIAN).putInt(0x14000028)
-
-        // IAP_Support::Update: movn w8, #0xffffffff → movz w8, #0x0
-        // On cloud function failure, write 0 (success) instead of -1 (failure).
-        bytes[0x68fc6f] = 0x52.toByte()
 
         soFile.writeBytes(bytes)
     }
