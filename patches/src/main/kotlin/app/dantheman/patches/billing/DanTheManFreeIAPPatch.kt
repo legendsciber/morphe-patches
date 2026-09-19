@@ -2,16 +2,33 @@ package app.dantheman.patches.billing
 
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patcher.patch.rawResourcePatch
 import app.dantheman.patches.shared.Constants.COMPATIBILITY_DANTHEMAN
 
 private const val BILLING_MANAGER = "Lcom/halfbrick/mortar/BillingManager;"
 private const val NATIVE_GAME_LIB = "Lcom/halfbrick/mortar/NativeGameLib;"
 
 @Suppress("unused")
-val danTheManFreeIAPPatch = bytecodePatch(
+val danTheManFreeIAPPatch = rawResourcePatch(
     name = "Dan The Man Free IAP",
     description = "All in-app purchases are granted instantly and free without Google Play billing.",
-    default = true
+    default = true,
+) {
+    compatibleWith(COMPATIBILITY_DANTHEMAN)
+
+    execute {
+        val soFile = get("lib/arm64-v8a/libmortargame.so", true)
+        val bytes = soFile.readBytes()
+        bytes[0x68fc6f] = 0x52.toByte()
+        soFile.writeBytes(bytes)
+    }
+}
+
+@Suppress("unused")
+val danTheManFreeIAPSmaliPatch = bytecodePatch(
+    name = "Dan The Man Free IAP Smali",
+    description = "Smali patches for free IAP: intercepts purchase flow and product info.",
+    default = true,
 ) {
     compatibleWith(COMPATIBILITY_DANTHEMAN)
 
