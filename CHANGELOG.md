@@ -1,3 +1,9 @@
+## [1.21.0](https://github.com/legendsciber/morphe-patches/compare/v1.20.0...v1.21.0) (2026-09-19)
+
+### ✨ New Features
+
+* **dantheman:** move DoPurchase bypass to binary, keep GetProductInfo smali ([6369e0e](https://github.com/legendsciber/morphe-patches/commit/6369e0e081c526adedb2aaf74029bba6b448609f))
+
 ## [1.20.0](https://github.com/legendsciber/morphe-patches/compare/v1.19.3...v1.20.0) (2026-09-19)
 
 ### ✨ New Features
