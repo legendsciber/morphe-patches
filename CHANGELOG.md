@@ -1,3 +1,9 @@
+## [1.19.3](https://github.com/legendsciber/morphe-patches/compare/v1.19.2...v1.19.3) (2026-09-19)
+
+### 🐛 Bug Fixes
+
+* **dantheman:** fix register overflow in DoPurchase patch ([9c8ecc1](https://github.com/legendsciber/morphe-patches/commit/9c8ecc16868e2c712b9b389970a9ebfc11518ccf))
+
 ## [1.19.2](https://github.com/legendsciber/morphe-patches/compare/v1.19.1...v1.19.2) (2026-09-18)
 
 ### 🐛 Bug Fixes
