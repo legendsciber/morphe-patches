@@ -1,3 +1,9 @@
+## [1.21.1](https://github.com/legendsciber/morphe-patches/compare/v1.21.0...v1.21.1) (2026-09-19)
+
+### 🐛 Bug Fixes
+
+* **dantheman:** fix crash - set result=0 in DoPurchase binary, remove Update() patches ([448297c](https://github.com/legendsciber/morphe-patches/commit/448297c2ab7324d6044b39226b2e4e970c332292)), closes [#1](https://github.com/legendsciber/morphe-patches/issues/1) [#0](https://github.com/legendsciber/morphe-patches/issues/0)
+
 ## [1.21.0](https://github.com/legendsciber/morphe-patches/compare/v1.20.0...v1.21.0) (2026-09-19)
 
 ### ✨ New Features
