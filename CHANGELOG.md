@@ -1,3 +1,9 @@
+## [1.22.0](https://github.com/legendsciber/morphe-patches/compare/v1.21.1...v1.22.0) (2026-09-19)
+
+### ✨ New Features
+
+* **dantheman:** remove smali patch, single binary-only patch ([f89a6e9](https://github.com/legendsciber/morphe-patches/commit/f89a6e9b52909f3b68d38e684457f833c61c5b9c)), closes [#1](https://github.com/legendsciber/morphe-patches/issues/1) [#0](https://github.com/legendsciber/morphe-patches/issues/0)
+
 ## [1.21.1](https://github.com/legendsciber/morphe-patches/compare/v1.21.0...v1.21.1) (2026-09-19)
 
 ### 🐛 Bug Fixes
