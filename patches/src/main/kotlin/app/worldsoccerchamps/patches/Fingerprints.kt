@@ -41,3 +41,19 @@ object PlayStoreCheckFingerprint : Fingerprint(
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC),
     parameters = listOf("Landroid/app/Activity;")
 )
+
+object StartupLauncherFingerprint : Fingerprint(
+    definingClass = "Lcom/pairip/StartupLauncher;",
+    name = "launch",
+    returnType = "V",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC),
+    parameters = emptyList()
+)
+
+object ApplicationAttachFingerprint : Fingerprint(
+    definingClass = "Lcom/pairip/application/Application;",
+    name = "attachBaseContext",
+    returnType = "V",
+    accessFlags = listOf(AccessFlags.PROTECTED),
+    parameters = listOf("Landroid/content/Context;")
+)
