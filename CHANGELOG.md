@@ -1,3 +1,9 @@
+## [1.25.0](https://github.com/legendsciber/morphe-patches/compare/v1.24.0...v1.25.0) (2026-09-20)
+
+### ✨ New Features
+
+* **worldsoccerchamps:** bypass Play Store redirect dialog ([f3c8550](https://github.com/legendsciber/morphe-patches/commit/f3c8550db42017c049e83b37a24009885a9e36c3))
+
 ## [1.24.0](https://github.com/legendsciber/morphe-patches/compare/v1.23.1...v1.24.0) (2026-09-20)
 
 ### ✨ New Features
