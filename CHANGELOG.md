@@ -1,3 +1,9 @@
+## [1.26.0](https://github.com/legendsciber/morphe-patches/compare/v1.25.0...v1.26.0) (2026-09-20)
+
+### ✨ New Features
+
+* **worldsoccerchamps:** disable all Pairip anti-tamper entry points ([02d8e52](https://github.com/legendsciber/morphe-patches/commit/02d8e52fe09f6c618d11ae70964d7513af013b1b))
+
 ## [1.25.0](https://github.com/legendsciber/morphe-patches/compare/v1.24.0...v1.25.0) (2026-09-20)
 
 ### ✨ New Features
