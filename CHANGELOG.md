@@ -1,3 +1,9 @@
+## [1.26.1](https://github.com/legendsciber/morphe-patches/compare/v1.26.0...v1.26.1) (2026-09-20)
+
+### 🐛 Bug Fixes
+
+* **worldsoccerchamps:** remove accessFlags from StartupLauncherFingerprint ([c09ea73](https://github.com/legendsciber/morphe-patches/commit/c09ea73f51a01c9bc9d229b8b340a18913ec7bd2))
+
 ## [1.26.0](https://github.com/legendsciber/morphe-patches/compare/v1.25.0...v1.26.0) (2026-09-20)
 
 ### ✨ New Features
