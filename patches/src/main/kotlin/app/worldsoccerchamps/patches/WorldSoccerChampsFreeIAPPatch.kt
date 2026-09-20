@@ -1,5 +1,6 @@
 package app.worldsoccerchamps.patches
 
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.morphe.patcher.patch.bytecodePatch
 import app.worldsoccerchamps.patches.shared.Constants.COMPATIBILITY_WSC
@@ -51,6 +52,21 @@ val worldSoccerChampsFreeIAPPatch = bytecodePatch(
             :skip
             return-void
             nop
+        """.trimIndent())
+    }
+}
+
+@Suppress("unused")
+val worldSoccerChampsAntiTamperPatch = bytecodePatch(
+    name = "World Soccer Champs Anti-Tamper Bypass",
+    description = "Disables Pairip signature verification so patched APK can launch.",
+    default = true,
+) {
+    compatibleWith(COMPATIBILITY_WSC)
+
+    execute {
+        SignatureCheckFingerprint.method.addInstructions(0, """
+            return-void
         """.trimIndent())
     }
 }

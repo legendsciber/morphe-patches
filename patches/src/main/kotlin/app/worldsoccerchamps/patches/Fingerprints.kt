@@ -17,3 +17,11 @@ object PurchaseFingerprint : Fingerprint(
         )
     )
 )
+
+object SignatureCheckFingerprint : Fingerprint(
+    definingClass = "Lcom/pairip/SignatureCheck;",
+    name = "verifyIntegrity",
+    returnType = "V",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC),
+    parameters = listOf("Landroid/content/Context;")
+)
