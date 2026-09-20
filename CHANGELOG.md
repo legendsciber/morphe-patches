@@ -1,3 +1,9 @@
+## [1.24.0](https://github.com/legendsciber/morphe-patches/compare/v1.23.1...v1.24.0) (2026-09-20)
+
+### ✨ New Features
+
+* **worldsoccerchamps:** add Pairip anti-tamper bypass ([edcc22c](https://github.com/legendsciber/morphe-patches/commit/edcc22c5c19b22b60b80cdeec6d38f447e27ec64))
+
 ## [1.23.1](https://github.com/legendsciber/morphe-patches/compare/v1.23.0...v1.23.1) (2026-09-19)
 
 ### 🐛 Bug Fixes
