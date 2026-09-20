@@ -25,3 +25,19 @@ object SignatureCheckFingerprint : Fingerprint(
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC),
     parameters = listOf("Landroid/content/Context;")
 )
+
+object AntiHijackFingerprint : Fingerprint(
+    definingClass = "Lorg/cocos2dx/cpp/g;",
+    name = "d",
+    returnType = "Z",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC),
+    parameters = listOf("Landroid/app/Activity;")
+)
+
+object PlayStoreCheckFingerprint : Fingerprint(
+    definingClass = "Lorg/cocos2dx/cpp/g;",
+    name = "q",
+    returnType = "Z",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC),
+    parameters = listOf("Landroid/app/Activity;")
+)

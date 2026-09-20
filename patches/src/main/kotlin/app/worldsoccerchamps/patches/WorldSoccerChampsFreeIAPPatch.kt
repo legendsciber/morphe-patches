@@ -70,3 +70,35 @@ val worldSoccerChampsAntiTamperPatch = bytecodePatch(
         """.trimIndent())
     }
 }
+
+@Suppress("unused")
+val worldSoccerChampsAntiHijackPatch = bytecodePatch(
+    name = "World Soccer Champs Anti-Hijack Bypass",
+    description = "Bypasses APK hijack/tamper detection in native Cocos2dx engine.",
+    default = true,
+) {
+    compatibleWith(COMPATIBILITY_WSC)
+
+    execute {
+        AntiHijackFingerprint.method.addInstructions(0, """
+            const/4 v0, 0x1
+            return v0
+        """.trimIndent())
+    }
+}
+
+@Suppress("unused")
+val worldSoccerChampsPlayStoreBypassPatch = bytecodePatch(
+    name = "World Soccer Champs Play Store Bypass",
+    description = "Bypasses Play Store availability check that triggers redirect dialog.",
+    default = true,
+) {
+    compatibleWith(COMPATIBILITY_WSC)
+
+    execute {
+        PlayStoreCheckFingerprint.method.addInstructions(0, """
+            const/4 v0, 0x1
+            return v0
+        """.trimIndent())
+    }
+}
