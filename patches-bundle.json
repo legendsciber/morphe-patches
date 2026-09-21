@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-21T15:16:13",
-  "description": "## [1.26.3](https://github.com/legendsciber/morphe-patches/compare/v1.26.2...v1.26.3) (2026-09-21)\n\n### 🐛 Bug Fixes\n\n* **worldsoccerchamps:** remove StartupLauncher bypass, keep 3 safe patches ([d2ecf9f](https://github.com/legendsciber/morphe-patches/commit/d2ecf9fd5a65510b88733285fe5f297cf1a45927))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.26.3/patches-1.26.3.mpp",
+  "created_at": "2026-09-21T15:34:21",
+  "description": "## [1.26.4](https://github.com/legendsciber/morphe-patches/compare/v1.26.3...v1.26.4) (2026-09-21)\n\n### 🐛 Bug Fixes\n\n* **worldsoccerchamps:** load pairipcore.so without running VM bytecode ([2c8b68a](https://github.com/legendsciber/morphe-patches/commit/2c8b68a1eb86c7a0772694d5b90ea065e0e7776f))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.26.4/patches-1.26.4.mpp",
   "signature_download_url": "",
-  "version": "1.26.3"
+  "version": "1.26.4"
 }

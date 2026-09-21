@@ -1,3 +1,9 @@
+## [1.26.4](https://github.com/legendsciber/morphe-patches/compare/v1.26.3...v1.26.4) (2026-09-21)
+
+### 🐛 Bug Fixes
+
+* **worldsoccerchamps:** load pairipcore.so without running VM bytecode ([2c8b68a](https://github.com/legendsciber/morphe-patches/commit/2c8b68a1eb86c7a0772694d5b90ea065e0e7776f))
+
 ## [1.26.3](https://github.com/legendsciber/morphe-patches/compare/v1.26.2...v1.26.3) (2026-09-21)
 
 ### 🐛 Bug Fixes
