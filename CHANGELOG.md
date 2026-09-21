@@ -1,3 +1,9 @@
+## [1.27.0](https://github.com/legendsciber/morphe-patches/compare/v1.26.5...v1.27.0) (2026-09-21)
+
+### ✨ New Features
+
+* **worldsoccerchamps:** bypass CRC32 and installed apps checks ([fb2eb81](https://github.com/legendsciber/morphe-patches/commit/fb2eb81d0d43a9462aae78bb6363d4dbf52c57d6))
+
 ## [1.26.5](https://github.com/legendsciber/morphe-patches/compare/v1.26.4...v1.26.5) (2026-09-21)
 
 ### 🐛 Bug Fixes
