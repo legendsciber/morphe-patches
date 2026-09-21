@@ -1,3 +1,9 @@
+## [1.26.2](https://github.com/legendsciber/morphe-patches/compare/v1.26.1...v1.26.2) (2026-09-21)
+
+### 🐛 Bug Fixes
+
+* **worldsoccerchamps:** remove ApplicationAttachFingerprint patch ([7653544](https://github.com/legendsciber/morphe-patches/commit/7653544f9d9289c2e5052a80f57fd80703ac131f))
+
 ## [1.26.1](https://github.com/legendsciber/morphe-patches/compare/v1.26.0...v1.26.1) (2026-09-20)
 
 ### 🐛 Bug Fixes
