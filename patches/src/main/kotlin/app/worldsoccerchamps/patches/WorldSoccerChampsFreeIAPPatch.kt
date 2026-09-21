@@ -59,7 +59,7 @@ val worldSoccerChampsFreeIAPPatch = bytecodePatch(
 @Suppress("unused")
 val worldSoccerChampsAntiTamperPatch = bytecodePatch(
     name = "World Soccer Champs Anti-Tamper Bypass",
-    description = "Disables all Pairip anti-tamper checks: native VMRunner, signature verification, anti-hijack, and Play Store redirect.",
+    description = "Disables Pairip anti-tamper checks: native VMRunner, signature verification, and Play Store redirect.",
     default = true,
 ) {
     compatibleWith(COMPATIBILITY_WSC)
@@ -81,11 +81,6 @@ val worldSoccerChampsAntiTamperPatch = bytecodePatch(
         PlayStoreCheckFingerprint.method.addInstructions(0, """
             const/4 v0, 0x1
             return v0
-        """.trimIndent())
-
-        ApplicationAttachFingerprint.method.addInstructions(0, """
-            invoke-super {p0, p1}, Landroid/app/Application;->attachBaseContext(Landroid/content/Context;)V
-            return-void
         """.trimIndent())
     }
 }
