@@ -42,9 +42,18 @@ object PlayStoreCheckFingerprint : Fingerprint(
     parameters = listOf("Landroid/app/Activity;")
 )
 
-object StartupLauncherFingerprint : Fingerprint(
-    definingClass = "Lcom/pairip/StartupLauncher;",
-    name = "launch",
-    returnType = "V",
+object AntiHookFingerprint : Fingerprint(
+    definingClass = "Lorg/cocos2dx/cpp/g;",
+    name = "e",
+    returnType = "Z",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC),
+    parameters = emptyList()
+)
+
+object NativeFlagFingerprint : Fingerprint(
+    definingClass = "Lorg/cocos2dx/cpp/g;",
+    name = "j",
+    returnType = "Z",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC),
     parameters = emptyList()
 )

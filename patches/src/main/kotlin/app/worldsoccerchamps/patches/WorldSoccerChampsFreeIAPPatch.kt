@@ -59,18 +59,12 @@ val worldSoccerChampsFreeIAPPatch = bytecodePatch(
 @Suppress("unused")
 val worldSoccerChampsAntiTamperPatch = bytecodePatch(
     name = "World Soccer Champs Anti-Tamper Bypass",
-    description = "Disables Pairip signature verification and Play Store redirect checks.",
+    description = "Disables Pairip signature verification and all Play Store redirect checks.",
     default = true,
 ) {
     compatibleWith(COMPATIBILITY_WSC)
 
     execute {
-        StartupLauncherFingerprint.method.addInstructions(0, """
-            const-string v0, "pairipcore"
-            invoke-static {v0}, Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V
-            return-void
-        """.trimIndent())
-
         SignatureCheckFingerprint.method.addInstructions(0, """
             return-void
         """.trimIndent())
@@ -82,6 +76,16 @@ val worldSoccerChampsAntiTamperPatch = bytecodePatch(
 
         PlayStoreCheckFingerprint.method.addInstructions(0, """
             const/4 v0, 0x1
+            return v0
+        """.trimIndent())
+
+        AntiHookFingerprint.method.addInstructions(0, """
+            const/4 v0, 0x0
+            return v0
+        """.trimIndent())
+
+        NativeFlagFingerprint.method.addInstructions(0, """
+            const/4 v0, 0x0
             return v0
         """.trimIndent())
     }
