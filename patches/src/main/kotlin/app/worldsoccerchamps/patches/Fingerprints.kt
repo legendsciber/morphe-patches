@@ -41,3 +41,10 @@ object PlayStoreCheckFingerprint : Fingerprint(
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC),
     parameters = listOf("Landroid/app/Activity;")
 )
+
+object StartupLauncherFingerprint : Fingerprint(
+    definingClass = "Lcom/pairip/StartupLauncher;",
+    name = "launch",
+    returnType = "V",
+    parameters = emptyList()
+)

@@ -65,6 +65,12 @@ val worldSoccerChampsAntiTamperPatch = bytecodePatch(
     compatibleWith(COMPATIBILITY_WSC)
 
     execute {
+        StartupLauncherFingerprint.method.addInstructions(0, """
+            const-string v0, "pairipcore"
+            invoke-static {v0}, Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V
+            return-void
+        """.trimIndent())
+
         SignatureCheckFingerprint.method.addInstructions(0, """
             return-void
         """.trimIndent())
