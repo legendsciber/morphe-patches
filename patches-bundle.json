@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-21T14:58:53",
-  "description": "## [1.26.2](https://github.com/legendsciber/morphe-patches/compare/v1.26.1...v1.26.2) (2026-09-21)\n\n### 🐛 Bug Fixes\n\n* **worldsoccerchamps:** remove ApplicationAttachFingerprint patch ([7653544](https://github.com/legendsciber/morphe-patches/commit/7653544f9d9289c2e5052a80f57fd80703ac131f))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.26.2/patches-1.26.2.mpp",
+  "created_at": "2026-09-21T15:16:13",
+  "description": "## [1.26.3](https://github.com/legendsciber/morphe-patches/compare/v1.26.2...v1.26.3) (2026-09-21)\n\n### 🐛 Bug Fixes\n\n* **worldsoccerchamps:** remove StartupLauncher bypass, keep 3 safe patches ([d2ecf9f](https://github.com/legendsciber/morphe-patches/commit/d2ecf9fd5a65510b88733285fe5f297cf1a45927))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.26.3/patches-1.26.3.mpp",
   "signature_download_url": "",
-  "version": "1.26.2"
+  "version": "1.26.3"
 }

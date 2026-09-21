@@ -1,3 +1,9 @@
+## [1.26.3](https://github.com/legendsciber/morphe-patches/compare/v1.26.2...v1.26.3) (2026-09-21)
+
+### 🐛 Bug Fixes
+
+* **worldsoccerchamps:** remove StartupLauncher bypass, keep 3 safe patches ([d2ecf9f](https://github.com/legendsciber/morphe-patches/commit/d2ecf9fd5a65510b88733285fe5f297cf1a45927))
+
 ## [1.26.2](https://github.com/legendsciber/morphe-patches/compare/v1.26.1...v1.26.2) (2026-09-21)
 
 ### 🐛 Bug Fixes
