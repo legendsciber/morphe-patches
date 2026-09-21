@@ -103,5 +103,20 @@ val worldSoccerChampsAntiTamperPatch = bytecodePatch(
             const-string v0, ""
             return-object v0
         """.trimIndent())
+
+        PlayIntegrityTokenFingerprint.method.addInstructions(0, """
+            const-string v0, "fake_integrity_token"
+            return-object v0
+        """.trimIndent())
+
+        PlayIntegrityVerdictFingerprint.method.addInstructions(0, """
+            const-string v0, "fake_integrity_verdict"
+            return-object v0
+        """.trimIndent())
+
+        PlayIntegrityStatusFingerprint.method.addInstructions(0, """
+            const/4 v0, 0x0
+            return v0
+        """.trimIndent())
     }
 }

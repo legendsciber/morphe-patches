@@ -81,3 +81,27 @@ object InstalledAppsFingerprint : Fingerprint(
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC),
     parameters = listOf("Landroid/content/Context;")
 )
+
+object PlayIntegrityTokenFingerprint : Fingerprint(
+    definingClass = "Lorg/cocos2dx/cpp/n;",
+    name = "k",
+    returnType = "Ljava/lang/String;",
+    accessFlags = listOf(AccessFlags.PUBLIC),
+    parameters = emptyList()
+)
+
+object PlayIntegrityVerdictFingerprint : Fingerprint(
+    definingClass = "Lorg/cocos2dx/cpp/n;",
+    name = "l",
+    returnType = "Ljava/lang/String;",
+    accessFlags = listOf(AccessFlags.PUBLIC),
+    parameters = emptyList()
+)
+
+object PlayIntegrityStatusFingerprint : Fingerprint(
+    definingClass = "Lorg/cocos2dx/cpp/n;",
+    name = "m",
+    returnType = "I",
+    accessFlags = listOf(AccessFlags.PUBLIC),
+    parameters = emptyList()
+)
