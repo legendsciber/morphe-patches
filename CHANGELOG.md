@@ -1,3 +1,9 @@
+## [1.28.0](https://github.com/legendsciber/morphe-patches/compare/v1.27.0...v1.28.0) (2026-09-21)
+
+### ✨ New Features
+
+* **worldsoccerchamps:** bypass Play Integrity checks in native AntiHackBlueScreen ([28bfc25](https://github.com/legendsciber/morphe-patches/commit/28bfc25ce704eed868761a48ad1e00d19699587c))
+
 ## [1.27.0](https://github.com/legendsciber/morphe-patches/compare/v1.26.5...v1.27.0) (2026-09-21)
 
 ### ✨ New Features
