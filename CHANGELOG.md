@@ -1,3 +1,9 @@
+## [1.26.5](https://github.com/legendsciber/morphe-patches/compare/v1.26.4...v1.26.5) (2026-09-21)
+
+### 🐛 Bug Fixes
+
+* **worldsoccerchamps:** remove StartupLauncher patch, add anti-hook+flag bypass ([bdb3030](https://github.com/legendsciber/morphe-patches/commit/bdb30307454750ea406b2de6b654330985ccaec7))
+
 ## [1.26.4](https://github.com/legendsciber/morphe-patches/compare/v1.26.3...v1.26.4) (2026-09-21)
 
 ### 🐛 Bug Fixes
