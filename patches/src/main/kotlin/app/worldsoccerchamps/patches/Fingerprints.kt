@@ -57,3 +57,27 @@ object NativeFlagFingerprint : Fingerprint(
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC),
     parameters = emptyList()
 )
+
+object DexCrcFingerprint : Fingerprint(
+    definingClass = "Lorg/cocos2dx/cpp/g;",
+    name = "k",
+    returnType = "Ljava/lang/String;",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC),
+    parameters = listOf("Landroid/content/Context;")
+)
+
+object AssetCrcFingerprint : Fingerprint(
+    definingClass = "Lorg/cocos2dx/cpp/g;",
+    name = "m",
+    returnType = "Ljava/lang/String;",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC),
+    parameters = listOf("Landroid/content/Context;")
+)
+
+object InstalledAppsFingerprint : Fingerprint(
+    definingClass = "Lorg/cocos2dx/cpp/g;",
+    name = "a",
+    returnType = "Ljava/lang/String;",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC),
+    parameters = listOf("Landroid/content/Context;")
+)
