@@ -1,3 +1,9 @@
+## [1.29.2](https://github.com/legendsciber/morphe-patches/compare/v1.29.1...v1.29.2) (2026-09-22)
+
+### 🐛 Bug Fixes
+
+* **worldsoccerchamps:** add back SignatureCheck.verifyIntegrity() bypass ([c18a017](https://github.com/legendsciber/morphe-patches/commit/c18a01721a77e9041e54d6e6ea94ccf81b9ffa7b))
+
 ## [1.29.1](https://github.com/legendsciber/morphe-patches/compare/v1.29.0...v1.29.1) (2026-09-22)
 
 ### 🐛 Bug Fixes
