@@ -145,7 +145,7 @@ val worldSoccerChampsNativeAntiHackPatch = rawResourcePatch(
         java.nio.ByteBuffer.wrap(bytes, 0x005f7f7c, 4).order(java.nio.ByteOrder.LITTLE_ENDIAN).putInt(0x52800000)
 
         // enforceRedirectIfBypassed: svc #0 (exit_group) → nop (3 kill paths)
-        val nop = 0xD503201F
+        val nop = 0xD503201F.toInt()
         java.nio.ByteBuffer.wrap(bytes, 0x005f8064, 4).order(java.nio.ByteOrder.LITTLE_ENDIAN).putInt(nop)
         java.nio.ByteBuffer.wrap(bytes, 0x005f80d0, 4).order(java.nio.ByteOrder.LITTLE_ENDIAN).putInt(nop)
         java.nio.ByteBuffer.wrap(bytes, 0x005f8110, 4).order(java.nio.ByteOrder.LITTLE_ENDIAN).putInt(nop)
