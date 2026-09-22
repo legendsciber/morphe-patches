@@ -58,66 +58,17 @@ val worldSoccerChampsFreeIAPPatch = bytecodePatch(
 }
 
 @Suppress("unused")
-val worldSoccerChampsAntiTamperPatch = bytecodePatch(
-    name = "World Soccer Champs Anti-Tamper Bypass",
-    description = "Disables all Pairip anti-tamper checks including CRC32 integrity verification.",
+val worldSoccerChampsPairipDisablePatch = bytecodePatch(
+    name = "World Soccer Champs Pairip VM Disable",
+    description = "Disables Pairip VM execution by making VMRunner.invoke() return null, preventing Play Store redirect.",
     default = true,
 ) {
     compatibleWith(COMPATIBILITY_WSC)
 
     execute {
-        SignatureCheckFingerprint.method.addInstructions(0, """
-            return-void
-        """.trimIndent())
-
-        AntiHijackFingerprint.method.addInstructions(0, """
-            const/4 v0, 0x1
-            return v0
-        """.trimIndent())
-
-        PlayStoreCheckFingerprint.method.addInstructions(0, """
-            const/4 v0, 0x1
-            return v0
-        """.trimIndent())
-
-        AntiHookFingerprint.method.addInstructions(0, """
+        VMRunnerInvokeFingerprint.method.addInstructions(0, """
             const/4 v0, 0x0
-            return v0
-        """.trimIndent())
-
-        NativeFlagFingerprint.method.addInstructions(0, """
-            const/4 v0, 0x0
-            return v0
-        """.trimIndent())
-
-        DexCrcFingerprint.method.addInstructions(0, """
-            const-string v0, "ok"
             return-object v0
-        """.trimIndent())
-
-        AssetCrcFingerprint.method.addInstructions(0, """
-            const-string v0, "ok"
-            return-object v0
-        """.trimIndent())
-
-        InstalledAppsFingerprint.method.addInstructions(0, """
-            const-string v0, ""
-            return-object v0
-        """.trimIndent())
-
-        PlayIntegrityTokenFingerprint.method.addInstructions(0, """
-            const-string v0, "fake_integrity_token"
-            return-object v0
-        """.trimIndent())
-
-        PlayIntegrityVerdictFingerprint.method.addInstructions(0, """
-            const-string v0, "fake_integrity_verdict"
-            return-object v0
-        """.trimIndent())
-
-        PlayIntegrityStatusFingerprint.method.addInstructions(0, """
-            const/4 v0, 0x0
-            return v0
         """.trimIndent())
     }
 }
@@ -135,7 +86,6 @@ val worldSoccerChampsNativeAntiHackPatch = rawResourcePatch(
         val bytes = soFile.readBytes()
 
         // isToRedirectToBlueScreen: mov w0, #1 → mov w0, #0
-        // Forces the redirect check to always return false (no redirect).
         java.nio.ByteBuffer.wrap(bytes, 0x005f7d6c, 4).order(java.nio.ByteOrder.LITTLE_ENDIAN).putInt(0x52800000)
 
         // isToRedirectToBlueScreen1: cset w0, eq → mov w0, #0
