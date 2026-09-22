@@ -33,3 +33,11 @@ object VMRunnerInvokeFingerprint : Fingerprint(
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC),
     parameters = listOf("Ljava/lang/String;", "[Ljava/lang/Object;")
 )
+
+object PreloadInfoContentProviderFingerprint : Fingerprint(
+    definingClass = "Lio/appmetrica/analytics/internal/PreloadInfoContentProvider;",
+    name = "onCreate",
+    returnType = "Z",
+    accessFlags = listOf(AccessFlags.PUBLIC),
+    parameters = emptyList()
+)

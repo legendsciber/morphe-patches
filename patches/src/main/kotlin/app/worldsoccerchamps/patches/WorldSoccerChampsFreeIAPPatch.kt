@@ -74,6 +74,11 @@ val worldSoccerChampsPairipDisablePatch = bytecodePatch(
             const/4 v0, 0x0
             return-object v0
         """.trimIndent())
+
+        PreloadInfoContentProviderFingerprint.method.addInstructions(0, """
+            const/4 v0, 0x1
+            return v0
+        """.trimIndent())
     }
 }
 
