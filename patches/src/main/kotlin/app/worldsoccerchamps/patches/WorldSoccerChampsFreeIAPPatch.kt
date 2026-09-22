@@ -3,6 +3,7 @@ package app.worldsoccerchamps.patches
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patcher.patch.rawResourcePatch
 import app.worldsoccerchamps.patches.shared.Constants.COMPATIBILITY_WSC
 
 private const val PURCHASE_MANAGER = "Liap/PurchaseManager;"
@@ -118,5 +119,37 @@ val worldSoccerChampsAntiTamperPatch = bytecodePatch(
             const/4 v0, 0x0
             return v0
         """.trimIndent())
+    }
+}
+
+@Suppress("unused")
+val worldSoccerChampsNativeAntiHackPatch = rawResourcePatch(
+    name = "World Soccer Champs Native Anti-Hack Bypass",
+    description = "Patches libWorldSoccerChamps.so to disable AntiHackBlueScreen redirect and kill syscalls.",
+    default = true,
+) {
+    compatibleWith(COMPATIBILITY_WSC)
+
+    execute {
+        val soFile = get("lib/arm64-v8a/libWorldSoccerChamps.so", true)
+        val bytes = soFile.readBytes()
+
+        // isToRedirectToBlueScreen: mov w0, #1 → mov w0, #0
+        // Forces the redirect check to always return false (no redirect).
+        java.nio.ByteBuffer.wrap(bytes, 0x005f7d6c, 4).order(java.nio.ByteOrder.LITTLE_ENDIAN).putInt(0x52800000)
+
+        // isToRedirectToBlueScreen1: cset w0, eq → mov w0, #0
+        java.nio.ByteBuffer.wrap(bytes, 0x005f7e8c, 4).order(java.nio.ByteOrder.LITTLE_ENDIAN).putInt(0x52800000)
+
+        // isToRedirectToBlueScreen2: cset w0, eq → mov w0, #0
+        java.nio.ByteBuffer.wrap(bytes, 0x005f7f7c, 4).order(java.nio.ByteOrder.LITTLE_ENDIAN).putInt(0x52800000)
+
+        // enforceRedirectIfBypassed: svc #0 (exit_group) → nop (3 kill paths)
+        val nop = 0xD503201F
+        java.nio.ByteBuffer.wrap(bytes, 0x005f8064, 4).order(java.nio.ByteOrder.LITTLE_ENDIAN).putInt(nop)
+        java.nio.ByteBuffer.wrap(bytes, 0x005f80d0, 4).order(java.nio.ByteOrder.LITTLE_ENDIAN).putInt(nop)
+        java.nio.ByteBuffer.wrap(bytes, 0x005f8110, 4).order(java.nio.ByteOrder.LITTLE_ENDIAN).putInt(nop)
+
+        soFile.writeBytes(bytes)
     }
 }
