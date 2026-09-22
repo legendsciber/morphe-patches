@@ -1,3 +1,13 @@
+## [1.29.0](https://github.com/legendsciber/morphe-patches/compare/v1.28.0...v1.29.0) (2026-09-22)
+
+### 🐛 Bug Fixes
+
+* **worldsoccerchamps:** cast NOP value to Int for native patch ([2e398a5](https://github.com/legendsciber/morphe-patches/commit/2e398a5a750f78d8e99886220d585e92f867b2a1))
+
+### ✨ New Features
+
+* **worldsoccerchamps:** native binary patch to disable AntiHackBlueScreen redirect ([d1a0b91](https://github.com/legendsciber/morphe-patches/commit/d1a0b91e9a94c7674514a3f057fcb634caed2bae)), closes [#1](https://github.com/legendsciber/morphe-patches/issues/1) [#0](https://github.com/legendsciber/morphe-patches/issues/0) [#0](https://github.com/legendsciber/morphe-patches/issues/0) [#0](https://github.com/legendsciber/morphe-patches/issues/0)
+
 ## [1.28.0](https://github.com/legendsciber/morphe-patches/compare/v1.27.0...v1.28.0) (2026-09-21)
 
 ### ✨ New Features

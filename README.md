@@ -9,7 +9,7 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.28.0](https://github.com/legendsciber/morphe-patches/releases/tag/v1.28.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;12 patches total
+> **[v1.29.0](https://github.com/legendsciber/morphe-patches/releases/tag/v1.29.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;13 patches total
 <details open>
 <summary>📦 Toolbox for Minecraft PE&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
 <br>
@@ -105,7 +105,7 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 </details>
 
 <details open>
-<summary>📦 World Soccer Champs&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
+<summary>📦 World Soccer Champs&nbsp;&nbsp;•&nbsp;&nbsp;3 patches</summary>
 <br>
 
 **🎯 Supported versions:**
@@ -117,6 +117,7 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 |----------|----------------|-----------|
 | [World Soccer Champs Anti-Tamper Bypass](#world-soccer-champs-anti-tamper-bypass) | Disables all Pairip anti-tamper checks including CRC32 integrity verification. |  |
 | [World Soccer Champs Free IAP](#world-soccer-champs-free-iap) | All in-app purchases are granted instantly and free without Google Play billing. |  |
+| [World Soccer Champs Native Anti-Hack Bypass](#world-soccer-champs-native-anti-hack-bypass) | Patches libWorldSoccerChamps.so to disable AntiHackBlueScreen redirect and kill syscalls. |  |
 
 </details>
 
