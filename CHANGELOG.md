@@ -1,3 +1,9 @@
+## [1.29.4](https://github.com/legendsciber/morphe-patches/compare/v1.29.3...v1.29.4) (2026-09-22)
+
+### 🐛 Bug Fixes
+
+* **worldsoccerchamps:** rewrite approach - let VM run, patch redirect at binary level ([2d2a58d](https://github.com/legendsciber/morphe-patches/commit/2d2a58d022ae36769ed630579b5522279adbe593))
+
 ## [1.29.3](https://github.com/legendsciber/morphe-patches/compare/v1.29.2...v1.29.3) (2026-09-22)
 
 ### 🐛 Bug Fixes

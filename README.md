@@ -9,7 +9,7 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.29.3](https://github.com/legendsciber/morphe-patches/releases/tag/v1.29.3)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;13 patches total
+> **[v1.29.4](https://github.com/legendsciber/morphe-patches/releases/tag/v1.29.4)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;13 patches total
 <details open>
 <summary>📦 Toolbox for Minecraft PE&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
 <br>
@@ -115,9 +115,9 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
+| [World Soccer Champs Anti-Tamper Bypass](#world-soccer-champs-anti-tamper-bypass) | Bypasses Pairip signature check and disables VM integrity checks. |  |
 | [World Soccer Champs Free IAP](#world-soccer-champs-free-iap) | All in-app purchases are granted instantly and free without Google Play billing. |  |
-| [World Soccer Champs Native Anti-Hack Bypass](#world-soccer-champs-native-anti-hack-bypass) | Patches libWorldSoccerChamps.so to disable AntiHackBlueScreen redirect and kill syscalls. |  |
-| [World Soccer Champs Pairip VM Disable](#world-soccer-champs-pairip-vm-disable) | Disables Pairip VM execution by making VMRunner.invoke() return null, preventing Play Store redirect. |  |
+| [World Soccer Champs Native Patches](#world-soccer-champs-native-patches) | Patches libWorldSoccerChamps.so and libpairipcore.so to disable redirects. |  |
 
 </details>
 
