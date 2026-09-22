@@ -58,9 +58,9 @@ val worldSoccerChampsFreeIAPPatch = bytecodePatch(
 }
 
 @Suppress("unused")
-val worldSoccerChampsPairipDisablePatch = bytecodePatch(
-    name = "World Soccer Champs Pairip VM Disable",
-    description = "Disables Pairip VM execution by making VMRunner.invoke() return null, preventing Play Store redirect.",
+val worldSoccerChampsAntiTamperPatch = bytecodePatch(
+    name = "World Soccer Champs Anti-Tamper Bypass",
+    description = "Bypasses Pairip signature check and disables VM integrity checks.",
     default = true,
 ) {
     compatibleWith(COMPATIBILITY_WSC)
@@ -69,28 +69,19 @@ val worldSoccerChampsPairipDisablePatch = bytecodePatch(
         SignatureCheckFingerprint.method.addInstructions(0, """
             return-void
         """.trimIndent())
-
-        VMRunnerInvokeFingerprint.method.addInstructions(0, """
-            const/4 v0, 0x0
-            return-object v0
-        """.trimIndent())
-
-        PreloadInfoContentProviderFingerprint.method.addInstructions(0, """
-            const/4 v0, 0x1
-            return v0
-        """.trimIndent())
     }
 }
 
 @Suppress("unused")
-val worldSoccerChampsNativeAntiHackPatch = rawResourcePatch(
-    name = "World Soccer Champs Native Anti-Hack Bypass",
-    description = "Patches libWorldSoccerChamps.so to disable AntiHackBlueScreen redirect and kill syscalls.",
+val worldSoccerChampsNativePatch = rawResourcePatch(
+    name = "World Soccer Champs Native Patches",
+    description = "Patches libWorldSoccerChamps.so and libpairipcore.so to disable redirects.",
     default = true,
 ) {
     compatibleWith(COMPATIBILITY_WSC)
 
     execute {
+        // === Patch libWorldSoccerChamps.so ===
         val soFile = get("lib/arm64-v8a/libWorldSoccerChamps.so", true)
         val bytes = soFile.readBytes()
 
@@ -110,5 +101,20 @@ val worldSoccerChampsNativeAntiHackPatch = rawResourcePatch(
         java.nio.ByteBuffer.wrap(bytes, 0x005f8110, 4).order(java.nio.ByteOrder.LITTLE_ENDIAN).putInt(nop)
 
         soFile.writeBytes(bytes)
+
+        // === Patch libpairipcore.so ===
+        // Replace "android.intent.action.VIEW" with "android.intent.action.MAIN"
+        // This prevents the Pairip VM from redirecting to the Play Store.
+        // ACTION_MAIN just brings the app to foreground (no-op if already in foreground).
+        val coreFile = get("lib/arm64-v8a/libpairipcore.so", true)
+        val coreBytes = coreFile.readBytes()
+
+        // "VIEW" at offset 0xc095 → "MAIN"
+        coreBytes[0xc095] = 0x4d.toByte() // M
+        coreBytes[0xc096] = 0x41.toByte() // A
+        coreBytes[0xc097] = 0x49.toByte() // I
+        coreBytes[0xc098] = 0x4e.toByte() // N
+
+        coreFile.writeBytes(coreBytes)
     }
 }
