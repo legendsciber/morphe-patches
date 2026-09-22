@@ -66,6 +66,10 @@ val worldSoccerChampsPairipDisablePatch = bytecodePatch(
     compatibleWith(COMPATIBILITY_WSC)
 
     execute {
+        SignatureCheckFingerprint.method.addInstructions(0, """
+            return-void
+        """.trimIndent())
+
         VMRunnerInvokeFingerprint.method.addInstructions(0, """
             const/4 v0, 0x0
             return-object v0
