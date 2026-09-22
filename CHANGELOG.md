@@ -1,3 +1,9 @@
+## [1.29.1](https://github.com/legendsciber/morphe-patches/compare/v1.29.0...v1.29.1) (2026-09-22)
+
+### 🐛 Bug Fixes
+
+* **worldsoccerchamps:** replace all Java anti-tamper patches with single VMRunner.invoke() disable ([6555da4](https://github.com/legendsciber/morphe-patches/commit/6555da4c708fb561ce37a897106e7c219f2dd151))
+
 ## [1.29.0](https://github.com/legendsciber/morphe-patches/compare/v1.28.0...v1.29.0) (2026-09-22)
 
 ### 🐛 Bug Fixes
