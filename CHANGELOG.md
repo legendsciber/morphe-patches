@@ -1,3 +1,9 @@
+## [1.29.3](https://github.com/legendsciber/morphe-patches/compare/v1.29.2...v1.29.3) (2026-09-22)
+
+### 🐛 Bug Fixes
+
+* **worldsoccerchamps:** patch PreloadInfoContentProvider.onCreate() to prevent NPE ([670d4fe](https://github.com/legendsciber/morphe-patches/commit/670d4fe55610fa7087e2396bc18c57fddfd7e11f))
+
 ## [1.29.2](https://github.com/legendsciber/morphe-patches/compare/v1.29.1...v1.29.2) (2026-09-22)
 
 ### 🐛 Bug Fixes

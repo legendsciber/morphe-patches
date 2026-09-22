@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-22T15:34:00",
-  "description": "## [1.29.2](https://github.com/legendsciber/morphe-patches/compare/v1.29.1...v1.29.2) (2026-09-22)\n\n### 🐛 Bug Fixes\n\n* **worldsoccerchamps:** add back SignatureCheck.verifyIntegrity() bypass ([c18a017](https://github.com/legendsciber/morphe-patches/commit/c18a01721a77e9041e54d6e6ea94ccf81b9ffa7b))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.29.2/patches-1.29.2.mpp",
+  "created_at": "2026-09-22T15:44:09",
+  "description": "## [1.29.3](https://github.com/legendsciber/morphe-patches/compare/v1.29.2...v1.29.3) (2026-09-22)\n\n### 🐛 Bug Fixes\n\n* **worldsoccerchamps:** patch PreloadInfoContentProvider.onCreate() to prevent NPE ([670d4fe](https://github.com/legendsciber/morphe-patches/commit/670d4fe55610fa7087e2396bc18c57fddfd7e11f))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.29.3/patches-1.29.3.mpp",
   "signature_download_url": "",
-  "version": "1.29.2"
+  "version": "1.29.3"
 }
