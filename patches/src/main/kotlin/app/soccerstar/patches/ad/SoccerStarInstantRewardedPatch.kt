@@ -19,10 +19,22 @@ private val CAVE_STUB = byteArrayOf(
     0xC0.toByte(), 0x03, 0x5F, 0xD6.toByte(),
 )
 
+private val FORCE_TRUE = byteArrayOf(
+    0x20, 0x00, 0x80.toByte(), 0x52,
+    0xC0.toByte(), 0x03, 0x5F, 0xD6.toByte(),
+)
+
+private val LOADED_OFFSETS = intArrayOf(
+    0x00BA1BF8,
+    0x00BA23C8,
+    0x00B914FC,
+    0x00B94618,
+)
+
 @Suppress("unused")
 val soccerStarInstantRewarded = rawResourcePatch(
     name = "Soccer Star Instant Rewarded",
-    description = "Rewarded videos grant the success callback immediately without playing an ad.",
+    description = "Rewarded and interstitial ad flows always report loaded and grant the success callback immediately without playing an ad, including offline.",
     default = true,
 ) {
     compatibleWith(COMPATIBILITY_SOCCERSTAR)
@@ -33,6 +45,10 @@ val soccerStarInstantRewarded = rawResourcePatch(
 
         CAVE_STUB.copyInto(bytes, 0x00B8EBFC)
         B_CAVE.copyInto(bytes, 0x00BA1ADC)
+
+        for (offset in LOADED_OFFSETS) {
+            FORCE_TRUE.copyInto(bytes, offset)
+        }
 
         soFile.writeBytes(bytes)
     }
