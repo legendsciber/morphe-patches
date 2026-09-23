@@ -1,3 +1,9 @@
+## [1.24.0](https://github.com/legendsciber/morphe-patches/compare/v1.23.0...v1.24.0) (2026-09-23)
+
+### ✨ New Features
+
+* **soccerstar:** add VIP unlock, ad removal, and instant rewarded patches ([5709691](https://github.com/legendsciber/morphe-patches/commit/570969119b14e2c3fe16c547fb35e5d01126ecbc))
+
 ## [1.23.0](https://github.com/legendsciber/morphe-patches/compare/v1.22.0...v1.23.0) (2026-09-22)
 
 ### 🐛 Bug Fixes
