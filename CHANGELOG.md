@@ -1,3 +1,9 @@
+## [1.24.2](https://github.com/legendsciber/morphe-patches/compare/v1.24.1...v1.24.2) (2026-09-23)
+
+### 🐛 Bug Fixes
+
+* **soccerstar:** force ad loaded checks true so offline rewards stay enabled ([647ead9](https://github.com/legendsciber/morphe-patches/commit/647ead9bbe646a8ca0293f5ae0e9a23aa39778f3))
+
 ## [1.24.1](https://github.com/legendsciber/morphe-patches/compare/v1.24.0...v1.24.1) (2026-09-23)
 
 ### 🚀 Updated App Support
