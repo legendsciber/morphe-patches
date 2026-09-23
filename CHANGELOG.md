@@ -1,3 +1,9 @@
+## [1.24.1](https://github.com/legendsciber/morphe-patches/compare/v1.24.0...v1.24.1) (2026-09-23)
+
+### 🚀 Updated App Support
+
+* **soccerstar:** update patches for 0.3.88 ([c277777](https://github.com/legendsciber/morphe-patches/commit/c277777cd766f766e128a3dc43d8249509de24fa))
+
 ## [1.24.0](https://github.com/legendsciber/morphe-patches/compare/v1.23.0...v1.24.0) (2026-09-23)
 
 ### ✨ New Features
