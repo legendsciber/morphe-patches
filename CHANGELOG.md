@@ -1,3 +1,9 @@
+## [1.25.0](https://github.com/legendsciber/morphe-patches/compare/v1.24.2...v1.25.0) (2026-09-24)
+
+### ✨ New Features
+
+* **aphelion:** add ad-free hint unlock patch ([221bf1e](https://github.com/legendsciber/morphe-patches/commit/221bf1e18126fad5337c19b8b871028b128ea55e))
+
 ## [1.24.2](https://github.com/legendsciber/morphe-patches/compare/v1.24.1...v1.24.2) (2026-09-23)
 
 ### 🐛 Bug Fixes
