@@ -1,3 +1,13 @@
+## [1.29.0](https://github.com/legendsciber/morphe-patches/compare/v1.28.0...v1.29.0) (2026-09-24)
+
+### 🐛 Bug Fixes
+
+* **hungryshark:** escape dollar signs in free iap smali snippet ([2e68055](https://github.com/legendsciber/morphe-patches/commit/2e68055c7f7146a68fb481816b50d7b593a71b88))
+
+### ✨ New Features
+
+* **hungryshark:** add free iap patch ([48affa1](https://github.com/legendsciber/morphe-patches/commit/48affa1cb29c448609dd0d5fb533f756761715be))
+
 ## [1.28.0](https://github.com/legendsciber/morphe-patches/compare/v1.27.0...v1.28.0) (2026-09-24)
 
 ### ✨ New Features
