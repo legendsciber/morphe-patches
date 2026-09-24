@@ -1,3 +1,13 @@
+## [1.27.0](https://github.com/legendsciber/morphe-patches/compare/v1.26.0...v1.27.0) (2026-09-24)
+
+### 🐛 Bug Fixes
+
+* **aphelion:** resolve patch context in installer source helper ([98b3aee](https://github.com/legendsciber/morphe-patches/commit/98b3aee3b92f54e4794208e7810bb8b0af5e9ee3))
+
+### ✨ New Features
+
+* **aphelion:** spoof installer source to fix play store redirect ([a998c4d](https://github.com/legendsciber/morphe-patches/commit/a998c4d936807f979a4ff63ecea56e9a5076c47d))
+
 ## [1.26.0](https://github.com/legendsciber/morphe-patches/compare/v1.25.1...v1.26.0) (2026-09-24)
 
 ### ✨ New Features
