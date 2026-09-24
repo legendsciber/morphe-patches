@@ -17,7 +17,8 @@ val aphelionAdFreeHintUnlock = bytecodePatch(
             EmitHintRewardFingerprint.instructionMatches[0].index + 1,
             """
                 invoke-virtual {p2}, Lvc2;->invoke()Ljava/lang/Object;
-                goto/16 :goto_5
+                move-result-object v0
+                return-object v0
             """.trimIndent(),
         )
 
