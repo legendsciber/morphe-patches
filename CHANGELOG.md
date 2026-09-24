@@ -1,3 +1,9 @@
+## [1.26.0](https://github.com/legendsciber/morphe-patches/compare/v1.25.1...v1.26.0) (2026-09-24)
+
+### ✨ New Features
+
+* **aphelion:** add force update bypass patch ([9af2b6e](https://github.com/legendsciber/morphe-patches/commit/9af2b6e219aada2d52fe3f58448bd7e150b38ecd))
+
 ## [1.25.1](https://github.com/legendsciber/morphe-patches/compare/v1.25.0...v1.25.1) (2026-09-24)
 
 ### 🐛 Bug Fixes
