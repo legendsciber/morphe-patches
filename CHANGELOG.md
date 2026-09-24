@@ -1,3 +1,9 @@
+## [1.28.0](https://github.com/legendsciber/morphe-patches/compare/v1.27.0...v1.28.0) (2026-09-24)
+
+### ✨ New Features
+
+* **hungryshark:** add installer source fix patch ([6a0a82d](https://github.com/legendsciber/morphe-patches/commit/6a0a82d662e3aaad9089031b0fb262772b81d867))
+
 ## [1.27.0](https://github.com/legendsciber/morphe-patches/compare/v1.26.0...v1.27.0) (2026-09-24)
 
 ### 🐛 Bug Fixes
