@@ -1,3 +1,9 @@
+## [1.25.1](https://github.com/legendsciber/morphe-patches/compare/v1.25.0...v1.25.1) (2026-09-24)
+
+### 🐛 Bug Fixes
+
+* **aphelion:** return directly instead of jumping to an external label ([206c680](https://github.com/legendsciber/morphe-patches/commit/206c68062996b8bf53b105d68dc2d3c7a8ffc8c9))
+
 ## [1.25.0](https://github.com/legendsciber/morphe-patches/compare/v1.24.2...v1.25.0) (2026-09-24)
 
 ### ✨ New Features

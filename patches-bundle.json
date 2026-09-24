@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-24T17:57:21",
-  "description": "## [1.25.0](https://github.com/legendsciber/morphe-patches/compare/v1.24.2...v1.25.0) (2026-09-24)\n\n### ✨ New Features\n\n* **aphelion:** add ad-free hint unlock patch ([221bf1e](https://github.com/legendsciber/morphe-patches/commit/221bf1e18126fad5337c19b8b871028b128ea55e))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.25.0/patches-1.25.0.mpp",
+  "created_at": "2026-09-24T18:09:54",
+  "description": "## [1.25.1](https://github.com/legendsciber/morphe-patches/compare/v1.25.0...v1.25.1) (2026-09-24)\n\n### 🐛 Bug Fixes\n\n* **aphelion:** return directly instead of jumping to an external label ([206c680](https://github.com/legendsciber/morphe-patches/commit/206c68062996b8bf53b105d68dc2d3c7a8ffc8c9))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.25.1/patches-1.25.1.mpp",
   "signature_download_url": "",
-  "version": "1.25.0"
+  "version": "1.25.1"
 }
