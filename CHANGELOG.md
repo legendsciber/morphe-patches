@@ -1,3 +1,9 @@
+## [1.30.1](https://github.com/legendsciber/morphe-patches/compare/v1.30.0...v1.30.1) (2026-09-25)
+
+### 🐛 Bug Fixes
+
+* **hungryshark:** clarify installer patch description for residual redirect ([e7245cc](https://github.com/legendsciber/morphe-patches/commit/e7245cc703c01bfd3fbb8ab42e59fc196e3fc945))
+
 ## [1.30.0](https://github.com/legendsciber/morphe-patches/compare/v1.29.0...v1.30.0) (2026-09-25)
 
 ### 🐛 Bug Fixes

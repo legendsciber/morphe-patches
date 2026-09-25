@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.30.0",
+  "version": "1.30.1",
   "patches": [
     {
       "name": "Aphelion Ad-Free Hint Unlock",
@@ -264,7 +264,7 @@
     },
     {
       "name": "Hungry Shark Installer Source Fix",
-      "description": "Spoofs the installer source as Google Play for every install-source check in the game and its SDKs, so sideloaded installs are treated as store installs and the Google Play Store redirect is fixed.",
+      "description": "Spoofs the installer source as Google Play for every install-source check in the game and its SDKs, so sideloaded installs are treated as store installs and installer-based Play Store redirects are bypassed.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
