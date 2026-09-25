@@ -1,3 +1,9 @@
+## [1.31.0](https://github.com/legendsciber/morphe-patches/compare/v1.30.1...v1.31.0) (2026-09-25)
+
+### ✨ New Features
+
+* **subwaysurfers:** add currency hack patch ([f284e70](https://github.com/legendsciber/morphe-patches/commit/f284e7037a190603a0178f448863f1cfd3883a50))
+
 ## [1.30.1](https://github.com/legendsciber/morphe-patches/compare/v1.30.0...v1.30.1) (2026-09-25)
 
 ### 🐛 Bug Fixes
