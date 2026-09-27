@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="feat(subwaysurfers): show 3.69.2 APK link in dialogs"
+MSG="feat(subwaysurfers): declare versionCode 96070 for 3.69.2 target"
 
 cd "$DIR"
 

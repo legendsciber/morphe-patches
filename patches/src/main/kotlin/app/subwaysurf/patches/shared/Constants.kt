@@ -3,6 +3,7 @@ package app.subwaysurf.patches.shared
 import app.morphe.patcher.patch.ApkFileType
 import app.morphe.patcher.patch.AppTarget
 import app.morphe.patcher.patch.Compatibility
+import app.morphe.patcher.patch.SupportedAbi
 
 object Constants {
     val COMPATIBILITY_SUBWAYSURF = Compatibility(
@@ -13,7 +14,7 @@ object Constants {
         targets = listOf(
             AppTarget(
                 version = "3.69.2",
-                description = "3.69.2 APK: apkpure.com/subway-surfers-game/com.kiloo.subwaysurf/versions"
+                versionCodes = SupportedAbi.entries.associateWith { 96070 }
             ),
         )
     )
