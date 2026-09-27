@@ -1,3 +1,9 @@
+## [1.33.0](https://github.com/legendsciber/morphe-patches/compare/v1.32.1...v1.33.0) (2026-09-27)
+
+### ✨ New Features
+
+* **subwaysurfers:** add free IAP patch ([5797d94](https://github.com/legendsciber/morphe-patches/commit/5797d94226cb9f594e853d0cf9824c77a7c65b97))
+
 ## [1.32.1](https://github.com/legendsciber/morphe-patches/compare/v1.32.0...v1.32.1) (2026-09-27)
 
 ### 🐛 Bug Fixes
