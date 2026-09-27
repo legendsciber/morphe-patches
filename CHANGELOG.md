@@ -1,3 +1,9 @@
+## [1.34.1](https://github.com/legendsciber/morphe-patches/compare/v1.34.0...v1.34.1) (2026-09-27)
+
+### 🐛 Bug Fixes
+
+* remove apkFileType declarations so web-search accepts any file type ([4819735](https://github.com/legendsciber/morphe-patches/commit/48197359fc4dce585e5f27e7d7dee17aac35af2d))
+
 ## [1.34.0](https://github.com/legendsciber/morphe-patches/compare/v1.33.1...v1.34.0) (2026-09-27)
 
 ### ✨ New Features
