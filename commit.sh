@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="feat(subwaysurfers): add currency hack patch"
+MSG="feat(subwaysurfers): add 3.69.2 support"
 
 cd "$DIR"
 
