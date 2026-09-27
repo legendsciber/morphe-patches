@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="feat(subwaysurfers): declare versionCode 96070 for 3.69.2 target"
+MSG="fix: remove apkFileType declarations so web-search accepts any file type"
 
 cd "$DIR"
 
