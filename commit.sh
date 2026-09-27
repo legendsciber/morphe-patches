@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(subwaysurfers): drop 3.69.1 target"
+MSG="feat(subwaysurfers): add free IAP patch"
 
 cd "$DIR"
 
