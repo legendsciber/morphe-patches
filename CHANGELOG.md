@@ -1,3 +1,9 @@
+## [1.33.1](https://github.com/legendsciber/morphe-patches/compare/v1.33.0...v1.33.1) (2026-09-27)
+
+### 🐛 Bug Fixes
+
+* **subwaysurfers:** make free IAP work offline ([ef314d4](https://github.com/legendsciber/morphe-patches/commit/ef314d4235a09eb6f02aefd7c1ca8d526602715d))
+
 ## [1.33.0](https://github.com/legendsciber/morphe-patches/compare/v1.32.1...v1.33.0) (2026-09-27)
 
 ### ✨ New Features
