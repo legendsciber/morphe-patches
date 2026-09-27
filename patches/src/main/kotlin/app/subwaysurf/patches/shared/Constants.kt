@@ -11,7 +11,10 @@ object Constants {
         apkFileType = ApkFileType.APK,
         appIconColor = 0xF9A825,
         targets = listOf(
-            AppTarget(version = "3.69.2"),
+            AppTarget(
+                version = "3.69.2",
+                description = "3.69.2 APK: apkpure.com/subway-surfers-game/com.kiloo.subwaysurf/versions"
+            ),
         )
     )
 }

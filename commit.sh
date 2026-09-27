@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(subwaysurfers): make free IAP work offline"
+MSG="feat(subwaysurfers): show 3.69.2 APK link in dialogs"
 
 cd "$DIR"
 
