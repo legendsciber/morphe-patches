@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="feat(subwaysurfers): add free IAP patch"
+MSG="fix(subwaysurfers): make free IAP work offline"
 
 cd "$DIR"
 
