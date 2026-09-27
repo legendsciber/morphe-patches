@@ -1,3 +1,9 @@
+## [1.32.0](https://github.com/legendsciber/morphe-patches/compare/v1.31.0...v1.32.0) (2026-09-27)
+
+### ✨ New Features
+
+* **subwaysurfers:** add 3.69.2 support ([08fe382](https://github.com/legendsciber/morphe-patches/commit/08fe382c8ded0d87f57fe7dcf5a645a780c9e83b))
+
 ## [1.31.0](https://github.com/legendsciber/morphe-patches/compare/v1.30.1...v1.31.0) (2026-09-25)
 
 ### ✨ New Features
