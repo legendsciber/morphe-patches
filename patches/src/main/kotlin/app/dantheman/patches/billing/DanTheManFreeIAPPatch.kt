@@ -8,6 +8,11 @@ private val DO_PURCHASE_SITE = byteArrayOf(
     0xB5.toByte(), 0x22, 0x08, 0x91.toByte(),
     0x28, 0x00, 0x80.toByte(), 0x52,
 )
+private val REACHABILITY_GATE_SITE = byteArrayOf(
+    0x60, 0x00, 0x00, 0x35,
+    0x42, 0x37, 0xF1.toByte(), 0x97.toByte(),
+    0x00, 0x06, 0x00, 0x34,
+)
 
 @Suppress("unused")
 val danTheManFreeIAPPatch = rawResourcePatch(
@@ -21,32 +26,41 @@ val danTheManFreeIAPPatch = rawResourcePatch(
         val soFile = get("lib/arm64-v8a/libmortargame.so", true)
         val bytes = soFile.readBytes()
 
-        var count = 0
-        var at = -1
-        var i = 0
-        while (i <= bytes.size - DO_PURCHASE_SITE.size) {
-            var match = true
-            var j = 0
-            while (j < DO_PURCHASE_SITE.size) {
-                if (bytes[i + j] != DO_PURCHASE_SITE[j]) {
-                    match = false
-                    break
+        fun indexOf(name: String, site: ByteArray): Int {
+            var count = 0
+            var at = -1
+            var i = 0
+            while (i <= bytes.size - site.size) {
+                var match = true
+                var j = 0
+                while (j < site.size) {
+                    if (bytes[i + j] != site[j]) {
+                        match = false
+                        break
+                    }
+                    j++
                 }
-                j++
+                if (match) {
+                    count++
+                    at = i
+                    if (count > 1) break
+                }
+                i++
             }
-            if (match) {
-                count++
-                at = i
-                if (count > 1) break
-            }
-            i++
+            require(count == 1) { "$name site not unique: $count matches" }
+            return at
         }
-        require(count == 1) { "IAP_Support::DoPurchase site not unique: $count matches" }
 
+        val at = indexOf("IAP_Support::DoPurchase", DO_PURCHASE_SITE)
         bytes[at + 8] = 0x08
         java.nio.ByteBuffer.wrap(bytes, at + 0x4C, 4)
             .order(java.nio.ByteOrder.LITTLE_ENDIAN)
             .putInt(0xd65f03c0.toInt())
+
+        val gate = indexOf("reachability gate", REACHABILITY_GATE_SITE)
+        java.nio.ByteBuffer.wrap(bytes, gate + 8, 4)
+            .order(java.nio.ByteOrder.LITTLE_ENDIAN)
+            .putInt(0xd503201f.toInt())
 
         soFile.writeBytes(bytes)
     }

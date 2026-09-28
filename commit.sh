@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="feat(dantheman): support 1.14.04 via unique purchase site pattern"
+MSG="fix(dantheman): free iap works offline, drop 1.14.02 target"
 
 cd "$DIR"
 
