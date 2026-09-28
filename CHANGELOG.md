@@ -1,3 +1,9 @@
+## [1.34.2](https://github.com/legendsciber/morphe-patches/compare/v1.34.1...v1.34.2) (2026-09-28)
+
+### 🐛 Bug Fixes
+
+* **subwaysurfers:** drop versionCodes from target, version name is enough ([3c2a5be](https://github.com/legendsciber/morphe-patches/commit/3c2a5bebae8779e776931580841de92e8997285e))
+
 ## [1.34.1](https://github.com/legendsciber/morphe-patches/compare/v1.34.0...v1.34.1) (2026-09-27)
 
 ### 🐛 Bug Fixes
