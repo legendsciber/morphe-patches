@@ -1,3 +1,9 @@
+## [1.35.1](https://github.com/legendsciber/morphe-patches/compare/v1.35.0...v1.35.1) (2026-09-28)
+
+### 🐛 Bug Fixes
+
+* **dantheman:** free iap works offline, drop 1.14.02 target ([95a4536](https://github.com/legendsciber/morphe-patches/commit/95a453642dba4e4f27d8aeeece787f2a52749391))
+
 ## [1.35.0](https://github.com/legendsciber/morphe-patches/compare/v1.34.2...v1.35.0) (2026-09-28)
 
 ### ✨ New Features
