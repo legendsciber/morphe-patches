@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix: remove apkFileType declarations so web-search accepts any file type"
+MSG="fix(subwaysurfers): drop versionCodes from target, version name is enough"
 
 cd "$DIR"
 
