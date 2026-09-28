@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="fix(subwaysurfers): drop versionCodes from target, version name is enough"
+MSG="feat(dantheman): support 1.14.04 via unique purchase site pattern"
 
 cd "$DIR"
 
