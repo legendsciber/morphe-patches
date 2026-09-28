@@ -1,3 +1,9 @@
+## [1.35.0](https://github.com/legendsciber/morphe-patches/compare/v1.34.2...v1.35.0) (2026-09-28)
+
+### ✨ New Features
+
+* **dantheman:** support 1.14.04 via unique purchase site pattern ([8be10c9](https://github.com/legendsciber/morphe-patches/commit/8be10c9fd0a1f9ba382194e80ec4f02fd4fc6833))
+
 ## [1.34.2](https://github.com/legendsciber/morphe-patches/compare/v1.34.1...v1.34.2) (2026-09-28)
 
 ### 🐛 Bug Fixes
