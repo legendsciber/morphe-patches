@@ -16,7 +16,8 @@ private val OWNERSHIP_SITES = listOf(
             0x09, 0x01, 0x00, 0x39, 0x8A.toByte(), 0xFF.toByte(), 0xFF.toByte(), 0x17,
         ),
         replacement = byteArrayOf(
-            0x20, 0x00, 0x80.toByte(), 0x52, 0xC0.toByte(), 0x03, 0x5F, 0xD6.toByte(),
+            0xE0.toByte(), 0x47, 0x88.toByte(), 0x52, 0xE0.toByte(), 0x01, 0x80.toByte(),
+            0x72, 0xC0.toByte(), 0x03, 0x5F, 0xD6.toByte(),
         ),
     ),
     OwnershipSite(
@@ -26,7 +27,8 @@ private val OWNERSHIP_SITES = listOf(
             0x94.toByte(),
         ),
         replacement = byteArrayOf(
-            0x20, 0x00, 0x80.toByte(), 0x52, 0xC0.toByte(), 0x03, 0x5F, 0xD6.toByte(),
+            0xE0.toByte(), 0x47, 0x88.toByte(), 0x52, 0xE0.toByte(), 0x01, 0x80.toByte(),
+            0x72, 0xC0.toByte(), 0x03, 0x5F, 0xD6.toByte(),
         ),
     ),
     OwnershipSite(
@@ -36,7 +38,8 @@ private val OWNERSHIP_SITES = listOf(
             0x94.toByte(),
         ),
         replacement = byteArrayOf(
-            0x20, 0x00, 0x80.toByte(), 0x52, 0xC0.toByte(), 0x03, 0x5F, 0xD6.toByte(),
+            0xE0.toByte(), 0x47, 0x88.toByte(), 0x52, 0xE0.toByte(), 0x01, 0x80.toByte(),
+            0x72, 0xC0.toByte(), 0x03, 0x5F, 0xD6.toByte(),
         ),
     ),
     OwnershipSite(
@@ -46,7 +49,8 @@ private val OWNERSHIP_SITES = listOf(
             0x94.toByte(),
         ),
         replacement = byteArrayOf(
-            0x20, 0x00, 0x80.toByte(), 0x52, 0xC0.toByte(), 0x03, 0x5F, 0xD6.toByte(),
+            0xE0.toByte(), 0x7C, 0x80.toByte(), 0x52, 0xC0.toByte(), 0x03, 0x5F,
+            0xD6.toByte(),
         ),
     ),
     OwnershipSite(
@@ -109,7 +113,7 @@ private fun indexOfUnique(bytes: ByteArray, anchor: ByteArray, label: String): I
 @Suppress("unused")
 val hillClimbFreeIapPatch = rawResourcePatch(
     name = "Hill Climb Racing Free IAP",
-    description = "Every in-app purchase counts as already owned: coins, gems, paints, ad-skips, bundles and ad-free unlock without Google Play billing, and the store no longer gives up when it cannot reach the network.",
+    description = "Every in-app purchase is granted for free: coins, gems, paints, ad-skips, bundles and ad-free are reported as already bought with a full balance, without Google Play billing and without a network connection.",
     default = true,
 ) {
     compatibleWith(COMPATIBILITY_HILLCLIMB)
