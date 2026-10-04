@@ -9,7 +9,7 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.36.0](https://github.com/legendsciber/morphe-patches/releases/tag/v1.36.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;20 patches total
+> **[v1.37.0](https://github.com/legendsciber/morphe-patches/releases/tag/v1.37.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;23 patches total
 <details open>
 <summary>📦 Aphelion&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
 <br>
@@ -118,6 +118,23 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [RB4 Premium & Skin Unlock](#rb4-premium-skin-unlock) | Unlocks premium, removes ads and unlocks all ball skins. |  |
+
+</details>
+
+<details open>
+<summary>📦 Sling Drift&nbsp;&nbsp;•&nbsp;&nbsp;3 patches</summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 5.13.2 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Sling Drift All Cars Unlock](#sling-drift-all-cars-unlock) | Every car reports as unlocked, so the whole garage is available right away no matter how the car would normally be earned. |  |
+| [Sling Drift Unlimited Money](#sling-drift-unlimited-money) | Every car in the market is always affordable, so rubies never run out and any car can be bought without saving up first. |  |
+| [Sling Drift VIP Unlock](#sling-drift-vip-unlock) | VIP status and the active subscription are always reported, so VIP cars and every VIP-gated feature stay available without Google Play billing. |  |
 
 </details>
 

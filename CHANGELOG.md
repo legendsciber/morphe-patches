@@ -1,3 +1,10 @@
+## [1.37.0](https://github.com/legendsciber/morphe-patches/compare/v1.36.0...v1.37.0) (2026-10-04)
+
+### ✨ New Features
+
+* **slingdrift:** add 5.13.2 support ([6265832](https://github.com/legendsciber/morphe-patches/commit/62658321aaa256c447bfa5c79d225d530c67ef49))
+* **slingdrift:** add vip unlock, unlimited money and all cars unlock patches ([03d5355](https://github.com/legendsciber/morphe-patches/commit/03d535538b2f9c8f3a78f8383de679fc1edb8f69))
+
 ## [1.36.0](https://github.com/legendsciber/morphe-patches/compare/v1.35.1...v1.36.0) (2026-10-03)
 
 ### ✨ New Features
