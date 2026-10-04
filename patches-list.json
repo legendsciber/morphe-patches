@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.38.0",
+  "version": "1.38.1",
   "patches": [
     {
       "name": "Aphelion Ad-Free Hint Unlock",
@@ -342,7 +342,7 @@
     },
     {
       "name": "Sling Drift Ad Free",
-      "description": "Banners, interstitials and rewarded video offers are switched off, and the game stops requesting ads on startup, so it launches and runs without touching any ad network.",
+      "description": "Banner ads are never requested and interstitials are never shown. Rewarded video stays untouched so the game keeps preloading it and no ad error popups appear, which keeps the game working both online and offline.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [

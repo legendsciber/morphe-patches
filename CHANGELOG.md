@@ -1,3 +1,9 @@
+## [1.38.1](https://github.com/legendsciber/morphe-patches/compare/v1.38.0...v1.38.1) (2026-10-04)
+
+### 🐛 Bug Fixes
+
+* **slingdrift:** stop ad-free patch from disabling rewarded ad preloading ([d19d155](https://github.com/legendsciber/morphe-patches/commit/d19d155acff0ab81ee97a895dec1bc45fa520526))
+
 ## [1.38.0](https://github.com/legendsciber/morphe-patches/compare/v1.37.1...v1.38.0) (2026-10-04)
 
 ### ✨ New Features
