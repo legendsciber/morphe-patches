@@ -1,3 +1,9 @@
+## [1.39.1](https://github.com/legendsciber/morphe-patches/compare/v1.39.0...v1.39.1) (2026-10-04)
+
+### 🐛 Bug Fixes
+
+* **slingdrift:** grant ad rewards via closed-event cave and drop ad free ([e6f0a67](https://github.com/legendsciber/morphe-patches/commit/e6f0a67a4862158baaf46fcb4664cd62ff966bef))
+
 ## [1.39.0](https://github.com/legendsciber/morphe-patches/compare/v1.38.3...v1.39.0) (2026-10-04)
 
 ### ✨ New Features
