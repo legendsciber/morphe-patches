@@ -1,3 +1,9 @@
+## [1.40.0](https://github.com/legendsciber/morphe-patches/compare/v1.39.4...v1.40.0) (2026-10-04)
+
+### ✨ New Features
+
+* **hillclimb:** native instant rewards patch, target 1.72.2, drop ad removal ([842f8e9](https://github.com/legendsciber/morphe-patches/commit/842f8e9a0a65c9d5bf8b6a416a28f10cf3315387))
+
 ## [1.39.4](https://github.com/legendsciber/morphe-patches/compare/v1.39.3...v1.39.4) (2026-10-04)
 
 ### 🐛 Bug Fixes
