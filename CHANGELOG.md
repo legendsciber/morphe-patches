@@ -1,3 +1,9 @@
+## [1.38.3](https://github.com/legendsciber/morphe-patches/compare/v1.38.2...v1.38.3) (2026-10-04)
+
+### 🐛 Bug Fixes
+
+* **slingdrift:** keep rewarded flow out of the ad free patch like soccer star ([9165587](https://github.com/legendsciber/morphe-patches/commit/916558782a2a7a63c25fb12fb71cf2e9754c6049))
+
 ## [1.38.2](https://github.com/legendsciber/morphe-patches/compare/v1.38.1...v1.38.2) (2026-10-04)
 
 ### 🐛 Bug Fixes
