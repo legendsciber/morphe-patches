@@ -19,10 +19,9 @@ private val FORCE_TRUE = byteArrayOf(
     0x20, 0x00, 0x80.toByte(), 0x52, 0xC0.toByte(), 0x03, 0x5F, 0xD6.toByte(),
 )
 private val RET = byteArrayOf(0xC0.toByte(), 0x03, 0x5F, 0xD6.toByte())
+private val NOP = byteArrayOf(0x1F, 0x20, 0x03, 0xD5.toByte())
 
 private const val CAVE_OFFSET = 0x01BA8D68
-private const val CAVE_FIRST_STUB = 20
-private const val STUB_SIZE = 16
 
 private val STUBS = listOf(
     Stub(
@@ -183,54 +182,42 @@ private val SITES = listOf(
             0xE0.toByte(), 0x03, 0x1F, 0xAA.toByte(), 0xDA.toByte(), 0x89.toByte(), 0x5D,
             0x94.toByte(),
         ),
-        replacement = byteArrayOf(
-            0x1F, 0x20, 0x03, 0xD5.toByte(),
-        ),
+        replacement = NOP,
     ),
     RewardSite(
         label = "ContinueAds.ReachabilityCheck",
         anchor = byteArrayOf(
             0xE0.toByte(), 0x03, 0x1F, 0xAA.toByte(), 0x2D, 0x47, 0x5E, 0x94.toByte(),
         ),
-        replacement = byteArrayOf(
-            0x1F, 0x20, 0x03, 0xD5.toByte(),
-        ),
+        replacement = NOP,
     ),
     RewardSite(
         label = "ContinueButton.ReachabilityCheck",
         anchor = byteArrayOf(
             0xE0.toByte(), 0x03, 0x1F, 0xAA.toByte(), 0xB2.toByte(), 0x43, 0x5E, 0x94.toByte(),
         ),
-        replacement = byteArrayOf(
-            0x1F, 0x20, 0x03, 0xD5.toByte(),
-        ),
+        replacement = NOP,
     ),
     RewardSite(
         label = "Upgrade.ReachabilityCheck",
         anchor = byteArrayOf(
             0xE0.toByte(), 0x03, 0x1F, 0xAA.toByte(), 0x0D, 0x13, 0x5D, 0x94.toByte(),
         ),
-        replacement = byteArrayOf(
-            0x1F, 0x20, 0x03, 0xD5.toByte(),
-        ),
+        replacement = NOP,
     ),
     RewardSite(
         label = "EndGameMultiplier.ReachabilityCheck",
         anchor = byteArrayOf(
             0xE0.toByte(), 0x03, 0x1F, 0xAA.toByte(), 0x3D, 0x03, 0x5D, 0x94.toByte(),
         ),
-        replacement = byteArrayOf(
-            0x1F, 0x20, 0x03, 0xD5.toByte(),
-        ),
+        replacement = NOP,
     ),
     RewardSite(
         label = "QuestsReroll.ReachabilityCheck",
         anchor = byteArrayOf(
             0xE0.toByte(), 0x03, 0x1F, 0xAA.toByte(), 0x6E, 0xD9.toByte(), 0x5C, 0x94.toByte(),
         ),
-        replacement = byteArrayOf(
-            0x1F, 0x20, 0x03, 0xD5.toByte(),
-        ),
+        replacement = NOP,
     ),
     RewardSite(
         label = "MarketCarItem.ReachabilityCheck",
@@ -238,9 +225,7 @@ private val SITES = listOf(
             0xE0.toByte(), 0x03, 0x1F, 0xAA.toByte(), 0xB4.toByte(), 0xFF.toByte(), 0x5D,
             0x94.toByte(),
         ),
-        replacement = byteArrayOf(
-            0x1F, 0x20, 0x03, 0xD5.toByte(),
-        ),
+        replacement = NOP,
     ),
     RewardSite(
         label = "RaceOverDoubleTap.ReachabilityCheck",
@@ -248,18 +233,14 @@ private val SITES = listOf(
             0xE0.toByte(), 0x03, 0x1F, 0xAA.toByte(), 0xDF.toByte(), 0xA9.toByte(), 0x5D,
             0x94.toByte(),
         ),
-        replacement = byteArrayOf(
-            0x1F, 0x20, 0x03, 0xD5.toByte(),
-        ),
+        replacement = NOP,
     ),
     RewardSite(
         label = "AdsManager.CanShowRewarded",
         anchor = byteArrayOf(
             0xFE.toByte(), 0x57, 0xC2.toByte(), 0xA8.toByte(), 0x6B, 0x35, 0x40, 0x14,
         ),
-        replacement = byteArrayOf(
-            0x20, 0x00, 0x80.toByte(), 0x52, 0xC0.toByte(), 0x03, 0x5F, 0xD6.toByte(),
-        ),
+        replacement = FORCE_TRUE,
     ),
 )
 
@@ -300,10 +281,11 @@ val slingDriftInstantRewardsPatch = rawResourcePatch(
         val soFile = get("lib/arm64-v8a/libil2cpp.so", true)
         val bytes = soFile.readBytes()
 
-        for (i in STUBS.indices) {
-            val o = CAVE_OFFSET + CAVE_FIRST_STUB + i * STUB_SIZE
-            for (k in 0 until STUB_SIZE) {
-                require(bytes[o + k] == RET[k % 4]) { "code cave at $CAVE_OFFSET is not padding" }
+        for (stub in STUBS) {
+            for (k in stub.bytes.indices) {
+                require(bytes[stub.offset + k] == RET[k % 4]) {
+                    "code cave at ${stub.offset + k} is not padding (${stub.label})"
+                }
             }
         }
 
