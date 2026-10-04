@@ -1,3 +1,9 @@
+## [1.39.2](https://github.com/legendsciber/morphe-patches/compare/v1.39.1...v1.39.2) (2026-10-04)
+
+### 🐛 Bug Fixes
+
+* **slingdrift:** scope code cave guards to each patch write region ([d9aeb5b](https://github.com/legendsciber/morphe-patches/commit/d9aeb5bd1b5bd9b07ab24b3a5c38694b26b90800))
+
 ## [1.39.1](https://github.com/legendsciber/morphe-patches/compare/v1.39.0...v1.39.1) (2026-10-04)
 
 ### 🐛 Bug Fixes
