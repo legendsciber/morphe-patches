@@ -46,6 +46,16 @@ private val SITES = listOf(
         ),
         replacement = FORCE_FALSE,
     ),
+    Site(
+        label = "AdsManager.CanShowRewarded",
+        anchor = byteArrayOf(
+            0xFE.toByte(), 0x0F, 0x1B, 0xF8.toByte(), 0xFA.toByte(), 0x67, 0x01, 0xA9.toByte(),
+            0xF8.toByte(), 0x5F, 0x02, 0xA9.toByte(), 0xF6.toByte(), 0x57, 0x03, 0xA9.toByte(),
+            0xF4.toByte(), 0x4F, 0x04, 0xA9.toByte(), 0xD5.toByte(), 0xF8.toByte(), 0x00,
+            0x90.toByte(),
+        ),
+        replacement = FORCE_FALSE,
+    ),
 )
 
 private fun indexOfUnique(bytes: ByteArray, anchor: ByteArray, label: String): Int {
