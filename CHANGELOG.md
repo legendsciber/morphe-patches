@@ -1,3 +1,9 @@
+## [1.38.0](https://github.com/legendsciber/morphe-patches/compare/v1.37.1...v1.38.0) (2026-10-04)
+
+### ✨ New Features
+
+* **slingdrift:** add ad free patch ([17ed3c9](https://github.com/legendsciber/morphe-patches/commit/17ed3c9a8e82acc6262d0df0dfdebbb4d295841d))
+
 ## [1.37.1](https://github.com/legendsciber/morphe-patches/compare/v1.37.0...v1.37.1) (2026-10-04)
 
 ### 🐛 Bug Fixes

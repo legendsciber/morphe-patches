@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.37.1",
+  "version": "1.38.0",
   "patches": [
     {
       "name": "Aphelion Ad-Free Hint Unlock",
@@ -330,6 +330,32 @@
           "targets": [
             {
               "version": "1.17.03",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Sling Drift Ad Free",
+      "description": "Banners, interstitials and rewarded video offers are switched off, and the game stops requesting ads on startup, so it launches and runs without touching any ad network.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.rubygames.slingdrift",
+          "name": "Sling Drift",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#00BCD4",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "5.13.2",
               "versionCodes": null,
               "isExperimental": false,
               "minSdk": null,
