@@ -1,3 +1,9 @@
+## [1.38.2](https://github.com/legendsciber/morphe-patches/compare/v1.38.1...v1.38.2) (2026-10-04)
+
+### 🐛 Bug Fixes
+
+* **slingdrift:** also close rewarded ad offers in the ad free patch ([393a209](https://github.com/legendsciber/morphe-patches/commit/393a2097c53dbc1542dcaa9ac5d3384935fed8a3))
+
 ## [1.38.1](https://github.com/legendsciber/morphe-patches/compare/v1.38.0...v1.38.1) (2026-10-04)
 
 ### 🐛 Bug Fixes
