@@ -46,16 +46,6 @@ private val SITES = listOf(
         ),
         replacement = FORCE_FALSE,
     ),
-    Site(
-        label = "AdsManager.CanShowRewarded",
-        anchor = byteArrayOf(
-            0xFE.toByte(), 0x0F, 0x1B, 0xF8.toByte(), 0xFA.toByte(), 0x67, 0x01, 0xA9.toByte(),
-            0xF8.toByte(), 0x5F, 0x02, 0xA9.toByte(), 0xF6.toByte(), 0x57, 0x03, 0xA9.toByte(),
-            0xF4.toByte(), 0x4F, 0x04, 0xA9.toByte(), 0xD5.toByte(), 0xF8.toByte(), 0x00,
-            0x90.toByte(),
-        ),
-        replacement = FORCE_FALSE,
-    ),
 )
 
 private fun indexOfUnique(bytes: ByteArray, anchor: ByteArray, label: String): Int {
@@ -86,7 +76,7 @@ private fun indexOfUnique(bytes: ByteArray, anchor: ByteArray, label: String): I
 @Suppress("unused")
 val slingDriftAdFreePatch = rawResourcePatch(
     name = "Sling Drift Ad Free",
-    description = "Banner ads are never requested and interstitials are never shown. Rewarded video stays untouched so the game keeps preloading it and no ad error popups appear, which keeps the game working both online and offline.",
+    description = "Disables ads completely: banner ads are never requested or shown and interstitials are always declined. Rewarded video is left untouched so ad-gated buttons keep working exactly as before.",
     default = true,
 ) {
     compatibleWith(COMPATIBILITY_SLINGDRIFT)
