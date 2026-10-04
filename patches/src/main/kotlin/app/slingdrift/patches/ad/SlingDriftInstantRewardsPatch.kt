@@ -18,10 +18,11 @@ private class Stub(
 private val FORCE_TRUE = byteArrayOf(
     0x20, 0x00, 0x80.toByte(), 0x52, 0xC0.toByte(), 0x03, 0x5F, 0xD6.toByte(),
 )
-
-private val RET = byteArrayOf(
-    0xC0.toByte(), 0x03, 0x5F, 0xD6.toByte(),
+private val NOP = byteArrayOf(
+    0x1F, 0x20, 0x03, 0xD5.toByte(),
 )
+
+private val RET = byteArrayOf(0xC0.toByte(), 0x03, 0x5F, 0xD6.toByte())
 
 private const val CAVE_OFFSET = 0x01BA8D68
 private const val CAVE_FIRST_STUB = 20
@@ -29,7 +30,7 @@ private const val STUB_SIZE = 12
 
 private val STUBS = listOf(
     Stub(
-        label = "RubyBonusButton.OnTap",
+        label = "RubyBonus",
         offset = CAVE_OFFSET + 20,
         bytes = byteArrayOf(
             0xE7.toByte(), 0x8C.toByte(), 0xEF.toByte(), 0x97.toByte(), 0xE9.toByte(),
@@ -38,52 +39,68 @@ private val STUBS = listOf(
         ),
     ),
     Stub(
-        label = "UpgradeButton.OnButtonClick",
+        label = "ContinueAds",
         offset = CAVE_OFFSET + 32,
         bytes = byteArrayOf(
-            0xFA.toByte(), 0x03, 0xF0.toByte(), 0x97.toByte(), 0xFC.toByte(), 0x03,
-            0xF0.toByte(), 0x97.toByte(), 0xFA.toByte(), 0x00, 0xF0.toByte(), 0x17,
-        ),
-    ),
-    Stub(
-        label = "EndGameRewardMultiplierButton.OnTap",
-        offset = CAVE_OFFSET + 44,
-        bytes = byteArrayOf(
-            0x16, 0x12, 0xF0.toByte(), 0x97.toByte(), 0x18, 0x12, 0xF0.toByte(), 0x97.toByte(),
-            0x79, 0x10, 0xF0.toByte(), 0x17,
-        ),
-    ),
-    Stub(
-        label = "QuestsPopUp.TryRerollDaily",
-        offset = CAVE_OFFSET + 56,
-        bytes = byteArrayOf(
-            0x52, 0x3B, 0xF0.toByte(), 0x97.toByte(), 0x54, 0x3B, 0xF0.toByte(), 0x97.toByte(),
-            0x47, 0x3A, 0xF0.toByte(), 0x17,
-        ),
-    ),
-    Stub(
-        label = "ContinuePanel.ContinueAdsButtonPressed",
-        offset = CAVE_OFFSET + 68,
-        bytes = byteArrayOf(
-            0xA1.toByte(), 0xCF.toByte(), 0xEE.toByte(), 0x97.toByte(), 0xA3.toByte(),
-            0xCF.toByte(), 0xEE.toByte(), 0x97.toByte(), 0x8A.toByte(), 0xCC.toByte(),
+            0xAA.toByte(), 0xCF.toByte(), 0xEE.toByte(), 0x97.toByte(), 0xAC.toByte(),
+            0xCF.toByte(), 0xEE.toByte(), 0x97.toByte(), 0x93.toByte(), 0xCC.toByte(),
             0xEE.toByte(), 0x17,
         ),
     ),
     Stub(
-        label = "ContinuePanel.ContinueButtonPressed",
+        label = "ContinueButton",
+        offset = CAVE_OFFSET + 44,
+        bytes = byteArrayOf(
+            0xA7.toByte(), 0xCF.toByte(), 0xEE.toByte(), 0x97.toByte(), 0xA9.toByte(),
+            0xCF.toByte(), 0xEE.toByte(), 0x97.toByte(), 0x0B, 0xD0.toByte(), 0xEE.toByte(),
+            0x17,
+        ),
+    ),
+    Stub(
+        label = "Upgrade",
+        offset = CAVE_OFFSET + 56,
+        bytes = byteArrayOf(
+            0xF4.toByte(), 0x03, 0xF0.toByte(), 0x97.toByte(), 0xF6.toByte(), 0x03,
+            0xF0.toByte(), 0x97.toByte(), 0xF4.toByte(), 0x00, 0xF0.toByte(), 0x17,
+        ),
+    ),
+    Stub(
+        label = "EndGameMultiplier",
+        offset = CAVE_OFFSET + 68,
+        bytes = byteArrayOf(
+            0x10, 0x12, 0xF0.toByte(), 0x97.toByte(), 0x12, 0x12, 0xF0.toByte(), 0x97.toByte(),
+            0x73, 0x10, 0xF0.toByte(), 0x17,
+        ),
+    ),
+    Stub(
+        label = "QuestsReroll",
         offset = CAVE_OFFSET + 80,
         bytes = byteArrayOf(
-            0x9E.toByte(), 0xCF.toByte(), 0xEE.toByte(), 0x97.toByte(), 0xA0.toByte(),
-            0xCF.toByte(), 0xEE.toByte(), 0x97.toByte(), 0x02, 0xD0.toByte(), 0xEE.toByte(),
-            0x17,
+            0x4C, 0x3B, 0xF0.toByte(), 0x97.toByte(), 0x4E, 0x3B, 0xF0.toByte(), 0x97.toByte(),
+            0x41, 0x3A, 0xF0.toByte(), 0x17,
+        ),
+    ),
+    Stub(
+        label = "MarketCarItem",
+        offset = CAVE_OFFSET + 92,
+        bytes = byteArrayOf(
+            0xCA.toByte(), 0x14, 0xEF.toByte(), 0x97.toByte(), 0x4C, 0x15, 0xEF.toByte(),
+            0x97.toByte(), 0xF6.toByte(), 0x13, 0xEF.toByte(), 0x17,
+        ),
+    ),
+    Stub(
+        label = "RaceOverDoubleTap",
+        offset = CAVE_OFFSET + 104,
+        bytes = byteArrayOf(
+            0xB9.toByte(), 0x6A, 0xEF.toByte(), 0x97.toByte(), 0x96.toByte(), 0x6B,
+            0xEF.toByte(), 0x97.toByte(), 0xC8.toByte(), 0x69, 0xEF.toByte(), 0x17,
         ),
     ),
 )
 
 private val SITES = listOf(
     RewardSite(
-        label = "RubyBonusButton.OnTap",
+        label = "RubyBonus.ShowRewarded",
         anchor = byteArrayOf(
             0x25, 0x66, 0x2D, 0x94.toByte(), 0xC0.toByte(), 0x04, 0x00, 0xB4.toByte(),
             0xE1.toByte(), 0x03, 0x14, 0xAA.toByte(), 0xE2.toByte(), 0x03, 0x1F, 0xAA.toByte(),
@@ -93,52 +110,147 @@ private val SITES = listOf(
         ),
     ),
     RewardSite(
-        label = "UpgradeButton.OnButtonClick",
+        label = "ContinueAds.ShowRewarded",
+        anchor = byteArrayOf(
+            0x88.toByte(), 0x23, 0x2E, 0x94.toByte(), 0x40, 0x0A, 0x00, 0xB4.toByte(),
+            0x81.toByte(), 0x02, 0x40, 0xF9.toByte(), 0xE2.toByte(), 0x03, 0x1F, 0xAA.toByte(),
+        ),
+        replacement = byteArrayOf(
+            0x6C, 0x33, 0x11, 0x14,
+        ),
+    ),
+    RewardSite(
+        label = "ContinueButton.ShowRewarded",
+        anchor = byteArrayOf(
+            0x0D, 0x20, 0x2E, 0x94.toByte(), 0x40, 0x0A, 0x00, 0xB4.toByte(), 0x81.toByte(),
+            0x02, 0x40, 0xF9.toByte(), 0xE2.toByte(), 0x03, 0x1F, 0xAA.toByte(),
+        ),
+        replacement = byteArrayOf(
+            0xF4.toByte(), 0x2F, 0x11, 0x14,
+        ),
+    ),
+    RewardSite(
+        label = "Upgrade.ShowRewarded",
         anchor = byteArrayOf(
             0xB5.toByte(), 0x0A, 0x47, 0xF9.toByte(), 0xA1.toByte(), 0x02, 0x40, 0xF9.toByte(),
         ),
         replacement = byteArrayOf(
-            0x05, 0xFF.toByte(), 0x0F, 0x14,
+            0x0B, 0xFF.toByte(), 0x0F, 0x14,
         ),
     ),
     RewardSite(
-        label = "EndGameRewardMultiplierButton.OnTap",
+        label = "EndGameMultiplier.ShowRewarded",
         anchor = byteArrayOf(
             0x9F.toByte(), 0xDF.toByte(), 0x2C, 0x94.toByte(), 0xA0.toByte(), 0x06, 0x00,
             0xB4.toByte(), 0x81.toByte(), 0x02, 0x40, 0xF9.toByte(), 0xE2.toByte(), 0x03, 0x1F,
             0xAA.toByte(),
         ),
         replacement = byteArrayOf(
-            0x86.toByte(), 0xEF.toByte(), 0x0F, 0x14,
+            0x8C.toByte(), 0xEF.toByte(), 0x0F, 0x14,
         ),
     ),
     RewardSite(
-        label = "QuestsPopUp.TryRerollDaily",
+        label = "QuestsReroll.ShowRewarded",
         anchor = byteArrayOf(
             0x73, 0x0A, 0x47, 0xF9.toByte(), 0x61, 0x02, 0x40, 0xF9.toByte(),
         ),
         replacement = byteArrayOf(
-            0xB8.toByte(), 0xC5.toByte(), 0x0F, 0x14,
+            0xBE.toByte(), 0xC5.toByte(), 0x0F, 0x14,
         ),
     ),
     RewardSite(
-        label = "ContinuePanel.ContinueAdsButtonPressed",
+        label = "MarketCarItem.ShowRewarded",
         anchor = byteArrayOf(
-            0x88.toByte(), 0x23, 0x2E, 0x94.toByte(), 0x40, 0x0A, 0x00, 0xB4.toByte(),
+            0x16, 0xDC.toByte(), 0x2D, 0x94.toByte(), 0xA0.toByte(), 0x06, 0x00, 0xB4.toByte(),
             0x81.toByte(), 0x02, 0x40, 0xF9.toByte(), 0xE2.toByte(), 0x03, 0x1F, 0xAA.toByte(),
         ),
         replacement = byteArrayOf(
-            0x75, 0x33, 0x11, 0x14,
+            0x09, 0xEC.toByte(), 0x10, 0x14,
         ),
     ),
     RewardSite(
-        label = "ContinuePanel.ContinueButtonPressed",
+        label = "RaceOverDoubleTap.ShowRewarded",
         anchor = byteArrayOf(
-            0x0D, 0x20, 0x2E, 0x94.toByte(), 0x40, 0x0A, 0x00, 0xB4.toByte(), 0x81.toByte(),
-            0x02, 0x40, 0xF9.toByte(), 0xE2.toByte(), 0x03, 0x1F, 0xAA.toByte(),
+            0x41, 0x86.toByte(), 0x2D, 0x94.toByte(), 0xA0.toByte(), 0x06, 0x00, 0xB4.toByte(),
+            0x81.toByte(), 0x02, 0x40, 0xF9.toByte(), 0xE2.toByte(), 0x03, 0x1F, 0xAA.toByte(),
         ),
         replacement = byteArrayOf(
-            0xFD.toByte(), 0x2F, 0x11, 0x14,
+            0x37, 0x96.toByte(), 0x10, 0x14,
+        ),
+    ),
+    RewardSite(
+        label = "RubyBonus.ReachabilityCheck",
+        anchor = byteArrayOf(
+            0xE0.toByte(), 0x03, 0x1F, 0xAA.toByte(), 0xDA.toByte(), 0x89.toByte(), 0x5D,
+            0x94.toByte(),
+        ),
+        replacement = byteArrayOf(
+            0x1F, 0x20, 0x03, 0xD5.toByte(),
+        ),
+    ),
+    RewardSite(
+        label = "ContinueAds.ReachabilityCheck",
+        anchor = byteArrayOf(
+            0xE0.toByte(), 0x03, 0x1F, 0xAA.toByte(), 0x2D, 0x47, 0x5E, 0x94.toByte(),
+        ),
+        replacement = byteArrayOf(
+            0x1F, 0x20, 0x03, 0xD5.toByte(),
+        ),
+    ),
+    RewardSite(
+        label = "ContinueButton.ReachabilityCheck",
+        anchor = byteArrayOf(
+            0xE0.toByte(), 0x03, 0x1F, 0xAA.toByte(), 0xB2.toByte(), 0x43, 0x5E, 0x94.toByte(),
+        ),
+        replacement = byteArrayOf(
+            0x1F, 0x20, 0x03, 0xD5.toByte(),
+        ),
+    ),
+    RewardSite(
+        label = "Upgrade.ReachabilityCheck",
+        anchor = byteArrayOf(
+            0xE0.toByte(), 0x03, 0x1F, 0xAA.toByte(), 0x0D, 0x13, 0x5D, 0x94.toByte(),
+        ),
+        replacement = byteArrayOf(
+            0x1F, 0x20, 0x03, 0xD5.toByte(),
+        ),
+    ),
+    RewardSite(
+        label = "EndGameMultiplier.ReachabilityCheck",
+        anchor = byteArrayOf(
+            0xE0.toByte(), 0x03, 0x1F, 0xAA.toByte(), 0x3D, 0x03, 0x5D, 0x94.toByte(),
+        ),
+        replacement = byteArrayOf(
+            0x1F, 0x20, 0x03, 0xD5.toByte(),
+        ),
+    ),
+    RewardSite(
+        label = "QuestsReroll.ReachabilityCheck",
+        anchor = byteArrayOf(
+            0xE0.toByte(), 0x03, 0x1F, 0xAA.toByte(), 0x6E, 0xD9.toByte(), 0x5C, 0x94.toByte(),
+        ),
+        replacement = byteArrayOf(
+            0x1F, 0x20, 0x03, 0xD5.toByte(),
+        ),
+    ),
+    RewardSite(
+        label = "MarketCarItem.ReachabilityCheck",
+        anchor = byteArrayOf(
+            0xE0.toByte(), 0x03, 0x1F, 0xAA.toByte(), 0xB4.toByte(), 0xFF.toByte(), 0x5D,
+            0x94.toByte(),
+        ),
+        replacement = byteArrayOf(
+            0x1F, 0x20, 0x03, 0xD5.toByte(),
+        ),
+    ),
+    RewardSite(
+        label = "RaceOverDoubleTap.ReachabilityCheck",
+        anchor = byteArrayOf(
+            0xE0.toByte(), 0x03, 0x1F, 0xAA.toByte(), 0xDF.toByte(), 0xA9.toByte(), 0x5D,
+            0x94.toByte(),
+        ),
+        replacement = byteArrayOf(
+            0x1F, 0x20, 0x03, 0xD5.toByte(),
         ),
     ),
     RewardSite(
@@ -146,7 +258,9 @@ private val SITES = listOf(
         anchor = byteArrayOf(
             0xFE.toByte(), 0x57, 0xC2.toByte(), 0xA8.toByte(), 0x6B, 0x35, 0x40, 0x14,
         ),
-        replacement = FORCE_TRUE,
+        replacement = byteArrayOf(
+            0x20, 0x00, 0x80.toByte(), 0x52, 0xC0.toByte(), 0x03, 0x5F, 0xD6.toByte(),
+        ),
     ),
 )
 
@@ -178,7 +292,7 @@ private fun indexOfUnique(bytes: ByteArray, anchor: ByteArray, label: String): I
 @Suppress("unused")
 val slingDriftInstantRewardsPatch = rawResourcePatch(
     name = "Sling Drift Instant Rewards",
-    description = "Ad-gated rewards are granted without watching an ad: continuing after a crash, free upgrades, the end-of-race multiplier, bonus rubies and daily quest rerolls all work instantly and offline.",
+    description = "Every ad-gated reward works without watching an ad and without a network connection: continuing after a crash, free car unlocks, free upgrades, the end-of-race multiplier, bonus rubies and daily quest rerolls are granted instantly.",
     default = true,
 ) {
     compatibleWith(COMPATIBILITY_SLINGDRIFT)
@@ -189,10 +303,9 @@ val slingDriftInstantRewardsPatch = rawResourcePatch(
 
         for (i in STUBS.indices) {
             val o = CAVE_OFFSET + CAVE_FIRST_STUB + i * STUB_SIZE
-            require(
-                bytes[o] == RET[0] && bytes[o + 1] == RET[1] &&
-                    bytes[o + 2] == RET[2] && bytes[o + 3] == RET[3]
-            ) { "code cave at $CAVE_OFFSET is not padding" }
+            for (k in 0 until STUB_SIZE) {
+                require(bytes[o + k] == RET[k % 4]) { "code cave at $CAVE_OFFSET is not padding" }
+            }
         }
 
         for (stub in STUBS) {
@@ -200,7 +313,7 @@ val slingDriftInstantRewardsPatch = rawResourcePatch(
         }
 
         for (site in SITES) {
-            site.replacement.copyInto(bytes, indexOfUnique(bytes, site.anchor, site.label))
+            site.replacement.copyInto(bytes, indexOfUnique(bytes, site.anchor, site.label) + site.anchor.size)
         }
 
         soFile.writeBytes(bytes)
