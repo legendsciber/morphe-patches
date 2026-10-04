@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-10-04T19:24:00",
-  "description": "## [1.38.3](https://github.com/legendsciber/morphe-patches/compare/v1.38.2...v1.38.3) (2026-10-04)\n\n### 🐛 Bug Fixes\n\n* **slingdrift:** keep rewarded flow out of the ad free patch like soccer star ([9165587](https://github.com/legendsciber/morphe-patches/commit/916558782a2a7a63c25fb12fb71cf2e9754c6049))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.38.3/patches-1.38.3.mpp",
+  "created_at": "2026-10-04T19:37:32",
+  "description": "## [1.39.0](https://github.com/legendsciber/morphe-patches/compare/v1.38.3...v1.39.0) (2026-10-04)\n\n### ✨ New Features\n\n* **slingdrift:** add instant rewards patch ([4e698e1](https://github.com/legendsciber/morphe-patches/commit/4e698e102a4114820301be952a3600f7a1d2b8bf))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.39.0/patches-1.39.0.mpp",
   "signature_download_url": "",
-  "version": "1.38.3"
+  "version": "1.39.0"
 }

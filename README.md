@@ -9,7 +9,7 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.38.3](https://github.com/legendsciber/morphe-patches/releases/tag/v1.38.3)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;24 patches total
+> **[v1.39.0](https://github.com/legendsciber/morphe-patches/releases/tag/v1.39.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;25 patches total
 <details open>
 <summary>📦 Aphelion&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
 <br>
@@ -122,7 +122,7 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 </details>
 
 <details open>
-<summary>📦 Sling Drift&nbsp;&nbsp;•&nbsp;&nbsp;4 patches</summary>
+<summary>📦 Sling Drift&nbsp;&nbsp;•&nbsp;&nbsp;5 patches</summary>
 <br>
 
 **🎯 Supported versions:**
@@ -134,6 +134,7 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 |----------|----------------|-----------|
 | [Sling Drift Ad Free](#sling-drift-ad-free) | Disables ads completely: banner ads are never requested or shown and interstitials are always declined. Rewarded video is left untouched so ad-gated buttons keep working exactly as before. |  |
 | [Sling Drift All Cars Unlock](#sling-drift-all-cars-unlock) | Every car reports as unlocked, so the whole garage is available right away no matter how the car would normally be earned. |  |
+| [Sling Drift Instant Rewards](#sling-drift-instant-rewards) | Rewarded video rewards are granted instantly without playing an ad: continuing after a crash, free upgrades, the end-of-race multiplier, bonus rubies and daily quest rerolls all work offline. |  |
 | [Sling Drift Unlimited Money](#sling-drift-unlimited-money) | Rubies are pinned to 999,999,999 whenever they are earned, spent, purchased or loaded from a save, so the balance can never run out and every car stays affordable. |  |
 | [Sling Drift VIP Unlock](#sling-drift-vip-unlock) | VIP status and the active subscription are always reported, so VIP cars and every VIP-gated feature stay available without Google Play billing. |  |
 

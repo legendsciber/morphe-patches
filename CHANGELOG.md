@@ -1,3 +1,9 @@
+## [1.39.0](https://github.com/legendsciber/morphe-patches/compare/v1.38.3...v1.39.0) (2026-10-04)
+
+### ✨ New Features
+
+* **slingdrift:** add instant rewards patch ([4e698e1](https://github.com/legendsciber/morphe-patches/commit/4e698e102a4114820301be952a3600f7a1d2b8bf))
+
 ## [1.38.3](https://github.com/legendsciber/morphe-patches/compare/v1.38.2...v1.38.3) (2026-10-04)
 
 ### 🐛 Bug Fixes
