@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.37.0",
+  "version": "1.37.1",
   "patches": [
     {
       "name": "Aphelion Ad-Free Hint Unlock",
@@ -368,7 +368,7 @@
     },
     {
       "name": "Sling Drift Unlimited Money",
-      "description": "Every car in the market is always affordable, so rubies never run out and any car can be bought without saving up first.",
+      "description": "Rubies are pinned to 999,999,999 whenever they are earned, spent, purchased or loaded from a save, so the balance can never run out and every car stays affordable.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [

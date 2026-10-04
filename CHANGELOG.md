@@ -1,3 +1,9 @@
+## [1.37.1](https://github.com/legendsciber/morphe-patches/compare/v1.37.0...v1.37.1) (2026-10-04)
+
+### 🐛 Bug Fixes
+
+* **slingdrift:** pin rubies to 999,999,999 instead of patching the affordability check ([88e30af](https://github.com/legendsciber/morphe-patches/commit/88e30af69bab28f28f759c958e04667043baa317))
+
 ## [1.37.0](https://github.com/legendsciber/morphe-patches/compare/v1.36.0...v1.37.0) (2026-10-04)
 
 ### ✨ New Features
