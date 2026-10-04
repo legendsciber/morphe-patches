@@ -4,7 +4,6 @@ import app.morphe.patcher.patch.rawResourcePatch
 import app.slingdrift.patches.shared.Constants.COMPATIBILITY_SLINGDRIFT
 
 private const val CAVE_OFFSET = 0x01BA8D68
-private const val CAVE_GUARD_WORDS = 32
 
 private val FORCE_TRUE = byteArrayOf(
     0x20, 0x00, 0x80.toByte(), 0x52, 0xC0.toByte(), 0x03, 0x5F, 0xD6.toByte(),
@@ -73,11 +72,9 @@ val slingDriftUnlimitedMoneyPatch = rawResourcePatch(
         val affordAt = indexOfUnique(bytes, AFFORD_ANCHOR, "MarketBuyButton.CanAfford")
         val setCurrencyAt = indexOfUnique(bytes, SET_CURRENCY_ANCHOR, "RGUserDataManager.set_Currency") + SET_CURRENCY_ANCHOR.size
 
-        for (i in 0 until CAVE_GUARD_WORDS) {
-            val o = CAVE_OFFSET + i * 4
+        for (i in 0 until CAVE_STUB.size) {
             require(
-                bytes[o] == RET[0] && bytes[o + 1] == RET[1] &&
-                    bytes[o + 2] == RET[2] && bytes[o + 3] == RET[3]
+                bytes[CAVE_OFFSET + i] == RET[i % 4]
             ) { "code cave at $CAVE_OFFSET is not padding" }
         }
 

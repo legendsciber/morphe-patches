@@ -25,7 +25,7 @@ private val RET = byteArrayOf(
 
 private const val CAVE_OFFSET = 0x01BA8D68
 private const val CAVE_FIRST_STUB = 20
-private const val CAVE_GUARD_WORDS = 32
+private const val STUB_SIZE = 12
 
 private val STUBS = listOf(
     Stub(
@@ -187,8 +187,8 @@ val slingDriftInstantRewardsPatch = rawResourcePatch(
         val soFile = get("lib/arm64-v8a/libil2cpp.so", true)
         val bytes = soFile.readBytes()
 
-        for (i in 0 until CAVE_GUARD_WORDS) {
-            val o = CAVE_OFFSET + CAVE_FIRST_STUB + i * 4
+        for (i in STUBS.indices) {
+            val o = CAVE_OFFSET + CAVE_FIRST_STUB + i * STUB_SIZE
             require(
                 bytes[o] == RET[0] && bytes[o + 1] == RET[1] &&
                     bytes[o + 2] == RET[2] && bytes[o + 3] == RET[3]
