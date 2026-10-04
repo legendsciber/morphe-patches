@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.39.2",
+  "version": "1.39.3",
   "patches": [
     {
       "name": "Aphelion Ad-Free Hint Unlock",
@@ -368,7 +368,7 @@
     },
     {
       "name": "Sling Drift Instant Rewards",
-      "description": "Ad-gated rewards are granted without watching an ad: continuing after a crash, free upgrades, the end-of-race multiplier, bonus rubies and daily quest rerolls all work instantly and offline.",
+      "description": "Every ad-gated reward works without watching an ad and without a network connection: continuing after a crash, free car unlocks, free upgrades, the end-of-race multiplier, bonus rubies and daily quest rerolls are granted instantly.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [

@@ -1,3 +1,9 @@
+## [1.39.3](https://github.com/legendsciber/morphe-patches/compare/v1.39.2...v1.39.3) (2026-10-04)
+
+### 🐛 Bug Fixes
+
+* **slingdrift:** bypass internet reachability gate so rewards grant offline ([71b0d70](https://github.com/legendsciber/morphe-patches/commit/71b0d7057d6dcfdaa3778377aa6ac3ca91fb7a02))
+
 ## [1.39.2](https://github.com/legendsciber/morphe-patches/compare/v1.39.1...v1.39.2) (2026-10-04)
 
 ### 🐛 Bug Fixes
