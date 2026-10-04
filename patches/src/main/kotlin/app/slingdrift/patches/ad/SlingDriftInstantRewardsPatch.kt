@@ -18,82 +18,81 @@ private class Stub(
 private val FORCE_TRUE = byteArrayOf(
     0x20, 0x00, 0x80.toByte(), 0x52, 0xC0.toByte(), 0x03, 0x5F, 0xD6.toByte(),
 )
-private val NOP = byteArrayOf(
-    0x1F, 0x20, 0x03, 0xD5.toByte(),
-)
-
 private val RET = byteArrayOf(0xC0.toByte(), 0x03, 0x5F, 0xD6.toByte())
 
 private const val CAVE_OFFSET = 0x01BA8D68
 private const val CAVE_FIRST_STUB = 20
-private const val STUB_SIZE = 12
+private const val STUB_SIZE = 16
 
 private val STUBS = listOf(
     Stub(
         label = "RubyBonus",
         offset = CAVE_OFFSET + 20,
         bytes = byteArrayOf(
-            0xE7.toByte(), 0x8C.toByte(), 0xEF.toByte(), 0x97.toByte(), 0xE9.toByte(),
-            0x8C.toByte(), 0xEF.toByte(), 0x97.toByte(), 0xF9.toByte(), 0x89.toByte(),
-            0xEF.toByte(), 0x17,
+            0xE0.toByte(), 0x03, 0x13, 0xAA.toByte(), 0xE6.toByte(), 0x8C.toByte(),
+            0xEF.toByte(), 0x97.toByte(), 0xE8.toByte(), 0x8C.toByte(), 0xEF.toByte(),
+            0x97.toByte(), 0xF8.toByte(), 0x89.toByte(), 0xEF.toByte(), 0x17,
         ),
     ),
     Stub(
         label = "ContinueAds",
-        offset = CAVE_OFFSET + 32,
+        offset = CAVE_OFFSET + 36,
         bytes = byteArrayOf(
-            0xAA.toByte(), 0xCF.toByte(), 0xEE.toByte(), 0x97.toByte(), 0xAC.toByte(),
-            0xCF.toByte(), 0xEE.toByte(), 0x97.toByte(), 0x93.toByte(), 0xCC.toByte(),
-            0xEE.toByte(), 0x17,
+            0xE0.toByte(), 0x03, 0x13, 0xAA.toByte(), 0xA8.toByte(), 0xCF.toByte(),
+            0xEE.toByte(), 0x97.toByte(), 0xAA.toByte(), 0xCF.toByte(), 0xEE.toByte(),
+            0x97.toByte(), 0x91.toByte(), 0xCC.toByte(), 0xEE.toByte(), 0x17,
         ),
     ),
     Stub(
         label = "ContinueButton",
-        offset = CAVE_OFFSET + 44,
+        offset = CAVE_OFFSET + 52,
         bytes = byteArrayOf(
-            0xA7.toByte(), 0xCF.toByte(), 0xEE.toByte(), 0x97.toByte(), 0xA9.toByte(),
-            0xCF.toByte(), 0xEE.toByte(), 0x97.toByte(), 0x0B, 0xD0.toByte(), 0xEE.toByte(),
-            0x17,
+            0xE0.toByte(), 0x03, 0x13, 0xAA.toByte(), 0xA4.toByte(), 0xCF.toByte(),
+            0xEE.toByte(), 0x97.toByte(), 0xA6.toByte(), 0xCF.toByte(), 0xEE.toByte(),
+            0x97.toByte(), 0x08, 0xD0.toByte(), 0xEE.toByte(), 0x17,
         ),
     ),
     Stub(
         label = "Upgrade",
-        offset = CAVE_OFFSET + 56,
+        offset = CAVE_OFFSET + 68,
         bytes = byteArrayOf(
-            0xF4.toByte(), 0x03, 0xF0.toByte(), 0x97.toByte(), 0xF6.toByte(), 0x03,
-            0xF0.toByte(), 0x97.toByte(), 0xF4.toByte(), 0x00, 0xF0.toByte(), 0x17,
+            0xE0.toByte(), 0x03, 0x13, 0xAA.toByte(), 0xF0.toByte(), 0x03, 0xF0.toByte(),
+            0x97.toByte(), 0xF2.toByte(), 0x03, 0xF0.toByte(), 0x97.toByte(), 0xF0.toByte(),
+            0x00, 0xF0.toByte(), 0x17,
         ),
     ),
     Stub(
         label = "EndGameMultiplier",
-        offset = CAVE_OFFSET + 68,
+        offset = CAVE_OFFSET + 84,
         bytes = byteArrayOf(
-            0x10, 0x12, 0xF0.toByte(), 0x97.toByte(), 0x12, 0x12, 0xF0.toByte(), 0x97.toByte(),
-            0x73, 0x10, 0xF0.toByte(), 0x17,
+            0xE0.toByte(), 0x03, 0x13, 0xAA.toByte(), 0x0B, 0x12, 0xF0.toByte(), 0x97.toByte(),
+            0x0D, 0x12, 0xF0.toByte(), 0x97.toByte(), 0x6E, 0x10, 0xF0.toByte(), 0x17,
         ),
     ),
     Stub(
         label = "QuestsReroll",
-        offset = CAVE_OFFSET + 80,
+        offset = CAVE_OFFSET + 100,
         bytes = byteArrayOf(
-            0x4C, 0x3B, 0xF0.toByte(), 0x97.toByte(), 0x4E, 0x3B, 0xF0.toByte(), 0x97.toByte(),
-            0x41, 0x3A, 0xF0.toByte(), 0x17,
+            0xE0.toByte(), 0x03, 0x13, 0xAA.toByte(), 0x46, 0x3B, 0xF0.toByte(), 0x97.toByte(),
+            0x48, 0x3B, 0xF0.toByte(), 0x97.toByte(), 0x3B, 0x3A, 0xF0.toByte(), 0x17,
         ),
     ),
     Stub(
         label = "MarketCarItem",
-        offset = CAVE_OFFSET + 92,
+        offset = CAVE_OFFSET + 116,
         bytes = byteArrayOf(
-            0xCA.toByte(), 0x14, 0xEF.toByte(), 0x97.toByte(), 0x4C, 0x15, 0xEF.toByte(),
-            0x97.toByte(), 0xF6.toByte(), 0x13, 0xEF.toByte(), 0x17,
+            0xE0.toByte(), 0x03, 0x13, 0xAA.toByte(), 0xC3.toByte(), 0x14, 0xEF.toByte(),
+            0x97.toByte(), 0x45, 0x15, 0xEF.toByte(), 0x97.toByte(), 0xEF.toByte(), 0x13,
+            0xEF.toByte(), 0x17,
         ),
     ),
     Stub(
         label = "RaceOverDoubleTap",
-        offset = CAVE_OFFSET + 104,
+        offset = CAVE_OFFSET + 132,
         bytes = byteArrayOf(
-            0xB9.toByte(), 0x6A, 0xEF.toByte(), 0x97.toByte(), 0x96.toByte(), 0x6B,
-            0xEF.toByte(), 0x97.toByte(), 0xC8.toByte(), 0x69, 0xEF.toByte(), 0x17,
+            0xE0.toByte(), 0x03, 0x13, 0xAA.toByte(), 0xB1.toByte(), 0x6A, 0xEF.toByte(),
+            0x97.toByte(), 0x8E.toByte(), 0x6B, 0xEF.toByte(), 0x97.toByte(), 0xC0.toByte(),
+            0x69, 0xEF.toByte(), 0x17,
         ),
     ),
 )
@@ -116,7 +115,7 @@ private val SITES = listOf(
             0x81.toByte(), 0x02, 0x40, 0xF9.toByte(), 0xE2.toByte(), 0x03, 0x1F, 0xAA.toByte(),
         ),
         replacement = byteArrayOf(
-            0x6C, 0x33, 0x11, 0x14,
+            0x6D, 0x33, 0x11, 0x14,
         ),
     ),
     RewardSite(
@@ -126,7 +125,7 @@ private val SITES = listOf(
             0x02, 0x40, 0xF9.toByte(), 0xE2.toByte(), 0x03, 0x1F, 0xAA.toByte(),
         ),
         replacement = byteArrayOf(
-            0xF4.toByte(), 0x2F, 0x11, 0x14,
+            0xF6.toByte(), 0x2F, 0x11, 0x14,
         ),
     ),
     RewardSite(
@@ -135,7 +134,7 @@ private val SITES = listOf(
             0xB5.toByte(), 0x0A, 0x47, 0xF9.toByte(), 0xA1.toByte(), 0x02, 0x40, 0xF9.toByte(),
         ),
         replacement = byteArrayOf(
-            0x0B, 0xFF.toByte(), 0x0F, 0x14,
+            0x0E, 0xFF.toByte(), 0x0F, 0x14,
         ),
     ),
     RewardSite(
@@ -146,7 +145,7 @@ private val SITES = listOf(
             0xAA.toByte(),
         ),
         replacement = byteArrayOf(
-            0x8C.toByte(), 0xEF.toByte(), 0x0F, 0x14,
+            0x90.toByte(), 0xEF.toByte(), 0x0F, 0x14,
         ),
     ),
     RewardSite(
@@ -155,7 +154,7 @@ private val SITES = listOf(
             0x73, 0x0A, 0x47, 0xF9.toByte(), 0x61, 0x02, 0x40, 0xF9.toByte(),
         ),
         replacement = byteArrayOf(
-            0xBE.toByte(), 0xC5.toByte(), 0x0F, 0x14,
+            0xC3.toByte(), 0xC5.toByte(), 0x0F, 0x14,
         ),
     ),
     RewardSite(
@@ -165,7 +164,7 @@ private val SITES = listOf(
             0x81.toByte(), 0x02, 0x40, 0xF9.toByte(), 0xE2.toByte(), 0x03, 0x1F, 0xAA.toByte(),
         ),
         replacement = byteArrayOf(
-            0x09, 0xEC.toByte(), 0x10, 0x14,
+            0x0F, 0xEC.toByte(), 0x10, 0x14,
         ),
     ),
     RewardSite(
@@ -175,7 +174,7 @@ private val SITES = listOf(
             0x81.toByte(), 0x02, 0x40, 0xF9.toByte(), 0xE2.toByte(), 0x03, 0x1F, 0xAA.toByte(),
         ),
         replacement = byteArrayOf(
-            0x37, 0x96.toByte(), 0x10, 0x14,
+            0x3E, 0x96.toByte(), 0x10, 0x14,
         ),
     ),
     RewardSite(
