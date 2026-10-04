@@ -9,23 +9,32 @@ private class Site(
     val replacement: ByteArray,
 )
 
-private val FORCE_TRUE = byteArrayOf(
-    0x20, 0x00, 0x80.toByte(), 0x52, 0xC0.toByte(), 0x03, 0x5F, 0xD6.toByte(),
-)
-
 private val FORCE_FALSE = byteArrayOf(
     0xE0.toByte(), 0x03, 0x1F, 0x2A, 0xC0.toByte(), 0x03, 0x5F, 0xD6.toByte(),
 )
 
+private val RET = byteArrayOf(
+    0xC0.toByte(), 0x03, 0x5F, 0xD6.toByte(),
+)
+
 private val SITES = listOf(
     Site(
-        label = "GameData.HasNoAds",
+        label = "AdsManager.LoadBanner",
         anchor = byteArrayOf(
             0xFE.toByte(), 0x0F, 0x1E, 0xF8.toByte(), 0xF4.toByte(), 0x4F, 0x01, 0xA9.toByte(),
-            0xD3.toByte(), 0xF2.toByte(), 0x00, 0xF0.toByte(), 0x74, 0xE1.toByte(), 0x00,
-            0x90.toByte(), 0x68, 0x2A, 0x6B, 0x39,
+            0xD4.toByte(), 0xF8.toByte(), 0x00, 0xB0.toByte(), 0xF3.toByte(), 0x03, 0x00,
+            0xAA.toByte(), 0x88.toByte(), 0xAA.toByte(), 0x4F, 0x39,
         ),
-        replacement = FORCE_TRUE,
+        replacement = RET,
+    ),
+    Site(
+        label = "AdsManager.ShowBanner",
+        anchor = byteArrayOf(
+            0xFE.toByte(), 0x0F, 0x1E, 0xF8.toByte(), 0xF4.toByte(), 0x4F, 0x01, 0xA9.toByte(),
+            0xD4.toByte(), 0xF8.toByte(), 0x00, 0xB0.toByte(), 0xF3.toByte(), 0x03, 0x00,
+            0xAA.toByte(), 0x88.toByte(), 0xAE.toByte(), 0x4F, 0x39,
+        ),
+        replacement = RET,
     ),
     Site(
         label = "AdsManager.TryShowInterstitial",
@@ -34,16 +43,6 @@ private val SITES = listOf(
             0xA9.toByte(), 0xD5.toByte(), 0xF8.toByte(), 0x00, 0x90.toByte(), 0xF3.toByte(),
             0x03, 0x01, 0xAA.toByte(), 0xF4.toByte(), 0x03, 0x00, 0xAA.toByte(), 0xA8.toByte(),
             0x1A, 0x50, 0x39,
-        ),
-        replacement = FORCE_FALSE,
-    ),
-    Site(
-        label = "AdsManager.CanShowRewarded",
-        anchor = byteArrayOf(
-            0xFE.toByte(), 0x0F, 0x1B, 0xF8.toByte(), 0xFA.toByte(), 0x67, 0x01, 0xA9.toByte(),
-            0xF8.toByte(), 0x5F, 0x02, 0xA9.toByte(), 0xF6.toByte(), 0x57, 0x03, 0xA9.toByte(),
-            0xF4.toByte(), 0x4F, 0x04, 0xA9.toByte(), 0xD5.toByte(), 0xF8.toByte(), 0x00,
-            0x90.toByte(),
         ),
         replacement = FORCE_FALSE,
     ),
@@ -77,7 +76,7 @@ private fun indexOfUnique(bytes: ByteArray, anchor: ByteArray, label: String): I
 @Suppress("unused")
 val slingDriftAdFreePatch = rawResourcePatch(
     name = "Sling Drift Ad Free",
-    description = "Banners, interstitials and rewarded video offers are switched off, and the game stops requesting ads on startup, so it launches and runs without touching any ad network.",
+    description = "Banner ads are never requested and interstitials are never shown. Rewarded video stays untouched so the game keeps preloading it and no ad error popups appear, which keeps the game working both online and offline.",
     default = true,
 ) {
     compatibleWith(COMPATIBILITY_SLINGDRIFT)
