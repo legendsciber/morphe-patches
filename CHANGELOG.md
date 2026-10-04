@@ -1,3 +1,9 @@
+## [1.41.0](https://github.com/legendsciber/morphe-patches/compare/v1.40.0...v1.41.0) (2026-10-04)
+
+### ✨ New Features
+
+* **hillclimb:** native free IAP patch, replace smali store patch ([2444325](https://github.com/legendsciber/morphe-patches/commit/2444325aa401801dfbe8acd90903c1c018c21bac))
+
 ## [1.40.0](https://github.com/legendsciber/morphe-patches/compare/v1.39.4...v1.40.0) (2026-10-04)
 
 ### ✨ New Features

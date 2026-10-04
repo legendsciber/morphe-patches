@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.40.0",
+  "version": "1.41.0",
   "patches": [
     {
       "name": "Aphelion Ad-Free Hint Unlock",
@@ -159,8 +159,8 @@
       "options": []
     },
     {
-      "name": "Hill Climb Racing Free Store",
-      "description": "Every store item is granted instantly and free: coins, gems, paints, ad-skips, ad-free and bundles, without launching Google Play billing.",
+      "name": "Hill Climb Racing Free IAP",
+      "description": "Every in-app purchase counts as already owned: coins, gems, paints, ad-skips, bundles and ad-free unlock without Google Play billing, and the store no longer gives up when it cannot reach the network.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
