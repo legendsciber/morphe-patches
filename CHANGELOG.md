@@ -1,3 +1,9 @@
+## [1.41.2](https://github.com/legendsciber/morphe-patches/compare/v1.41.1...v1.41.2) (2026-10-05)
+
+### 🐛 Bug Fixes
+
+* **hillclimb:** restore validated smali free store patch for 1.72.2 ([44a6e0c](https://github.com/legendsciber/morphe-patches/commit/44a6e0c0bd3f27825a99946272768cf440fd9c07))
+
 ## [1.41.1](https://github.com/legendsciber/morphe-patches/compare/v1.41.0...v1.41.1) (2026-10-05)
 
 ### 🐛 Bug Fixes
