@@ -21,6 +21,7 @@ val hillClimbRewardedVideoPatch = bytecodePatch(
             return-void
         """.trimIndent())
 
+        ShowRewardedInterstitialFingerprint.method.implementation.registerCount += 1
         ShowRewardedInterstitialFingerprint.method.addInstructions(0, """
             const/4 v0, 0x1
             invoke-static {v0}, $MAIN_ACTIVITY->onRewardedInterstitialCompleted(Z)V
