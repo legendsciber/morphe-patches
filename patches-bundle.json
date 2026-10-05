@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-10-05T17:18:29",
-  "description": "## [1.41.4](https://github.com/legendsciber/morphe-patches/compare/v1.41.3...v1.41.4) (2026-10-05)\n\n### 🐛 Bug Fixes\n\n* **hillclimb:** also grant rewards on the empty rewarded-interstitial path ([d3aabe0](https://github.com/legendsciber/morphe-patches/commit/d3aabe01bc9d9f7d5458eb8711719bfbda3fd2b7))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.41.4/patches-1.41.4.mpp",
+  "created_at": "2026-10-05T18:31:09",
+  "description": "## [1.41.5](https://github.com/legendsciber/morphe-patches/compare/v1.41.4...v1.41.5) (2026-10-05)\n\n### 🐛 Bug Fixes\n\n* **hillclimb:** grow register count before injecting boolean argument ([8edcf5b](https://github.com/legendsciber/morphe-patches/commit/8edcf5b3a337356c8e65678c08df107317ce3f83))\n* **hillclimb:** null-safe register count increase ([cc8083c](https://github.com/legendsciber/morphe-patches/commit/cc8083c043c588d15b758ceaac8836cd30b8b9c6))\n* **hillclimb:** use register-free callbacks to stop VerifyError crash ([9f068d8](https://github.com/legendsciber/morphe-patches/commit/9f068d846459c4c37c0f16baea24229625c127b0))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.41.5/patches-1.41.5.mpp",
   "signature_download_url": "",
-  "version": "1.41.4"
+  "version": "1.41.5"
 }

@@ -1,3 +1,11 @@
+## [1.41.5](https://github.com/legendsciber/morphe-patches/compare/v1.41.4...v1.41.5) (2026-10-05)
+
+### 🐛 Bug Fixes
+
+* **hillclimb:** grow register count before injecting boolean argument ([8edcf5b](https://github.com/legendsciber/morphe-patches/commit/8edcf5b3a337356c8e65678c08df107317ce3f83))
+* **hillclimb:** null-safe register count increase ([cc8083c](https://github.com/legendsciber/morphe-patches/commit/cc8083c043c588d15b758ceaac8836cd30b8b9c6))
+* **hillclimb:** use register-free callbacks to stop VerifyError crash ([9f068d8](https://github.com/legendsciber/morphe-patches/commit/9f068d846459c4c37c0f16baea24229625c127b0))
+
 ## [1.41.4](https://github.com/legendsciber/morphe-patches/compare/v1.41.3...v1.41.4) (2026-10-05)
 
 ### 🐛 Bug Fixes
