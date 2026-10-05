@@ -1,3 +1,9 @@
+## [1.41.3](https://github.com/legendsciber/morphe-patches/compare/v1.41.2...v1.41.3) (2026-10-05)
+
+### 🐛 Bug Fixes
+
+* **hillclimb:** convert instant rewards patch to smali, drop file comments ([ac14346](https://github.com/legendsciber/morphe-patches/commit/ac143461f5a861781ab9b7b7710d4ae8662760bc))
+
 ## [1.41.2](https://github.com/legendsciber/morphe-patches/compare/v1.41.1...v1.41.2) (2026-10-05)
 
 ### 🐛 Bug Fixes

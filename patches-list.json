@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.41.2",
+  "version": "1.41.3",
   "patches": [
     {
       "name": "Aphelion Ad-Free Hint Unlock",
@@ -185,8 +185,8 @@
       "options": []
     },
     {
-      "name": "Hill Climb Racing Instant Rewards",
-      "description": "Rewarded video rewards are granted instantly without playing an ad and without a network connection: the engine's own \"video completed\" path runs, so coins, the reward multipliers and every other ad-gated bonus are delivered immediately.",
+      "name": "Hill Climb Racing Instant Rewarded Video Rewards",
+      "description": "Rewarded ads pay out instantly: no video plays, the engine receives the started and completed callbacks straight away so the reward is granted offline too.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
