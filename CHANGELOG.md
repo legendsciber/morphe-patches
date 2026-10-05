@@ -1,3 +1,9 @@
+## [1.41.1](https://github.com/legendsciber/morphe-patches/compare/v1.41.0...v1.41.1) (2026-10-05)
+
+### 🐛 Bug Fixes
+
+* **hillclimb:** report full IAP balances so purchases are actually granted ([9ec5b77](https://github.com/legendsciber/morphe-patches/commit/9ec5b77354fbc0eefc852715c7203f9d05798957))
+
 ## [1.41.0](https://github.com/legendsciber/morphe-patches/compare/v1.40.0...v1.41.0) (2026-10-04)
 
 ### ✨ New Features
