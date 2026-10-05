@@ -24,3 +24,10 @@ object ShowRewardedInterstitialFingerprint : Fingerprint(
     returnType = "V",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC)
 )
+
+object RewardedInterstitialLoadedFingerprint : Fingerprint(
+    definingClass = MAIN_ACTIVITY,
+    name = "isRewardedInterstitialLoaded",
+    returnType = "Z",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC)
+)
