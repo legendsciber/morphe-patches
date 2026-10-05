@@ -17,3 +17,10 @@ object PlayRewardedVideoAdFingerprint : Fingerprint(
         methodCall(definingClass = "Lcom/fingersoft/game/firebase/CFirebaseAds;", name = "showVideoAd")
     )
 )
+
+object ShowRewardedInterstitialFingerprint : Fingerprint(
+    definingClass = MAIN_ACTIVITY,
+    name = "showRewardedInterstitialFromGame",
+    returnType = "V",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC)
+)
