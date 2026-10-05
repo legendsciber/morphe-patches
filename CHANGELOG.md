@@ -1,3 +1,9 @@
+## [1.41.7](https://github.com/legendsciber/morphe-patches/compare/v1.41.6...v1.41.7) (2026-10-05)
+
+### 🐛 Bug Fixes
+
+* **hillclimb:** report rewarded interstitial as loaded to open the reward gate ([e9f08fe](https://github.com/legendsciber/morphe-patches/commit/e9f08fefa28f74d271d2f5010f3ae38a120897b7))
+
 ## [1.41.6](https://github.com/legendsciber/morphe-patches/compare/v1.41.5...v1.41.6) (2026-10-05)
 
 ### 🐛 Bug Fixes

@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-10-05T18:55:37",
-  "description": "## [1.41.6](https://github.com/legendsciber/morphe-patches/compare/v1.41.5...v1.41.6) (2026-10-05)\n\n### 🐛 Bug Fixes\n\n* **hillclimb:** drop unsupported register count manipulation ([bc3696a](https://github.com/legendsciber/morphe-patches/commit/bc3696a1a3553e4be4da1b5b272be9bd359a62f8))\n* **hillclimb:** set register count through MethodImplementation interface ([7d1be2c](https://github.com/legendsciber/morphe-patches/commit/7d1be2cb04804d4f9753bee9abf0cc0cff61ba16))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.41.6/patches-1.41.6.mpp",
+  "created_at": "2026-10-05T18:58:09",
+  "description": "## [1.41.7](https://github.com/legendsciber/morphe-patches/compare/v1.41.6...v1.41.7) (2026-10-05)\n\n### 🐛 Bug Fixes\n\n* **hillclimb:** report rewarded interstitial as loaded to open the reward gate ([e9f08fe](https://github.com/legendsciber/morphe-patches/commit/e9f08fefa28f74d271d2f5010f3ae38a120897b7))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.41.7/patches-1.41.7.mpp",
   "signature_download_url": "",
-  "version": "1.41.6"
+  "version": "1.41.7"
 }
