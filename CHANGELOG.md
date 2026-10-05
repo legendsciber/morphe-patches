@@ -1,3 +1,10 @@
+## [1.41.6](https://github.com/legendsciber/morphe-patches/compare/v1.41.5...v1.41.6) (2026-10-05)
+
+### 🐛 Bug Fixes
+
+* **hillclimb:** drop unsupported register count manipulation ([bc3696a](https://github.com/legendsciber/morphe-patches/commit/bc3696a1a3553e4be4da1b5b272be9bd359a62f8))
+* **hillclimb:** set register count through MethodImplementation interface ([7d1be2c](https://github.com/legendsciber/morphe-patches/commit/7d1be2cb04804d4f9753bee9abf0cc0cff61ba16))
+
 ## [1.41.5](https://github.com/legendsciber/morphe-patches/compare/v1.41.4...v1.41.5) (2026-10-05)
 
 ### 🐛 Bug Fixes

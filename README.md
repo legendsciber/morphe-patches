@@ -9,7 +9,7 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.41.5](https://github.com/legendsciber/morphe-patches/releases/tag/v1.41.5)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;23 patches total
+> **[v1.41.6](https://github.com/legendsciber/morphe-patches/releases/tag/v1.41.6)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;23 patches total
 <details open>
 <summary>📦 Aphelion&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
 <br>
