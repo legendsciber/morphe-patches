@@ -1,3 +1,9 @@
+## [1.41.4](https://github.com/legendsciber/morphe-patches/compare/v1.41.3...v1.41.4) (2026-10-05)
+
+### 🐛 Bug Fixes
+
+* **hillclimb:** also grant rewards on the empty rewarded-interstitial path ([d3aabe0](https://github.com/legendsciber/morphe-patches/commit/d3aabe01bc9d9f7d5458eb8711719bfbda3fd2b7))
+
 ## [1.41.3](https://github.com/legendsciber/morphe-patches/compare/v1.41.2...v1.41.3) (2026-10-05)
 
 ### 🐛 Bug Fixes
