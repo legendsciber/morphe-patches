@@ -25,7 +25,7 @@ val hillClimbRewardedVideoPatch = bytecodePatch(
         """.trimIndent())
 
         ShowRewardedInterstitialFingerprint.method.addInstructions(0, """
-            invoke-static {}, $MAIN_ACTIVITY->lambda$openAdmobAdInspector$15()V
+            invoke-static {}, $MAIN_ACTIVITY->lambda\$openAdmobAdInspector\$15()V
             return-void
         """.trimIndent())
 
