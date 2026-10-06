@@ -5,6 +5,7 @@ import app.morphe.patcher.patch.bytecodePatch
 import app.hillclimb.patches.shared.Constants.COMPATIBILITY_HILLCLIMB
 
 private const val MAIN_ACTIVITY = "Lcom/fingersoft/game/MainActivity;"
+private const val ALOG = "Landroid/util/Log;"
 
 @Suppress("unused")
 val hillClimbRewardedVideoPatch = bytecodePatch(
@@ -21,6 +22,8 @@ val hillClimbRewardedVideoPatch = bytecodePatch(
         """.trimIndent())
 
         PlayRewardedVideoAdFingerprint.method.addInstructions(0, """
+            const-string v1, "HCR"
+            invoke-static {v1, v0}, $ALOG->d(Ljava/lang/String;Ljava/lang/String;)I
             invoke-static {}, $MAIN_ACTIVITY->onVideoStartedSuccess()V
             invoke-static {}, $MAIN_ACTIVITY->onVideoCompletedSuccess()V
             return-void
