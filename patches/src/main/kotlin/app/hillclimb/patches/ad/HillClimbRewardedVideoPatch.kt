@@ -39,7 +39,7 @@ val hillClimbUnlimitedSecondChancePatch = bytecodePatch(
 
     execute {
         RewardedFrequencyCapFingerprint.method.replaceInstruction(
-            RewardedFrequencyCapFingerprint.instructionMatches[0].index,
+            RewardedFrequencyCapFingerprint.instructionMatches[1].index + 25,
             "nop"
         )
     }

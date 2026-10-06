@@ -37,6 +37,7 @@ object RewardedFrequencyCapFingerprint : Fingerprint(
     accessFlags = listOf(AccessFlags.STATIC, AccessFlags.SYNTHETIC),
     parameters = listOf("[Ljava/lang/String;", "Ljava/lang/String;", "I", "[Ljava/lang/String;", "[Ljava/lang/String;"),
     filters = listOf(
-        methodCall(definingClass = MAIN_ACTIVITY, name = "createRewardedInterstitialFrequencyCap")
+        methodCall(definingClass = MAIN_ACTIVITY, name = "createInterstitialFrequencyCap"),
+        methodCall(definingClass = MAIN_ACTIVITY, name = "createInterstitialFrequencyCap")
     )
 )
