@@ -1,3 +1,9 @@
+## [1.43.2](https://github.com/legendsciber/morphe-patches/compare/v1.43.1...v1.43.2) (2026-10-06)
+
+### 🐛 Bug Fixes
+
+* **hillclimb:** log scenario ids queried and returned, raise campaign availability ([63740e4](https://github.com/legendsciber/morphe-patches/commit/63740e4d0c3d19d7b806c2cb317e56ea3b0f1973))
+
 ## [1.43.1](https://github.com/legendsciber/morphe-patches/compare/v1.43.0...v1.43.1) (2026-10-06)
 
 ### 🐛 Bug Fixes

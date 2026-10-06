@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-10-06T20:08:51",
-  "description": "## [1.43.1](https://github.com/legendsciber/morphe-patches/compare/v1.43.0...v1.43.1) (2026-10-06)\n\n### 🐛 Bug Fixes\n\n* **hillclimb:** correct missing parameter terminator in injected smali signature ([79848f4](https://github.com/legendsciber/morphe-patches/commit/79848f459e88b5571b455dc273c784f047303547))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.43.1/patches-1.43.1.mpp",
+  "created_at": "2026-10-06T22:57:53",
+  "description": "## [1.43.2](https://github.com/legendsciber/morphe-patches/compare/v1.43.1...v1.43.2) (2026-10-06)\n\n### 🐛 Bug Fixes\n\n* **hillclimb:** log scenario ids queried and returned, raise campaign availability ([63740e4](https://github.com/legendsciber/morphe-patches/commit/63740e4d0c3d19d7b806c2cb317e56ea3b0f1973))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.43.2/patches-1.43.2.mpp",
   "signature_download_url": "",
-  "version": "1.43.1"
+  "version": "1.43.2"
 }
