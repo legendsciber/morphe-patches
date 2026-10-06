@@ -1,3 +1,9 @@
+## [1.43.0](https://github.com/legendsciber/morphe-patches/compare/v1.42.4...v1.43.0) (2026-10-06)
+
+### ✨ New Features
+
+* **hillclimb:** instrument every rewarded ad entry point with a patch liveness beacon ([40efacc](https://github.com/legendsciber/morphe-patches/commit/40efacce3534f028ea0aec403141cfd1f8b17813))
+
 ## [1.42.4](https://github.com/legendsciber/morphe-patches/compare/v1.42.3...v1.42.4) (2026-10-06)
 
 ### 🐛 Bug Fixes
