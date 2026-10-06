@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-10-06T14:40:59",
-  "description": "## [1.41.10](https://github.com/legendsciber/morphe-patches/compare/v1.41.9...v1.41.10) (2026-10-06)\n\n### 🐛 Bug Fixes\n\n* **hillclimb:** open the hasVideoCampaigns gate so the engine actually requests rewarded ads ([1b3c542](https://github.com/legendsciber/morphe-patches/commit/1b3c5425222253331f3997ce0ecddc957544effe))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.41.10/patches-1.41.10.mpp",
+  "created_at": "2026-10-06T15:39:22",
+  "description": "## [1.42.0](https://github.com/legendsciber/morphe-patches/compare/v1.41.10...v1.42.0) (2026-10-06)\n\n### 🐛 Bug Fixes\n\n* **hillclimb:** correct replaceInstruction import placement ([6acd0e1](https://github.com/legendsciber/morphe-patches/commit/6acd0e1e0d98fc494b42e6a0a6a300b733d2589e))\n\n### ✨ New Features\n\n* **hillclimb:** remove rewarded interstitial frequency cap for unlimited second chance ([0d59eae](https://github.com/legendsciber/morphe-patches/commit/0d59eae2efc766df60aa0089ddc702b6565b0835))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.42.0/patches-1.42.0.mpp",
   "signature_download_url": "",
-  "version": "1.41.10"
+  "version": "1.42.0"
 }

@@ -1,3 +1,13 @@
+## [1.42.0](https://github.com/legendsciber/morphe-patches/compare/v1.41.10...v1.42.0) (2026-10-06)
+
+### 🐛 Bug Fixes
+
+* **hillclimb:** correct replaceInstruction import placement ([6acd0e1](https://github.com/legendsciber/morphe-patches/commit/6acd0e1e0d98fc494b42e6a0a6a300b733d2589e))
+
+### ✨ New Features
+
+* **hillclimb:** remove rewarded interstitial frequency cap for unlimited second chance ([0d59eae](https://github.com/legendsciber/morphe-patches/commit/0d59eae2efc766df60aa0089ddc702b6565b0835))
+
 ## [1.41.10](https://github.com/legendsciber/morphe-patches/compare/v1.41.9...v1.41.10) (2026-10-06)
 
 ### 🐛 Bug Fixes
