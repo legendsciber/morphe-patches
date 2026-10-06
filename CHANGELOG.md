@@ -1,3 +1,9 @@
+## [1.42.3](https://github.com/legendsciber/morphe-patches/compare/v1.42.2...v1.42.3) (2026-10-06)
+
+### 🐛 Bug Fixes
+
+* **hillclimb:** log requested reward scenario to locate the second chance limit ([6e7e477](https://github.com/legendsciber/morphe-patches/commit/6e7e47763b4bd733e77e7321d3e50547eafd29a1))
+
 ## [1.42.2](https://github.com/legendsciber/morphe-patches/compare/v1.42.1...v1.42.2) (2026-10-06)
 
 ### 🐛 Bug Fixes
