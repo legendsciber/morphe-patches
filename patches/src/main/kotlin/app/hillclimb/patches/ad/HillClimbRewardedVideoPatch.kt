@@ -23,7 +23,7 @@ val hillClimbRewardedVideoPatch = bytecodePatch(
         """.trimIndent())
 
         HasVideoCampaignsFingerprint.method.addInstructions(0, """
-            invoke-static {p0}, $SVAL->valueOf(I)$SVAL;
+            invoke-static {p0}, $SVAL->valueOf(I)$SVAL
             move-result-object p0
             invoke-static {p0, p0}, $ALOG->d(Ljava/lang/String;Ljava/lang/String;)I
             const/16 p0, 0x3e8
@@ -31,7 +31,7 @@ val hillClimbRewardedVideoPatch = bytecodePatch(
         """.trimIndent())
 
         PlayRewardedVideoAdFingerprint.method.addInstructions(0, """
-            invoke-static {v1}, $SVAL->valueOf(I)$SVAL;
+            invoke-static {v1}, $SVAL->valueOf(I)$SVAL
             move-result-object v1
             invoke-static {v1, v0}, $ALOG->d(Ljava/lang/String;Ljava/lang/String;)I
             invoke-static {}, $MAIN_ACTIVITY->onVideoStartedSuccess()V
