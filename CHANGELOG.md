@@ -1,3 +1,10 @@
+## [1.41.8](https://github.com/legendsciber/morphe-patches/compare/v1.41.7...v1.41.8) (2026-10-06)
+
+### 🐛 Bug Fixes
+
+* **hillclimb:** revert rewarded interstitial gate, it broke working video rewards ([7c931cf](https://github.com/legendsciber/morphe-patches/commit/7c931cfed26f9f0495c56a06c1d46ee6cf195f3f))
+* **hillclimb:** trace which rewarded ad path the engine actually requests ([14243b1](https://github.com/legendsciber/morphe-patches/commit/14243b1f5edc94470be7426fe6316ec17e39d5b6))
+
 ## [1.41.7](https://github.com/legendsciber/morphe-patches/compare/v1.41.6...v1.41.7) (2026-10-05)
 
 ### 🐛 Bug Fixes
