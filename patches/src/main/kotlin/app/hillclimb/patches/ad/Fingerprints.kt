@@ -29,10 +29,3 @@ object PlayRewardedVideoAdFingerprint : Fingerprint(
         methodCall(definingClass = "Lcom/fingersoft/game/firebase/CFirebaseAds;", name = "showVideoAd")
     )
 )
-
-object SplashCompletedFingerprint : Fingerprint(
-    definingClass = MAIN_ACTIVITY,
-    name = "splashScreenHasCompleted",
-    returnType = "V",
-    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC)
-)
