@@ -27,3 +27,19 @@ val hillClimbRewardedVideoPatch = bytecodePatch(
         """.trimIndent())
     }
 }
+
+@Suppress("unused")
+val hillClimbUnlimitedSecondChancePatch = bytecodePatch(
+    name = "Hill Climb Racing Unlimited Second Chance",
+    description = "The rewarded second chance revive offer is no longer capped at one use per run, so you can revive as often as you like.",
+    default = true,
+) {
+    compatibleWith(COMPATIBILITY_HILLCLIMB)
+
+    execute {
+        RewardedFrequencyCapFingerprint.method.replaceInstruction(
+            RewardedFrequencyCapFingerprint.instructionMatches[0].index,
+            "nop"
+        )
+    }
+}
