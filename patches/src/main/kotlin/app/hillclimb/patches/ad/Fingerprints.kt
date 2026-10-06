@@ -1,11 +1,7 @@
 package app.hillclimb.patches.ad
 
 import app.morphe.patcher.Fingerprint
-import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
-import app.morphe.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.morphe.patcher.methodCall
-import app.morphe.patcher.patch.bytecodePatch
-import app.hillclimb.patches.shared.Constants.COMPATIBILITY_HILLCLIMB
 import com.android.tools.smali.dexlib2.AccessFlags
 
 private const val MAIN_ACTIVITY = "Lcom/fingersoft/game/MainActivity;"
