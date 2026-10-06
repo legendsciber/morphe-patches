@@ -1,3 +1,9 @@
+## [1.42.1](https://github.com/legendsciber/morphe-patches/compare/v1.42.0...v1.42.1) (2026-10-06)
+
+### 🐛 Bug Fixes
+
+* **hillclimb:** anchor frequency cap fingerprint on non-range invoke ([36dd39b](https://github.com/legendsciber/morphe-patches/commit/36dd39bc236e99824dc7eaedd7e6963d848453dd))
+
 ## [1.42.0](https://github.com/legendsciber/morphe-patches/compare/v1.41.10...v1.42.0) (2026-10-06)
 
 ### 🐛 Bug Fixes
