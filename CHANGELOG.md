@@ -1,3 +1,9 @@
+## [1.42.4](https://github.com/legendsciber/morphe-patches/compare/v1.42.3...v1.42.4) (2026-10-06)
+
+### 🐛 Bug Fixes
+
+* **hillclimb:** use lowercase log tag so logcat filters match ([37abb70](https://github.com/legendsciber/morphe-patches/commit/37abb70f56d29d7df9b6be182b426d46dbbc5806))
+
 ## [1.42.3](https://github.com/legendsciber/morphe-patches/compare/v1.42.2...v1.42.3) (2026-10-06)
 
 ### 🐛 Bug Fixes
