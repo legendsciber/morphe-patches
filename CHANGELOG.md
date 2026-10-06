@@ -1,3 +1,9 @@
+## [1.43.5](https://github.com/legendsciber/morphe-patches/compare/v1.43.4...v1.43.5) (2026-10-06)
+
+### 🐛 Bug Fixes
+
+* **hillclimb:** force the watched-to-continue revive offer to be evaluated every run ([a73d657](https://github.com/legendsciber/morphe-patches/commit/a73d657623758805d0259655e4eba929b2427c89))
+
 ## [1.43.4](https://github.com/legendsciber/morphe-patches/compare/v1.43.3...v1.43.4) (2026-10-06)
 
 ### 🐛 Bug Fixes
