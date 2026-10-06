@@ -78,7 +78,7 @@ object SplashCompletedFingerprint : Fingerprint(
 
 object LogDonorFingerprint : Fingerprint(
     definingClass = MAIN_ACTIVITY,
-    name = "lambda\$openAdmobAdInspector\$15",
+    name = "openAdmobAdInspector",
     returnType = "V",
-    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC, AccessFlags.SYNTHETIC)
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC)
 )

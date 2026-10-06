@@ -25,13 +25,14 @@ val hillClimbRewardedVideoPatch = bytecodePatch(
         """.trimIndent())
 
         ShowRewardedInterstitialFingerprint.method.addInstructions(0, """
-            invoke-static {}, $MAIN_ACTIVITY->lambda\$openAdmobAdInspector\$15()V
+            invoke-static {}, $MAIN_ACTIVITY->openAdmobAdInspector()V
             return-void
         """.trimIndent())
 
         LogDonorFingerprint.method.addInstructions(0, """
             const-string v0, "HCR_SHOW_RI"
             invoke-static {v0, v0}, $ALOG->d(Ljava/lang/String;Ljava/lang/String;)I
+            return-void
         """.trimIndent())
 
         RewardedInterstitialLoadedFingerprint.method.addInstructions(0, """
