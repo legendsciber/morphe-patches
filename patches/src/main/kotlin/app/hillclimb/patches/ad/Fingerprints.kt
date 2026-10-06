@@ -29,15 +29,3 @@ object PlayRewardedVideoAdFingerprint : Fingerprint(
         methodCall(definingClass = "Lcom/fingersoft/game/firebase/CFirebaseAds;", name = "showVideoAd")
     )
 )
-
-object RewardedFrequencyCapFingerprint : Fingerprint(
-    definingClass = MAIN_ACTIVITY,
-    name = "lambda\$initialiseAdvertising\$16",
-    returnType = "V",
-    accessFlags = listOf(AccessFlags.STATIC, AccessFlags.SYNTHETIC),
-    parameters = listOf("[Ljava/lang/String;", "Ljava/lang/String;", "I", "[Ljava/lang/String;", "[Ljava/lang/String;"),
-    filters = listOf(
-        methodCall(definingClass = MAIN_ACTIVITY, name = "createInterstitialFrequencyCap"),
-        methodCall(definingClass = MAIN_ACTIVITY, name = "createInterstitialFrequencyCap")
-    )
-)

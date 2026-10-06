@@ -1,7 +1,6 @@
 package app.hillclimb.patches.ad
 
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
-import app.morphe.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.morphe.patcher.patch.bytecodePatch
 import app.hillclimb.patches.shared.Constants.COMPATIBILITY_HILLCLIMB
 
@@ -26,21 +25,5 @@ val hillClimbRewardedVideoPatch = bytecodePatch(
             invoke-static {}, $MAIN_ACTIVITY->onVideoCompletedSuccess()V
             return-void
         """.trimIndent())
-    }
-}
-
-@Suppress("unused")
-val hillClimbUnlimitedSecondChancePatch = bytecodePatch(
-    name = "Hill Climb Racing Unlimited Second Chance",
-    description = "The rewarded second chance revive offer is no longer capped at one use per run, so you can revive as often as you like.",
-    default = true,
-) {
-    compatibleWith(COMPATIBILITY_HILLCLIMB)
-
-    execute {
-        RewardedFrequencyCapFingerprint.method.replaceInstruction(
-            RewardedFrequencyCapFingerprint.instructionMatches[1].index + 25,
-            "nop"
-        )
     }
 }
