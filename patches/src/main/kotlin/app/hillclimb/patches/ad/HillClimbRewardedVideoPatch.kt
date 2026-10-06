@@ -64,7 +64,7 @@ val hillClimbRewardedVideoPatch = bytecodePatch(
 
         IsInterstitialLoadedGroupFingerprint.method.addInstructions(0, """
             const-string v1, "HCR_IIG"
-            invoke-static {v1, v1}, $ALOG->d(Ljava/lang/String;Ljava/lang/String)I
+            invoke-static {v1, v1}, $ALOG->d(Ljava/lang/String;Ljava/lang/String;)I
         """.trimIndent())
 
         IsFirebaseInitializedFingerprint.method.addInstructions(0, """
