@@ -1,3 +1,9 @@
+## [1.43.4](https://github.com/legendsciber/morphe-patches/compare/v1.43.3...v1.43.4) (2026-10-06)
+
+### 🐛 Bug Fixes
+
+* **hillclimb:** drop all diagnostic instrumentation, restore working rewarded reward state ([dfa43a9](https://github.com/legendsciber/morphe-patches/commit/dfa43a95ac420fa799acb0a2f46dbab3bc4bcc96))
+
 ## [1.43.3](https://github.com/legendsciber/morphe-patches/compare/v1.43.2...v1.43.3) (2026-10-06)
 
 ### 🐛 Bug Fixes
