@@ -38,3 +38,47 @@ object IsShowingBannersFingerprint : Fingerprint(
     returnType = "Z",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC)
 )
+
+object HasVideoCampaignsFingerprint : Fingerprint(
+    definingClass = MAIN_ACTIVITY,
+    name = "hasVideoCampaigns",
+    returnType = "I",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC),
+    parameters = listOf("I")
+)
+
+object IsInterstitialLoadedGroupFingerprint : Fingerprint(
+    definingClass = MAIN_ACTIVITY,
+    name = "isInterstitialLoadedGroup",
+    returnType = "Z",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC),
+    parameters = listOf("I")
+)
+
+object LoadRewardedVideoFingerprint : Fingerprint(
+    definingClass = MAIN_ACTIVITY,
+    name = "loadRewardedVideoFromGame",
+    returnType = "V",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC)
+)
+
+object IsFirebaseInitializedFingerprint : Fingerprint(
+    definingClass = MAIN_ACTIVITY,
+    name = "isFirebaseInitialized",
+    returnType = "Z",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC)
+)
+
+object SplashCompletedFingerprint : Fingerprint(
+    definingClass = MAIN_ACTIVITY,
+    name = "splashScreenHasCompleted",
+    returnType = "V",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC)
+)
+
+object LogDonorFingerprint : Fingerprint(
+    definingClass = MAIN_ACTIVITY,
+    name = "lambda\$openAdmobAdInspector\$15",
+    returnType = "V",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC, AccessFlags.SYNTHETIC)
+)
