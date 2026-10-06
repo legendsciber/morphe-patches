@@ -1,3 +1,9 @@
+## [1.42.2](https://github.com/legendsciber/morphe-patches/compare/v1.42.1...v1.42.2) (2026-10-06)
+
+### 🐛 Bug Fixes
+
+* **hillclimb:** patch rewarded frequency cap natively instead of smali fingerprint ([a93535f](https://github.com/legendsciber/morphe-patches/commit/a93535f569dfaeb779ca2915f7c79c35a7852e84))
+
 ## [1.42.1](https://github.com/legendsciber/morphe-patches/compare/v1.42.0...v1.42.1) (2026-10-06)
 
 ### 🐛 Bug Fixes
