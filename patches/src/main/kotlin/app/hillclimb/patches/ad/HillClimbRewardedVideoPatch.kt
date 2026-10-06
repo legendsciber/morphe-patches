@@ -22,7 +22,7 @@ val hillClimbRewardedVideoPatch = bytecodePatch(
         """.trimIndent())
 
         PlayRewardedVideoAdFingerprint.method.addInstructions(0, """
-            const-string v1, "HCR"
+            const-string v1, "hcr"
             invoke-static {v1, v0}, $ALOG->d(Ljava/lang/String;Ljava/lang/String;)I
             invoke-static {}, $MAIN_ACTIVITY->onVideoStartedSuccess()V
             invoke-static {}, $MAIN_ACTIVITY->onVideoCompletedSuccess()V
