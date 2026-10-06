@@ -1,3 +1,9 @@
+## [1.43.6](https://github.com/legendsciber/morphe-patches/compare/v1.43.5...v1.43.6) (2026-10-06)
+
+### 🐛 Bug Fixes
+
+* **hillclimb:** remove second chance patch, it broke rewards without enabling revive ([47b1b2f](https://github.com/legendsciber/morphe-patches/commit/47b1b2f93cc2cefc4733f258cd95cc502a32bd8c))
+
 ## [1.43.5](https://github.com/legendsciber/morphe-patches/compare/v1.43.4...v1.43.5) (2026-10-06)
 
 ### 🐛 Bug Fixes

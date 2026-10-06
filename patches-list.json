@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.43.5",
+  "version": "1.43.6",
   "patches": [
     {
       "name": "Aphelion Ad-Free Hint Unlock",
@@ -187,32 +187,6 @@
     {
       "name": "Hill Climb Racing Instant Rewarded Video Rewards",
       "description": "Rewarded ads pay out instantly: the engine is told a rewarded video is available and receives the started and completed callbacks straight away, so no video plays and every reward is granted offline.",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "com.fingersoft.hillclimb",
-          "name": "Hill Climb Racing",
-          "description": null,
-          "apkFileType": null,
-          "appIconColor": "#2E7D32",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "1.72.2",
-              "versionCodes": null,
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Hill Climb Racing Unlimited Second Chance",
-      "description": "The engine always evaluates the watched-to-continue revive offer and the per-run used flag can no longer suppress it, so you can revive after every crash instead of only once.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
