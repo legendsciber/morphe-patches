@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-10-06T00:43:03",
-  "description": "## [1.41.9](https://github.com/legendsciber/morphe-patches/compare/v1.41.8...v1.41.9) (2026-10-06)\n\n### 🐛 Bug Fixes\n\n* **hillclimb:** escape dollar sign in lambda method name ([1de504b](https://github.com/legendsciber/morphe-patches/commit/1de504b80f9aa762f5c3ba3c42e80a2b844f8643))\n* **hillclimb:** log via android.util.Log since game logging is disabled in release ([aa197ec](https://github.com/legendsciber/morphe-patches/commit/aa197ece367186c7f6d1899fa40c30b9cef349a4))\n* **hillclimb:** use openAdmobAdInspector as log donor instead of lambda ([cacb0fd](https://github.com/legendsciber/morphe-patches/commit/cacb0fdbfebdd8269f00f1ea682485e0feda3130))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.41.9/patches-1.41.9.mpp",
+  "created_at": "2026-10-06T14:40:59",
+  "description": "## [1.41.10](https://github.com/legendsciber/morphe-patches/compare/v1.41.9...v1.41.10) (2026-10-06)\n\n### 🐛 Bug Fixes\n\n* **hillclimb:** open the hasVideoCampaigns gate so the engine actually requests rewarded ads ([1b3c542](https://github.com/legendsciber/morphe-patches/commit/1b3c5425222253331f3997ce0ecddc957544effe))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.41.10/patches-1.41.10.mpp",
   "signature_download_url": "",
-  "version": "1.41.9"
+  "version": "1.41.10"
 }

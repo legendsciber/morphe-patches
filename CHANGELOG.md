@@ -1,3 +1,9 @@
+## [1.41.10](https://github.com/legendsciber/morphe-patches/compare/v1.41.9...v1.41.10) (2026-10-06)
+
+### 🐛 Bug Fixes
+
+* **hillclimb:** open the hasVideoCampaigns gate so the engine actually requests rewarded ads ([1b3c542](https://github.com/legendsciber/morphe-patches/commit/1b3c5425222253331f3997ce0ecddc957544effe))
+
 ## [1.41.9](https://github.com/legendsciber/morphe-patches/compare/v1.41.8...v1.41.9) (2026-10-06)
 
 ### 🐛 Bug Fixes
