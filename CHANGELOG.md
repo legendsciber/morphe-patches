@@ -1,3 +1,9 @@
+## [1.43.1](https://github.com/legendsciber/morphe-patches/compare/v1.43.0...v1.43.1) (2026-10-06)
+
+### 🐛 Bug Fixes
+
+* **hillclimb:** correct missing parameter terminator in injected smali signature ([79848f4](https://github.com/legendsciber/morphe-patches/commit/79848f459e88b5571b455dc273c784f047303547))
+
 ## [1.43.0](https://github.com/legendsciber/morphe-patches/compare/v1.42.4...v1.43.0) (2026-10-06)
 
 ### ✨ New Features

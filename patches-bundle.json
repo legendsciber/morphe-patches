@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-10-06T19:51:53",
-  "description": "## [1.43.0](https://github.com/legendsciber/morphe-patches/compare/v1.42.4...v1.43.0) (2026-10-06)\n\n### ✨ New Features\n\n* **hillclimb:** instrument every rewarded ad entry point with a patch liveness beacon ([40efacc](https://github.com/legendsciber/morphe-patches/commit/40efacce3534f028ea0aec403141cfd1f8b17813))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.43.0/patches-1.43.0.mpp",
+  "created_at": "2026-10-06T20:08:51",
+  "description": "## [1.43.1](https://github.com/legendsciber/morphe-patches/compare/v1.43.0...v1.43.1) (2026-10-06)\n\n### 🐛 Bug Fixes\n\n* **hillclimb:** correct missing parameter terminator in injected smali signature ([79848f4](https://github.com/legendsciber/morphe-patches/commit/79848f459e88b5571b455dc273c784f047303547))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.43.1/patches-1.43.1.mpp",
   "signature_download_url": "",
-  "version": "1.43.0"
+  "version": "1.43.1"
 }
