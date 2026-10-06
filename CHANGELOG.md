@@ -1,3 +1,9 @@
+## [1.43.3](https://github.com/legendsciber/morphe-patches/compare/v1.43.2...v1.43.3) (2026-10-06)
+
+### 🐛 Bug Fixes
+
+* **hillclimb:** drop duplicated type terminator in injected valueOf calls ([144ba6d](https://github.com/legendsciber/morphe-patches/commit/144ba6dd487a34f8d8f83732e08f46ed78b417f5))
+
 ## [1.43.2](https://github.com/legendsciber/morphe-patches/compare/v1.43.1...v1.43.2) (2026-10-06)
 
 ### 🐛 Bug Fixes
