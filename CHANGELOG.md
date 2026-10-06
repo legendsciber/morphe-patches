@@ -1,3 +1,11 @@
+## [1.41.9](https://github.com/legendsciber/morphe-patches/compare/v1.41.8...v1.41.9) (2026-10-06)
+
+### 🐛 Bug Fixes
+
+* **hillclimb:** escape dollar sign in lambda method name ([1de504b](https://github.com/legendsciber/morphe-patches/commit/1de504b80f9aa762f5c3ba3c42e80a2b844f8643))
+* **hillclimb:** log via android.util.Log since game logging is disabled in release ([aa197ec](https://github.com/legendsciber/morphe-patches/commit/aa197ece367186c7f6d1899fa40c30b9cef349a4))
+* **hillclimb:** use openAdmobAdInspector as log donor instead of lambda ([cacb0fd](https://github.com/legendsciber/morphe-patches/commit/cacb0fdbfebdd8269f00f1ea682485e0feda3130))
+
 ## [1.41.8](https://github.com/legendsciber/morphe-patches/compare/v1.41.7...v1.41.8) (2026-10-06)
 
 ### 🐛 Bug Fixes
