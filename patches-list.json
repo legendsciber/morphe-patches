@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.43.8",
+  "version": "1.43.9",
   "patches": [
     {
       "name": "Aphelion Ad-Free Hint Unlock",
@@ -17,7 +17,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "0.4.9",
+              "version": "0.5.8",
               "versionCodes": null,
               "isExperimental": false,
               "minSdk": null,
@@ -43,7 +43,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "0.4.9",
+              "version": "0.5.8",
               "versionCodes": null,
               "isExperimental": false,
               "minSdk": null,

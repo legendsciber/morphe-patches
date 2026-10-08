@@ -1,3 +1,9 @@
+## [1.43.9](https://github.com/legendsciber/morphe-patches/compare/v1.43.8...v1.43.9) (2026-10-08)
+
+### 🚀 Updated App Support
+
+* **aphelion:** update fingerprints and target for 0.5.8 ([95ec292](https://github.com/legendsciber/morphe-patches/commit/95ec29299301c6d9623fe8be0f218528528efb2f))
+
 ## [1.43.8](https://github.com/legendsciber/morphe-patches/compare/v1.43.7...v1.43.8) (2026-10-08)
 
 ### 🚀 Updated App Support
