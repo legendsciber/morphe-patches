@@ -1,3 +1,9 @@
+## [1.43.8](https://github.com/legendsciber/morphe-patches/compare/v1.43.7...v1.43.8) (2026-10-08)
+
+### 🚀 Updated App Support
+
+* **dantheman:** update target and reachability gate site for 1.14.05 ([9898bfd](https://github.com/legendsciber/morphe-patches/commit/9898bfdf2a41a581f28113fdce7446f39f4626b5))
+
 ## [1.43.7](https://github.com/legendsciber/morphe-patches/compare/v1.43.6...v1.43.7) (2026-10-07)
 
 ### 🐛 Bug Fixes
