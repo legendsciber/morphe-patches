@@ -1,3 +1,9 @@
+## [1.43.10](https://github.com/legendsciber/morphe-patches/compare/v1.43.9...v1.43.10) (2026-10-09)
+
+### 🐛 Bug Fixes
+
+* **solarsmash:** suppress all ads via AdvertsDisabled gate ([d320b18](https://github.com/legendsciber/morphe-patches/commit/d320b18352b3f65137148b1372ebbfc70527e3b7))
+
 ## [1.43.9](https://github.com/legendsciber/morphe-patches/compare/v1.43.8...v1.43.9) (2026-10-08)
 
 ### 🚀 Updated App Support
