@@ -9,7 +9,23 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.44.2](https://github.com/legendsciber/morphe-patches/releases/tag/v1.44.2)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;25 patches total
+> **[v1.45.0](https://github.com/legendsciber/morphe-patches/releases/tag/v1.45.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;27 patches total
+<details open>
+<summary>📦 Age Of War 2&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 2026.1.1 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Age Of War 2 Remove Ads](#age-of-war-2-remove-ads) | Removes every ad: the ironSource and LevelPlay SDK is never initialised, so no interstitial, banner or rewarded video can load or be shown. Ad-gated actions still complete through the game's own no-ad fallback, so post-game navigation and ad-gated rewards proceed instantly without a network connection. |  |
+| [Age Of War 2 Store Modes Unlock](#age-of-war-2-store-modes-unlock) | All four paid store modes are owned and unlocked without paying: Hacked Mode, Generals Mode, the Let's Party unit skins and the Age Of Spooky unit skins. The game checks ownership through a PlayerPrefs read, and each mode's unlock query now reports as unlocked, so the store rows show as owned and gameplay applies the modes and skins immediately. |  |
+
+</details>
+
 <details open>
 <summary>📦 Aphelion&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
 <br>

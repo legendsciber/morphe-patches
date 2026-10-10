@@ -1,3 +1,9 @@
+## [1.45.0](https://github.com/legendsciber/morphe-patches/compare/v1.44.2...v1.45.0) (2026-10-10)
+
+### ✨ New Features
+
+* **aow2:** add store modes unlock and ad removal patches ([f844716](https://github.com/legendsciber/morphe-patches/commit/f8447167cad953618a973f9e85f8997f69781b24))
+
 ## [1.44.2](https://github.com/legendsciber/morphe-patches/compare/v1.44.1...v1.44.2) (2026-10-10)
 
 ### 🐛 Bug Fixes
