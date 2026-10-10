@@ -1,3 +1,9 @@
+## [1.44.2](https://github.com/legendsciber/morphe-patches/compare/v1.44.1...v1.44.2) (2026-10-10)
+
+### 🐛 Bug Fixes
+
+* **templerun2:** load the offline store catalogue ([0936093](https://github.com/legendsciber/morphe-patches/commit/093609372b5757be04e5bde1f602784f65468a63))
+
 ## [1.44.1](https://github.com/legendsciber/morphe-patches/compare/v1.44.0...v1.44.1) (2026-10-10)
 
 ### 🐛 Bug Fixes
