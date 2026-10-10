@@ -275,6 +275,17 @@ private val SITES = listOf(
             0x00, 0x54, 0x06, 0x00, 0x00, 0x14,
         ),
     ),
+    PatchSite(
+        label = "UGUIStoreScreen.OnActive store-feature gate forced on",
+        from = byteArrayOf(
+            0xE0.toByte(), 0x03, 0x1F, 0xAA.toByte(), 0x73, 0x77,
+            0xF8.toByte(), 0x97.toByte(),
+        ),
+        to = byteArrayOf(
+            0xE0.toByte(), 0x03, 0x1F, 0xAA.toByte(), 0x20, 0x00,
+            0x80.toByte(), 0x52,
+        ),
+    ),
 )
 
 private val CAVE_OFFSET = 0x01B332E4
@@ -301,7 +312,7 @@ private val STUBS = listOf(
 @Suppress("unused")
 val templeRun2FreeIapPatch = rawResourcePatch(
     name = "Temple Run 2 Free IAP",
-    description = "All store purchases (coins, gems, no-ads, characters, deals, potions and perks) are granted instantly and free without Google Play billing, online or offline. Real-money store items stay visible offline, where Google Play billing never reports prices.",
+    description = "All store purchases (coins, gems, no-ads, characters, deals, potions and perks) are granted instantly and free without Google Play billing, online or offline. The shop, deals and perks tabs keep loading their full catalogue with no network connection, and real-money store items stay visible offline, where Google Play billing never reports prices.",
     default = true,
 ) {
     compatibleWith(COMPATIBILITY_TEMPLERUN2)
