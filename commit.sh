@@ -5,7 +5,7 @@
 set -e
 
 DIR="${DIR:-/tmp/morphe-patches}"
-MSG="feat(solarsmash): add all packages purchased patch"
+MSG="fix(templerun2): show real-money store items when offline"
 
 cd "$DIR"
 
