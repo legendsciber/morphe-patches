@@ -1,3 +1,9 @@
+## [1.44.1](https://github.com/legendsciber/morphe-patches/compare/v1.44.0...v1.44.1) (2026-10-10)
+
+### 🐛 Bug Fixes
+
+* **templerun2:** show real-money store items when offline ([e9a0a73](https://github.com/legendsciber/morphe-patches/commit/e9a0a73815721518de0396b10bbb52838e65fb39))
+
 ## [1.44.0](https://github.com/legendsciber/morphe-patches/compare/v1.43.10...v1.44.0) (2026-10-09)
 
 ### ✨ New Features
