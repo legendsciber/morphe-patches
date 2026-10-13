@@ -1,3 +1,9 @@
+## [1.47.0](https://github.com/legendsciber/morphe-patches/compare/v1.46.0...v1.47.0) (2026-10-13)
+
+### ✨ New Features
+
+* **newstarsoccer:** add free IAP patch ([5fcc116](https://github.com/legendsciber/morphe-patches/commit/5fcc116f3731e87f37a5173cd85ac5fe517ec838))
+
 ## [1.46.0](https://github.com/legendsciber/morphe-patches/compare/v1.45.0...v1.46.0) (2026-10-13)
 
 ### ✨ New Features
