@@ -1,3 +1,9 @@
+## [1.46.0](https://github.com/legendsciber/morphe-patches/compare/v1.45.0...v1.46.0) (2026-10-13)
+
+### ✨ New Features
+
+* **keymapper:** add premium unlock patch ([9133e98](https://github.com/legendsciber/morphe-patches/commit/9133e988c0e461b653b7767941cd325f10b30e16))
+
 ## [1.45.0](https://github.com/legendsciber/morphe-patches/compare/v1.44.2...v1.45.0) (2026-10-10)
 
 ### ✨ New Features

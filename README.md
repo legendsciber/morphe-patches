@@ -9,7 +9,7 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.45.0](https://github.com/legendsciber/morphe-patches/releases/tag/v1.45.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;27 patches total
+> **[v1.46.0](https://github.com/legendsciber/morphe-patches/releases/tag/v1.46.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;28 patches total
 <details open>
 <summary>📦 Age Of War 2&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
 <br>
@@ -118,6 +118,21 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 |----------|----------------|-----------|
 | [Hungry Shark Currency Hack](#hungry-shark-currency-hack) | Coins and gems are always set to 2,147,483,647 whenever they are earned, spent, purchased, or loaded from a save. |  |
 | [Hungry Shark Installer Source Fix](#hungry-shark-installer-source-fix) | Spoofs the installer source as Google Play for every install-source check in the game and its SDKs, so sideloaded installs are treated as store installs and installer-based Play Store redirects are bypassed. |  |
+
+</details>
+
+<details open>
+<summary>📦 Key Mapper&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 4.5.0 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Premium](#premium) | Unlocks the floating buttons and assistant trigger features by granting both purchase entitlements, keeping them available even offline where the purchase state cannot be fetched. |  |
 
 </details>
 
