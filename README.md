@@ -9,7 +9,7 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.48.0](https://github.com/legendsciber/morphe-patches/releases/tag/v1.48.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;30 patches total
+> **[v1.49.0](https://github.com/legendsciber/morphe-patches/releases/tag/v1.49.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;31 patches total
 <details open>
 <summary>📦 Age Of War 2&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
 <br>
@@ -74,7 +74,7 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 </details>
 
 <details open>
-<summary>📦 Death Rover&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<summary>📦 Death Rover&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
 <br>
 
 **🎯 Supported versions:**
@@ -84,7 +84,8 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
-| [Death Rover Free IAP](#death-rover-free-iap) | Every shop item reports as purchased and stays owned without contacting Google Play: cars, upgrades, remove ads and double coins come pre-owned, and credit packs are granted instantly and free when bought instead of opening Google Play billing. |  |
+| [Death Rover Free IAP](#death-rover-free-iap) | Every shop item reports as purchased and stays owned without contacting Google Play: cars, remove ads and double coins come pre-owned, and credit packs are granted instantly and free when bought instead of opening Google Play billing. Rover upgrades are left untouched, so those stay purchasable with the coins you earn. |  |
+| [Death Rover Unlimited Turbo](#death-rover-unlimited-turbo) | The turbo no longer runs down: while the turbo is engaged the rover keeps refilling its gauge to the maximum instead of spending it, so you can hold the turbo for the whole drive. Cars without a turbo upgrade are unaffected. |  |
 
 </details>
 

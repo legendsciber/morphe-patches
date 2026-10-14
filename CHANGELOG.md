@@ -1,3 +1,9 @@
+## [1.49.0](https://github.com/legendsciber/morphe-patches/compare/v1.48.0...v1.49.0) (2026-10-14)
+
+### ✨ New Features
+
+* **deathrover:** keep coin upgrades buyable and add unlimited turbo ([9f83faf](https://github.com/legendsciber/morphe-patches/commit/9f83faf882ffd0f20d5ce07eef0f1f66bb2a0ae3))
+
 ## [1.48.0](https://github.com/legendsciber/morphe-patches/compare/v1.47.0...v1.48.0) (2026-10-14)
 
 ### ✨ New Features
