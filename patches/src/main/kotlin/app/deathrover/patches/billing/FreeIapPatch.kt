@@ -2,30 +2,20 @@ package app.deathrover.patches.billing
 
 import app.morphe.patcher.patch.rawResourcePatch
 import app.deathrover.patches.shared.Constants.COMPATIBILITY_DEATHROVER
+import app.deathrover.patches.shared.RawPatchSite
+import app.deathrover.patches.shared.applySites
 
-private val RET = byteArrayOf(0xC0.toByte(), 0x03, 0x5F, 0xD6.toByte())
-
-private class Site(
-    val label: String,
-    val anchor: ByteArray,
-    val replacement: ByteArray,
-    val requireRetPadding: Boolean,
-)
-
+// Rover upgrades are deliberately not listed here: ProgressManager.BuyUpgrade pays for them with
+// in-game coins (GetCurrencyBalance / TakeCurrency), not with an IAP, so making the ownership
+// predicate report true would hide the buy button and take the upgrade path away instead of
+// unlocking it. Those stay purchasable with coins the player earns.
 private val SITES = listOf(
-    Site(
+    RawPatchSite(
         "IAPController.IsProductPurchased",
         byteArrayOf(0x60, 0x00, 0x1F, 0xD6.toByte(), 0x9E.toByte(), 0x18, 0xFB.toByte(), 0x97.toByte()),
         byteArrayOf(0x20, 0x00, 0x80.toByte(), 0x52, 0xC0.toByte(), 0x03, 0x5F, 0xD6.toByte()),
-        false,
     ),
-    Site(
-        "ProgressManager.IsUpgradePurchased",
-        byteArrayOf(0xFE.toByte(), 0x0F, 0x1F, 0xF8.toByte(), 0x21, 0xDA.toByte(), 0xFA.toByte(), 0x97.toByte()),
-        byteArrayOf(0x20, 0x00, 0x80.toByte(), 0x52, 0xC0.toByte(), 0x03, 0x5F, 0xD6.toByte()),
-        false,
-    ),
-    Site(
+    RawPatchSite(
         "IAPController.BuyItem",
         byteArrayOf(
             0xE0.toByte(), 0x03, 0x13, 0xAA.toByte(), 0xF4.toByte(), 0x4F, 0x42, 0xA9.toByte(),
@@ -35,9 +25,8 @@ private val SITES = listOf(
             0xC0.toByte(), 0x03, 0x5F, 0xD6.toByte(),
         ),
         byteArrayOf(0xC9.toByte(), 0x5B, 0x0A, 0x14),
-        false,
     ),
-    Site(
+    RawPatchSite(
         "IAPController.BuyItem.freeGrantCave",
         byteArrayOf(
             0xE0.toByte(), 0x17, 0x9F.toByte(), 0x1A, 0xC0.toByte(), 0x03, 0x5F, 0xD6.toByte(),
@@ -57,39 +46,14 @@ private val SITES = listOf(
             0x20, 0x01, 0x3F, 0xD6.toByte(), 0xF4.toByte(), 0x57, 0x41, 0xA9.toByte(),
             0xFE.toByte(), 0x4F, 0xC2.toByte(), 0xA8.toByte(), 0xC0.toByte(), 0x03, 0x5F, 0xD6.toByte(),
         ),
-        true,
+        requireRetPadding = true,
     ),
 )
-
-private fun indexOfUnique(bytes: ByteArray, anchor: ByteArray, label: String): Int {
-    var count = 0
-    var at = -1
-    var i = 0
-    while (i <= bytes.size - anchor.size) {
-        var match = true
-        var j = 0
-        while (j < anchor.size) {
-            if (bytes[i + j] != anchor[j]) {
-                match = false
-                break
-            }
-            j++
-        }
-        if (match) {
-            count++
-            at = i
-            if (count > 1) break
-        }
-        i++
-    }
-    require(count == 1) { "$label site not unique: $count matches" }
-    return at
-}
 
 @Suppress("unused")
 val deathRoverFreeIapPatch = rawResourcePatch(
     name = "Death Rover Free IAP",
-    description = "Every shop item reports as purchased and stays owned without contacting Google Play: cars, upgrades, remove ads and double coins come pre-owned, and credit packs are granted instantly and free when bought instead of opening Google Play billing.",
+    description = "Every shop item reports as purchased and stays owned without contacting Google Play: cars, remove ads and double coins come pre-owned, and credit packs are granted instantly and free when bought instead of opening Google Play billing. Rover upgrades are left untouched, so those stay purchasable with the coins you earn.",
     default = true,
 ) {
     compatibleWith(COMPATIBILITY_DEATHROVER)
@@ -98,18 +62,7 @@ val deathRoverFreeIapPatch = rawResourcePatch(
         val soFile = get("lib/arm64-v8a/libil2cpp.so", true)
         val bytes = soFile.readBytes()
 
-        for (site in SITES) {
-            val at = indexOfUnique(bytes, site.anchor, site.label) + site.anchor.size
-            require(at + site.replacement.size <= bytes.size) { "${site.label} writes out of bounds" }
-            if (site.requireRetPadding) {
-                for (k in site.replacement.indices) {
-                    require(bytes[at + k] == RET[k % 4]) {
-                        "code cave at ${at + k} is not padding (${site.label})"
-                    }
-                }
-            }
-            site.replacement.copyInto(bytes, at)
-        }
+        applySites(bytes, SITES)
 
         soFile.writeBytes(bytes)
     }
