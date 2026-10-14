@@ -1,3 +1,9 @@
+## [1.48.0](https://github.com/legendsciber/morphe-patches/compare/v1.47.0...v1.48.0) (2026-10-14)
+
+### ✨ New Features
+
+* **deathrover:** add free IAP patch ([4333dc4](https://github.com/legendsciber/morphe-patches/commit/4333dc447e732c3d9ccc77fd3d695a45215c583e))
+
 ## [1.47.0](https://github.com/legendsciber/morphe-patches/compare/v1.46.0...v1.47.0) (2026-10-13)
 
 ### ✨ New Features

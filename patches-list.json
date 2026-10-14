@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.47.0",
+  "version": "1.48.0",
   "patches": [
     {
       "name": "Age Of War 2 Remove Ads",
@@ -148,6 +148,32 @@
           "targets": [
             {
               "version": "1.14.05",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Death Rover Free IAP",
+      "description": "Every shop item reports as purchased and stays owned without contacting Google Play: cars, upgrades, remove ads and double coins come pre-owned, and credit packs are granted instantly and free when bought instead of opening Google Play billing.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.tranquility.colony",
+          "name": "Death Rover",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#303048",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2.7.3",
               "versionCodes": null,
               "isExperimental": false,
               "minSdk": null,
