@@ -9,7 +9,7 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.49.0](https://github.com/legendsciber/morphe-patches/releases/tag/v1.49.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;31 patches total
+> **[v1.50.0](https://github.com/legendsciber/morphe-patches/releases/tag/v1.50.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;32 patches total
 <details open>
 <summary>📦 Age Of War 2&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
 <br>
@@ -276,6 +276,21 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 |----------|----------------|-----------|
 | [Temple Run 2 Free IAP](#temple-run-2-free-iap) | All store purchases (coins, gems, no-ads, characters, deals, potions and perks) are granted instantly and free without Google Play billing, online or offline. The shop, deals and perks tabs keep loading their full catalogue with no network connection, and real-money store items stay visible offline, where Google Play billing never reports prices. |  |
 | [Temple Run 2 Instant Rewards](#temple-run-2-instant-rewards) | Every ad-gated reward works without watching an ad and without a network connection: rewarded-map unlocks, potions, power-ups, dailies, battle pass, advent calendar, weekly rewards and rewarded boosts are granted instantly. |  |
+
+</details>
+
+<details open>
+<summary>📦 Zombie Tsunami&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 4.7.3 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Zombie Tsunami Free IAP](#zombie-tsunami-free-iap) | Every store item is granted the moment you tap buy, with no Google Play billing sheet in between: all coin packs, the coins and diamonds bundle and the double coins upgrade arrive instantly and for free, and coin packs can be bought as many times as you like. |  |
 
 </details>
 

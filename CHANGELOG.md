@@ -1,3 +1,9 @@
+## [1.50.0](https://github.com/legendsciber/morphe-patches/compare/v1.49.0...v1.50.0) (2026-10-14)
+
+### ✨ New Features
+
+* **zombietsunami:** add free IAP patch ([7f322c9](https://github.com/legendsciber/morphe-patches/commit/7f322c9c4a9c8d8faeb8ba30f0cdbf8dfab6f762))
+
 ## [1.49.0](https://github.com/legendsciber/morphe-patches/compare/v1.48.0...v1.49.0) (2026-10-14)
 
 ### ✨ New Features
