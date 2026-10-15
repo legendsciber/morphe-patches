@@ -5,10 +5,6 @@ import app.deathrover.patches.shared.Constants.COMPATIBILITY_DEATHROVER
 import app.deathrover.patches.shared.RawPatchSite
 import app.deathrover.patches.shared.applySites
 
-// Rover upgrades are deliberately not listed here: ProgressManager.BuyUpgrade pays for them with
-// in-game coins (GetCurrencyBalance / TakeCurrency), not with an IAP, so making the ownership
-// predicate report true would hide the buy button and take the upgrade path away instead of
-// unlocking it. Those stay purchasable with coins the player earns.
 private val SITES = listOf(
     RawPatchSite(
         "IAPController.IsProductPurchased",

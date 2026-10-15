@@ -5,14 +5,6 @@ import app.deathrover.patches.shared.Constants.COMPATIBILITY_DEATHROVER
 import app.deathrover.patches.shared.RawPatchSite
 import app.deathrover.patches.shared.applySites
 
-// RoverController.ProcessTurboLevel computes "level - rate * deltaTime" from [this + 0x2c], the
-// current TurboLevel, and stores the result back. InitUpgrades fills both TurboLevel (0x2c) and
-// MaxTurbo (0x3c) from the same source ([_currentTurbo + 0x28]), so the gauge starts full and this
-// method is what empties it. Retargeting that one load at MaxTurbo makes every frame recompute
-// MaxTurbo - rate * deltaTime instead, which is the maximum minus a single frame of consumption:
-// the gauge never runs down and the turbo stays engaged for as long as it is held. The null guard
-// above it and the "turbo level > 0" check in Update read the real fields, so a rover with no turbo
-// upgrade still has no turbo.
 private val SITES = listOf(
     RawPatchSite(
         "RoverController.ProcessTurboLevel",
