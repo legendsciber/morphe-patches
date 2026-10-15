@@ -1,3 +1,13 @@
+## [1.51.0](https://github.com/legendsciber/morphe-patches/compare/v1.50.0...v1.51.0) (2026-10-15)
+
+### 🐛 Bug Fixes
+
+* **zombietsunami:** drop access flags from the billing fingerprint ([d16e579](https://github.com/legendsciber/morphe-patches/commit/d16e57963647fbb2b95cc98728fd473655651a4e))
+
+### ✨ New Features
+
+* **zombietsunami:** add installer check bypass ([3631b90](https://github.com/legendsciber/morphe-patches/commit/3631b906a0fed560d5ee1f4ee4fc5f9f09ad813b))
+
 ## [1.50.0](https://github.com/legendsciber/morphe-patches/compare/v1.49.0...v1.50.0) (2026-10-14)
 
 ### ✨ New Features
