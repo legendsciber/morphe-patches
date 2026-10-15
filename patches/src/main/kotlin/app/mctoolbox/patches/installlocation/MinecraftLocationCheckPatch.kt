@@ -4,16 +4,6 @@ import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.patch.bytecodePatch
 import app.mctoolbox.patches.shared.Constants.COMPATIBILITY_MCTOOLBOX
 
-/**
- * Bypass Google Play Install Check — bypasses the installation source check.
- *
- * Writes test="0" pref directly at the start of MinecraftActivity.onCreate;
- * regardless of the installer name (null/packageinstaller/other market),
- * the app behaves as if it was installed from Google Play.
- *
- * Register safety: onCreate has .locals 14; v11/v12/v13 are not live
- * at the first instruction of the method.
- */
 @Suppress("unused")
 val mctoolboxPlaySpoofPatch = bytecodePatch(
     name = "Bypass Google Play Install Check",
