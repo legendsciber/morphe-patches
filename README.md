@@ -9,7 +9,7 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.51.0](https://github.com/legendsciber/morphe-patches/releases/tag/v1.51.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;33 patches total
+> **[v1.52.0](https://github.com/legendsciber/morphe-patches/releases/tag/v1.52.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;34 patches total
 <details open>
 <summary>📦 Age Of War 2&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
 <br>
@@ -276,6 +276,21 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 |----------|----------------|-----------|
 | [Temple Run 2 Free IAP](#temple-run-2-free-iap) | All store purchases (coins, gems, no-ads, characters, deals, potions and perks) are granted instantly and free without Google Play billing, online or offline. The shop, deals and perks tabs keep loading their full catalogue with no network connection, and real-money store items stay visible offline, where Google Play billing never reports prices. |  |
 | [Temple Run 2 Instant Rewards](#temple-run-2-instant-rewards) | Every ad-gated reward works without watching an ad and without a network connection: rewarded-map unlocks, potions, power-ups, dailies, battle pass, advent calendar, weekly rewards and rewarded boosts are granted instantly. |  |
+
+</details>
+
+<details open>
+<summary>📦 Zen Pinball&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 1.49.3 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Zen Pinball Free IAP](#zen-pinball-free-iap) | Coins, tables and every other store item are granted instantly and free, without launching Google Play billing. |  |
 
 </details>
 
