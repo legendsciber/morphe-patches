@@ -1,3 +1,9 @@
+## [1.53.0](https://github.com/legendsciber/morphe-patches/compare/v1.52.0...v1.53.0) (2026-11-08)
+
+### ✨ New Features
+
+* **subwaysurfers:** support 3.71.0 with instant rewarded ads ([61f54a9](https://github.com/legendsciber/morphe-patches/commit/61f54a909652968886e14ff6ceefa455598c8452))
+
 ## [1.52.0](https://github.com/legendsciber/morphe-patches/compare/v1.51.0...v1.52.0) (2026-10-15)
 
 ### ✨ New Features

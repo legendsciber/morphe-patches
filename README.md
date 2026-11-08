@@ -9,7 +9,7 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.52.0](https://github.com/legendsciber/morphe-patches/releases/tag/v1.52.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;34 patches total
+> **[v1.53.0](https://github.com/legendsciber/morphe-patches/releases/tag/v1.53.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;34 patches total
 <details open>
 <summary>📦 Age Of War 2&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
 <br>
@@ -253,13 +253,13 @@ This is a collection of [Morphe](https://github.com/MorpheApp) patches maintaine
 
 **🎯 Supported versions:**
 
-| 3.70.0 |
+| 3.71.0 |
 | :---: |
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
-| [Subway Surfers Currency Hack](#subway-surfers-currency-hack) | Coins and keys always report 2,147,483,647 and every purchase is always affordable. |  |
 | [Subway Surfers Free IAP](#subway-surfers-free-iap) | Coins, keys and shop items are granted instantly and free without Google Play billing. |  |
+| [Subway Surfers Instant Rewarded Ads](#subway-surfers-instant-rewarded-ads) | Rewarded ad buttons grant their reward immediately without playing a video, and ad availability is forced ready so shop ad offers work without the ad SDK. Interstitial and banner ads are untouched. |  |
 
 </details>
 
