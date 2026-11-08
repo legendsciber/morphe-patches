@@ -1,3 +1,9 @@
+## [1.54.0](https://github.com/legendsciber/morphe-patches/compare/v1.53.1...v1.54.0) (2026-11-08)
+
+### ✨ New Features
+
+* **subwaysurfers:** remove interstitial and banner ads ([ce2effb](https://github.com/legendsciber/morphe-patches/commit/ce2effb439acd6dd2631e9b3937860d7f64e21b0))
+
 ## [1.53.1](https://github.com/legendsciber/morphe-patches/compare/v1.53.0...v1.53.1) (2026-11-08)
 
 ### 🚀 Updated App Support

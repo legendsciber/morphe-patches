@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.53.1",
+  "version": "1.54.0",
   "patches": [
     {
       "name": "Age Of War 2 Remove Ads",
@@ -735,6 +735,34 @@
       "description": "Rewarded ad buttons grant their reward immediately without playing a video, and ad availability is forced ready so shop ad offers work without the ad SDK. Interstitial and banner ads are untouched.",
       "default": true,
       "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.kiloo.subwaysurf",
+          "name": "Subway Surfers",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#F9A825",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "3.71.0",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Subway Surfers Remove Ads",
+      "description": "Removes interstitial and banner ads. Depends on Instant Rewarded Ads, so rewarded videos are skipped while their rewards are still granted.",
+      "default": true,
+      "dependencies": [
+        "RawResourcePatch"
+      ],
       "compatiblePackages": [
         {
           "packageName": "com.kiloo.subwaysurf",
