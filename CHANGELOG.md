@@ -1,3 +1,9 @@
+## [1.54.1](https://github.com/legendsciber/morphe-patches/compare/v1.54.0...v1.54.1) (2026-11-08)
+
+### 🚀 Updated App Support
+
+* **hillclimb:** update target to 1.73.2 ([5a70613](https://github.com/legendsciber/morphe-patches/commit/5a706133b5514e17d1f8bfab5be857351c8b3f0a))
+
 ## [1.54.0](https://github.com/legendsciber/morphe-patches/compare/v1.53.1...v1.54.0) (2026-11-08)
 
 ### ✨ New Features
