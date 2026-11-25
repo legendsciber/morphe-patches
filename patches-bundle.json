@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-11-25T16:08:02",
-  "description": "## [1.56.0](https://github.com/legendsciber/morphe-patches/compare/v1.55.0...v1.56.0) (2026-11-25)\n\n### ✨ New Features\n\n* **hungryshark:** update to 14.6.0 and add free iap patch ([a52b2ca](https://github.com/legendsciber/morphe-patches/commit/a52b2ca5ccf791d7f8dc9af22ad21aac15dfd5d1))\n* **newstarsoccer:** update to 4.34 ([5d602d3](https://github.com/legendsciber/morphe-patches/commit/5d602d3650ec60fce7f84f0228800fe844fad6d8))\n* **subwaysurf:** update to 3.72.0 ([c63b4e0](https://github.com/legendsciber/morphe-patches/commit/c63b4e0d06db7ad42038a0b4461d868e500a854a))",
-  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.56.0/patches-1.56.0.mpp",
+  "created_at": "2026-11-25T16:19:46",
+  "description": "## [1.58.0](https://github.com/legendsciber/morphe-patches/compare/v1.57.0...v1.58.0) (2026-11-25)\n\n### ✨ New Features\n\n* **hungryshark:** update to 14.6.0 and add free iap patch ([a52b2ca](https://github.com/legendsciber/morphe-patches/commit/a52b2ca5ccf791d7f8dc9af22ad21aac15dfd5d1))",
+  "download_url": "https://github.com/legendsciber/morphe-patches/releases/download/v1.58.0/patches-1.58.0.mpp",
   "signature_download_url": "",
-  "version": "1.56.0"
+  "version": "1.58.0"
 }
