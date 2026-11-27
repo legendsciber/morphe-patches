@@ -1,3 +1,9 @@
+## [1.59.1](https://github.com/legendsciber/morphe-patches/compare/v1.59.0...v1.59.1) (2026-11-27)
+
+### 🐛 Bug Fixes
+
+* **release:** publish patches-list.json with releases ([4c434e7](https://github.com/legendsciber/morphe-patches/commit/4c434e7b22d817598aa41fb6bcd14a37a3e0777e))
+
 ## [1.59.0](https://github.com/legendsciber/morphe-patches/compare/v1.58.0...v1.59.0) (2026-11-27)
 
 ### ✨ New Features
